@@ -1,0 +1,28 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname, '..');
+const reports=path.join(root, 'reports');fs.mkdirSync(reports,{recursive:true});
+const base=(process.env.ATLAS_BASE_URL||'http://127.0.0.1:8765')+'/index.html';
+const settle=(page,route)=>page.waitForFunction(route=>document.documentElement.dataset.route===route&&!document.documentElement.dataset.transitioning,route);
+(async()=>{let browser;const errors=[],checks=[];try{
+ browser=await chromium.launch(require('./browser-options.cjs'));
+ const context=await browser.newContext({viewport:{width:1440,height:1000}});
+ const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+ await page.addInitScript(()=>{window.__nativeEvents=[];if(document.startViewTransition){const original=document.startViewTransition.bind(document);document.startViewTransition=(...args)=>{const entry={ready:false,finished:false,error:null};window.__nativeEvents.push(entry);const result=original(...args);result.ready.then(()=>entry.ready=true,error=>entry.error=error.message);result.finished.then(()=>entry.finished=true);return result;};}});
+ await page.goto(base);await page.evaluate(()=>document.fonts.ready);
+ assert(await page.locator('#library').isVisible());assert.equal(await page.locator('[data-view]').count(),0);assert.equal(await page.locator('.view-tabs').count(),0);
+ await page.locator('#netflix-card').focus();await page.keyboard.press('Enter');await settle(page,'netflix');assert(new URL(page.url()).searchParams.get('case')==='netflix');assert.equal(await page.locator('#case-title').evaluate(e=>document.activeElement===e),true);
+ assert(await page.evaluate(()=>Boolean(document.elementFromPoint(50,35)?.closest('.topbar'))));
+ checks.push('Keyboard opens the case using native View Transition; the header and title focus remain correct.');
+ await page.goBack();await settle(page,'library');assert.equal(await page.locator('#netflix-card').evaluate(e=>document.activeElement===e),true);
+ await page.goForward();await settle(page,'netflix');await page.locator('#back-to-library').click();await settle(page,'library');
+ const native=await page.evaluate(()=>window.__nativeEvents);assert.equal(native.length,4);assert(native.every(e=>e.ready&&e.finished&&!e.error));checks.push('Opening, browser Back/Forward, and returning to the list all finish their native transitions.');
+ await page.evaluate(()=>window.scrollTo({top:150,behavior:'instant'}));const previousScroll=await page.evaluate(()=>scrollY);await page.locator('#netflix-card').click();await settle(page,'netflix');await page.locator('#back-to-library').click();await settle(page,'library');assert(Math.abs((await page.evaluate(()=>scrollY))-previousScroll)<2);checks.push('Returning restores catalogue scroll and focus to the same card.');
+ for(let i=0;i<4;i++){await page.locator('#netflix-card').evaluate(e=>e.click());await page.goBack();await settle(page,'library');assert(new URL(page.url()).searchParams.get('case')===null)}checks.push('Immediate browser Back during opening cancels safely without URL/view mismatch.');
+ await page.goto(base+'?case=netflix#anatomy');await page.evaluate(()=>document.fonts.ready);assert(await page.locator('#design').isVisible());assert(!(await page.locator('#library').isVisible()));await page.reload();assert(await page.locator('#design').isVisible());checks.push('Direct detail links and reload preserve the selected case.');
+ const reduced=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});const reducedPage=await reduced.newPage();await reducedPage.goto(base);await reducedPage.locator('#netflix-card').click();await settle(reducedPage,'netflix');assert.equal(await reducedPage.locator('html').getAttribute('data-navigation-engine'),'instant');await reducedPage.locator('#back-to-library').click();await settle(reducedPage,'library');checks.push('Reduced-motion preference switches both directions without animation.');
+ const fallback=await browser.newContext();const fallbackPage=await fallback.newPage();await fallbackPage.addInitScript(()=>Object.defineProperty(document,'startViewTransition',{value:undefined,configurable:true}));await fallbackPage.goto(base);await fallbackPage.locator('#netflix-card').click();await settle(fallbackPage,'netflix');assert.equal(await fallbackPage.locator('html').getAttribute('data-navigation-engine'),'instant');await fallbackPage.locator('#back-to-library').click();await settle(fallbackPage,'library');checks.push('Navigation also works when View Transition API is unavailable.');
+ assert.deepEqual(errors,[]);const report={nativeTransitions:native,checks,errors};fs.writeFileSync(reports+'/navigation-validation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+}finally{if(browser)await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});
