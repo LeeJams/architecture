@@ -354,7 +354,7 @@ function wireKeyboardTabs(selector) {
   }));
 }
 
-$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">회사·제품별 대안 보기 ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
+$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
 
 $$(".node").forEach(node => {
   node.addEventListener("click", () => { stopPlayback(); selectNode(node.dataset.node); });

@@ -771,6 +771,39 @@ button.stack-entry:hover { background: #f8faf4; }
 .product-fit > p { font-size: 11px; line-height: 1.95; margin: 6px 0 16px; color: var(--body); }
 .product-open { text-align: left; align-self: flex-start; border: 0; border-bottom: 1px solid #d9e4cd; background: none; font-size: 11px; color: #6d8856; padding: 5px 0; }
 .alternative-scope { margin: 17px 0 0; font-size: 11px; line-height: 1.9; color: #8c9b80; }
+.replacement-context { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; padding: 23px; margin-bottom: 20px; border: 1px solid #dce5d2; border-radius: 9px; background: #f1f6eb; }
+.replacement-source { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; min-width: 0; }
+.replacement-source > img { width: 44px; height: 44px; object-fit: contain; flex: 0 0 auto; }
+.replacement-source > div { min-width: 0; flex: 1; }
+.replacement-source h3, .replacement-overview h3 { margin: 5px 0; font-size: 20px; line-height: 1.6; }
+.replacement-source p, .replacement-overview > p:last-child { font-size: 11px; color: #81926f; margin: 0; line-height: 1.9; }
+.replacement-context-description { padding-left: 23px; border-left: 1px solid #d8e4ca; align-self: center; }
+.replacement-context-description strong { font-size: 12px; color: #4f6c3e; }
+.replacement-context-description p { font-size: 12px; line-height: 1.95; margin: 6px 0 0; color: #7d906b; }
+.replacement-overview { grid-column: 1/-1; }
+.replacement-card-label { margin: 0 0 7px; font-size: 10px; color: #90a17f; }
+.replacement-title { margin: 0 0 16px; font-size: 19px; line-height: 1.65; letter-spacing: -.035em; color: #384e2d; }
+.replacement-pair { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); gap: 9px; align-items: stretch; margin: 0 0 16px; }
+.replacement-pair > div { min-width: 0; padding: 13px 11px; border: 1px solid #e1e8d8; border-radius: 7px; background: #f8faf4; }
+.replacement-pair > div.replacement-to { background: #fff; border-color: #cfdcbe; }
+.replacement-pair > div > span { display: block; font-size: 9px; color: #98a68c; margin-bottom: 11px; }
+.replacement-pair img { width: 35px; height: 35px; object-fit: contain; margin-bottom: 10px; }
+.replacement-pair strong { display: block; font-size: 15px; line-height: 1.6; color: #4b643b; overflow-wrap: anywhere; }
+.replacement-company, .replacement-pair .product-company { font-size: 10px; line-height: 1.85; color: #8d9f7e; margin: 6px 0 0; }
+.replacement-pair .product-type { font-size: 9px; margin-top: 5px; }
+.replacement-arrow { align-self: center; font-size: 20px; color: #98b184; }
+.replacement-sentence { margin: 0 0 15px; color: #587444; font-size: 12px; line-height: 1.95; }
+.replacement-scope { margin: 0 0 18px; border-top: 1px solid #e4ebda; }
+.replacement-scope > div { padding: 10px 0; border-bottom: 1px solid #edf0e6; }
+.replacement-scope dt { color: #6f885b; font-size: 10px; margin-bottom: 4px; }
+.replacement-scope dd { margin: 0; font-size: 11px; line-height: 1.95; color: #829572; overflow-wrap: anywhere; }
+.sheet-replacement .replacement-pair { max-width: 610px; }
+.storage-implementations { margin-top: 23px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.storage-implementations > summary { cursor: pointer; padding: 17px 20px; font-size: 12px; color: #849674; }
+.storage-implementation-content { padding: 0 22px 22px; }
+.storage-implementation-content > h3 { font-size: 18px; margin: 8px 0; }
+.storage-implementation-content > p { font-size: 12px; line-height: 1.95; color: #8d9e7c; margin-bottom: 18px; }
+#storage-products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
 /* Native dialog gives stack technologies and alternatives a readable surface. */
 html.has-technology-dialog { overflow: hidden; }
@@ -808,10 +841,20 @@ html.has-technology-dialog { overflow: hidden; }
 .technology-sheet-footer { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px 24px; border-top: 1px solid var(--line); flex: 0 0 auto; background: #fff; }
 .sheet-footer-note { font-size: 10px; color: #91a082; max-width: 560px; }
 @media (max-width: 1200px) { .alternative-products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1201px) { #alternative-products[data-product-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) {
   .step { padding: 9px 7px; }
   .step[aria-pressed="true"] small { display: none; }
   .alternative-toolbar { display: block; }
+  .replacement-context { grid-template-columns: minmax(0, 1fr); padding: 18px; gap: 17px; }
+  .replacement-source > button { flex-basis: 100%; }
+  .replacement-context-description { padding: 15px 0 0; border-left: 0; border-top: 1px solid #d8e4ca; }
+  .replacement-pair { gap: 6px; grid-template-columns: minmax(0, 1fr) 14px minmax(0, 1fr); }
+  .replacement-pair > div { padding: 12px 9px; }
+  .replacement-pair strong { font-size: 14px; }
+  .replacement-title { font-size: 18px; }
+  .storage-implementation-content { padding: 0 14px 14px; }
+  #storage-products { grid-template-columns: minmax(0, 1fr); }
   #alternative-count { display: block; margin-top: 12px; }
   #alternative-categories button { padding: 8px 10px; font-size: 10px; }
   .technology-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); border-radius: 9px; }
@@ -858,7 +901,7 @@ html.has-technology-dialog { overflow: hidden; }
   <div class="intro"><div class="detail-intro-copy"><div class="eyebrow">CASE 001 / NETFLIX OPEN CONNECT</div><h1 id="case-title" tabindex="-1">넷플릭스, 재생 버튼 뒤의 설계.</h1><p>재생 정보는 클라우드에서, 영상은 사용자 가까운 서버에서.<br>영상의 여정을 따라가며 각 기술의 역할과 선택 이유, 다른 선택의 비용을 읽어봅니다.</p></div><div class="detail-cover"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4ODAgNDgwIiBmaWxsPSJub25lIj48ZGVmcz48cGF0dGVybiBpZD0iZG90cyIgd2lkdGg9IjIwIiBoZWlnaHQ9IjIwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iLjgiIGZpbGw9IiNkY2UxZDYiIC8+PC9wYXR0ZXJuPjxtYXJrZXIgaWQ9ImJsdWUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjUiIHJlZlk9IjMiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw2IDNMMCA2IiBmaWxsPSIjNmE4Y2FhIiAvPjwvbWFya2VyPjxtYXJrZXIgaWQ9InJlZCIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgcmVmWD0iNCIgcmVmWT0iMi41IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNSAyLjVMMCA1IiBmaWxsPSIjZDk1NzQ2IiAvPjwvbWFya2VyPjwvZGVmcz48cGF0aCBmaWxsPSIjZjNmNWVlIiBkPSJNMCAwSDg4MFY0ODBIMFoiIC8+PHBhdGggZmlsbD0idXJsKCNkb3RzKSIgZD0iTTAgMEg4ODBWNDgwSDBaIiAvPgo8cmVjdCB4PSIzMDAiIHk9IjEyMCIgd2lkdGg9IjQ3NiIgaGVpZ2h0PSIxNDUiIHJ4PSIxOCIgZmlsbD0iI2VhZjBmMyIgc3Ryb2tlPSIjZDZlMGU1IiAvPjxyZWN0IHg9IjUzNCIgeT0iMjk5IiB3aWR0aD0iMjQyIiBoZWlnaHQ9IjEzMSIgcng9IjE4IiBmaWxsPSIjZjllY2UzIiBzdHJva2U9IiNlN2Q3Y2EiIC8+CjxwYXRoIGQ9Ik0yODYgMzI2SDMyMVYyMTBIMzQ1IiBzdHJva2U9IiM2YThjYWEiIHN0cm9rZS13aWR0aD0iMi41IiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBtYXJrZXItZW5kPSJ1cmwoI2JsdWUpIiAvPjxwYXRoIGQ9Ik01NDMgMzYzSDI4MyIgc3Ryb2tlPSIjZDk1NzQ2IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjcmVkKSIgLz4KPHJlY3QgeD0iOTQiIHk9IjI4NSIgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxMzAiIHJ4PSIxNCIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZDNkZGNjIiAvPjxyZWN0IHg9IjM0NSIgeT0iMTQ4IiB3aWR0aD0iMTk1IiBoZWlnaHQ9IjkxIiByeD0iMTIiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2QzZGRlNCIgLz48cmVjdCB4PSI1OTgiIHk9IjE0OCIgd2lkdGg9IjE0NyIgaGVpZ2h0PSI5MSIgcng9IjEyIiBmaWxsPSIjZmZmIiBzdHJva2U9IiNkM2RkZTQiIC8+PHBhdGggZD0iTTU0MCAxOTRINTk4IiBzdHJva2U9IiM2YThjYWEiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNibHVlKSIgLz4KPHJlY3QgeD0iNTU0IiB5PSIzMTYiIHdpZHRoPSIyMDEiIGhlaWdodD0iOTQiIHJ4PSIxMiIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZGRjNmI2IiAvPgo8dGV4dCB4PSIxNjIiIHk9IjgxIiBmaWxsPSIjYjY0NzM4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjYwMCIgbGV0dGVyLXNwYWNpbmc9IjIiPk5FVEZMSVggLyBPUEVOIENPTk5FQ1Q8L3RleHQ+PHRleHQgeD0iNzMzIiB5PSI3OSIgZmlsbD0iIzhhOTc4MCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSI+Q0FTRSAwMDE8L3RleHQ+Cjx0ZXh0IHg9IjEzMiIgeT0iMzkyIiBmaWxsPSIjNmM3ZTVlIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEzIiBsZXR0ZXItc3BhY2luZz0iMSI+UExBWUVSPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMjE4IiBmaWxsPSIjNjA3NzhiIiBmb250LWZhbWlseT0ibW9ub3NwYWNlIiBmb250LXNpemU9IjEzIj5QTEFZQkFDSyBBUEk8L3RleHQ+PHRleHQgeD0iNjIwIiB5PSIyMTgiIGZpbGw9IiM2MDc3OGIiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTMiPk9DQSBTRUxFQ1Q8L3RleHQ+PHRleHQgeD0iNjIxIiB5PSIzNTQiIGZpbGw9IiM5YTcyNWEiIGZvbnQtZmFtaWx5PSJtb25vc3BhY2UiIGZvbnQtc2l6ZT0iMTYiPk9DQTwvdGV4dD48dGV4dCB4PSI2MjIiIHk9IjM4MCIgZmlsbD0iIzlhOGM3OCIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSI+VklERU8gREVMSVZFUlk8L3RleHQ+CjxyZWN0IHg9IjM0NSIgeT0iMzQyIiB3aWR0aD0iMTU4IiBoZWlnaHQ9IjIzIiByeD0iNiIgZmlsbD0iI2Y0ZjZmMCIgLz48dGV4dCB4PSIzNTkiIHk9IjM1OCIgZmlsbD0iI2M0NmM1OSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxMSIgbGV0dGVyLXNwYWNpbmc9IjEiPlZJREVPIFNFR01FTlRTPC90ZXh0Pgo8c3ZnIGZpbGw9IiNFNTA5MTQiIHJvbGU9ImltZyIgdmlld0JveD0iMCAwIDI0IDI0IiB4PSIxMDUiIHk9IjQ5IiB3aWR0aD0iMzAiIGhlaWdodD0iNDMiPjx0aXRsZT5OZXRmbGl4PC90aXRsZT48cGF0aCBkPSJtNS4zOTggMCA4LjM0OCAyMy42MDJjMi4zNDYuMDU5IDQuODU2LjM5OCA0Ljg1Ni4zOThMMTAuMTEzIDBINS4zOTh6bTguNDg5IDB2OS4xNzJsNC43MTUgMTMuMzNWMGgtNC43MTV6TTUuMzk4IDEuNVYyNGMxLjg3My0uMjI1IDIuODEtLjMxMiA0LjcxNS0uMzk4VjE0LjgzTDUuMzk4IDEuNXoiIC8+PC9zdmc+PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIGZpbGw9Im5vbmUiIHg9IjEyOCIgeT0iMzA2IiB3aWR0aD0iNjEiIGhlaWdodD0iNjEiPjxyZWN0IHg9IjUiIHk9IjciIHdpZHRoPSIzOCIgaGVpZ2h0PSIyOCIgcng9IjQiIGZpbGw9IiNmYWY5ZjUiIHN0cm9rZT0iIzgxOTA3NSIgc3Ryb2tlLXdpZHRoPSIyIiAvPjxyZWN0IHg9IjEwIiB5PSIxMiIgd2lkdGg9IjI4IiBoZWlnaHQ9IjE4IiByeD0iMiIgZmlsbD0iI2YzZTlkZiIgLz48cGF0aCBkPSJNMjAgMTZMMjkgMjFMMjAgMjZaIiBmaWxsPSIjZDc2YzU0IiAvPjxwYXRoIGQ9Ik0yNCAzNlY0Mk0xNiA0MkgzMiIgc3Ryb2tlPSIjODE5MDc1IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgLz48L3N2Zz48c3ZnIHZpZXdCb3g9IjAuMDAwMCAyNS4xNDgwIDEyOC4wMDAwIDc3LjcwNDAiIHg9IjM2NSIgeT0iMTU2IiB3aWR0aD0iNDciIGhlaWdodD0iMzciPgoJPHBhdGggZmlsbD0iIzI1MmYzZSIgZD0iTTM2LjM3OSA1My42NGMwIDEuNTYuMTY4IDIuODI1LjQ2NSAzLjc1LjMzNi45MjYuNzU4IDEuOTM4IDEuMzQ3IDMuMDMyLjIwNy4zMzYuMjkzLjY3Mi4yOTMuOTY5IDAgLjQxOC0uMjU0Ljg0LS44IDEuMjYxbC0yLjY1MyAxLjc3Yy0uMzc5LjI1LS43NTguMzc5LTEuMDkzLjM3OS0uNDIyIDAtLjg0NC0uMjExLTEuMjY2LS41OWExMy4yOCAxMy4yOCAwIDAgMS0xLjUxNi0xLjk4IDM0LjE1MyAzNC4xNTMgMCAwIDEtMS4zMDQtMi40ODVjLTMuMjgyIDMuODc1LTcuNDEgNS44MTMtMTIuMzggNS44MTMtMy41MzUgMC02LjM1NS0xLjAxMi04LjQyMS0zLjAzMi0yLjA2My0yLjAyMy0zLjExNC00LjcxOC0zLjExNC04LjA4NiAwLTMuNTc4IDEuMjYyLTYuNDg0IDMuODMzLTguNjcxIDIuNTY2LTIuMTkyIDUuOTc2LTMuMjg2IDEwLjMxNi0zLjI4NiAxLjQzIDAgMi45MDIuMTI1IDQuNDYuMzM2IDEuNTYuMjExIDMuMTYxLjU0NyA0Ljg0NS45MjZ2LTMuMDc0YzAtMy4yLS42NzYtNS40My0xLjk4LTYuNzM0QzI2LjA2MSAzMi42MzMgMjMuNzg4IDMyIDIwLjU0NiAzMmMtMS40NzMgMC0yLjk4OC4xNjgtNC41NDcuNTQ3YTMzLjQxNiAzMy40MTYgMCAwIDAtNC41NDcgMS40MzNjLS42NzYuMjkzLTEuMTguNDYxLTEuNDczLjU0Ny0uMjk2LjA4Mi0uNTA3LjEyNS0uNjc1LjEyNS0uNTkgMC0uODgzLS40MjItLjg4My0xLjMwNHYtMi4wNjNjMC0uNjc2LjA4Mi0xLjE4LjI5My0xLjQ3Ni4yMS0uMjkzLjU5LS41ODYgMS4xOC0uODgzIDEuNDcyLS43NTggMy4yNDItMS4zOSA1LjMwNC0xLjg5NSAyLjA2My0uNTQ3IDQuMjU0LS44IDYuNTctLjggNS4wMDggMCA4LjY3MiAxLjEzNiAxMS4wMzIgMy40MSAyLjMxNiAyLjI3MyAzLjQ5MiA1LjcyNiAzLjQ5MiAxMC4zNTl2MTMuNjRabS0xNy4wOTQgNi40MDNjMS4zODcgMCAyLjgyLS4yNTQgNC4zMzYtLjc1OCAxLjUxNi0uNTA4IDIuODYzLTEuNDMzIDQtMi42OTUuNjcyLS44IDEuMTgtMS42ODQgMS40My0yLjY5NS4yNTQtMS4wMTIuNDIyLTIuMjMuNDIyLTMuNjY1di0xLjc2NWEzNC40MDEgMzQuNDAxIDAgMCAwLTMuODcxLS43MTkgMzEuODE2IDMxLjgxNiAwIDAgMC0zLjk2MS0uMjVjLTIuODIgMC00Ljg4My41NDctNi4yNzQgMS42ODQtMS4zODcgMS4xMzYtMi4wNjIgMi43MzQtMi4wNjIgNC44NCAwIDEuOTguNTA0IDMuNDUzIDEuNTU4IDQuNDY0IDEuMDEyIDEuMDUxIDIuNDg1IDEuNTU5IDQuNDIyIDEuNTU5Wm0zMy44MDkgNC41NDdjLS43NTggMC0xLjI2Mi0uMTI1LTEuNTk4LS40MjItLjM0LS4yNTQtLjYzMy0uODQtLjg4Ny0xLjY0TDQwLjcxNSAyOS45OGMtLjI1LS44NDMtLjM4LTEuMzktLjM4LTEuNjg3IDAtLjY3Mi4zMzctMS4wNSAxLjAxMy0xLjA1aDQuMTI1Yy44IDAgMS4zNDcuMTI0IDEuNjQ0LjQyMS4zMzYuMjUuNTkuODQuODQgMS42NGw3LjA3NCAyNy44NzYgNi41Ny0yNy44NzVjLjIwOC0uODQuNDYyLTEuMzkuNzk3LTEuNjQuMzQtLjI1NS45My0uNDIzIDEuNjg4LS40MjNoMy4zNjdjLjggMCAxLjM0OC4xMjUgMS42ODQuNDIyLjMzNi4yNS42MzMuODQuOCAxLjY0bDYuNjUzIDI4LjIxMiA3LjI4NS0yOC4yMTFjLjI1LS44NC41NDctMS4zOS44NC0xLjY0LjMzNi0uMjU1Ljg4Ny0uNDIzIDEuNjQ0LS40MjNoMy45MTRjLjY3NiAwIDEuMDU1LjMzNiAxLjA1NSAxLjA1MSAwIC4yMS0uMDQzLjQyMi0uMDg2LjY3Ni0uMDQzLjI1NC0uMTI1LjU5LS4yOTMgMS4wNUw4MC44MDEgNjIuNTdjLS4yNTQuODQtLjU0NyAxLjM4Ny0uODg3IDEuNjQtLjMzNi4yNTUtLjg4My40MjMtMS41OTguNDIzaC0zLjYyYy0uODAxIDAtMS4zNDgtLjEzLTEuNjg0LS40MjItLjM0LS4yOTctLjYzMy0uODQ0LS44MDEtMS42ODRsLTYuNTI3LTI3LjE2LTYuNDg1IDI3LjExN2MtLjIxLjg0NC0uNDYgMS4zOTEtLjggMS42ODQtLjMzNy4yOTctLjkyNi40MjItMS42ODQuNDIyWm01NC4xMDUgMS4xMzdjLTIuMTg3IDAtNC4zNzktLjI1NC02LjQ4NC0uNzU4LTIuMTA2LS41MDQtMy43NDYtMS4wNTUtNC44NC0xLjY4NC0uNjc2LS4zNzktMS4xMzctLjgtMS4zMDUtMS4xOGEyLjkxOSAyLjkxOSAwIDAgMS0uMjU0LTEuMTh2LTIuMTQ4YzAtLjg4Mi4zMzYtMS4zMDQuOTctMS4zMDQuMjUgMCAuNTAzLjA0My43NTcuMTI5LjI1LjA4Mi42MjkuMjUgMS4wNS40MThhMjMuMTAyIDIzLjEwMiAwIDAgMCA0LjYzNCAxLjQ3NmMxLjY4My4zMzYgMy4zMjQuNTA0IDUuMDExLjUwNCAyLjY1MyAwIDQuNzE1LS40NjUgNi4xNDUtMS4zOSAxLjQzMy0uOTI2IDIuMTkxLTIuMjc0IDIuMTkxLTQgMC0xLjE4LS4zNzktMi4xNDUtMS4xMzYtMi45NDYtLjc1OC0uOC0yLjE5Mi0xLjUxNi00LjI1NC0yLjE5MWwtNi4xMDYtMS44OTVjLTMuMDc0LS45NjktNS4zNDgtMi4zOTgtNi43MzQtNC4yOTMtMS4zOS0xLjg1NS0yLjEwNi0zLjkxOC0yLjEwNi02LjEwNSAwLTEuNzcuMzgtMy4zMjggMS4xMzctNC42NzZhMTAuODI5IDEwLjgyOSAwIDAgMSAzLjAzMS0zLjQ1M2MxLjI2Mi0uOTY1IDIuNjk2LTEuNjg0IDQuMzgtMi4xODggMS42ODMtLjUwNCAzLjQ1Mi0uNzE1IDUuMzA0LS43MTUuOTI2IDAgMS44OTQuMDQzIDIuODIuMTY4Ljk2OS4xMjUgMS44NTIuMjkzIDIuNzM4LjQ2MS44NC4yMTEgMS42NDEuNDIyIDIuMzk5LjY3Ni43NTguMjU0IDEuMzQ4LjUwNCAxLjc3Ljc1OC41OS4zMzYgMS4wMTEuNjcyIDEuMjYxIDEuMDUuMjU0LjM0LjM3OS44MDIuMzc5IDEuMzkxdjEuOThjMCAuODg0LS4zMzYgMS4zNDgtLjk2OSAxLjM0OC0uMzM2IDAtLjg4My0uMTcxLTEuNTk3LS41MDctMi40MDMtMS4wOTQtNS4wOTgtMS42NDEtOC4wODYtMS42NDEtMi4zOTkgMC00LjI5My4zNzktNS41OTggMS4xOC0xLjMwOS43OTctMS45OCAyLjAyLTEuOTggMy43NDYgMCAxLjE4LjQyMSAyLjE5MSAxLjI2MSAyLjk4OC44NDQuOCAyLjQwMyAxLjYwMiA0LjYzMyAyLjMxNmw1Ljk4IDEuODk1YzMuMDMyLjk2OSA1LjIyIDIuMzE2IDYuNTI0IDQuMDQzIDEuMzA1IDEuNzI3IDEuOTM4IDMuNzA3IDEuOTM4IDUuODk1IDAgMS44MTItLjM4IDMuNDUzLTEuMDk0IDQuODgyLS43NTggMS40MzQtMS43NyAyLjY5Ni0zLjA3NCAzLjcwNy0xLjMwNSAxLjA1MS0yLjg2NCAxLjgwOS00LjY3MiAyLjM2LTEuODk1LjU4Ni0zLjg3NS44ODMtNi4wMjQuODgzWm0wIDAiIC8+Cgk8cGF0aCBmaWxsPSIjZjkwIiBkPSJNMTE4IDczLjM0OGMtNC40MzIuMDYzLTkuNjY0IDEuMDUyLTEzLjYyMSAzLjgzMi0xLjIyMy44ODMtMS4wMTIgMi4wNjIuMzM2IDEuODk0IDQuNTA4LS41NDcgMTQuNDQtMS43MjYgMTYuMjEuNTQ3IDEuNzcgMi4yMy0xLjk3NiAxMS42Mi0zLjY2MyAxNS43OS0uNTA0IDEuMjYuNTkgMS43NjkgMS43MjYuOCA3LjQxLTYuMjMxIDkuMzQ4LTE5LjI0MiA3LjgzMi0yMS4xMzctLjc1Ny0uOTI1LTQuMzg4LTEuNzktOC44Mi0xLjcyNnpNMS42MyA3NS44NTljLS45MjcuMTE2LTEuMzQ3IDEuMjM2LS4zNjggMi4xMjEgMTYuNTA4IDE0LjkwMiAzOC4zNTkgMjMuODcyIDYyLjYxMyAyMy44NzIgMTcuMzA1IDAgMzcuNDMtNS40MyA1MS4yODEtMTUuNjYgMi4yNzMtMS42ODguMjk3LTQuMjU0LTIuMDItMy4yMDQtMTUuNTM0IDYuNTctMzIuNDIxIDkuNzctNDcuNzg4IDkuNzctMjIuNzc4IDAtNDQuOC02LjI3My02Mi42NTMtMTYuNjMzLS4zOS0uMjMxLS43NTUtLjMwNC0xLjA2NC0uMjY2eiIgLz4KPC9zdmc+PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIGZpbGw9Im5vbmUiIHg9IjYxNyIgeT0iMTU1IiB3aWR0aD0iNDEiIGhlaWdodD0iNDEiPjxyZWN0IHg9IjQiIHk9IjE5IiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHJ4PSIyLjUiIGZpbGw9IiNmMWY1ZWYiIHN0cm9rZT0iIzc4OTA3OCIgc3Ryb2tlLXdpZHRoPSIyIiAvPjxwYXRoIGQ9Ik0xNCAyNEgyNE0yNCAyNFYxMEgzOU0yNCAyNFYzOEgzOSIgc3Ryb2tlPSIjNzg5MDc4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz48cGF0aCBkPSJNMzUgNkwzOSAxMEwzNSAxNE0zNSAzNEwzOSAzOEwzNSA0MiIgc3Ryb2tlPSIjNzg5MDc4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgLz48L3N2Zz48c3ZnIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeD0iNTY3IiB5PSIzMzEiIHdpZHRoPSI0NyIgaGVpZ2h0PSI0NyI+PHJlY3QgeD0iNSIgeT0iMTAiIHdpZHRoPSIzOCIgaGVpZ2h0PSIyOCIgcng9IjUiIGZpbGw9IiNmN2Y4ZjQiIHN0cm9rZT0iIzdjOGI3MiIgc3Ryb2tlLXdpZHRoPSIyIiAvPjxwYXRoIGQ9Ik02IDI0SDQyIiBzdHJva2U9IiNhOGI1OWYiIHN0cm9rZS13aWR0aD0iMS43IiAvPjxwYXRoIGQ9Ik0xMiAxNlYxOU0xNyAxNlYxOU0yMiAxNlYxOU0xMiAyOVYzMk0xNyAyOVYzMk0yMiAyOVYzMiIgc3Ryb2tlPSIjODE5NTc2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgLz48Y2lyY2xlIGN4PSIzNSIgY3k9IjE3IiByPSIyIiBmaWxsPSIjZDk0YjNjIiAvPjxjaXJjbGUgY3g9IjM1IiBjeT0iMzEiIHI9IjIiIGZpbGw9IiM2YzliN2IiIC8+PC9zdmc+PC9zdmc+" alt="Netflix Open Connect의 제어와 영상 전달 경로" width="880" height="480"></div></div>
   <nav class="section-nav" aria-label="사례 목차"><a href="#architecture">01 아키텍처</a><a href="#anatomy">02 서버 내부</a><a href="#technologies">03 기술 해부</a><a href="#alternatives">04 대안 기술</a><a href="#sources">출처</a><span class="reading">STRUCTURE → TECHNOLOGY → DECISION</span></nav>
   <section class="workspace" id="architecture" aria-label="넷플릭스 영상 전달 구성도">
-    <div class="workspace-toolbar"><span class="section-label"><b>01</b> ARCHITECTURE EXPLORER</span><div class="toolbar-actions"><div class="legend" aria-label="연결선 범례"><span><i></i>요청·응답</span><span><i class="video"></i>영상 전송</span><span><i class="fill"></i>사전 배치</span></div><button id="failover-button" class="quiet-button" aria-pressed="false">⇢ OCA 장애 흐름</button><button id="alternatives-button" class="quiet-button">대안 기술 보기 ↓</button></div></div>
+    <div class="workspace-toolbar"><span class="section-label"><b>01</b> ARCHITECTURE EXPLORER</span><div class="toolbar-actions"><div class="legend" aria-label="연결선 범례"><span><i></i>요청·응답</span><span><i class="video"></i>영상 전송</span><span><i class="fill"></i>사전 배치</span></div><button id="failover-button" class="quiet-button" aria-pressed="false">⇢ OCA 장애 흐름</button><button id="alternatives-button" class="quiet-button">무엇으로 대체할까 ↓</button></div></div>
     <div class="explorer">
       <aside class="story" aria-label="영상 전달 단계"><p class="micro-label">FOLLOW THE JOURNEY</p><div class="steps">
         <button class="step" data-step="0" aria-pressed="false"><span class="number">01</span><span><strong>전달할 파일 준비</strong><small>여러 화질·오디오 파일</small></span></button>
@@ -934,10 +977,12 @@ html.has-technology-dialog { overflow: hidden; }
     <details class="technology-overview"><summary>주요 기술 6개의 역할과 위치 한눈에 보기</summary><div class="tech-grid" id="tech-grid"></div></details>
   </section>
   <section class="article-section" id="alternatives" aria-labelledby="alternatives-title">
-    <div class="section-heading"><div><div class="section-label"><b>04</b> ALTERNATIVE TECHNOLOGIES</div><h2 id="alternatives-title" tabindex="-1">어느 회사의, 어떤 기술로 구현할 수 있을까.</h2><p>같은 역할을 맡길 제품과 프로젝트를 살펴봅니다. 회사·제공 조직, 동작 방식과 적합한 사용 상황을 함께 확인하세요.</p></div><p class="aside-note">기업 제품 · 오픈소스 · 커뮤니티 구분<br>각 기술의 위치와 공식 문서까지</p></div>
+    <div class="section-heading"><div><div class="section-label"><b>04</b> REPLACE WHAT, WITH WHAT</div><h2 id="alternatives-title" tabindex="-1">무엇을, 어떤 기술로 대체할 수 있을까.</h2><p>현재 기술을 먼저 고르고, 그 역할을 대체할 기술을 확인하세요. 각 카드에서 기존 기술 → 대체 기술과 대체하는 범위를 함께 읽습니다.</p></div><p class="aside-note">현재 기술 → 대체 기술<br>회사·이미지·대체 범위까지</p></div>
     <div class="alternative-toolbar"><div id="alternative-categories" role="group" aria-label="대안 기술의 역할"></div><span id="alternative-count"></span></div>
+    <div class="replacement-context" id="replacement-context" aria-label="현재 설계에서 대체할 대상"></div>
     <div class="alternative-products" id="alternative-products"></div>
-    <p class="alternative-scope">전달망, HTTP 서버, 운영체제와 저장소는 서로 다른 계층입니다. 각 카드는 해당 역할의 구현 후보이며 Netflix의 실제 교체 계획을 뜻하지 않습니다.</p>
+    <p class="alternative-scope">전달망·HTTP 서버·운영체제·클라우드는 각각의 역할 범위에서 대체를 검토합니다. 구성과 연동을 다시 맞추는 선택이며 Netflix의 실제 교체 계획을 뜻하지 않습니다.</p>
+    <details class="storage-implementations" id="storage-implementations"><summary>원본 파일 저장 · 현재 제품 미지정 · 구현 예시 2개</summary><div class="storage-implementation-content"><h3 id="storage-examples-title" tabindex="-1">원본 저장 역할은 어떤 제품으로 구현할 수 있을까.</h3><p>이 구성도에서는 현재 저장소 제품을 특정하지 않았습니다. 아래는 특정 제품을 대체한다는 주장이 아닌, 원본 파일 보관 역할의 구현 예시입니다.</p><div class="alternative-products" id="storage-products"></div></div></details>
   </section>
   <section class="article-section" id="sources"><div class="section-heading"><div><div class="section-label">SOURCES & SCOPE</div><h2>공개된 설계를 읽는 기준.</h2><p>실제 공개 사례, 설명을 위한 단순화, 비교를 위한 제안을 구분합니다.</p></div></div><div class="source-notes"><div class="source-box"><h3>원문과 기술 설명</h3><ul><li><a href="https://openconnect.netflix.com/en/" target="_blank" rel="noopener">Netflix Open Connect</a> · 전달망과 OCA 개요</li><li><a href="https://openconnect.netflix.com/en/appliances/" target="_blank" rel="noopener">Netflix Open Connect Appliances</a> · 장비와 소프트웨어 설명</li><li><a href="https://docs.freebsd.org/en/books/handbook/introduction/" target="_blank" rel="noopener">FreeBSD Handbook</a> · 운영체제의 기능과 구조</li><li><a href="https://nginx.org/en/docs/" target="_blank" rel="noopener">NGINX Documentation</a> · HTTP 서버와 파일 응답</li></ul></div><div class="source-box"><h3>이 시안의 범위</h3><p>주문형 영상 전달을 설명하는 기능 단위 구성도입니다. 실제 내부 서비스 수, 물리 위치, 콘텐츠 배치의 계층과 모든 장애 대응 절차를 재현하지 않습니다. 장애 흐름은 다른 후보로 재시도하는 개념을 보여줍니다.</p><p>공식 Open Connect 사이트는 현재 환경에서 접근이 제한되어 원문 재확인이 남아 있습니다. FreeBSD·NGINX는 공개된 OCA 소프트웨어 설명을 바탕으로 표시했으며, 특정 버전이나 현재의 모든 구현을 확정하지 않습니다.</p></div></div></section>
   <details class="reference-details" id="reference-details"><summary>도식화 참고 자료 <span>참고 이미지 3개</span></summary><div class="references visible" id="references">
@@ -1332,7 +1377,7 @@ function initializeTechnologyReader() {
         <dl class="mechanism-explanations">${tech.mechanics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl>
       </section>
       ${renderNoteExample(tech.example)}
-      <section class="note-section"><p class="note-section-label">04 / ALTERNATIVE TECHNOLOGIES</p><h4>회사·제품별 기술을 이어서 살펴보기</h4><p>본문 아래의 대안 기술에서 제공 조직, 맡는 역할, 동작 방식과 활용 상황을 확인할 수 있습니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">관련 대안 기술 보기 ↓</button></section>
+      <section class="note-section"><p class="note-section-label">04 / REPLACEMENT OPTIONS</p><h4>현재 기술을 무엇으로 대체할 수 있을까.</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
       <section class="note-section"><p class="note-section-label">05 / WHAT TO MEASURE</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
       <div class="note-takeaway"><strong>설계에 가져갈 판단</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 이 역할 보기 ↑</button></div>
       <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><span>${scope}</span></li>`).join("")}</ul></footer>
@@ -1449,7 +1494,7 @@ function selectJourneyStep(index) {
 "use strict";
 
 const alternativeCategories = [
-  ["delivery", "CDN · 영상 전달"], ["http", "HTTP 서버"], ["os", "서버 운영체제"], ["cloud", "클라우드 실행 환경"], ["storage", "파일 저장"], ["all", "모든 기술"]
+  ["delivery", "Open Connect 대체"], ["http", "NGINX 대체"], ["os", "FreeBSD 대체"], ["cloud", "AWS 실행 환경 대체"], ["all", "전체 대체 관계"]
 ];
 const alternativeProducts = [
   { id: "cloudfront", category: "delivery", name: "Amazon CloudFront", company: "Amazon Web Services", organization: "Amazon의 클라우드 사업", image: "cloudfront", type: "관리형 CDN", role: "사용자 가까운 엣지에서 영상 파일을 전달",
@@ -1519,21 +1564,80 @@ const alternativeProducts = [
     details: ["영상·오디오 파일을 객체로 보관하고 관련 서비스가 API로 접근하도록 구성할 수 있습니다.", "저장 클래스와 파일 접근 패턴, 권한과 버전 관리 방식을 파일 준비·배포 과정에 맞춰 결정합니다.", "이 사례에서의 위치는 원본 저장 역할입니다. 플레이어의 화질 판단이나 CDN의 전송 거점과는 다른 계층입니다."],
     docs: "https://cloud.google.com/storage/docs/introduction", source: "https://github.com/googleapis/python-storage" }
 ];
+const replacementSources = {
+  delivery: { name: "Open Connect", company: "Netflix", image: "ocaIcon", technology: "oca", node: "oca", location: "영상 전달망 전체", role: "사용자 가까이에서 영상 파일을 전달하는 역할", scope: "전송 거점·콘텐츠 배치·전송 경로와 영상 전달 운영", keep: "플레이어·재생 제어 API·준비된 영상 원본", kind: "replacement" },
+  http: { name: "NGINX", company: "F5 · NGINX Open Source", image: "nginx", technology: "nginx", node: "oca", location: "OCA 내부 · HTTP 서버", role: "HTTP 요청에 준비된 파일을 응답하는 역할", scope: "HTTP 서버 실행·파일 경로 설정·인증서·모듈·로그", keep: "영상 파일·서버 OS의 역할·재생 제어와 전달망", kind: "replacement" },
+  os: { name: "FreeBSD", company: "FreeBSD Project", image: "freebsd", technology: "freebsd", node: "oca", location: "OCA 내부 · 운영체제", role: "파일·메모리·소켓·네트워크 I/O 기반 역할", scope: "커널·드라이버·이벤트 처리·패키지와 운영 도구", keep: "HTTP 파일 응답 역할·미디어 파일·재생 제어와 전달망", kind: "replacement" },
+  cloud: { name: "AWS 재생 제어 환경", company: "Amazon Web Services", image: "aws", technology: "aws", node: "playback", location: "클라우드 재생 제어 · 실행 환경", role: "재생 제어 API를 실행하는 역할", scope: "제어 서비스의 실행·배포·데이터 연결·계정과 관측", keep: "재생 API의 업무 역할·플레이어와 영상 전달망의 분리", kind: "replacement" },
+  storage: { name: "원본 파일 저장 역할", company: "현재 제품 미지정", image: "storage", node: "origin", location: "인코딩된 영상 원본 · 파일 보관", role: "인코딩된 파일을 보관하는 역할", scope: "파일 저장·객체 키·접근 권한과 배치 연결", keep: "준비된 영상 파일·인코딩과 영상 전달 역할", kind: "implementation" }
+};
 let selectedAlternativeCategory = "delivery";
 
 function alternativeCategoryFor(key) {
-  return ({ oca: "delivery", fill: "delivery", steering: "delivery", fallback: "delivery", nginx: "http", freebsd: "os", aws: "cloud", playback: "cloud", origin: "storage" })[key] || "all";
+  return ({ oca: "delivery", nginx: "http", freebsd: "os", aws: "cloud", playback: "cloud", origin: "storage" })[key] || "all";
+}
+
+function replacementLinkLabel(key) {
+  const category = alternativeCategoryFor(key);
+  if (category === "storage") return "원본 저장 역할의 구현 예시 보기";
+  const source = replacementSources[category];
+  return source ? `${source.name} 대체 기술 보기` : "현재 설계의 전체 대체 관계 보기";
+}
+
+function replacementTitle(product) {
+  const source = replacementSources[product.category];
+  return `${source.name} → ${product.name}`;
+}
+
+function replacementSentence(product) {
+  const source = replacementSources[product.category];
+  return source.kind === "implementation"
+    ? `현재 제품이 특정되지 않은 ${source.role}의 구현 예시: ${product.name}.`
+    : `${source.name} → ${product.name}: ${source.role}을 대체합니다.`;
+}
+
+function renderReplacementPair(product) {
+  const source = replacementSources[product.category];
+  return `<div class="replacement-pair" role="group" aria-label="${replacementTitle(product)}"><div class="replacement-from"><span>${source.kind === "implementation" ? "현재 설계의 역할" : "대체 대상"}</span><img src="${assets[source.image]}" alt=""><strong data-replacement-from-name>${source.name}</strong><p class="replacement-company">${source.company}</p></div><span class="replacement-arrow" aria-hidden="true">→</span><div class="replacement-to"><span>${source.kind === "implementation" ? "구현에 쓸 기술" : "이 기술로 대체"}</span><img src="${assets[product.image]}" alt=""><strong data-replacement-to-name>${product.name}</strong><p class="product-company">${product.company}</p><p class="product-type">${product.type}</p></div></div>`;
+}
+
+function renderReplacementScope(product) {
+  const source = replacementSources[product.category];
+  return `<dl class="replacement-scope"><div><dt>${source.kind === "implementation" ? "구현할 위치" : "대체하는 위치"}</dt><dd>${source.location}</dd></div><div><dt>${source.kind === "implementation" ? "구현할 범위" : "대체할 범위"}</dt><dd>${source.scope}</dd></div><div><dt>함께 연결할 기존 역할</dt><dd>${source.keep}</dd></div></dl>`;
+}
+
+function renderReplacementCard(product) {
+  const source = replacementSources[product.category];
+  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">${source.kind === "implementation" ? "구현 예시" : "대체 관계"}와 기술 자세히 보기 ↗</button></article>`;
+}
+
+function renderReplacementContext() {
+  const source = replacementSources[selectedAlternativeCategory];
+  if (!source) {
+    $("#replacement-context").innerHTML = `<div class="replacement-overview"><p class="micro-label">현재 기술 → 대체 기술</p><h3>4개 현재 기술의 9개 대체 관계</h3><p>각 카드에서 무엇을 바꾸는지, 어떤 기술로 바꾸는지, 어느 계층을 대체하는지 확인하세요.</p></div>`;
+    return;
+  }
+  $("#replacement-context").innerHTML = `<div class="replacement-source"><img src="${assets[source.image]}" alt=""><div><p class="micro-label">현재 설계에서 대체할 기술</p><h3>${source.name}</h3><p>${source.company} · ${source.location}</p></div><button class="quiet-button" data-locate-replacement="${selectedAlternativeCategory}">현재 구성도에서 위치 보기 ↑</button></div><div class="replacement-context-description"><strong>무엇을 대체하나요?</strong><p>${source.name}의 ${source.role}을 다른 기술로 구현하는 선택입니다.</p></div>`;
 }
 
 function renderAlternativeCatalogue() {
-  const products = alternativeProducts.filter(product => selectedAlternativeCategory === "all" || product.category === selectedAlternativeCategory);
+  const products = alternativeProducts.filter(product => product.category !== "storage" && (selectedAlternativeCategory === "all" || product.category === selectedAlternativeCategory));
   $$('[data-alternative-category]').forEach(button => button.setAttribute("aria-pressed", String(button.dataset.alternativeCategory === selectedAlternativeCategory)));
-  $("#alternative-count").textContent = `${products.length}개 기술`;
-  $("#alternative-products").innerHTML = products.map(product => `<article class="product-card"><div class="product-identity"><img src="${assets[product.image]}" alt="${product.name} 로고"><div><p class="product-company">${product.company}</p><h3>${product.name}</h3><p class="product-type">${product.type}</p></div></div><p class="product-role">${product.role}</p><p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>이런 상황에서 살펴보세요</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">동작 원리와 활용 자세히 보기 ↗</button></article>`).join("");
+  $("#alternative-count").textContent = `${products.length}개 대체 관계`;
+  $("#alternative-products").dataset.productCount = String(products.length);
+  renderReplacementContext();
+  $("#alternative-products").innerHTML = products.map(renderReplacementCard).join("");
 }
 
 function showAlternatives(category, { focus = true } = {}) {
+  if (category === "storage") {
+    $("#storage-implementations").open = true;
+    $("#storage-implementations").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+    if (focus) $("#storage-examples-title").focus({ preventScroll: true });
+    return;
+  }
   selectedAlternativeCategory = alternativeCategories.some(([key]) => key === category) ? category : "all";
+  $("#storage-implementations").open = false;
   renderAlternativeCatalogue();
   $("#alternatives").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
   if (focus) $("#alternatives-title").focus({ preventScroll: true });
@@ -1541,11 +1645,19 @@ function showAlternatives(category, { focus = true } = {}) {
 
 function initializeAlternativeCatalogue() {
   $("#alternative-categories").innerHTML = alternativeCategories.map(([key, title]) => `<button data-alternative-category="${key}" aria-pressed="${key === selectedAlternativeCategory}">${title}</button>`).join("");
+  $("#storage-products").innerHTML = alternativeProducts.filter(product => product.category === "storage").map(renderReplacementCard).join("");
   document.addEventListener("click", event => {
     const category = event.target.closest("[data-alternative-category]");
-    if (category) { selectedAlternativeCategory = category.dataset.alternativeCategory; renderAlternativeCatalogue(); }
+    if (category) { selectedAlternativeCategory = category.dataset.alternativeCategory; $("#storage-implementations").open = false; renderAlternativeCatalogue(); }
     const link = event.target.closest("[data-show-alternatives]");
     if (link) { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); closeTechnologySheet(); showAlternatives(link.dataset.showAlternatives); }
+    const locate = event.target.closest("[data-locate-replacement]");
+    if (locate) {
+      const source = replacementSources[locate.dataset.locateReplacement];
+      selectTech(source.technology);
+      $("#architecture").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+      $(`[data-node="${source.node}"]`).focus({ preventScroll: true });
+    }
   });
   renderAlternativeCatalogue();
 }
@@ -1595,17 +1707,18 @@ function openTechnologySheet(key) {
   presentTechnologySheet({
     title: tech.title, publisher: publisher[0], type: publisher[1], image: tech.image, role: tech.intro,
     body: `<section><p class="sheet-eyebrow">이 아키텍처에서 하는 일</p><h3>${tech.question}</h3><p>${tech.problem}</p></section><section><p class="sheet-eyebrow">동작을 단계별로</p><h3>어떻게 처리하나요?</h3>${sheetSteps(tech.steps.map(([, title, text]) => [title, text]))}<dl class="sheet-explanations">${tech.mechanics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section><section><p class="sheet-eyebrow">구체적으로 읽기</p><h3>${tech.example.title}</h3><p>${tech.example.text}</p>${code}<p class="sheet-caption">${tech.example.caveat}</p></section><section><h3>공식 문서와 근거</h3><ul class="sheet-sources">${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><p>${scope}</p></li>`).join("")}</ul></section>`,
-    footer: `<button class="quiet-button" data-read-sheet="${id}">본문에서 이어 읽기 ↗</button><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(id)}">회사·제품별 대안 보기 ↓</button>`
+    footer: `<button class="quiet-button" data-read-sheet="${id}">본문에서 이어 읽기 ↗</button><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(id)}">${replacementLinkLabel(id)} ↓</button>`
   });
 }
 
 function openAlternativeSheet(id) {
   const product = alternativeProducts.find(item => item.id === id);
   if (!product) return;
+  const source = replacementSources[product.category];
   presentTechnologySheet({
-    title: product.name, publisher: product.company, type: product.organization + " · " + product.type, image: assets[product.image], role: product.role,
-    body: `<section><p class="sheet-eyebrow">어떤 기술인가요?</p><h3>${product.type}</h3><p>${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div></section><section><p class="sheet-eyebrow">동작 원리</p><h3>요청과 데이터가 지나는 순서</h3>${sheetSteps(product.mechanism.map(text => [text, ""]))}${product.details.map(text => `<p>${text}</p>`).join("")}</section><section class="sheet-fit"><h3>어떤 상황에서 살펴볼까요?</h3><p>${product.fit}</p></section><section><h3>공식 제품·프로젝트 문서</h3><ul class="sheet-sources"><li><a href="${product.docs}" target="_blank" rel="noopener">${product.name} 공식 문서 ↗</a></li>${product.source ? `<li><a href="${product.source}" target="_blank" rel="noopener">공식 프로젝트 저장소 ↗</a></li>` : ""}</ul></section>`,
-    footer: `<button class="quiet-button" data-close-technology>대안 목록으로 돌아가기</button><span class="sheet-footer-note">역할별로 검토하는 제품·프로젝트이며 Netflix의 전환 계획을 뜻하지 않습니다.</span>`
+    title: replacementTitle(product), publisher: product.company, type: product.organization + " · " + product.type, image: assets[product.image], role: replacementSentence(product),
+    body: `<section class="sheet-replacement"><p class="sheet-eyebrow">${source.kind === "implementation" ? "현재 제품 미지정 · 역할의 구현 예시" : "무엇을 어떤 기술로 대체하나요?"}</p><h3>${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p>${replacementSentence(product)}</p>${renderReplacementScope(product)}</section><section><p class="sheet-eyebrow">대체에 사용할 기술 설명</p><h3>${product.name} · ${product.type}</h3><p>${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div></section><section><p class="sheet-eyebrow">동작 원리</p><h3>요청과 데이터가 지나는 순서</h3>${sheetSteps(product.mechanism.map(text => [text, ""]))}${product.details.map(text => `<p>${text}</p>`).join("")}</section><section class="sheet-fit"><h3>어떤 상황에서 살펴볼까요?</h3><p>${product.fit}</p></section><section><h3>공식 제품·프로젝트 문서</h3><ul class="sheet-sources"><li><a href="${product.docs}" target="_blank" rel="noopener">${product.name} 공식 문서 ↗</a></li>${product.source ? `<li><a href="${product.source}" target="_blank" rel="noopener">공식 프로젝트 저장소 ↗</a></li>` : ""}</ul></section>`,
+    footer: `<button class="quiet-button" data-close-technology>${source.kind === "implementation" ? "구현 예시" : "대체 관계"} 목록으로 돌아가기</button><span class="sheet-footer-note">${source.kind === "implementation" ? "현재 저장소 제품이 특정되지 않아 역할의 구현 예시로 구분합니다." : "해당 역할을 다른 기술로 구성하는 선택이며 Netflix의 실제 전환 계획을 뜻하지 않습니다."}</span>`
   });
 }
 
@@ -2142,7 +2255,7 @@ function wireKeyboardTabs(selector) {
   }));
 }
 
-$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">회사·제품별 대안 보기 ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
+$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
 
 $$(".node").forEach(node => {
   node.addEventListener("click", () => { stopPlayback(); selectNode(node.dataset.node); });

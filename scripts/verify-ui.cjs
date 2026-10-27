@@ -113,12 +113,17 @@ async function inspectLayout(page) {
       report.states.push({ width, view: 'technology-overview', issueCount: overviewIssues.length });
       report.issues.push(...overviewIssues.map(issue => ({ width, view: 'technology-overview', ...issue })));
       await page.locator('.technology-overview').evaluate(element => { element.open = false; });
-      for (const category of ['delivery', 'http', 'os', 'cloud', 'storage', 'all']) {
+      for (const category of ['delivery', 'http', 'os', 'cloud', 'all']) {
         await page.evaluate(category => document.querySelector(`[data-alternative-category="${category}"]`).click(), category);
         const issues = await inspectLayout(page);
         report.states.push({ width, view: 'alternative-products', category, issueCount: issues.length });
         report.issues.push(...issues.map(issue => ({ width, category, ...issue })));
       }
+      await page.evaluate(() => { document.querySelector('#storage-implementations').open = true; });
+      const implementationIssues = await inspectLayout(page);
+      report.states.push({ width, view: 'storage-implementation-examples', issueCount: implementationIssues.length });
+      report.issues.push(...implementationIssues.map(issue => ({ width, view: 'storage-implementation-examples', ...issue })));
+      await page.evaluate(() => { document.querySelector('#storage-implementations').open = false; });
       for (let step = 0; step < 9; step++) {
         await page.evaluate(step => document.querySelector(`[data-step="${step}"]`).click(), step);
         const issues = await inspectLayout(page);

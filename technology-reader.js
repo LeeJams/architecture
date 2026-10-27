@@ -80,7 +80,7 @@ function initializeTechnologyReader() {
         <dl class="mechanism-explanations">${tech.mechanics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl>
       </section>
       ${renderNoteExample(tech.example)}
-      <section class="note-section"><p class="note-section-label">04 / ALTERNATIVE TECHNOLOGIES</p><h4>회사·제품별 기술을 이어서 살펴보기</h4><p>본문 아래의 대안 기술에서 제공 조직, 맡는 역할, 동작 방식과 활용 상황을 확인할 수 있습니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">관련 대안 기술 보기 ↓</button></section>
+      <section class="note-section"><p class="note-section-label">04 / REPLACEMENT OPTIONS</p><h4>현재 기술을 무엇으로 대체할 수 있을까.</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
       <section class="note-section"><p class="note-section-label">05 / WHAT TO MEASURE</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
       <div class="note-takeaway"><strong>설계에 가져갈 판단</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 이 역할 보기 ↑</button></div>
       <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><span>${scope}</span></li>`).join("")}</ul></footer>

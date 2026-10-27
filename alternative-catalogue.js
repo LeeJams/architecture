@@ -1,7 +1,7 @@
 "use strict";
 
 const alternativeCategories = [
-  ["delivery", "CDN · 영상 전달"], ["http", "HTTP 서버"], ["os", "서버 운영체제"], ["cloud", "클라우드 실행 환경"], ["storage", "파일 저장"], ["all", "모든 기술"]
+  ["delivery", "Open Connect 대체"], ["http", "NGINX 대체"], ["os", "FreeBSD 대체"], ["cloud", "AWS 실행 환경 대체"], ["all", "전체 대체 관계"]
 ];
 const alternativeProducts = [
   { id: "cloudfront", category: "delivery", name: "Amazon CloudFront", company: "Amazon Web Services", organization: "Amazon의 클라우드 사업", image: "cloudfront", type: "관리형 CDN", role: "사용자 가까운 엣지에서 영상 파일을 전달",
@@ -71,21 +71,80 @@ const alternativeProducts = [
     details: ["영상·오디오 파일을 객체로 보관하고 관련 서비스가 API로 접근하도록 구성할 수 있습니다.", "저장 클래스와 파일 접근 패턴, 권한과 버전 관리 방식을 파일 준비·배포 과정에 맞춰 결정합니다.", "이 사례에서의 위치는 원본 저장 역할입니다. 플레이어의 화질 판단이나 CDN의 전송 거점과는 다른 계층입니다."],
     docs: "https://cloud.google.com/storage/docs/introduction", source: "https://github.com/googleapis/python-storage" }
 ];
+const replacementSources = {
+  delivery: { name: "Open Connect", company: "Netflix", image: "ocaIcon", technology: "oca", node: "oca", location: "영상 전달망 전체", role: "사용자 가까이에서 영상 파일을 전달하는 역할", scope: "전송 거점·콘텐츠 배치·전송 경로와 영상 전달 운영", keep: "플레이어·재생 제어 API·준비된 영상 원본", kind: "replacement" },
+  http: { name: "NGINX", company: "F5 · NGINX Open Source", image: "nginx", technology: "nginx", node: "oca", location: "OCA 내부 · HTTP 서버", role: "HTTP 요청에 준비된 파일을 응답하는 역할", scope: "HTTP 서버 실행·파일 경로 설정·인증서·모듈·로그", keep: "영상 파일·서버 OS의 역할·재생 제어와 전달망", kind: "replacement" },
+  os: { name: "FreeBSD", company: "FreeBSD Project", image: "freebsd", technology: "freebsd", node: "oca", location: "OCA 내부 · 운영체제", role: "파일·메모리·소켓·네트워크 I/O 기반 역할", scope: "커널·드라이버·이벤트 처리·패키지와 운영 도구", keep: "HTTP 파일 응답 역할·미디어 파일·재생 제어와 전달망", kind: "replacement" },
+  cloud: { name: "AWS 재생 제어 환경", company: "Amazon Web Services", image: "aws", technology: "aws", node: "playback", location: "클라우드 재생 제어 · 실행 환경", role: "재생 제어 API를 실행하는 역할", scope: "제어 서비스의 실행·배포·데이터 연결·계정과 관측", keep: "재생 API의 업무 역할·플레이어와 영상 전달망의 분리", kind: "replacement" },
+  storage: { name: "원본 파일 저장 역할", company: "현재 제품 미지정", image: "storage", node: "origin", location: "인코딩된 영상 원본 · 파일 보관", role: "인코딩된 파일을 보관하는 역할", scope: "파일 저장·객체 키·접근 권한과 배치 연결", keep: "준비된 영상 파일·인코딩과 영상 전달 역할", kind: "implementation" }
+};
 let selectedAlternativeCategory = "delivery";
 
 function alternativeCategoryFor(key) {
-  return ({ oca: "delivery", fill: "delivery", steering: "delivery", fallback: "delivery", nginx: "http", freebsd: "os", aws: "cloud", playback: "cloud", origin: "storage" })[key] || "all";
+  return ({ oca: "delivery", nginx: "http", freebsd: "os", aws: "cloud", playback: "cloud", origin: "storage" })[key] || "all";
+}
+
+function replacementLinkLabel(key) {
+  const category = alternativeCategoryFor(key);
+  if (category === "storage") return "원본 저장 역할의 구현 예시 보기";
+  const source = replacementSources[category];
+  return source ? `${source.name} 대체 기술 보기` : "현재 설계의 전체 대체 관계 보기";
+}
+
+function replacementTitle(product) {
+  const source = replacementSources[product.category];
+  return `${source.name} → ${product.name}`;
+}
+
+function replacementSentence(product) {
+  const source = replacementSources[product.category];
+  return source.kind === "implementation"
+    ? `현재 제품이 특정되지 않은 ${source.role}의 구현 예시: ${product.name}.`
+    : `${source.name} → ${product.name}: ${source.role}을 대체합니다.`;
+}
+
+function renderReplacementPair(product) {
+  const source = replacementSources[product.category];
+  return `<div class="replacement-pair" role="group" aria-label="${replacementTitle(product)}"><div class="replacement-from"><span>${source.kind === "implementation" ? "현재 설계의 역할" : "대체 대상"}</span><img src="${assets[source.image]}" alt=""><strong data-replacement-from-name>${source.name}</strong><p class="replacement-company">${source.company}</p></div><span class="replacement-arrow" aria-hidden="true">→</span><div class="replacement-to"><span>${source.kind === "implementation" ? "구현에 쓸 기술" : "이 기술로 대체"}</span><img src="${assets[product.image]}" alt=""><strong data-replacement-to-name>${product.name}</strong><p class="product-company">${product.company}</p><p class="product-type">${product.type}</p></div></div>`;
+}
+
+function renderReplacementScope(product) {
+  const source = replacementSources[product.category];
+  return `<dl class="replacement-scope"><div><dt>${source.kind === "implementation" ? "구현할 위치" : "대체하는 위치"}</dt><dd>${source.location}</dd></div><div><dt>${source.kind === "implementation" ? "구현할 범위" : "대체할 범위"}</dt><dd>${source.scope}</dd></div><div><dt>함께 연결할 기존 역할</dt><dd>${source.keep}</dd></div></dl>`;
+}
+
+function renderReplacementCard(product) {
+  const source = replacementSources[product.category];
+  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">${source.kind === "implementation" ? "구현 예시" : "대체 관계"}와 기술 자세히 보기 ↗</button></article>`;
+}
+
+function renderReplacementContext() {
+  const source = replacementSources[selectedAlternativeCategory];
+  if (!source) {
+    $("#replacement-context").innerHTML = `<div class="replacement-overview"><p class="micro-label">현재 기술 → 대체 기술</p><h3>4개 현재 기술의 9개 대체 관계</h3><p>각 카드에서 무엇을 바꾸는지, 어떤 기술로 바꾸는지, 어느 계층을 대체하는지 확인하세요.</p></div>`;
+    return;
+  }
+  $("#replacement-context").innerHTML = `<div class="replacement-source"><img src="${assets[source.image]}" alt=""><div><p class="micro-label">현재 설계에서 대체할 기술</p><h3>${source.name}</h3><p>${source.company} · ${source.location}</p></div><button class="quiet-button" data-locate-replacement="${selectedAlternativeCategory}">현재 구성도에서 위치 보기 ↑</button></div><div class="replacement-context-description"><strong>무엇을 대체하나요?</strong><p>${source.name}의 ${source.role}을 다른 기술로 구현하는 선택입니다.</p></div>`;
 }
 
 function renderAlternativeCatalogue() {
-  const products = alternativeProducts.filter(product => selectedAlternativeCategory === "all" || product.category === selectedAlternativeCategory);
+  const products = alternativeProducts.filter(product => product.category !== "storage" && (selectedAlternativeCategory === "all" || product.category === selectedAlternativeCategory));
   $$('[data-alternative-category]').forEach(button => button.setAttribute("aria-pressed", String(button.dataset.alternativeCategory === selectedAlternativeCategory)));
-  $("#alternative-count").textContent = `${products.length}개 기술`;
-  $("#alternative-products").innerHTML = products.map(product => `<article class="product-card"><div class="product-identity"><img src="${assets[product.image]}" alt="${product.name} 로고"><div><p class="product-company">${product.company}</p><h3>${product.name}</h3><p class="product-type">${product.type}</p></div></div><p class="product-role">${product.role}</p><p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>이런 상황에서 살펴보세요</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">동작 원리와 활용 자세히 보기 ↗</button></article>`).join("");
+  $("#alternative-count").textContent = `${products.length}개 대체 관계`;
+  $("#alternative-products").dataset.productCount = String(products.length);
+  renderReplacementContext();
+  $("#alternative-products").innerHTML = products.map(renderReplacementCard).join("");
 }
 
 function showAlternatives(category, { focus = true } = {}) {
+  if (category === "storage") {
+    $("#storage-implementations").open = true;
+    $("#storage-implementations").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+    if (focus) $("#storage-examples-title").focus({ preventScroll: true });
+    return;
+  }
   selectedAlternativeCategory = alternativeCategories.some(([key]) => key === category) ? category : "all";
+  $("#storage-implementations").open = false;
   renderAlternativeCatalogue();
   $("#alternatives").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
   if (focus) $("#alternatives-title").focus({ preventScroll: true });
@@ -93,11 +152,19 @@ function showAlternatives(category, { focus = true } = {}) {
 
 function initializeAlternativeCatalogue() {
   $("#alternative-categories").innerHTML = alternativeCategories.map(([key, title]) => `<button data-alternative-category="${key}" aria-pressed="${key === selectedAlternativeCategory}">${title}</button>`).join("");
+  $("#storage-products").innerHTML = alternativeProducts.filter(product => product.category === "storage").map(renderReplacementCard).join("");
   document.addEventListener("click", event => {
     const category = event.target.closest("[data-alternative-category]");
-    if (category) { selectedAlternativeCategory = category.dataset.alternativeCategory; renderAlternativeCatalogue(); }
+    if (category) { selectedAlternativeCategory = category.dataset.alternativeCategory; $("#storage-implementations").open = false; renderAlternativeCatalogue(); }
     const link = event.target.closest("[data-show-alternatives]");
     if (link) { if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return; event.preventDefault(); closeTechnologySheet(); showAlternatives(link.dataset.showAlternatives); }
+    const locate = event.target.closest("[data-locate-replacement]");
+    if (locate) {
+      const source = replacementSources[locate.dataset.locateReplacement];
+      selectTech(source.technology);
+      $("#architecture").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+      $(`[data-node="${source.node}"]`).focus({ preventScroll: true });
+    }
   });
   renderAlternativeCatalogue();
 }

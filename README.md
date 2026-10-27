@@ -11,7 +11,7 @@
 - **카드 목록 → 상세 화면:** Chrome의 기본 View Transition API로 카드 배경·표지·제목을 연결합니다. 목록 복귀와 브라우저 뒤로/앞으로 이동을 지원합니다.
 - **데이터 흐름:** 요청·응답은 파랑, 영상 전송은 빨강, 콘텐츠 배치는 청록 점선으로 구분합니다. 파일 준비부터 다음 구간 요청까지 9단계를 따라가며 요청 주체·데이터·처리 기술을 확인합니다.
 - **오른쪽 상세 패널:** 역할과 흐름·구성 기술 두 탭으로 탐색합니다. 구성 기술 행을 누르면 넓은 기본 dialog에서 제공 조직·동작 순서·예제·공식 문서를 읽습니다.
-- **회사·제품별 대안:** 본문 아래에 11개 기술을 CDN·HTTP 서버·OS·클라우드·저장소로 나눠 소개합니다. 회사·제공 조직, 제품명, 로고, 기능과 적합한 상황을 카드와 상세 창으로 확인합니다.
+- **무엇을 무엇으로 대체하는지:** 본문 아래에서 현재 기술 → 대체 기술을 양쪽 이름·회사·로고로 직접 연결합니다. 4개 현재 기술의 9개 대체 관계를 선택하고, 대체 위치·범위와 함께 연결할 기존 역할을 확인합니다.
 - **서버 내부 탐색:** 저장장치·NGINX·FreeBSD 계층을 선택하면 파일·요청·커널·네트워크의 처리 순서를 볼 수 있습니다.
 - **기술 상세 읽기:** 기술 6개와 재생·서버 선택의 설계 2개를 문제 → 동작 원리 → 예제 → 대안 → 검증 지표 순서로 읽습니다. 기술 로고와 단계별 흐름을 함께 표시합니다.
 - **계산하며 이해하기:** 동시 시청자·비트레이트에 따른 전달 용량과, 네트워크 처리량에 따른 구간 수신 시간·다음 화질 후보를 값을 바꿔 살펴봅니다.
@@ -19,9 +19,20 @@
 
 ![넷플릭스 Open Connect 상세 화면](docs/images/netflix-detail.png)
 
-왼쪽의 9단계를 선택하면 오른쪽 역할과 흐름 탭에 요청 주체, 전달 데이터, 처리 순서와 설명용 요청·응답이 표시됩니다. 구성 기술을 누르면 원리와 예제를 크게 읽을 수 있습니다. **대안 기술 보기**는 선택한 역할에 맞는 회사·제품 카드로 이동합니다.
+왼쪽의 9단계를 선택하면 오른쪽 역할과 흐름 탭에 요청 주체, 전달 데이터, 처리 순서와 설명용 요청·응답이 표시됩니다. 구성 기술을 누르면 원리와 예제를 크게 읽을 수 있습니다. **무엇으로 대체할까**를 누르면 선택한 현재 기술의 대체 관계로 이동합니다.
+
+| 대체할 현재 기술 | 대체에 쓸 기술 | 대체하는 범위 |
+| --- | --- | --- |
+| Open Connect / Netflix | Amazon CloudFront / AWS · Fastly CDN / Fastly · Cloudflare CDN / Cloudflare | 영상 전달망과 운영 방식 |
+| NGINX / F5·NGINX Open Source | Caddy / ZeroSSL·HID Global · Apache HTTP Server / Apache Software Foundation | OCA 내부 HTTP 파일 응답 서버 |
+| FreeBSD / FreeBSD Project | Ubuntu Server / Canonical · Debian / Debian Project | 서버 OS와 I/O 기반 |
+| AWS의 재생 제어 실행 환경 | Google Cloud / Google · Azure / Microsoft | 재생 제어 API의 실행·배포·연결 환경 |
+
+현재 원본 저장소 제품은 특정되지 않았으므로 S3·Cloud Storage는 위 대체 관계에 넣지 않고, 별도의 **구현 예시 2개**로 구분합니다.
 
 ![회사·제품별 대안 기술](docs/images/alternative-technologies.png)
+
+각 카드와 [대체 관계 상세 창](docs/images/replacement-detail.png)은 **대체 대상 → 이 기술로 대체**를 먼저 보여주고, 해당 계층·범위·기존 역할에 이어 대체 기술의 동작과 제공 조직을 설명합니다.
 
 ![선택한 서버 계층의 내부 동작](docs/images/appliance-detail.png)
 
@@ -75,7 +86,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 | `technology-reader.js` · `technology-reader.css` | 상세 글·키보드 탭·직접 링크·계산 예제와 반응형 읽기 화면 |
 | `architecture-insights.js` · `architecture-insights.css` | 구성도의 입력·처리·출력 설명과 서버 계층 탐색 |
 | `architecture-journey.js` | 9단계 요청·응답·파일·플레이어 흐름 |
-| `alternative-catalogue.js` | 11개 제품의 제공 조직·기능·활용 설명 |
+| `alternative-catalogue.js` | 현재 기술과 9개 대체 관계, 2개 구현 예시, 제공 조직·기능·범위 |
 | `technology-sheet.js` · `technology-explorer.css` | 기술·제품 상세 dialog와 대안 카드의 반응형 화면 |
 | `assets/` | 자체 도식, 기술 로고, 참고 이미지, 서체와 고지 |
 | `scripts/` | 단일 HTML 생성과 브라우저 검증 도구 |
@@ -106,7 +117,7 @@ npm test
 - `verify-ui.cjs`: 320~2560px의 **19개 화면 폭·1,026개 상태**에서 목록·상세·8개 기술 글·9단계 흐름·상세 dialog·대안 카드·서버 내부 계층·요약 카드·참고 자료의 배치, 텍스트 넘침, SVG 라벨 겹침, 이미지와 JavaScript 오류를 확인합니다. 노드·기술 선택, 흐름 재생, 키보드와 이미지 확대도 검사합니다.
 - `verify-navigation.cjs`: 실제 View Transition의 준비·완료, 카드 열기·복귀, 뒤로/앞으로, 스크롤·포커스 복원, 빠른 취소, 상세 주소 직접 열기, 모션 감소 및 API 미지원 처리를 확인합니다.
 - `verify-technology.cjs`: 기술 글의 직접 링크·새로고침·키보드·구성도 연결, 용량 계산의 잘못된 입력, 저속 네트워크에서의 화질 후보, 좁은 화면의 표·코드 스크롤과 단일 HTML의 오프라인 실행을 검사합니다.
-- `verify-explorer.cjs`: 두 탭·9단계 흐름, 기술 상세 dialog의 포커스·닫기·맥락 유지, 11개 제품의 제공 조직과 상세 설명, 역할별 목록 이동과 기존 서버 내부 탐색을 검사합니다.
+- `verify-explorer.cjs`: 두 탭·9단계 흐름, 기술 상세 dialog의 포커스·닫기·맥락 유지, 9개 대체 관계의 양쪽 기술·범위·제공 조직, 구성도 위치 연결과 구현 예시의 분리를 검사합니다.
 
 시스템에 `/usr/bin/chromium`이 있으면 이를 사용하고, 없으면 Playwright가 설치한 브라우저를 사용합니다. 다른 실행 파일은 `ATLAS_CHROMIUM_EXECUTABLE` 환경 변수로 지정할 수 있습니다.
 
