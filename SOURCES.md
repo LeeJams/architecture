@@ -31,7 +31,34 @@
 | [MDN adaptive streaming](https://github.com/mdn/content/blob/main/files/en-us/web/media/guides/audio_and_video_delivery/live_streaming_web_audio_and_video/index.md) | 여러 화질의 구간과 HLS·DASH 개념; 라이브 문서에서 공통 ABR 개념만 사용 |
 | [CloudFront Expiration](https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/Expiration.md) | 보존된 AWS 문서의 TTL·Cache-Control 설명; 현재 제품의 기본값·구체적인 동작은 최신 문서 확인 필요 |
 
-AWS 고객 사례, Caddy Automatic HTTPS, CloudFront cache key, TLS 1.3·HLS RFC는 **추가 읽기**로 연결했으며 이 환경에서는 직접 열람하지 못했습니다. 각 글의 자료 목록에서도 확인한 문서와 추가 읽기를 구분합니다.
+AWS 고객 사례, Caddy Automatic HTTPS, CloudFront의 최신 제품 문서, TLS 1.3·HLS RFC는 **추가 읽기**로 연결했으며 이 환경에서는 직접 열람하지 못했습니다. CloudFront cache key의 보존 문서와 아래 HTTP Working Group 원문은 별도로 확인했습니다. 각 글의 자료 목록에서도 확인한 문서와 추가 읽기를 구분합니다.
+
+### 개발자 상세의 주장과 근거
+
+2026-10-27에 아래 공식 저장소 원문을 읽어 핵심 동작·조건·오류를 대조했습니다. `technology-depth.js`의 핵심 주장 옆에서 해당 자료로 바로 이동합니다. 원문이 일반 기술 동작을 설명하는 경우 Netflix의 현재 배포를 확인한 것처럼 쓰지 않습니다.
+
+| 확인한 원문 | 상세에 반영한 핵심 |
+| --- | --- |
+| [NGINX core 설정](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/ngx_core_module.xml) | worker_connections에 upstream 연결도 포함, open-file 한도의 제약 |
+| [NGINX HTTP core](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/http/ngx_http_core_module.xml) | Linux aio·directio와 정렬되지 않은 범위의 blocking, aio threads의 빌드·OS 조건 |
+| [NGINX access log](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/http/ngx_http_log_module.xml) | request_time의 측정 구간, body_bytes_sent의 의미; upstream 없는 정적 응답의 진단 |
+| [FreeBSD sendfile(2)](https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/sendfile.2) | EAGAIN에도 sbytes의 부분 전송량 확인, SF_NODISKIO와 디스크 대기의 구분 |
+| [FreeBSD kqueue(2)](https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/kqueue.2) | 쓰기 준비 상태와 전체 전송 완료의 차이 |
+| [FreeBSD ktls(4)](https://github.com/freebsd/freebsd-src/blob/main/share/man/man4/ktls.4) | 사용자 공간 handshake, 방향별 세션 키, SW·IFNET·TOE 모드, 통계와 NIC capability |
+| [HTTP Working Group RFC 9110 원문](https://github.com/httpwg/http-core/blob/main/rfc9110.xml) · [발행 표준](https://www.rfc-editor.org/rfc/rfc9110.html) | §13.1.5 If-Range, §14 범위·206·416, 멱등성·상태 코드. If-Range 불일치는 Range를 무시하며 412가 아님 |
+| [HTTP Working Group RFC 9111 원문](https://github.com/httpwg/http-core/blob/main/rfc9111.xml) · [발행 표준](https://www.rfc-editor.org/rfc/rfc9111.html) | 저장·재검증·공유 캐시, 인증 응답의 조건, no-cache·no-store·private·max-age |
+| [AWS cache key 보존 문서](https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/understanding-the-cache-key.md) | 바이트가 다른 입력의 키 반영과 불필요한 키 분산. 최신 기본값의 근거로 사용하지 않음 |
+| [Caddy file_server 구현](https://github.com/caddyserver/caddy/blob/master/modules/caddyhttp/fileserver/staticfiles.go) | Range·If-Range·조건부 요청 처리와 Go ServeContent 사용 |
+| [Apache event MPM](https://github.com/apache/httpd/blob/trunk/docs/manual/mod/event.xml) · [core](https://github.com/apache/httpd/blob/trunk/docs/manual/mod/core.xml) | keep-alive 연결 관리·worker 처리 구분, DocumentRoot·EnableSendfile의 조건 |
+| [Cloudflare cache control](https://github.com/cloudflare/cloudflare-docs/blob/production/src/content/docs/cache/concepts/cache-control.mdx) | Origin Cache Control 적용 상태에 따른 no-cache 처리; 실제 규칙과 원본 헤더의 대조 |
+
+OCA의 파일·네트워크 용량, API deadline과 의존성 지연, 배치 상태 머신, 후보 필터·복구 예산, 증상별 진단과 교체 검증 순서는 **일반 설계 및 학습 예제**입니다. 공개되지 않은 Netflix의 점수식·재시도 순서·내부 필드·KTLS 모드·현재 장비 성능의 근거로 쓰지 않습니다. AWS 실행 제품이 특정되지 않았으므로 Google Cloud·Azure 상세는 실제 제품 목록 확인과 이관 계약을 설명하며, 확인되지 않은 일대일 제품 전환표를 만들지 않습니다.
+
+### 실제 파일 응답 실험
+
+[실습 안내와 설정](examples/file-delivery/README.md), [검사 스크립트](scripts/verify-delivery-lab.py)를 제공합니다. 공식 [NGINX 소스 9a7439f](https://github.com/nginx/nginx/commit/9a7439fd79076de03c408de136ba1772347030c2)를 Linux에서 빌드해 실행했으며, 실행 파일이 출력한 버전은 `nginx/1.31.9`입니다. 빌드에는 `--without-http_rewrite_module --without-http_gzip_module`을 사용했습니다. 이 버전은 실험 재현 정보이며 Netflix의 사용 버전이 아닙니다.
+
+10,000바이트의 결정적인 파일에서 전체 GET, 정상 0–1023 범위, suffix 256바이트, 파일 끝 밖의 범위, If-Range 일치·불일치, 없는 파일의 7개 검사가 통과했습니다. 상태·헤더와 원본의 해당 바이트를 대조했습니다. 사이트에 표시한 NGINX 설정과 이 실험의 설정 파일은 자동 검사로 일치시킵니다. 포트만 비어 있는 루프백 포트로 치환합니다. 이 실험으로 TLS·FreeBSD·NIC offload·CDN 성능을 검증했다고 주장하지 않습니다.
 
 ### 설명용 예제와 계산의 가정
 
@@ -41,6 +68,7 @@ AWS 고객 사례, Caddy Automatic HTTPS, CloudFront cache key, TLS 1.3·HLS RFC
 - AWS의 JSON, 콘텐츠 경로·캐시 정책 메모, 전송 후보 평가와 재시도 기준은 가상의 설계 예제입니다.
 - 용량 계산: `동시 시청자 × 평균 비트레이트 ÷ 목표 링크 사용률`. 십진 단위를 사용하며 패킷·TLS 오버헤드, 오디오, 재전송, 순간 피크와 장애 예비 용량은 제외합니다.
 - ABR 계산: 4초·5 Mb/s 구간의 크기를 20 Mb로 놓고 상수 처리량으로 나눕니다. 다음 후보는 1·3·5·8 Mb/s 중 처리량의 75% 이하인 최댓값입니다. 실제 알고리즘·처리량 측정·플레이어 시뮬레이션이 아닙니다.
+- ABR 버퍼: 다운로드 시간 T, 초기 버퍼 B, 새 구간 길이 d에서 `stall=max(0,T−B)`, `B_next=max(0,B−T)+d`입니다. 다운로드 중 연속 재생을 가정하고 오디오·VBR·RTT·디코딩·최대 버퍼·중단은 생략합니다.
 - 지표 목록과 대안의 선택 조건은 설계를 판단하기 위한 제안이며 Netflix의 관측 항목이나 전환 계획을 확인한 자료가 아닙니다.
 
 ## 웹 도식 참고 자료

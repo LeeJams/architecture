@@ -38,22 +38,36 @@
 
 ## 기술을 깊게 읽기
 
-구성도의 상세 설명에서 **원리·동작·예제를 크게 보기**를 누르거나, 본문의 **03 기술 해부**에서 주제를 선택하세요. 각 글의 주소를 직접 공유할 수 있습니다. 예를 들어 `?case=netflix#tech-nginx`는 NGINX 글을 바로 엽니다.
+구성도의 상세 설명에서 **핵심 원리·조건별 동작·진단 보기**를 누르거나, 본문의 **03 기술 해부**에서 주제를 선택하세요. 각 글의 주소를 직접 공유할 수 있습니다. 예를 들어 `?case=netflix#tech-nginx`는 NGINX 글을 바로 엽니다.
 
 ![구성 기술의 넓은 상세 설명 창](docs/images/technology-sheet.png)
 
 | 주제 | 상세 내용 |
 | --- | --- |
-| OCA | ISP 가까이의 파일 전송, 디스크·네트워크 병목, 시청자 수에 따른 용량 계산 |
-| AWS와 재생 제어 | 제어·전송 경로 분리, 증설 단위, 가상 API 응답과 의존 서비스 지연 |
-| FreeBSD | kqueue, sendfile, 부분 전송과 EAGAIN, Linux와의 비교 조건 |
-| NGINX | master·worker, 이벤트 처리, 파일 응답 설정, 파일 디스크립터와 I/O |
-| HTTP(S) | Range·206 응답, TLS와 DRM의 구분, HTTP/2·HTTP/3·WebRTC 비교 |
-| 콘텐츠 배치 | 사전 배치·요청 시 캐시, 바이트 적중률, 캐시 키와 TTL |
-| 플레이어·ABR | 여러 화질의 구간, 버퍼·처리량, 화질 선택의 계산 예제 |
-| 서버 선택 | 파일·네트워크·용량 조건, 상태 정보 지연, 재시도 예산과 장애 대응 |
+| OCA | 전송 Gb/s와 디스크 GB/s의 차이, 페이지 적중, TLS·NIC 병목, 피크·장애 용량 |
+| AWS와 재생 제어 | API 계약, 의존성 deadline, p99 해석, 신규·기존 재생의 장애 범위 |
+| FreeBSD | sendfile의 sbytes·EAGAIN, kqueue 준비 상태, KTLS handshake·SW·NIC 모드 |
+| NGINX | 연결·FD 한도, warm/cold file, Linux·FreeBSD의 AIO 조건, 정적 응답 로그 해석 |
+| HTTP(S) | 206·416·If-Range 불일치의 200, 강한 ETag, 미디어 구간과 byte range의 차이 |
+| 콘텐츠 배치 | 검증 후 게시·inventory, 캐시 키와 권한, no-cache/no-store, 바이트 적중률 |
+| 플레이어·ABR | 구간 수신 시간·버퍼·재버퍼링 계산, 표현 전환, 디코더 병목 |
+| 서버 선택 | 후보 필터·정보 신선도, 오류별 재시도 판단, 버퍼 안의 복구 시간 예산 |
 
-![NGINX 동작 원리와 단계별 흐름](docs/images/technology-detail.png)
+각 상세는 **핵심 원리 → 조건별 흐름 → 관측·진단**으로 읽습니다. 조건 버튼을 누르면 로고가 있는 데이터 경로와 요청·응답, 해석이 함께 바뀝니다. 핵심 주장 옆에는 확인한 공식 문서 링크를 두고, 일반 기술 원리와 설계·계산 예제를 표시합니다. 본문과 상세 창은 같은 원고·렌더러를 사용합니다.
+
+![If-Range 버전 불일치와 전체 응답](docs/images/http-range-detail.png)
+
+대안 상세에는 **교체할 때 이어야 할 동작**을 추가했습니다. 예를 들어 NGINX → Caddy는 실제 Caddyfile, URI prefix 유지, Range·ETag 재검증을 설명합니다. FreeBSD → Linux는 이벤트·AIO·서비스 한도, CDN 교체는 원본·캐시 키·권한·재생 URL의 연결을 다룹니다.
+
+![NGINX에서 Caddy로 교체할 때의 설정과 검증](docs/images/replacement-contract.png)
+
+실행 가능한 [HTTP 파일 전송 실습](examples/file-delivery/README.md)도 제공합니다. 실제 NGINX에서 7가지 요청의 상태·헤더·본문 바이트를 검사합니다.
+
+```sh
+python3 scripts/verify-delivery-lab.py --nginx nginx
+```
+
+이 실습은 NGINX 실행 파일이 필요합니다. 루프백 임시 서버를 사용하고 종료 시 정리합니다. 서버 성능·FreeBSD KTLS·Netflix 장비를 재현하는 시험은 아닙니다.
 
 예제 설정·API 응답·수치는 학습용이며 Netflix의 실제 내부 설정이나 알고리즘을 뜻하지 않습니다. 확인한 문서와 추가 읽기 자료의 접근 범위는 각 글 하단에 표시합니다.
 
@@ -83,6 +97,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 | `styles.css` | 화면 배치, 반응형 스타일, 기본 View Transition 표현 |
 | `app.js` | 구성 요소·기술 설명, 경로 강조, 화면 이동과 인터랙션 |
 | `technology-notes.js` | 8개 상세 주제의 원고, 예제, 대안·지표와 출처 |
+| `technology-depth.js` · `technology-depth.css` | 핵심 원리·근거, 조건별 경로·요청·응답, 진단, 9개 교체 계약의 공유 원고와 렌더러 |
 | `technology-reader.js` · `technology-reader.css` | 상세 글·키보드 탭·직접 링크·계산 예제와 반응형 읽기 화면 |
 | `architecture-insights.js` · `architecture-insights.css` | 구성도의 입력·처리·출력 설명과 서버 계층 탐색 |
 | `architecture-journey.js` | 9단계 요청·응답·파일·플레이어 흐름 |
@@ -90,6 +105,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 | `technology-sheet.js` · `technology-explorer.css` | 기술·제품 상세 dialog와 대안 카드의 반응형 화면 |
 | `assets/` | 자체 도식, 기술 로고, 참고 이미지, 서체와 고지 |
 | `scripts/` | 단일 HTML 생성과 브라우저 검증 도구 |
+| `examples/file-delivery/` | 실제 실행 검증한 NGINX 설정·실습 안내 |
 | `docs/images/` | 메인과 상세 화면 예시 |
 
 ## 단일 HTML 만들기
@@ -118,6 +134,8 @@ npm test
 - `verify-navigation.cjs`: 실제 View Transition의 준비·완료, 카드 열기·복귀, 뒤로/앞으로, 스크롤·포커스 복원, 빠른 취소, 상세 주소 직접 열기, 모션 감소 및 API 미지원 처리를 확인합니다.
 - `verify-technology.cjs`: 기술 글의 직접 링크·새로고침·키보드·구성도 연결, 용량 계산의 잘못된 입력, 저속 네트워크에서의 화질 후보, 좁은 화면의 표·코드 스크롤과 단일 HTML의 오프라인 실행을 검사합니다.
 - `verify-explorer.cjs`: 두 탭·9단계 흐름, 기술 상세 dialog의 포커스·닫기·맥락 유지, 9개 대체 관계의 양쪽 기술·범위·제공 조직, 구성도 위치 연결과 구현 예시의 분리를 검사합니다.
+- `verify-depth.cjs`: 본문·상세 창의 원고 일치, 조건별 HTTP 응답, 버퍼·재버퍼링 계산, 키보드 탐색, 3개 폭의 54개 상세 흐름 상태와 교체 계약을 검사합니다. 화면의 NGINX 설정과 실제 실습 설정이 일치하는지도 확인합니다.
+- `verify-delivery-lab.py`: `npm test`와 별도로 실행합니다. 실제 NGINX에서 일반 GET·정상/suffix/초과 범위·If-Range 일치/불일치·404를 확인합니다.
 
 시스템에 `/usr/bin/chromium`이 있으면 이를 사용하고, 없으면 Playwright가 설치한 브라우저를 사용합니다. 다른 실행 파일은 `ATLAS_CHROMIUM_EXECUTABLE` 환경 변수로 지정할 수 있습니다.
 

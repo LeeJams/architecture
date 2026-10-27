@@ -104,6 +104,7 @@ const technologyNotes = [
     sources: [
       ["FreeBSD sendfile(2) · 공식 소스의 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/sendfile.2", "확인한 원문 · 파일→소켓, 부분 전송과 EAGAIN"],
       ["FreeBSD kqueue(2) · 공식 소스의 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/kqueue.2", "확인한 원문 · 이벤트 통지"],
+      ["FreeBSD ktls(4) · 공식 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/share/man/man4/ktls.4", "확인한 원문 · 사용자 공간 handshake, 커널 SW 및 NIC 모드"],
       ["NGINX connection processing methods", "https://github.com/nginx/nginx.org/blob/master/xml/en/docs/events.xml", "확인한 원문 · kqueue와 epoll"]
     ]
   },
@@ -126,10 +127,10 @@ const technologyNotes = [
       ["파일 응답과 프록시 캐시는 다른 기능", "아래 root 설정은 로컬 파일을 응답합니다. proxy_pass·proxy_cache로 원본 응답을 저장하는 구성이 아닙니다. NGINX 설치만으로 사전 배치, ISP 연동과 거점 선택이 생기지는 않습니다."]
     ],
     example: {
-      title: "로컬 파일 응답을 읽는 최소 설정", language: "nginx.conf · 학습용",
-      text: "/media/demo.mp4 요청은 /srv/video/media/demo.mp4 파일로 연결됩니다. 파일이 없으면 404를 반환합니다. 전송할 파일은 별도로 준비해야 합니다.",
-      code: 'worker_processes auto;\nevents { worker_connections 1024; }\n\nhttp {\n  sendfile on;\n  server {\n    listen 127.0.0.1:8080;\n    location /media/ {\n      root /srv/video;\n      try_files $uri =404;\n    }\n  }\n}',
-      caveat: "루프백 HTTP 실습 예제입니다. TLS·인증·캐시·접근 제어는 생략했습니다. worker_connections=1024는 권장 운영값이 아니며 이 예제를 운영 환경에 그대로 적용하지 않습니다."
+      title: "실제로 실행 검증한 로컬 파일 응답 설정", language: "nginx.conf · 학습용",
+      text: "/media/demo.bin 요청은 NGINX prefix 아래 data/media/demo.bin으로 연결됩니다. 아래 실습 링크의 스크립트가 10,000바이트 파일을 준비하고 상태·헤더·본문을 검증합니다. 파일이 없으면 404를 반환합니다.",
+      code: "daemon off;\npid logs/nginx.pid;\nerror_log logs/error.log;\nworker_processes 1;\n\nevents { worker_connections 128; }\n\nhttp {\n  default_type application/octet-stream;\n  log_format delivery '$status bytes=$body_bytes_sent seconds=$request_time range=\"$http_range\"';\n  access_log logs/access.log delivery;\n  sendfile on;\n\n  server {\n    listen 127.0.0.1:8080;\n    location /media/ {\n      root data;\n      try_files $uri =404;\n    }\n  }\n}",
+      caveat: "루프백 HTTP 실습 예제입니다. TLS·인증·캐시·접근 제어는 생략했습니다. worker_connections=128은 작은 실습 값이며 이 예제를 운영 환경에 그대로 적용하지 않습니다."
     },
     metrics: [
       ["활성 연결·파일 디스크립터", "연결 한도와 OS 한도를 같이 확인하고, 단순 동접 숫자만 늘리지 않습니다."],
@@ -176,6 +177,7 @@ const technologyNotes = [
     sources: [
       ["MDN HTTP Range requests · 공식 문서 소스", "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/range_requests/index.md", "확인한 원문 · Range, 206, Content-Range"],
       ["MDN Evolution of HTTP · 공식 문서 소스", "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/evolution_of_http/index.md", "확인한 원문 · HTTP/2와 HTTP/3"],
+      ["RFC 9110 · HTTP Semantics", "https://www.rfc-editor.org/rfc/rfc9110.html", "확인한 HTTP Working Group 원문 · Range, If-Range와 상태 코드"],
       ["RFC 8446 · TLS 1.3", "https://www.rfc-editor.org/rfc/rfc8446", "표준 추가 읽기 · 이 환경에서 직접 열람하지 못함"]
     ]
   },
@@ -212,7 +214,8 @@ const technologyNotes = [
     sources: [
       ["Netflix Open Connect · 콘텐츠 준비", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 접근 제한"],
       ["CloudFront Expiration · AWS 공식 문서 저장소", "https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/Expiration.md", "확인한 보존 문서 · Cache-Control과 TTL; 현재 제품 설정은 최신 문서 재확인 필요"],
-      ["CloudFront cache key · 제품 문서", "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/understanding-the-cache-key.html", "추가 읽기 · 이 환경에서 직접 열람하지 못함"]
+      ["RFC 9111 · HTTP Caching", "https://www.rfc-editor.org/rfc/rfc9111.html", "확인한 HTTP Working Group 원문 · 공유 캐시, 검증과 Cache-Control"],
+      ["CloudFront cache key · AWS 보존 문서", "https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/understanding-the-cache-key.md", "확인한 보존 문서 · 객체 동일성과 키 분산; 현재 기본값을 가정하지 않음"]
     ]
   },
   {

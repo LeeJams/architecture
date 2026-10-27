@@ -158,7 +158,9 @@ function renderDetail() {
   image.classList.toggle("brand-only", Boolean(component.brand));
   $("#detail-badges").innerHTML = renderTechnologyBadges(component.badges);
   const noteKey = selectedTechnology || ({ player: "abr", playback: "aws", steering: "steering", origin: "fill", fallback: "steering" }[selectedNode] || selectedNode);
-  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + `<button class="detail-sheet-open" data-open-tech-sheet="${noteKey}" aria-haspopup="dialog">원리·동작·예제를 크게 보기 ↗</button><a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">본문에서 더 읽기 ↗</a>`;
+  const keypoint = technologyDepth[noteKey];
+  const preview = selectedPanel === "role" && selectedStep < 0 && keypoint ? `<div class="inspector-keypoint"><strong>핵심 · ${keypoint.headline}</strong><p>상세에서 조건별 동작과 요청·응답, 증상별 확인 방법을 읽습니다.</p></div>` : "";
+  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + preview + `<button class="detail-sheet-open" data-open-tech-sheet="${noteKey}" aria-haspopup="dialog">핵심 원리·조건별 동작·진단 보기 ↗</button><a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">본문에서 더 읽기 ↗</a>`;
   $("#detail-content").scrollTop = 0;
   $("#detail-content").setAttribute("aria-labelledby", `${selectedPanel}-tab`);
   $$('[data-panel]').forEach(button => {

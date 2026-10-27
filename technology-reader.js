@@ -13,7 +13,8 @@ function renderNoteExample(example) {
     : example.kind === "abr" ? `
     <label class="abr-control" for="abr-throughput">유효 다운로드 처리량 <output id="abr-speed" for="abr-throughput">10 Mb/s</output></label>
     <input id="abr-throughput" class="abr-slider" type="range" min="0.5" max="15" step="0.5" value="10">
-    <div class="abr-output" aria-live="polite" aria-atomic="true"><p id="abr-result"></p><p id="abr-next"></p></div>`
+    <label class="abr-buffer-control">다운로드 시작 시 재생 버퍼 (초) <input id="abr-buffer" type="number" min="0" max="120" step="0.5" value="8" inputmode="decimal"></label>
+    <div class="abr-output" aria-live="polite" aria-atomic="true"><p id="abr-result"></p><p id="abr-next"></p><p id="abr-buffer-result"></p></div>`
     : `<div class="note-code"><span>${escapeHTML(example.language)}</span><pre tabindex="0" aria-label="${escapeHTML(example.title)}"><code>${escapeHTML(example.code)}</code></pre></div>`;
   return `<section class="note-section note-example"><p class="note-section-label">03 / WORKED EXAMPLE</p><h4>${example.title}</h4><p>${example.text}</p>${content}<p class="example-caveat">${example.caveat}</p></section>`;
 }
@@ -66,6 +67,15 @@ function updateABR() {
   $("#abr-speed").textContent = `${throughput} Mb/s`;
   $("#abr-result").innerHTML = `4초 구간 수신에 <strong>${duration.toFixed(2)}초</strong><span>${duration > 4 ? "재생 시간보다 오래 걸려 버퍼가 줄어듭니다." : duration < 4 ? "재생 시간보다 빨리 받아 버퍼를 채울 여지가 있습니다." : "재생 시간과 수신 시간이 같아 여유가 없습니다."}</span>`;
   $("#abr-next").textContent = `안전 예산 ${(throughput * 0.75).toFixed(2)} Mb/s → ${next ? `다음 후보 ${next} Mb/s` : "조건을 만족하는 후보 없음: 최저 화질도 지속 수신 예산을 넘습니다."}`;
+  const buffer = $("#abr-buffer");
+  if (buffer.value === "" || !buffer.validity.valid) {
+    $("#abr-buffer-result").textContent = "재생 버퍼는 0~120초 범위의 숫자로 입력해 주세요.";
+    return;
+  }
+  const initial = Number(buffer.value);
+  const stall = Math.max(0, duration - initial);
+  const after = Math.max(0, initial - duration) + 4;
+  $("#abr-buffer-result").textContent = `초기 버퍼 ${initial}초 → 이 구간 수신 중 재버퍼링 ${stall.toFixed(2)}초 → 수신 완료 후 버퍼 ${after.toFixed(2)}초. 상수 처리량·연속 재생 모델입니다.`;
 }
 
 function initializeTechnologyReader() {
@@ -77,9 +87,10 @@ function initializeTechnologyReader() {
       <section class="note-section"><p class="note-section-label">01 / THE PROBLEM</p><h4>${tech.question}</h4><p>${tech.problem}</p></section>
       <section class="note-section"><p class="note-section-label">02 / HOW IT WORKS</p><h4>데이터를 따라가며 동작을 읽기</h4>
         <ol class="mechanism-flow">${tech.steps.map(([icon, title, description], step) => `<li><div class="mechanism-icon"><img src="${assets[icon]}" alt=""><span>${String(step + 1).padStart(2, "0")}</span></div><div><strong>${title}</strong><p>${description}</p></div></li>`).join("")}</ol>
-        <dl class="mechanism-explanations">${tech.mechanics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl>
       </section>
+      ${renderTechnicalDepth(tech.key)}
       ${renderNoteExample(tech.example)}
+      ${renderDeliveryLabLink(tech.key)}
       <section class="note-section"><p class="note-section-label">04 / REPLACEMENT OPTIONS</p><h4>현재 기술을 무엇으로 대체할 수 있을까.</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
       <section class="note-section"><p class="note-section-label">05 / WHAT TO MEASURE</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
       <div class="note-takeaway"><strong>설계에 가져갈 판단</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 이 역할 보기 ↑</button></div>
@@ -130,6 +141,7 @@ function initializeTechnologyReader() {
   updateNoteOrientation();
   $$('.capacity-inputs input').forEach(input => input.addEventListener("input", updateCapacity));
   $("#abr-throughput").addEventListener("input", updateABR);
+  $("#abr-buffer").addEventListener("input", updateABR);
   updateCapacity();
   updateABR();
 }
