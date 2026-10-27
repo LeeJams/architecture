@@ -1,0 +1,96 @@
+/* Small transitions describe changes; the native route transition owns the page. */
+.canvas-top {
+  position: relative;
+}
+.flow-progress {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: -9px;
+  height: 3px;
+  background: #dce2e9;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.flow-progress > div {
+  width: 100%;
+  height: 100%;
+  background: var(--blue);
+  transform-origin: left;
+}
+.reader-sheet-open {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.glossary-track::after {
+  transition: left 0.16s ease;
+}
+.abr-time-comparison {
+  display: grid;
+  gap: 12px;
+  margin: 20px 0;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.abr-time-comparison > div {
+  display: grid;
+  grid-template-columns: 85px minmax(0, 1fr) 66px;
+  align-items: center;
+  gap: 12px;
+}
+.abr-time-comparison span {
+  font-size: 13px;
+  color: var(--body);
+}
+.abr-time-comparison strong {
+  font: 13px var(--mono);
+  text-align: right;
+  color: var(--ink);
+}
+.time-track {
+  height: 12px;
+  min-width: 0;
+  background: #edf0f3;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.time-track > div {
+  height: 100%;
+  min-width: 1px;
+  border-radius: 3px;
+}
+.time-playback {
+  background: #7d8996;
+}
+.time-download {
+  background: #0969da;
+}
+.time-download.is-slow {
+  background: #cf222e;
+}
+@media (max-width: 540px) {
+  .abr-time-comparison {
+    padding: 13px 10px;
+  }
+  .abr-time-comparison > div {
+    grid-template-columns: 1fr 66px;
+    gap: 7px;
+  }
+  .abr-time-comparison .time-track {
+    grid-row: 2;
+    grid-column: 1 / -1;
+  }
+  .abr-time-comparison strong {
+    grid-row: 1;
+    grid-column: 2;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glossary-track::after {
+    transition: none;
+  }
+}

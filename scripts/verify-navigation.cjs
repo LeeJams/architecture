@@ -4,7 +4,7 @@ const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname, '..');
 const reports=path.join(root, 'reports');fs.mkdirSync(reports,{recursive:true});
-const base=(process.env.ATLAS_BASE_URL||'http://127.0.0.1:8765')+'/index.html';
+const base=(process.env.ATLAS_BASE_URL||'http://127.0.0.1:4173')+'/index.html';
 const settle=(page,route)=>page.waitForFunction(route=>document.documentElement.dataset.route===route&&!document.documentElement.dataset.transitioning,route);
 (async()=>{let browser;const errors=[],checks=[];try{
  browser=await chromium.launch(require('./browser-options.cjs'));

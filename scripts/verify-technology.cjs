@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const base = (process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765') + '/index.html?case=netflix';
+const base = (process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173') + '/index.html?case=netflix';
 const reports = path.join(root, 'reports');
 fs.mkdirSync(reports, { recursive: true });
 
@@ -118,7 +118,7 @@ fs.mkdirSync(reports, { recursive: true });
     await offline.keyboard.press('Escape');
     assert.deepEqual(externalRequests, []);
     const broken = await offline.locator('img[src]').evaluateAll(async images => {
-      await Promise.all(images.map(image => image.decode().catch(() => {})));
+      await Promise.all(images.map(image => { image.loading = "eager"; return image.decode().catch(() => {}); }));
       return images.filter(image => !image.complete || image.naturalWidth === 0).map(image => image.alt);
     });
     assert.deepEqual(broken, []);

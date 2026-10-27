@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..');
-const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765';
+const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
 
 (async () => {
   const browser = await chromium.launch(require('./browser-options.cjs'));

@@ -4,6 +4,8 @@
 
 | 자료 | 사용 파일 | 원출처와 고지 |
 | --- | --- | --- |
+| React · React DOM · Scheduler | React 화면·렌더링 | Meta contributors, MIT · [원문](licenses/react.txt) |
+| Motion · Framer Motion · Motion DOM/Utils | React 상호작용 애니메이션 | Motion contributors, MIT · [원문](licenses/motion.txt) |
 | Devicon | AWS, Linux, Google Cloud, Azure SVG | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
 | Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy, Cloudflare, Apache, Ubuntu, Debian, Google Cloud Storage SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
 | AWS Icons for PlantUML | `assets/tech/cloudfront.png`, `s3.png` | [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml), CC BY-ND 2.0 · [원문](licenses/aws-icons.txt). 원본 PNG를 수정하지 않았습니다. |
@@ -16,3 +18,5 @@
 ByteByteGo 참고 자료에는 비영리·변경 금지 조건이 있습니다. 참고 자료를 제품 콘텐츠로 재사용하거나 상업적으로 배포하는 경우 해당 원문 조건과 이미지별 권리를 별도로 확인해야 합니다.
 
 SVG 로고의 형상은 보존했습니다. AWS는 표시 여백을 조정했고, FreeBSD·NGINX·Netflix는 SVG 자체에 브랜드 색을 지정했습니다. 원본 이미지와 기술 로고는 자체 제작한 아키텍처·장비 도식과 구분해 표시합니다.
+
+Vite·Ladle·Playwright는 개발·검증 도구입니다. 서비스용 번들에는 Ladle 작업대와 Playwright 코드를 포함하지 않습니다.

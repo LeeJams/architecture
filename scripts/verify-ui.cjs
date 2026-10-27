@@ -6,13 +6,13 @@ const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const REPORTS = path.join(ROOT, 'reports');
 fs.mkdirSync(REPORTS, { recursive: true });
-const BASE_URL = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765';
+const BASE_URL = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
 const WIDTHS = [320, 360, 375, 390, 414, 540, 640, 760, 768, 820, 1024, 1200, 1280, 1366, 1439, 1440, 1600, 1920, 2560];
 
 async function inspectLayout(page) {
   return page.evaluate(async () => {
     const visible = element => element.getClientRects().length > 0 && getComputedStyle(element).visibility !== 'hidden';
-    await Promise.all([...document.querySelectorAll('img')].filter(img => visible(img) && img.getAttribute('src')).map(img => img.decode().catch(() => {})));
+    await Promise.all([...document.querySelectorAll('img')].filter(img => visible(img) && img.getAttribute('src')).map(img => { img.loading = "eager"; return img.decode().catch(() => {}); }));
     const issues = [];
     if (document.documentElement.scrollWidth > window.innerWidth + 1) {
       issues.push({ kind: 'page-horizontal-overflow', actual: document.documentElement.scrollWidth, expected: window.innerWidth });
@@ -131,11 +131,16 @@ async function inspectLayout(page) {
         report.issues.push(...issues.map(issue => ({ width, step, ...issue })));
       }
       for (const kind of ['technology', 'product']) {
-        await page.evaluate(kind => kind === 'technology' ? openTechnologySheet('nginx') : openAlternativeSheet('cloudfront'), kind);
+        if (kind === 'technology') await page.locator('#tech-nginx [data-open-tech-sheet]').evaluate(button => button.click());
+        else {
+          await page.locator('[data-alternative-category="delivery"]').evaluate(button => button.click());
+          await page.locator('[data-open-alternative="cloudfront"]').evaluate(button => button.click());
+        }
         const issues = await inspectLayout(page);
         report.states.push({ width, view: 'technology-dialog', kind, issueCount: issues.length });
         report.issues.push(...issues.map(issue => ({ width, kind, ...issue })));
-        await page.evaluate(() => closeTechnologySheet());
+        await page.locator('#close-technology').click();
+        await page.waitForFunction(() => !document.querySelector('#technology-dialog').open);
       }
       for (const layer of ['storage', 'nginx', 'freebsd']) {
         await page.evaluate(layer => document.querySelector(`[data-anatomy-tech="${layer}"]`).click(), layer);

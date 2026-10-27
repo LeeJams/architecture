@@ -3,7 +3,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const { spawn } = require('node:child_process');
 
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '../dist');
 const types = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -61,6 +61,7 @@ function check(script, baseURL) {
     await check('verify-explorer.cjs', baseURL);
     await check('verify-depth.cjs', baseURL);
     await check('verify-glossary.cjs', baseURL);
+    await check('verify-interactions.cjs', baseURL);
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

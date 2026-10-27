@@ -4,11 +4,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const root = path.resolve(__dirname, '..');
-const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765';
+const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
 
 (async () => {
   // The config shown to readers must be the exact fixture tested with real NGINX.
-  const displayed = vm.runInNewContext(fs.readFileSync(path.join(root, 'technology-notes.js'), 'utf8') + '\ntechnologyNotes.find(note => note.key === "nginx").example.code');
+  const displayed = vm.runInNewContext(fs.readFileSync(path.join(root, 'src/data/technology-notes.js'), 'utf8').replace(/^import .*;$/m, '').replace('export const', 'const') + '\ntechnologyNotes.find(note => note.key === "nginx").example.code', { resolveAssets: value => value });
   assert.equal(displayed.trim(), fs.readFileSync(path.join(root, 'examples/file-delivery/nginx.conf'), 'utf8').trim());
   const browser = await chromium.launch(require('./browser-options.cjs'));
   const report = { checks: [], responsiveStates: 0, errors: [] };
@@ -50,7 +50,7 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765';
         const reader = page.locator(`#tech-${key} [data-technical-depth]`);
         const originalHeading = await reader.locator('h4').first().textContent();
         // Open through the actual inspector to keep the normal reader context intact.
-        await page.evaluate(key => openTechnologySheet(key), key);
+        await page.locator(`#tech-${key} [data-open-tech-sheet]`).click();
         const sheet = page.locator('#technology-sheet-content [data-technical-depth]');
         assert.equal(await sheet.locator('h4').first().textContent(), originalHeading);
         assert.equal(await sheet.locator('[data-technical-scenario][aria-pressed="true"]').getAttribute('data-technical-scenario'), '0');
