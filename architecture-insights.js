@@ -90,13 +90,17 @@ function renderFocusedDescription() {
 
 function renderTechnologyBadges(badges) {
   const keys = { AWS: "aws", OCA: "oca", FreeBSD: "freebsd", NGINX: "nginx", "HTTP(S)": "https", Fill: "fill" };
-  return badges.map(badge => keys[badge] ? `<button class="badge badge-button" data-inspect-tech="${keys[badge]}" aria-label="${badge} 기술 자세히 보기">${badge}<span aria-hidden="true">↗</span></button>` : `<span class="badge">${badge}</span>`).join("");
+  return badges.map(badge => keys[badge] ? `<button class="badge badge-button action-dialog" data-inspect-tech="${keys[badge]}" aria-haspopup="dialog" aria-label="${badge} 기술 설명창 열기">${badge}<span class="badge-action">설명</span>${actionIcon("dialog")}</button>` : `<span class="badge">${badge}</span>`).join("");
 }
 
 function updateApplianceLayer(key) {
   const layer = applianceLayers[key];
   if (!layer) return;
-  $$('[data-anatomy-tech]').forEach(button => button.setAttribute("aria-pressed", String(button.dataset.anatomyTech === key)));
+  $$('[data-anatomy-tech]').forEach(button => {
+    const selected = button.dataset.anatomyTech === key;
+    button.setAttribute("aria-pressed", String(selected));
+    button.querySelector(".layer-number").textContent = selected ? "선택됨" : "선택";
+  });
   $("#appliance-layer-title").textContent = layer.title;
   $("#appliance-layer-description").textContent = layer.description;
   $("#appliance-layer-note").textContent = layer.note;

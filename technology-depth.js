@@ -173,7 +173,7 @@ const technologyDepth = {
 
 const technicalText = value => String(value).split(/(`[^`]+`)/g).map(part => part.startsWith("`") ? `<code>${escapeHTML(part.slice(1, -1))}</code>` : escapeHTML(part)).join("");
 function technicalCitations(refs) {
-  return refs.length ? `<div class="technical-citations">${refs.map(id => `<a href="${technicalSources[id][1]}" target="_blank" rel="noopener">${technicalSources[id][0]} ↗</a>`).join("")}</div>` : `<p class="technical-model">설명용 설계·계산 예제</p>`;
+  return refs.length ? `<div class="technical-citations">${refs.map(id => `<a href="${technicalSources[id][1]}" target="_blank" rel="noopener">${technicalSources[id][0]}</a>`).join("")}</div>` : `<p class="technical-model">설명용 설계·계산 예제</p>`;
 }
 
 function renderTechnicalScenario(key, selected = 0) {
@@ -189,7 +189,7 @@ function renderTechnicalDepth(key) {
 
 function renderDeliveryLabLink(key) {
   if (!["nginx", "https", "freebsd"].includes(key)) return "";
-  return `<aside class="technical-lab"><h4>실제로 요청하고 응답을 확인하기</h4><p>루프백 NGINX와 10,000바이트 파일로 전체 GET·부분 범위·suffix·416·If-Range 일치/불일치·404를 확인합니다. 검사 스크립트는 상태·헤더뿐 아니라 수신한 바이트도 원본과 대조합니다.</p><a href="https://github.com/LeeJams/architecture/tree/main/examples/file-delivery" target="_blank" rel="noopener">실습 설정·실행 방법·기대 결과 ↗</a><p>이 실습은 정적 HTTP 응답을 확인합니다. FreeBSD 커널·KTLS·Netflix 장비의 성능 시험은 아닙니다.</p></aside>`;
+  return `<aside class="technical-lab"><h4>실제로 요청하고 응답을 확인하기</h4><p>루프백 NGINX와 10,000바이트 파일로 전체 GET·부분 범위·suffix·416·If-Range 일치/불일치·404를 확인합니다. 검사 스크립트는 상태·헤더뿐 아니라 수신한 바이트도 원본과 대조합니다.</p><a href="https://github.com/LeeJams/architecture/tree/main/examples/file-delivery" target="_blank" rel="noopener">실습 설정·실행 방법·기대 결과</a><p>이 실습은 정적 HTTP 응답을 확인합니다. FreeBSD 커널·KTLS·Netflix 장비의 성능 시험은 아닙니다.</p></aside>`;
 }
 
 // Migration contracts are proposals to verify, not claims of drop-in compatibility.

@@ -26,6 +26,20 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:8765';
       assert.equal(await page.locator('#detail-content .request-contract dd').count(), 3);
     }
     await page.locator('[data-node="oca"]').click();
+    await page.locator('[data-panel="role"]').click();
+    await page.locator('#detail-content').evaluate(element => { element.scrollTop = element.scrollHeight; });
+    assert(await page.locator('#inspector-actions').evaluate(element => {
+      const action = element.getBoundingClientRect();
+      const panel = element.closest('.inspector').getBoundingClientRect();
+      return action.top >= panel.top && action.bottom <= panel.bottom;
+    }));
+    const beforeSheet = page.url();
+    await page.locator('#inspector-actions [data-open-tech-sheet]').click();
+    assert(await page.locator('#technology-dialog').isVisible());
+    assert.equal(page.url(), beforeSheet);
+    await closeSheet();
+    assert.equal(await page.evaluate(() => document.activeElement.hasAttribute('data-open-tech-sheet')), true);
+    report.checks.push('The inspector action remains available outside the scrolling description; it opens an overlay without navigating and restores focus.');
     await page.locator('[data-panel="stack"]').click();
     await page.locator('#detail-content [data-inspect-tech="nginx"]').click();
     assert(await page.locator('#technology-dialog').isVisible());

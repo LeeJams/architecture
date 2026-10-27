@@ -91,10 +91,10 @@ function initializeTechnologyReader() {
       ${renderTechnicalDepth(tech.key)}
       ${renderNoteExample(tech.example)}
       ${renderDeliveryLabLink(tech.key)}
-      <section class="note-section"><p class="note-section-label">대체 기술</p><h4>같은 역할을 맡길 기술</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
+      <section class="note-section"><p class="note-section-label">대체 기술</p><h4>같은 역할을 맡길 기술</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button action-jump" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
       <section class="note-section"><p class="note-section-label">관측 지표</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
-      <div class="note-takeaway"><strong>선택 기준</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 위치 보기</button></div>
-      <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><span>${scope}</span></li>`).join("")}</ul></footer>
+      <div class="note-takeaway"><strong>선택 기준</strong><p>${tech.takeaway}</p><button class="quiet-button action-jump" data-note-location="${tech.key}">구성도 위치로 이동 ↑</button></div>
+      <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title}</a><span>${scope}</span></li>`).join("")}</ul></footer>
     </article>`).join("");
 
   $$('[data-note-tab]').forEach(button => button.addEventListener("click", () => {

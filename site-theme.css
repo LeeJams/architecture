@@ -10,7 +10,7 @@ body { background: var(--paper); letter-spacing: -.015em; }
 .eyebrow { font-size: 12px; color: var(--body); }
 .eyebrow::before { display: none; }
 button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline-color: var(--blue); }
-.micro-label { font-size: 11px; }
+.micro-label { font-size: 12px; }
 .section-label { font-size: 12px; font-weight: 700; color: var(--ink); }
 .section-label b { color: var(--muted); margin-right: 10px; }
 h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04em; }
@@ -27,16 +27,16 @@ h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04
 .case-card-copy { padding: 30px 32px; }
 .case-card-meta { font-family: var(--sans); margin-bottom: 17px; }
 .company-name { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: 0; }
-.case-category { border: 0; background: transparent; color: var(--muted); padding: 0; font-size: 11px; }
+.case-category { border: 0; background: transparent; color: var(--muted); padding: 0; font-size: 12px; }
 .case-card-title { font-size: 28px; font-weight: 700; margin: 0 0 15px; letter-spacing: -.04em; }
 .case-card-description { font-size: 14px; line-height: 1.95; }
-.case-technologies span { font-size: 11px; color: var(--body); }
+.case-technologies span { font-size: 12px; color: var(--body); }
 .case-card-bottom { padding-top: 19px; margin-top: 25px; }
-.case-card-bottom > span:first-child { font-size: 11px; color: var(--muted); }
+.case-card-bottom > span:first-child { font-size: 12px; color: var(--muted); }
 .case-open { color: var(--ink); font-weight: 700; }
 .library-footer { margin-top: 48px; padding-top: 20px; }
 .library-footer > span { font-family: var(--sans); letter-spacing: 0; font-size: 12px; }
-.library-footer p { font-size: 11px; }
+.library-footer p { font-size: 12px; }
 .back-to-library { color: var(--body); }
 .detail-cover { border-radius: 6px; }
 .intro { padding-bottom: 28px; }
@@ -46,7 +46,7 @@ h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04
 .workspace, .anatomy, .technology-lab, .reference-details { border-radius: 6px; box-shadow: none; }
 .canvas { background: #fff; }
 .canvas-top h2 { font-size: 13px; color: var(--ink); font-weight: 700; }
-.canvas-top > span { font: 11px var(--sans); }
+.canvas-top > span { font: 12px var(--sans); }
 .zone { fill: var(--surface); stroke: var(--line); }
 .zone.edge { fill: #fff; stroke: var(--line); }
 .zone-label, .zone-sub { fill: var(--muted); font-family: var(--sans); letter-spacing: 0; }
@@ -72,7 +72,7 @@ h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04
   border-color: var(--line); background: var(--surface); color: var(--ink); box-shadow: none;
 }
 .detail-tabs button[aria-selected="true"] { border-color: var(--ink); color: var(--ink); font-weight: 700; }
-.detail-english { font-size: 11px; }
+.detail-english { font-size: 12px; }
 .inspector h2 { font-size: 21px; letter-spacing: -.04em; }
 .detail-sheet-open { background: #fff; border-color: var(--line); color: var(--blue); font-size: 12px; }
 .underbar { background: #fff; }
@@ -87,17 +87,17 @@ h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04
 .anatomy-layers .layer[aria-pressed="true"] .layer-image { border-color: var(--blue); background: #fff; }
 .appliance-pipeline, .request-contract { border-radius: 5px; }
 .technical-depth .technical-scope { border-left-color: #8c959f; }
-.technical-depth .technical-eyebrow { color: var(--muted); font-size: 11px; }
+.technical-depth .technical-eyebrow { color: var(--muted); font-size: 12px; }
 .technical-keypoints > li { padding: 20px 0; }
 .technical-depth h5 { font-size: 15px; font-weight: 700; }
 .technical-depth p { font-size: 14px; line-height: 1.95; }
-.technical-depth .technical-model { font-size: 11px; }
+.technical-depth .technical-model { font-size: 12px; }
 .technical-scenario-buttons button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
 .technical-path li { background: #fff; }
 .technical-diagnostics dt, .technical-diagnostics dd strong { color: var(--ink); }
 .technical-lab, .replacement-contract, .sheet-fit { background: var(--surface); }
 .note-code, .flow-sample { background: #161b22; border-color: #30363d; color: #e6edf3; border-radius: 5px; }
-.note-code > span, .flow-sample > span { color: #b1bac4; border-color: #30363d; font-family: var(--sans); font-size: 11px; }
+.note-code > span, .flow-sample > span { color: #b1bac4; border-color: #30363d; font-family: var(--sans); font-size: 12px; }
 .note-code code, .flow-sample code { color: #e6edf3; }
 .note-code pre { font-size: 12px; line-height: 1.9; }
 .note-sources a, .sheet-sources a, .technical-citations a, .technical-lab a,
@@ -147,5 +147,183 @@ h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04
   .section-heading h2 { font-size: 24px; }
   .section-heading p { font-size: 13px; }
   .technical-depth p { font-size: 13px; }
-  .technical-depth .technical-scope { font-size: 11px; }
+  .technical-depth .technical-scope { font-size: 12px; }
 }
+
+/* Readable secondary text and distinct actions, including the inspector footer. */
+:root {
+  --paper: #f2f4f7;
+  --surface: #f7f9fb;
+  --text-small: 13px;
+  --text-caption: 12px;
+  --control-border: #7d8996;
+}
+.case-card, .workspace, .anatomy, .technology-lab, .tech-card,
+.source-box, .ref-card, .reference-details { background-color: #fff; }
+.case-card { box-shadow: 0 2px 5px #1f232808; }
+.case-cover { background: #e9edf2; }
+.case-open { background: var(--ink); color: #fff; border-radius: 5px; padding: 10px 13px; font-size: 13px; min-height: 42px; }
+.case-card:hover .case-open { background: #39424d; }
+.case-technologies span, .case-category, .case-card-bottom > span:first-child { font-size: 13px; }
+.section-nav a { min-height: 40px; display: inline-flex; align-items: center; }
+.micro-label, .section-label, .detail-english, .category, .aside-note,
+.canvas-bottom, .anatomy-meta, .page-footer { font-size: var(--text-caption); }
+button, summary { touch-action: manipulation; }
+.quiet-button, .play-button, .reset-button, #alternative-categories button,
+.technical-jumps button, .technical-scenario-buttons button,
+.journey-controls button, .zoom-dialog > button { font-size: var(--text-small); min-height: 40px; }
+.quiet-button, .play-button, #alternative-categories button,
+.technical-jumps button, .technical-scenario-buttons button,
+.journey-controls button, .zoom-dialog > button { border-color: var(--control-border); }
+button:active:not(:disabled) { filter: brightness(.94); }
+button:disabled { cursor: default; }
+.action-icon { display: inline-block; width: 18px; height: 18px; flex: 0 0 18px; vertical-align: middle; }
+.action-dialog { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 9px 12px; border: 1px solid var(--blue); border-radius: 6px; background: #edf4ff; color: #0756ad; font-size: 13px; text-decoration: none; }
+.action-dialog:hover { background: #e1edff; box-shadow: 0 0 0 1px var(--blue); }
+.action-jump, .quiet-button.action-jump, .tech-card-read, .detail-read-link {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 7px 0;
+  color: #0756ad; background: transparent; border: 0; border-radius: 0;
+  font-size: 13px; text-decoration: underline; text-underline-offset: 4px;
+}
+.action-jump:hover, .quiet-button.action-jump:hover { background: transparent; color: #003f88; text-decoration-thickness: 2px; }
+.story { background: #f7f9fc; }
+.story .micro-label { color: var(--body); }
+.step { min-height: 44px; padding: 10px 8px; }
+.step strong { font-size: 13px; }
+.step .number, .step small { font-size: 12px; }
+.step:hover { background: #e9eff7; border-color: #aebdcd; }
+.step[aria-pressed="true"] { background: #dfebfc; border-color: #4778b8; box-shadow: inset 3px 0 #0969da; }
+.story-bottom p { font-size: 12px; }
+.canvas { height: 920px; min-height: 920px; background: #edf1f5; }
+.canvas-top { padding-top: 18px; }
+.canvas-top h2 { font-size: 14px; }
+.canvas-top > span { font-size: 12px; }
+.diagram-world { min-width: 1000px; }
+.diagram { height: 740px; }
+.diagram .node-sub, .diagram .node-tech, .diagram .flow-help,
+.diagram .flow-label, .diagram .zone-label, .diagram .zone-sub { font-size: 14px; }
+.zone { fill: #e3e9f0; stroke: #b4bfcc; }
+.zone.edge { fill: #e8edf3; stroke: #a8b5c4; }
+.node .node-box { fill: #fff; stroke: #7d8996; stroke-width: 1.3; }
+.node:hover .node-box { fill: #edf4ff; stroke: var(--blue); stroke-width: 2; }
+.node.selected .node-box { stroke: var(--red); stroke-width: 2; }
+.label-background { fill: #edf1f5; }
+.inspector { background: #fff; padding: 22px 24px; border-left: 2px solid #b8c4d2; }
+.inspector .component-visual { height: 80px; }
+.inspector .component-visual.brand-only { height: 52px; margin: 10px 0 14px; }
+.inspector h2 { font-size: 24px; line-height: 1.5; }
+.detail-english { font-size: 13px; }
+.inspector.is-journey .component-visual { height: 56px; max-width: 120px; margin: 4px 0 10px; }
+.inspector.is-journey .detail-english { display: none; }
+.badge { font-size: 12px; }
+.badge-button.action-dialog { gap: 6px; padding: 6px 8px; min-height: 36px; color: #0756ad; background: #edf4ff; border-color: #6090c8; font-family: var(--sans); font-size: 13px; }
+.badge-button .badge-action { color: inherit; font-size: 12px; }
+.badge-button .action-icon { width: 16px; height: 16px; flex-basis: 16px; }
+.badges { gap: 7px; }
+.detail-tabs { gap: 24px; margin-top: 18px; }
+.detail-tabs button { min-height: 44px; font-size: 14px; }
+.detail-tabs button[aria-selected="true"] { border-bottom: 3px solid var(--blue); color: #0756ad; }
+.detail-content { font-size: 14px; line-height: 1.85; padding-top: 18px; }
+.detail-content h3, .journey-focus > h3 { font-size: 16px; line-height: 1.7; color: var(--ink); }
+.request-purpose, .request-contract dd, .detail-note, .journey-actions { font-size: 14px; line-height: 1.85; }
+.request-contract dt, .request-contract dt span, .journey-phase { font-size: 12px; }
+.request-contract { background: #f3f6fa; }
+.request-contract > div { padding: 12px 14px; }
+.inspector-keypoint strong, .inspector-keypoint p { font-size: 13px; line-height: 1.8; }
+.detail-note { background: #f3f6fa; }
+.inspector-actions { flex: 0 0 auto; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; background: #fff; }
+.inspector-actions .detail-sheet-open { display: flex; justify-content: center; width: 100%; margin: 0; min-height: 44px; background: var(--blue); color: #fff; border-color: var(--blue); font-size: 14px; font-weight: 700; }
+.inspector-actions .detail-read-link { display: flex; justify-content: center; margin: 5px 0 0; font-size: 13px; }
+.detail-source { font-size: 12px; line-height: 1.8; }
+button.stack-entry.action-dialog { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 6px 12px; width: 100%; padding: 14px; margin-bottom: 12px; border: 1px solid var(--control-border); border-radius: 6px; background: #fff; color: var(--body); }
+button.stack-entry.action-dialog:hover { background: #edf4ff; border-color: var(--blue); }
+.stack-entry > img { grid-row: span 2; width: 36px; height: 36px; }
+.stack-entry-copy > strong { color: var(--ink); font-size: 15px; }
+.stack-entry-copy > span { font-size: 13px; line-height: 1.85; }
+.stack-entry-action { display: inline-flex; align-items: center; gap: 6px; grid-column: 2; color: #0756ad; font-size: 13px; justify-self: start; }
+.journey-tech .action-dialog { padding: 8px 10px; font-size: 13px; border-color: #6090c8; background: #edf4ff; color: #0756ad; }
+.flow-sample > span, .flow-sample pre { font-size: 12px; }
+.flow-sample { margin-top: 18px; }
+.tech-links button { font-size: 13px; min-height: 40px; border-color: var(--control-border); padding: 8px 11px; gap: 7px; }
+.tech-links button::after { content: "›"; font: 18px/1 var(--sans); color: #56687e; }
+.tech-links button[aria-pressed="true"] { background: #dfebfc; color: #0756ad; border-color: #4778b8; box-shadow: inset 0 -2px var(--blue); }
+.underbar { background: #f7f9fc; }
+.underbar .hint { font-size: 12px; }
+.layer-copy strong { font-size: 15px; }
+.layer-copy > span { font-size: 13px; }
+.anatomy-layers .layer { padding: 18px 12px; border-radius: 5px; }
+.anatomy-layers .layer:hover { background: #edf4ff; }
+.anatomy-layers .layer[aria-pressed="true"] { background: #e6effc; box-shadow: inset 3px 0 var(--blue); }
+.layer-number { font-size: 13px; flex: 0 0 52px; color: #0756ad; }
+#appliance-layer-description, .appliance-detail > p, .appliance-pipeline p { font-size: 13px; }
+.appliance-pipeline strong { font-size: 14px; }
+.appliance-detail-heading a { min-height: 40px; display: inline-flex; align-items: center; text-decoration: underline; font-size: 13px; }
+#note-tabs button { min-height: 46px; font-size: 13px; border-color: var(--line); background: #fff; }
+#note-tabs button[aria-selected="true"] { background: #e6effc; color: #0756ad; border-color: #4778b8; box-shadow: inset 3px 0 var(--blue); }
+.technical-jumps { background: #fff; }
+.technical-path strong { font-size: 13px; }
+.technical-path span, .technical-citations a, .technical-depth .technical-scope,
+.technical-depth .technical-model { font-size: 12px; }
+.technical-diagnostics dd, .technical-lab p, .replacement-contract li { font-size: 13px; }
+.note-sources li, .sheet-sources li, .sheet-sources li p, .note-sources li span { font-size: 12px; line-height: 1.85; }
+.technology-dialog { width: min(1240px, calc(100vw - 40px)); }
+.technology-sheet-layout { grid-template-columns: 280px minmax(0, 1fr); }
+.technology-sheet-header { background: #f3f6fa; }
+.technology-sheet-identity { background: #f3f6fa; }
+#technology-sheet-type { font-size: 13px; }
+#technology-sheet-role { font-size: 14px; line-height: 1.85; }
+.technology-sheet-reading p { font-size: 14px; }
+.technology-sheet-footer { background: #f7f9fc; }
+.product-open.action-dialog { border: 1px solid var(--blue); background: #edf4ff; color: #0756ad; padding: 10px 13px; font-size: 13px; min-height: 42px; }
+.product-description, .product-fit p, .replacement-scope dd { font-size: 13px; }
+.product-features span { font-size: 12px; }
+.product-company, .product-type, .replacement-card-label { font-size: 12px; }
+.technology-overview > summary, .reference-details > summary, .storage-implementations > summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 52px; padding: 15px 18px; font-size: 14px; font-weight: 700; background: #f0f3f7; list-style: none; }
+.technology-overview > summary::-webkit-details-marker, .reference-details > summary::-webkit-details-marker, .storage-implementations > summary::-webkit-details-marker { display: none; }
+.technology-overview > summary::after, .reference-details > summary::after, .storage-implementations > summary::after { content: "펼치기 +"; flex: 0 0 auto; color: #0756ad; font-size: 13px; font-weight: 400; }
+.technology-overview[open] > summary::after, .reference-details[open] > summary::after, .storage-implementations[open] > summary::after { content: "접기 −"; }
+.reference-zoom { display: block; width: 100%; height: 100%; position: relative; padding: 0; border: 0; background: #e9edf2; cursor: zoom-in; }
+.reference-zoom:hover { box-shadow: inset 0 0 0 2px var(--blue); }
+.zoom-label { position: absolute; bottom: 12px; right: 12px; padding: 8px 12px; border: 1px solid var(--control-border); border-radius: 5px; background: #fff; color: #0756ad; font-size: 13px; line-height: 1.8; }
+@media (min-width: 1440px) {
+  .explorer { grid-template-columns: 180px minmax(0, 1fr) clamp(360px, 25vw, 410px); height: 920px; }
+  .canvas, .inspector { height: 920px; }
+  .takeaway { grid-template-columns: 180px minmax(0, 1fr) clamp(360px, 25vw, 410px); }
+}
+@media (min-width: 760px) and (max-width: 1439px) {
+  .inspector { grid-template-columns: 300px minmax(0,1fr); border-left: 0; }
+  .detail-content { max-height: 520px; min-height: 340px; }
+}
+@media (max-width: 760px) {
+  .canvas { height: auto; min-height: 0; }
+  .diagram-viewport { min-height: 740px; }
+  .diagram-world { min-width: 1000px; }
+  .inspector { display: block; height: auto; padding: 22px 18px; border-left: 0; }
+  .detail-content { min-height: 300px; max-height: none; }
+  .inspector-actions { margin-top: 20px; }
+  .step { padding: 10px 8px; }
+  .step strong { font-size: 13px; }
+  .technical-depth p { font-size: 14px; }
+  .technology-dialog { width: calc(100vw - 20px); }
+  .technology-sheet-layout { grid-template-columns: minmax(0, 1fr); }
+  .technology-sheet-reading { padding: 22px 18px; }
+  .technology-sheet-identity { padding: 22px 18px; }
+  .technology-sheet-footer { padding: 12px 16px; }
+  .technology-sheet-footer .action-jump { font-size: 13px; }
+  .anatomy-layers .layer { padding: 16px 10px; }
+  .layer-copy strong { font-size: 14px; }
+  .layer-number { flex-basis: 48px; }
+  .case-card-bottom { align-items: flex-start; }
+}
+.canvas.is-scrollable .canvas-top > span { display: block; }
+.underbar .hint { display: block; }
+.detail-source a { color: #0756ad; text-decoration: underline; }
+/* Keep the full drawing readable without spending width on empty margins. */
+.diagram-world { min-width: 960px; }
+@media (min-width: 1440px) and (max-width: 1599px) {
+  main { padding-left: 28px; padding-right: 28px; }
+  .explorer { grid-template-columns: 160px minmax(0, 1fr) clamp(360px, 25vw, 410px); }
+  .takeaway { grid-template-columns: 160px minmax(0, 1fr) clamp(360px, 25vw, 410px); }
+}
+@media (max-width: 760px) { .diagram-world { min-width: 960px; } }
+a[target="_blank"]::after { content: "새 탭 ↗"; display: inline; margin-left: 6px; font: 12px/1.8 var(--sans); color: var(--muted); white-space: nowrap; }

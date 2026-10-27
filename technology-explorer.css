@@ -2,81 +2,81 @@
 .story { padding-top: 17px; }
 .story .micro-label { margin-bottom: 12px; }
 .step { padding: 8px 7px; margin-bottom: 3px; }
-.step strong { font-size: 11px; margin-bottom: 0; line-height: 1.7; }
-.step small { display: none; margin-top: 5px; font-size: 9px; line-height: 1.8; }
+.step strong { font-size: 12px; margin-bottom: 0; line-height: 1.7; }
+.step small { display: none; margin-top: 5px; font-size: 12px; line-height: 1.8; }
 .step[aria-pressed="true"] small { display: block; }
 .story-bottom { padding-top: 12px; }
 .detail-tabs { gap: 23px; }
-.detail-tabs button { font-size: 11px; }
-.journey-phase { font: 9px/1.8 var(--mono); color: var(--body); margin-bottom: 6px !important; }
+.detail-tabs button { font-size: 12px; }
+.journey-phase { font: 12px/1.8 var(--mono); color: var(--body); margin-bottom: 6px !important; }
 .journey-focus > h3 { font-size: 14px; }
-.journey-actions { padding-left: 18px; margin: 0 0 15px; font-size: 11px; }
+.journey-actions { padding-left: 18px; margin: 0 0 15px; font-size: 12px; }
 .journey-tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
-.journey-tech button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); background: var(--surface); padding: 6px 7px; border-radius: 5px; font-size: 10px; color: var(--body); }
+.journey-tech button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--line); background: var(--surface); padding: 6px 7px; border-radius: 5px; font-size: 12px; color: var(--body); }
 .journey-tech img { width: 18px; height: 18px; object-fit: contain; }
 .flow-sample { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; min-width: 0; }
-.flow-sample > span { display: block; padding: 9px 10px 0; font-size: 9px; line-height: 1.8; color: var(--body); }
-.flow-sample pre { margin: 0; padding: 10px; font: 10px/1.9 var(--mono); overflow-x: auto; color: var(--body); }
+.flow-sample > span { display: block; padding: 9px 10px 0; font-size: 12px; line-height: 1.8; color: var(--body); }
+.flow-sample pre { margin: 0; padding: 10px; font: 12px/1.9 var(--mono); overflow-x: auto; color: var(--body); }
 .journey-controls { display: flex; gap: 10px; justify-content: space-between; margin-top: 13px; }
-.journey-controls button, .detail-sheet-open { border: 1px solid var(--line); background: white; border-radius: 5px; font-size: 11px; color: var(--body); padding: 8px 10px; }
+.journey-controls button, .detail-sheet-open { border: 1px solid var(--line); background: white; border-radius: 5px; font-size: 12px; color: var(--body); padding: 8px 10px; }
 .journey-controls button:disabled { opacity: .4; cursor: default; }
 .detail-sheet-open { width: 100%; margin-top: 18px; text-align: left; background: var(--surface); }
 button.stack-entry { width: 100%; text-align: left; border: 0; border-bottom: 1px solid var(--line); background: white; color: inherit; font: inherit; }
 button.stack-entry:hover { background: var(--surface); }
 .stack-entry-copy { flex: 1; min-width: 0; }
 .stack-entry-copy > strong { display: block; color: var(--body); font-size: 12px; line-height: 1.7; margin-bottom: 4px; }
-.stack-entry-copy > span { display: block; font-size: 11px; line-height: 1.9; }
-.stack-entry-action { flex: 0 0 auto; color: var(--body); font-size: 9px; align-self: center; }
+.stack-entry-copy > span { display: block; font-size: 12px; line-height: 1.9; }
+.stack-entry-action { flex: 0 0 auto; color: var(--body); font-size: 12px; align-self: center; }
 
 /* Products are identified by provider, name, role and examples of use. */
 .alternative-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 20px; }
 #alternative-categories { display: flex; flex-wrap: wrap; gap: 7px; }
-#alternative-categories button { border: 1px solid var(--line); background: white; border-radius: 5px; padding: 9px 12px; font-size: 11px; color: var(--body); }
+#alternative-categories button { border: 1px solid var(--line); background: white; border-radius: 5px; padding: 9px 12px; font-size: 12px; color: var(--body); }
 #alternative-categories button[aria-pressed="true"] { border-color: var(--muted); background: var(--line); color: var(--body); }
-#alternative-count { flex: 0 0 auto; color: var(--muted); font-size: 10px; }
+#alternative-count { flex: 0 0 auto; color: var(--muted); font-size: 12px; }
 .alternative-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
 .product-card { min-width: 0; display: flex; flex-direction: column; padding: 25px; background: white; border: 1px solid var(--line); border-radius: 10px; }
 .product-identity { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
 .product-identity > img { width: 62px; height: 62px; padding: 11px; object-fit: contain; background: var(--surface); border: 1px solid var(--line); border-radius: 11px; flex: 0 0 auto; }
 .product-identity > div { min-width: 0; }
-.product-company { font-size: 11px; color: var(--body); margin: 0 0 3px; }
+.product-company { font-size: 12px; color: var(--body); margin: 0 0 3px; }
 .product-identity h3 { font-size: 20px; line-height: 1.45; margin: 0 0 4px; letter-spacing: -.035em; font-weight: 600; }
-.product-type { font-size: 10px; color: var(--body); margin: 0; }
+.product-type { font-size: 12px; color: var(--body); margin: 0; }
 .product-role { font-size: 13px; color: var(--body); font-weight: 700; margin: 0 0 10px; }
 .product-description { font-size: 12px; line-height: 1.95; color: var(--body); margin: 0 0 17px; }
 .product-features { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-.product-features span { border: 1px solid var(--line); background: var(--surface); color: var(--body); padding: 4px 7px; border-radius: 4px; font-size: 10px; }
+.product-features span { border: 1px solid var(--line); background: var(--surface); color: var(--body); padding: 4px 7px; border-radius: 4px; font-size: 12px; }
 .product-fit { border-top: 1px solid var(--line); padding-top: 15px; margin-top: auto; }
-.product-fit > strong { font-size: 11px; font-weight: 550; color: var(--body); }
-.product-fit > p { font-size: 11px; line-height: 1.95; margin: 6px 0 16px; color: var(--body); }
-.product-open { text-align: left; align-self: flex-start; border: 0; border-bottom: 1px solid var(--line); background: none; font-size: 11px; color: var(--body); padding: 5px 0; }
-.alternative-scope { margin: 17px 0 0; font-size: 11px; line-height: 1.9; color: var(--body); }
+.product-fit > strong { font-size: 12px; font-weight: 550; color: var(--body); }
+.product-fit > p { font-size: 12px; line-height: 1.95; margin: 6px 0 16px; color: var(--body); }
+.product-open { text-align: left; align-self: flex-start; border: 0; border-bottom: 1px solid var(--line); background: none; font-size: 12px; color: var(--body); padding: 5px 0; }
+.alternative-scope { margin: 17px 0 0; font-size: 12px; line-height: 1.9; color: var(--body); }
 .replacement-context { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; padding: 23px; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); }
 .replacement-source { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; min-width: 0; }
 .replacement-source > img { width: 44px; height: 44px; object-fit: contain; flex: 0 0 auto; }
 .replacement-source > div { min-width: 0; flex: 1; }
 .replacement-source h3, .replacement-overview h3 { margin: 5px 0; font-size: 20px; line-height: 1.6; }
-.replacement-source p, .replacement-overview > p:last-child { font-size: 11px; color: var(--body); margin: 0; line-height: 1.9; }
+.replacement-source p, .replacement-overview > p:last-child { font-size: 12px; color: var(--body); margin: 0; line-height: 1.9; }
 .replacement-context-description { padding-left: 23px; border-left: 1px solid var(--line); align-self: center; }
 .replacement-context-description strong { font-size: 12px; color: var(--body); }
 .replacement-context-description p { font-size: 12px; line-height: 1.95; margin: 6px 0 0; color: var(--body); }
 .replacement-overview { grid-column: 1/-1; }
-.replacement-card-label { margin: 0 0 7px; font-size: 10px; color: var(--muted); }
+.replacement-card-label { margin: 0 0 7px; font-size: 12px; color: var(--muted); }
 .replacement-title { margin: 0 0 16px; font-size: 19px; line-height: 1.65; letter-spacing: -.035em; color: var(--ink); }
 .replacement-pair { display: grid; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); gap: 9px; align-items: stretch; margin: 0 0 16px; }
 .replacement-pair > div { min-width: 0; padding: 13px 11px; border: 1px solid var(--line); border-radius: 7px; background: var(--surface); }
 .replacement-pair > div.replacement-to { background: #fff; border-color: var(--line); }
-.replacement-pair > div > span { display: block; font-size: 9px; color: var(--muted); margin-bottom: 11px; }
+.replacement-pair > div > span { display: block; font-size: 12px; color: var(--muted); margin-bottom: 11px; }
 .replacement-pair img { width: 35px; height: 35px; object-fit: contain; margin-bottom: 10px; }
 .replacement-pair strong { display: block; font-size: 15px; line-height: 1.6; color: var(--body); overflow-wrap: anywhere; }
-.replacement-company, .replacement-pair .product-company { font-size: 10px; line-height: 1.85; color: var(--body); margin: 6px 0 0; }
-.replacement-pair .product-type { font-size: 9px; margin-top: 5px; }
+.replacement-company, .replacement-pair .product-company { font-size: 12px; line-height: 1.85; color: var(--body); margin: 6px 0 0; }
+.replacement-pair .product-type { font-size: 12px; margin-top: 5px; }
 .replacement-arrow { align-self: center; font-size: 20px; color: var(--muted); }
 .replacement-sentence { margin: 0 0 15px; color: var(--body); font-size: 12px; line-height: 1.95; }
 .replacement-scope { margin: 0 0 18px; border-top: 1px solid var(--line); }
 .replacement-scope > div { padding: 10px 0; border-bottom: 1px solid var(--line); }
-.replacement-scope dt { color: var(--body); font-size: 10px; margin-bottom: 4px; }
-.replacement-scope dd { margin: 0; font-size: 11px; line-height: 1.95; color: var(--body); overflow-wrap: anywhere; }
+.replacement-scope dt { color: var(--body); font-size: 12px; margin-bottom: 4px; }
+.replacement-scope dd { margin: 0; font-size: 12px; line-height: 1.95; color: var(--body); overflow-wrap: anywhere; }
 .sheet-replacement .replacement-pair { max-width: 610px; }
 .storage-implementations { margin-top: 23px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
 .storage-implementations > summary { cursor: pointer; padding: 17px 20px; font-size: 12px; color: var(--body); }
@@ -97,29 +97,29 @@ html.has-technology-dialog { overflow: hidden; }
 .technology-sheet-identity > img { width: 72px; height: 72px; object-fit: contain; margin-bottom: 22px; }
 #technology-sheet-publisher { font-size: 12px; color: var(--body); margin: 0 0 7px; }
 #technology-sheet-title { font-size: 23px; line-height: 1.5; letter-spacing: -.045em; margin: 0 0 10px; }
-#technology-sheet-type { font-size: 11px; color: var(--body); margin: 0 0 20px; line-height: 1.8; }
+#technology-sheet-type { font-size: 12px; color: var(--body); margin: 0 0 20px; line-height: 1.8; }
 #technology-sheet-role { font-size: 12px; line-height: 2; color: var(--body); margin: 0; padding-top: 18px; border-top: 1px solid var(--line); }
 .technology-sheet-reading { padding: 30px; min-width: 0; }
 .technology-sheet-reading section + section { margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--line); }
 .technology-sheet-reading h3 { font-size: 18px; line-height: 1.6; margin: 4px 0 12px; letter-spacing: -.03em; }
 .technology-sheet-reading p { font-size: 13px; line-height: 2; color: var(--body); margin-bottom: 13px; }
-.technology-sheet-reading .sheet-eyebrow { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.technology-sheet-reading .sheet-eyebrow { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
 .sheet-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; padding: 0; gap: 10px; margin: 18px 0; }
 .sheet-steps li { border: 1px solid var(--line); border-radius: 7px; padding: 14px; background: var(--surface); min-width: 0; }
-.sheet-steps li > span { display: block; font: 9px var(--mono); color: var(--muted); margin-bottom: 6px; }
+.sheet-steps li > span { display: block; font: 12px var(--mono); color: var(--muted); margin-bottom: 6px; }
 .sheet-steps strong { display: block; font-size: 12px; color: var(--body); }
-.sheet-steps li > p { font-size: 11px; line-height: 1.9; margin: 5px 0 0; }
+.sheet-steps li > p { font-size: 12px; line-height: 1.9; margin: 5px 0 0; }
 .sheet-explanations { margin: 0; }
 .sheet-explanations > div { padding: 13px 0; }
 .sheet-explanations dt { font-size: 13px; color: var(--body); font-weight: 700; margin-bottom: 6px; }
 .sheet-explanations dd { font-size: 12px; line-height: 2; color: var(--body); margin: 0; }
-.technology-sheet-reading .sheet-caption { font-size: 10px; color: var(--muted); }
+.technology-sheet-reading .sheet-caption { font-size: 12px; color: var(--muted); }
 .sheet-sources { list-style: none; padding: 0; margin: 0; }
 .sheet-sources li { margin-bottom: 10px; font-size: 12px; color: var(--body); }
-.sheet-sources li p { font-size: 10px; color: var(--muted); margin: 4px 0 0; }
+.sheet-sources li p { font-size: 12px; color: var(--muted); margin: 4px 0 0; }
 .sheet-fit { border: 1px solid var(--line); background: var(--surface); border-radius: 7px; padding: 18px !important; }
 .technology-sheet-footer { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 14px 24px; border-top: 1px solid var(--line); flex: 0 0 auto; background: #fff; }
-.sheet-footer-note { font-size: 10px; color: var(--muted); max-width: 560px; }
+.sheet-footer-note { font-size: 12px; color: var(--muted); max-width: 560px; }
 @media (max-width: 1200px) { .alternative-products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1201px) { #alternative-products[data-product-count="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) {
@@ -136,7 +136,7 @@ html.has-technology-dialog { overflow: hidden; }
   .storage-implementation-content { padding: 0 14px 14px; }
   #storage-products { grid-template-columns: minmax(0, 1fr); }
   #alternative-count { display: block; margin-top: 12px; }
-  #alternative-categories button { padding: 8px 10px; font-size: 10px; }
+  #alternative-categories button { padding: 8px 10px; font-size: 12px; }
   .technology-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); border-radius: 9px; }
   .technology-sheet-header { padding: 12px 16px; }
   .technology-sheet-layout { grid-template-columns: minmax(0, 1fr); }

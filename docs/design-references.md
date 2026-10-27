@@ -12,8 +12,9 @@
 
 | 용도 | 색 |
 | --- | --- |
-| 기본 배경 | `#ffffff` |
-| 보조 배경 | `#f6f8fa` |
+| 페이지 바탕 | `#f2f4f7` |
+| 카드·읽는 영역 | `#ffffff` |
+| 보조 배경 | `#f7f9fb` |
 | 제목·주요 글자 | `#1f2328` |
 | 본문 | `#454e58` |
 | 보조 설명 | `#656d76` |
@@ -31,3 +32,24 @@
 - 제품명·표준·설정 지시어·HTTP 응답은 원래 이름을 씁니다. 일반 설명과 동작 안내는 한국어로 씁니다.
 - 기술 상세와 9단계 구성도, 기술별 교체 관계는 유지합니다. 표어와 반복 안내를 줄이고 기술 설명을 읽는 공간을 확보합니다.
 - 도식과 카드의 작은 글자, 좁은 화면의 줄바꿈, 상세 창, 화면 전환은 실제 브라우저로 확인합니다.
+
+## 가독성과 동작 구분
+
+버튼·링크·설명창은 [W3C 버튼 패턴](https://www.w3.org/WAI/ARIA/apg/patterns/button/), [링크 패턴](https://www.w3.org/WAI/ARIA/apg/patterns/link/), [모달 대화상자 패턴](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)을 확인했습니다. 직접 읽은 공식 원문은 [버튼](https://github.com/w3c/aria-practices/blob/main/content/patterns/button/button-pattern.html)·[링크](https://github.com/w3c/aria-practices/blob/main/content/patterns/link/link-pattern.html)·[대화상자](https://github.com/w3c/aria-practices/blob/main/content/patterns/dialog-modal/dialog-modal-pattern.html)입니다.
+
+[WCAG 구성 요소 대비 설명](https://github.com/w3c/wcag/blob/main/understanding/21/non-text-contrast.html)은 조작 가능한 요소와 선택 상태를 식별하는 데 참고했습니다. 아래 글자 크기는 이 사이트에서 정한 값이며, W3C가 지정한 최소 글자 크기라는 뜻은 아닙니다.
+
+| 동작 | 화면에서의 표시 |
+| --- | --- |
+| 설명창 열기 | 창 모양 아이콘, ‘설명창 열기’ 버튼, `aria-haspopup="dialog"` |
+| 서비스 페이지로 이동 | ‘설계 페이지 보기’와 오른쪽 화살표 |
+| 본문 안에서 이동 | 밑줄, ‘이동’ 문구와 위·아래 화살표 |
+| 외부 문서 열기 | ‘새 탭 ↗’ 표시 |
+| 계층·주제 선택 | 선택 배경·테두리와 ‘선택됨’ 표시 |
+| 접힌 자료 펼치기 | ‘펼치기 +’·‘접기 −’ 표시 |
+| 참고 이미지 확대 | 이미지 위의 ‘이미지 확대’ 버튼 |
+
+- 8~11px로 남아 있던 보조 글자를 12px 이상으로 맞췄습니다. 조작 버튼은 주로 13px·높이 40px 이상, 오른쪽 설명은 14px로 표시합니다.
+- 데스크톱 오른쪽 패널은 화면 폭에 따라 360~410px입니다. 주요 설명창 버튼과 본문 이동 링크를 설명의 내부 스크롤 영역 밖에 배치합니다.
+- 페이지 바탕·도식·흰색 읽기 영역의 밝기를 구분합니다. 조작 버튼은 장식용 경계선보다 선명한 테두리와 반응을 표시합니다.
+- 설명창의 열기·닫기와 포커스 복원, 본문 이동, 이미지 확대의 마우스·키보드 동작을 브라우저에서 확인합니다.

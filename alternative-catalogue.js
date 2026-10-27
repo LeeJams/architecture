@@ -86,9 +86,9 @@ function alternativeCategoryFor(key) {
 
 function replacementLinkLabel(key) {
   const category = alternativeCategoryFor(key);
-  if (category === "storage") return "원본 저장 역할의 구현 예시 보기";
+  if (category === "storage") return "원본 저장 예시로 이동";
   const source = replacementSources[category];
-  return source ? `${source.name} 대체 기술 보기` : "현재 설계의 전체 대체 관계 보기";
+  return source ? `${source.name} 대체 목록으로 이동` : "전체 대체 목록으로 이동";
 }
 
 function replacementTitle(product) {
@@ -115,7 +115,7 @@ function renderReplacementScope(product) {
 
 function renderReplacementCard(product) {
   const source = replacementSources[product.category];
-  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">${source.kind === "implementation" ? "제품 설명 보기" : "구성 방법과 예제 보기"}</button></article>`;
+  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open action-dialog" data-open-alternative="${product.id}" aria-haspopup="dialog">${actionIcon("dialog")} ${source.kind === "implementation" ? "제품 설명창 열기" : "구성·예제 설명창 열기"}</button></article>`;
 }
 
 function renderReplacementContext() {

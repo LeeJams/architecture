@@ -28,6 +28,15 @@ const assets = {
   gcs: "assets/tech/gcs.svg"
 };
 
+function actionIcon(kind) {
+  const paths = {
+    dialog: '<rect x="3" y="3" width="14" height="14" rx="2"/><path d="M3 7h14M6 5h.01M9 5h.01"/>',
+    down: '<path d="M10 3v13M5 11l5 5 5-5"/>',
+    right: '<path d="M3 10h13M11 5l5 5-5 5"/>'
+  };
+  return `<svg class="action-icon" viewBox="0 0 20 20" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${paths[kind]}</svg>`;
+}
+
 // Keep technology imagery local and warm the cache before an inspector switch.
 const technologyImages = Object.values(assets).map(src => {
   const image = new Image();
@@ -37,7 +46,7 @@ const technologyImages = Object.values(assets).map(src => {
 
 const stackEntry = (image, title, text, key = "") => {
   const technology = key || ({ [assets.aws]: "aws", [assets.nginx]: "nginx", [assets.freebsd]: "freebsd", [assets.https]: "https", [assets.player]: "abr", [assets.ocaIcon]: "oca", [assets.fill]: "fill" })[image];
-  if (technology) return `<button class="stack-entry" data-stack-tech="${technology}" data-inspect-tech="${technology}" aria-haspopup="dialog"><img src="${image}" alt=""><span class="stack-entry-copy"><strong>${title}</strong><span>${text}</span></span><span class="stack-entry-action">자세히</span></button>`;
+  if (technology) return `<button class="stack-entry action-dialog" data-stack-tech="${technology}" data-inspect-tech="${technology}" aria-haspopup="dialog"><img src="${image}" alt=""><span class="stack-entry-copy"><strong>${title}</strong><span>${text}</span></span><span class="stack-entry-action">설명 열기 ${actionIcon("dialog")}</span></button>`;
   return `<div class="stack-entry"><img src="${image}" alt=""><div><h3>${title}</h3><p>${text}</p></div></div>`;
 };
 const note = text => `<div class="detail-note">${text}</div>`;
@@ -160,7 +169,9 @@ function renderDetail() {
   const noteKey = selectedTechnology || ({ player: "abr", playback: "aws", steering: "steering", origin: "fill", fallback: "steering" }[selectedNode] || selectedNode);
   const keypoint = technologyDepth[noteKey];
   const preview = selectedPanel === "role" && selectedStep < 0 && keypoint ? `<div class="inspector-keypoint"><strong>핵심 · ${keypoint.headline}</strong><p>상세에서 조건별 동작과 요청·응답, 증상별 확인 방법을 읽습니다.</p></div>` : "";
-  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + preview + `<button class="detail-sheet-open" data-open-tech-sheet="${noteKey}" aria-haspopup="dialog">동작 원리와 예제 보기</button><a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">전체 설명 보기</a>`;
+  $(".inspector").classList.toggle("is-journey", selectedStep >= 0);
+  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + preview;
+  $("#inspector-actions").innerHTML = `<button class="detail-sheet-open action-dialog" data-open-tech-sheet="${noteKey}" aria-haspopup="dialog" aria-label="${component.title} 동작 원리와 예제 설명창 열기">${actionIcon("dialog")} 기술 설명창 열기</button><a class="detail-read-link action-jump" href="#tech-${noteKey}" data-read-tech="${noteKey}">본문의 전체 설명으로 이동 ${actionIcon("down")}</a>`;
   $("#detail-content").scrollTop = 0;
   $("#detail-content").setAttribute("aria-labelledby", `${selectedPanel}-tab`);
   $$('[data-panel]').forEach(button => {
@@ -168,7 +179,7 @@ function renderDetail() {
     button.setAttribute("aria-selected", String(active));
     button.tabIndex = active ? 0 : -1;
   });
-  $("#detail-source").innerHTML = `공개 설명 ↗ &nbsp;<a href="${component.source[1]}" target="_blank" rel="noopener">${component.source[0]}</a>`;
+  $("#detail-source").innerHTML = `출처 · <a href="${component.source[1]}" target="_blank" rel="noopener">${component.source[0]}</a>`;
   syncTechnologySelection();
 }
 
@@ -341,6 +352,13 @@ function navigate(route) {
 
 function updateScrollHint() {
   const viewport = $(".diagram-viewport");
+  const width = viewport.clientWidth;
+  if (width !== Number(viewport.dataset.layoutWidth || 0)) {
+    viewport.dataset.layoutWidth = String(width);
+    if (window.innerWidth >= 1440 && viewport.scrollWidth > width) {
+      viewport.scrollLeft = (viewport.scrollWidth - width) / 2;
+    }
+  }
   $(".canvas").classList.toggle("is-scrollable", viewport.scrollWidth > viewport.clientWidth + 2);
 }
 
@@ -356,7 +374,7 @@ function wireKeyboardTabs(selector) {
   }));
 }
 
-$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 보기</a><button data-card-tech="${tech.key}">구성도에서 위치 보기</button></article>`).join("");
+$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">본문의 동작 원리로 이동 ↓</a><button data-card-tech="${tech.key}">구성도 위치로 이동 ↑</button></article>`).join("");
 
 $$(".node").forEach(node => {
   node.addEventListener("click", () => { stopPlayback(); selectNode(node.dataset.node); });
@@ -424,20 +442,15 @@ $("#alternatives-button").addEventListener("click", () => {
 $("#go-to-alternatives").addEventListener("click", () => showAlternatives("delivery"));
 
 const dialog = $("#zoom-dialog");
-$$(".zoomable").forEach(image => {
-  image.tabIndex = 0;
-  image.setAttribute("role", "button");
-  image.setAttribute("aria-label", `확대: ${image.alt}`);
-  image.setAttribute("aria-haspopup", "dialog");
+$$(".reference-zoom").forEach(button => {
+  const image = button.querySelector(".zoomable");
+  button.setAttribute("aria-label", `이미지 확대: ${image.alt}`);
   const open = () => {
     $("#zoom-image").src = image.src;
     $("#zoom-image").alt = image.alt;
     dialog.showModal();
   };
-  image.addEventListener("click", open);
-  image.addEventListener("keydown", event => {
-    if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); }
-  });
+  button.addEventListener("click", open);
 });
 $("#close-zoom").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", event => {

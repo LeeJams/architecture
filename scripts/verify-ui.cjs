@@ -219,11 +219,16 @@ async function inspectLayout(page) {
     assert.equal(await page.locator('.skip-link').evaluate(e => getComputedStyle(e).opacity), '0');
     report.functional.push('The accessibility skip link is visible only while focused.');
     await page.locator('#reference-details').evaluate(e => { e.open = true; });
-    await page.locator('.zoomable').first().click();
+    await page.locator('.reference-zoom .zoom-label').first().click();
     assert(await page.locator('#zoom-dialog').isVisible());
     await page.keyboard.press('Escape');
     assert(!(await page.locator('#zoom-dialog').isVisible()));
-    report.functional.push('Reference image modal opens and closes with Escape.');
+    await page.locator('.reference-zoom').first().focus();
+    await page.keyboard.press('Space');
+    assert(await page.locator('#zoom-dialog').isVisible());
+    await page.keyboard.press('Escape');
+    assert.equal(await page.evaluate(() => document.activeElement.classList.contains('reference-zoom')), true);
+    report.functional.push('The explicit image-enlargement button works from its label and keyboard, and Escape restores focus.');
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.locator('#reference-details').evaluate(e => { e.open = false; });
     await page.locator('#play-button').click();

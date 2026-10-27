@@ -44,7 +44,7 @@ fs.mkdirSync(reports, { recursive: true });
     checks.push('Arrow, Home, End and Tab keys keep one selected tab and reach the visible article.');
 
     await page.locator('[data-tech="freebsd"]').click();
-    await page.locator('#detail-content [data-read-tech]').click();
+    await page.locator('#inspector-actions [data-read-tech]').click();
     assert.equal(new URL(page.url()).hash, '#tech-freebsd');
     assert(await page.locator('#tech-freebsd').isVisible());
     assert.equal(await page.evaluate(() => document.activeElement.textContent), 'FreeBSD와 파일 전송 경로');
