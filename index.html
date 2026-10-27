@@ -13,13 +13,16 @@
   <link rel="stylesheet" href="technology-explorer.css">
   <link rel="stylesheet" href="technology-depth.css">
   <link rel="stylesheet" href="site-theme.css">
+  <link rel="stylesheet" href="glossary.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">본문으로 바로가기</a>
 <header class="topbar">
   <a class="wordmark" href="?" data-home>아키텍처 노트</a>
+  <button class="glossary-toggle" type="button" role="switch" aria-checked="false" data-glossary-toggle><span>용어 설명</span><span class="glossary-track" aria-hidden="true"></span><span data-glossary-state aria-hidden="true">끔</span></button>
 </header>
 <main id="main-content">
+<aside class="glossary-guide" data-glossary-ui data-glossary-hint hidden><p>물음표가 붙은 용어를 누르면 뜻과 예시가 나옵니다.</p><button class="glossary-term" type="button" data-glossary-term="bitrate" aria-label="비트레이트 뜻 보기" aria-haspopup="dialog" aria-expanded="false" aria-controls="glossary-popover">비트레이트<span class="glossary-mark" aria-hidden="true">?</span></button></aside>
 <section class="library" id="library" aria-labelledby="library-title">
   <div class="library-hero">
     <h1 id="library-title" tabindex="-1">서비스의 구조와 기술</h1>
@@ -116,7 +119,7 @@
   <section class="article-section" id="technologies" aria-labelledby="technologies-title">
     <div class="section-heading"><div><div class="section-label"><b>03</b> 기술 설명</div><h2 id="technologies-title">기술별 동작 원리</h2><p>파일 전송에 쓰이는 기술과 화질 조절·서버 선택 방식을 설명합니다.</p></div><p class="aside-note">문제 → 원리 → 예제 → 선택<br>각 설명에 근거와 적용 범위를 표시</p></div>
     <div class="technology-lab" id="technology-lab">
-      <div class="note-navigation"><p class="micro-label" id="note-navigation-label">주제 선택</p><div id="note-tabs" role="tablist" aria-labelledby="note-navigation-label" aria-orientation="vertical"></div><p class="note-navigation-hint">주제를 선택하면 동작 원리와 예제를 볼 수 있습니다.</p></div>
+      <div class="note-navigation"><p class="micro-label" id="note-navigation-label">주제 선택</p><button class="glossary-toggle" type="button" role="switch" aria-checked="false" data-glossary-toggle><span>용어 설명</span><span class="glossary-track" aria-hidden="true"></span><span data-glossary-state aria-hidden="true">끔</span></button><div id="note-tabs" role="tablist" aria-labelledby="note-navigation-label" aria-orientation="vertical"></div><p class="note-navigation-hint">주제를 선택하면 동작 원리와 예제를 볼 수 있습니다.</p></div>
       <div id="note-panels" class="note-panels"></div>
     </div>
     <details class="technology-overview"><summary>주요 기술 요약</summary><div class="tech-grid" id="tech-grid"></div></details>
@@ -144,10 +147,11 @@
 </main>
 <dialog class="zoom-dialog" id="zoom-dialog" aria-label="참고 도식 확대"><button id="close-zoom">닫기 ×</button><img id="zoom-image" alt=""></dialog>
 <dialog class="technology-dialog" id="technology-dialog" aria-labelledby="technology-sheet-title">
-  <header class="technology-sheet-header"><span class="micro-label">기술 상세</span><button id="close-technology" class="quiet-button" autofocus>닫기 ×</button></header>
-  <div class="technology-sheet-scroll" id="technology-sheet-scroll"><div class="technology-sheet-layout"><aside class="technology-sheet-identity"><img id="technology-sheet-image" alt=""><p id="technology-sheet-publisher"></p><h2 id="technology-sheet-title"></h2><p id="technology-sheet-type"></p><p id="technology-sheet-role"></p></aside><div class="technology-sheet-reading" id="technology-sheet-content"></div></div></div>
+  <header class="technology-sheet-header"><span class="micro-label">기술 상세</span><div class="sheet-header-controls"><button class="glossary-toggle" type="button" role="switch" aria-checked="false" data-glossary-toggle><span>용어 설명</span><span class="glossary-track" aria-hidden="true"></span><span data-glossary-state aria-hidden="true">끔</span></button><button id="close-technology" class="quiet-button" autofocus>닫기 ×</button></div></header>
+  <div class="technology-sheet-scroll" id="technology-sheet-scroll"><p class="sheet-glossary-guide" data-glossary-ui data-glossary-hint hidden>물음표가 붙은 용어를 누르면 뜻과 예시가 나옵니다.</p><div class="technology-sheet-layout"><aside class="technology-sheet-identity"><img id="technology-sheet-image" alt=""><p id="technology-sheet-publisher"></p><h2 id="technology-sheet-title"></h2><p id="technology-sheet-type"></p><p id="technology-sheet-role"></p></aside><div class="technology-sheet-reading" id="technology-sheet-content"></div></div></div>
   <footer class="technology-sheet-footer" id="technology-sheet-footer"></footer>
 </dialog>
+<div class="glossary-popover" id="glossary-popover" popover="auto" role="dialog" aria-labelledby="glossary-word" data-glossary-ui><div class="glossary-popover-header"><div><p class="glossary-eyebrow">용어 설명</p><h3 id="glossary-word" tabindex="-1"></h3></div><button class="glossary-popover-close" type="button" data-close-glossary>닫기</button></div><p id="glossary-meaning"></p><div class="glossary-example"><strong>예를 들면</strong><p id="glossary-example"></p></div><p id="glossary-note"></p></div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="technology-notes.js"></script>
 <script src="technology-depth.js"></script>
@@ -157,5 +161,6 @@
 <script src="technology-sheet.js"></script>
 <script src="architecture-insights.js"></script>
 <script src="app.js"></script>
+<script src="glossary.js"></script>
 </body>
 </html>

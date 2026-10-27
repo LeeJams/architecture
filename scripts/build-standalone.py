@@ -7,12 +7,12 @@ from html import escape
 
 root = Path(__file__).resolve().parent.parent
 document = (root / "index.html").read_text()
-for stylesheet in ("styles.css", "technology-reader.css", "architecture-insights.css", "technology-explorer.css", "technology-depth.css", "site-theme.css"):
+for stylesheet in ("styles.css", "technology-reader.css", "architecture-insights.css", "technology-explorer.css", "technology-depth.css", "site-theme.css", "glossary.css"):
     document = document.replace(
         f'<link rel="stylesheet" href="{stylesheet}">',
         "<style>\n" + (root / stylesheet).read_text() + "\n</style>",
     )
-for script in ("technology-notes.js", "technology-depth.js", "technology-reader.js", "architecture-journey.js", "alternative-catalogue.js", "technology-sheet.js", "architecture-insights.js", "app.js"):
+for script in ("technology-notes.js", "technology-depth.js", "technology-reader.js", "architecture-journey.js", "alternative-catalogue.js", "technology-sheet.js", "architecture-insights.js", "app.js", "glossary.js"):
     document = document.replace(
         f'<script src="{script}"></script>',
         "<script>\n" + (root / script).read_text() + "\n</script>",

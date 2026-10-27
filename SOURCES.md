@@ -131,3 +131,16 @@ HTTP(S)와 WebRTC는 통신 모델과 용도가 다르므로 단순한 대체재
 ## 로고와 서체
 
 외부 로고의 경로를 보존하고, 일부 SVG의 색과 표시 여백을 조정했습니다. Noto Sans CJK KR와 DejaVu Sans Mono는 현재 콘텐츠에 필요한 글리프를 추려 WOFF로 포함했습니다. 원문 고지는 `licenses/`와 `assets/fonts/`에 보존하며, 단일 HTML에도 서체 고지를 넣습니다.
+
+## 쉬운 용어 설명
+
+`glossary.js`의 43개 용어는 기존 기술 문서와 아래 공식 원문을 바탕으로 직접 쓴 설명입니다. 일반 개념과 학습용 숫자 예시이며 넷플릭스의 실제 설정·성능 수치를 뜻하지 않습니다.
+
+| 확인한 원문 | 설명하는 범위 |
+| --- | --- |
+| [MDN videoBitsPerSecond](https://github.com/mdn/content/blob/main/files/en-us/web/api/mediarecorder/videobitspersecond/index.md) | 영상 인코딩 비트레이트와 초당 비트 단위. 특정 Netflix 인코더나 플레이어의 근거로 사용하지 않음 |
+| [MDN buffering·time ranges](https://github.com/mdn/content/blob/main/files/en-us/web/media/guides/audio_and_video_delivery/buffering_seeking_time_ranges/index.md) | 미리 받은 미디어와 재생 가능한 시간 구간 |
+| [MDN CDN](https://github.com/mdn/content/blob/main/files/en-us/glossary/cdn/index.md) | 여러 위치의 서버에서 콘텐츠를 제공하는 전달망의 일반 개념 |
+| [W3C switch pattern](https://github.com/w3c/aria-practices/blob/main/content/patterns/switch/switch-pattern.html) | 켜짐·꺼짐, 안정된 이름, 키보드와 `aria-checked` |
+
+비트레이트 예시의 `5 Mb/s × 4초 = 20 Mb = 2.5 MB`는 평균 비트레이트를 일정하게 놓고 오디오·통신 오버헤드를 제외한 계산입니다. 이 사이트의 M·G는 십진 단위이며, 1바이트는 8비트입니다. 운영체제·HTTP·TLS 등의 용어는 앞서 연결한 공식 문서의 일반 동작을 쉽게 풀었습니다.
