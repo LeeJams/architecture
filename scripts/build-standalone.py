@@ -7,14 +7,16 @@ from html import escape
 
 root = Path(__file__).resolve().parent.parent
 document = (root / "index.html").read_text()
-document = document.replace(
-    '<link rel="stylesheet" href="styles.css">',
-    "<style>\n" + (root / "styles.css").read_text() + "\n</style>",
-)
-document = document.replace(
-    '<script src="app.js"></script>',
-    "<script>\n" + (root / "app.js").read_text() + "\n</script>",
-)
+for stylesheet in ("styles.css", "technology-reader.css"):
+    document = document.replace(
+        f'<link rel="stylesheet" href="{stylesheet}">',
+        "<style>\n" + (root / stylesheet).read_text() + "\n</style>",
+    )
+for script in ("technology-notes.js", "technology-reader.js", "app.js"):
+    document = document.replace(
+        f'<script src="{script}"></script>',
+        "<script>\n" + (root / script).read_text() + "\n</script>",
+    )
 paths = set(re.findall(r'assets/[A-Za-z0-9_./-]+\.(?:svg|png|jpg|jpeg|woff2?)', document))
 for relative in sorted(paths, key=len, reverse=True):
     asset = (root / relative).resolve(strict=True)

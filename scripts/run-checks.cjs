@@ -57,6 +57,7 @@ function check(script, baseURL) {
     const baseURL = `http://127.0.0.1:${server.address().port}`;
     await check('verify-ui.cjs', baseURL);
     await check('verify-navigation.cjs', baseURL);
+    await check('verify-technology.cjs', baseURL);
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

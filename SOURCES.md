@@ -15,6 +15,32 @@
 
 제작 환경에서는 Netflix 공식 사이트와 PDF의 직접 접근이 제한되어 원문 재확인이 남아 있습니다. FreeBSD·NGINX는 공개된 OCA 설명에 등장하는 계층으로 표시했으며, 특정 버전이나 현재 모든 구현을 확정하지 않습니다. GitHub에서 확인한 최신 FreeBSD Handbook의 회사 사례 목록만으로 Netflix의 사용을 검증했다고 주장하지 않습니다.
 
+## 기술 상세 글의 근거
+
+공식 문서 사이트의 직접 접근이 제한된 경우 아래 공식 GitHub 저장소의 문서 원문을 확인했습니다. 일반 기능의 설명을 Netflix의 특정 버전·설정·알고리즘에 대한 증거로 확장하지 않습니다.
+
+| 확인한 원문 | 설명하는 범위 |
+| --- | --- |
+| [NGINX Beginner’s Guide](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/beginners_guide.xml) | master·worker, 정적 파일 응답 |
+| [NGINX connection processing methods](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/events.xml) | OS에 따른 kqueue·epoll |
+| [NGINX HTTP core](https://github.com/nginx/nginx.org/blob/master/xml/en/docs/http/ngx_http_core_module.xml) | root·try_files·sendfile·aio의 역할과 제약 |
+| [FreeBSD sendfile(2)](https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/sendfile.2) | 파일→소켓 전송, 비차단 소켓의 부분 전송과 EAGAIN |
+| [FreeBSD kqueue(2)](https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/kqueue.2) | 이벤트 통지와 파일 디스크립터 |
+| [MDN Range requests](https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/range_requests/index.md) | Range·206·Content-Range와 범위 요청 |
+| [MDN Evolution of HTTP](https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/evolution_of_http/index.md) | HTTP/2·HTTP/3와 QUIC의 전송 차이 |
+| [MDN adaptive streaming](https://github.com/mdn/content/blob/main/files/en-us/web/media/guides/audio_and_video_delivery/live_streaming_web_audio_and_video/index.md) | 여러 화질의 구간과 HLS·DASH 개념; 라이브 문서에서 공통 ABR 개념만 사용 |
+| [CloudFront Expiration](https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/Expiration.md) | 보존된 AWS 문서의 TTL·Cache-Control 설명; 현재 제품의 기본값·구체적인 동작은 최신 문서 확인 필요 |
+
+AWS 고객 사례, Caddy Automatic HTTPS, CloudFront cache key, TLS 1.3·HLS RFC는 **추가 읽기**로 연결했으며 이 환경에서는 직접 열람하지 못했습니다. 각 글의 자료 목록에서도 확인한 문서와 추가 읽기를 구분합니다.
+
+### 설명용 예제와 계산의 가정
+
+- NGINX 설정은 로컬 파일 응답을 설명하는 루프백 HTTP 실습입니다. 인증·TLS·캐시를 갖춘 운영 설정이나 OCA 설정이 아닙니다.
+- AWS의 JSON, 콘텐츠 경로·캐시 정책 메모, 전송 후보 평가와 재시도 기준은 가상의 설계 예제입니다.
+- 용량 계산: `동시 시청자 × 평균 비트레이트 ÷ 목표 링크 사용률`. 십진 단위를 사용하며 패킷·TLS 오버헤드, 오디오, 재전송, 순간 피크와 장애 예비 용량은 제외합니다.
+- ABR 계산: 4초·5 Mb/s 구간의 크기를 20 Mb로 놓고 상수 처리량으로 나눕니다. 다음 후보는 1·3·5·8 Mb/s 중 처리량의 75% 이하인 최댓값입니다. 실제 알고리즘·처리량 측정·플레이어 시뮬레이션이 아닙니다.
+- 지표 목록과 대안의 선택 조건은 설계를 판단하기 위한 제안이며 Netflix의 관측 항목이나 전환 계획을 확인한 자료가 아닙니다.
+
 ## 웹 도식 참고 자료
 
 1. **ByteByteGo — Netflix Tech Stack**

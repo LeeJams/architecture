@@ -17,8 +17,8 @@ async function inspectLayout(page) {
     if (document.documentElement.scrollWidth > window.innerWidth + 1) {
       issues.push({ kind: 'page-horizontal-overflow', actual: document.documentElement.scrollWidth, expected: window.innerWidth });
     }
-    const intentionalScroll = '.diagram-viewport, .table-scroll, .zoom-dialog';
-    for (const element of document.querySelectorAll('button, p, h1, h2, h3, dt, dd, nav, .badge, .tech-card, .vendor-card, .layer')) {
+    const intentionalScroll = '.diagram-viewport, .table-scroll, .zoom-dialog, .note-code pre';
+    for (const element of document.querySelectorAll('button, p, h1, h2, h3, h4, dt, dd, nav, label, input, pre, .badge, .tech-card, .vendor-card, .layer, .technology-note, .mechanism-flow')) {
       if (!visible(element) || element.closest(intentionalScroll)) continue;
       const rect = element.getBoundingClientRect();
       if (rect.width > 0 && (rect.left < -1 || rect.right > innerWidth + 1)) {
@@ -102,6 +102,17 @@ async function inspectLayout(page) {
           report.issues.push(...issues.map(issue => ({ width, tech, panel, ...issue })));
         }
       }
+      for (const tech of ['oca', 'aws', 'freebsd', 'nginx', 'https', 'fill', 'abr', 'steering']) {
+        await page.evaluate(tech => document.querySelector(`[data-note-tab="${tech}"]`).click(), tech);
+        const noteIssues = await inspectLayout(page);
+        report.states.push({ width, view: 'technology-note', tech, issueCount: noteIssues.length });
+        report.issues.push(...noteIssues.map(issue => ({ width, view: 'technology-note', tech, ...issue })));
+      }
+      await page.locator('.technology-overview').evaluate(element => { element.open = true; });
+      const overviewIssues = await inspectLayout(page);
+      report.states.push({ width, view: 'technology-overview', issueCount: overviewIssues.length });
+      report.issues.push(...overviewIssues.map(issue => ({ width, view: 'technology-overview', ...issue })));
+      await page.locator('.technology-overview').evaluate(element => { element.open = false; });
       await page.evaluate(() => document.querySelector('#failover-button').click());
       let issues = await inspectLayout(page);
       report.states.push({ width, view: 'design', panel: 'failover', issueCount: issues.length });

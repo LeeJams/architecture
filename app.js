@@ -156,7 +156,8 @@ function renderDetail() {
   image.alt = component.alt;
   image.classList.toggle("brand-only", Boolean(component.brand));
   $("#detail-badges").innerHTML = component.badges.map(badge => `<span class="badge">${badge}</span>`).join("");
-  $("#detail-content").innerHTML = component[selectedPanel];
+  const noteKey = selectedTechnology || ({ player: "abr", playback: "aws", steering: "steering", origin: "fill", fallback: "steering" }[selectedNode] || selectedNode);
+  $("#detail-content").innerHTML = component[selectedPanel] + `<a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">동작 원리·예제·선택 기준 자세히 읽기 ↗</a>`;
   $("#detail-content").scrollTop = 0;
   $("#detail-content").setAttribute("aria-labelledby", `${selectedPanel}-tab`);
   $$('[data-panel]').forEach(button => {
@@ -252,6 +253,7 @@ function scrollToRoute(route) {
     window.scrollTo({ top: libraryScrollY, behavior: "instant" });
     return;
   }
+  syncTechnologyHash();
   let id = "";
   try { id = decodeURIComponent(location.hash.slice(1)); } catch { /* A malformed fragment has no target. */ }
   const target = id ? document.getElementById(id) : null;
@@ -346,7 +348,7 @@ function wireKeyboardTabs(selector) {
   }));
 }
 
-$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd><dt>비교할 대안과 판단 기준</dt><dd>${tech.alternative}</dd></dl><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
+$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd><dt>비교할 대안과 판단 기준</dt><dd>${tech.alternative}</dd></dl><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
 
 $$(".node").forEach(node => {
   node.addEventListener("click", () => { stopPlayback(); selectNode(node.dataset.node); });
@@ -445,6 +447,7 @@ wireKeyboardTabs("[data-panel]");
 new ResizeObserver(updateScrollHint).observe($(".diagram-viewport"));
 renderDetail();
 setStep(-1);
+initializeTechnologyReader();
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 applyRoute(routeFromURL());
