@@ -201,7 +201,7 @@ async function inspectLayout(page) {
     for (const key of ['aws', 'oca', 'freebsd', 'nginx', 'https', 'fill']) {
       await page.locator(`[data-tech="${key}"]`).click();
       if (['aws', 'freebsd', 'nginx', 'https'].includes(key)) {
-        assert.equal(await page.locator('#detail-kind').textContent(), 'TECHNOLOGY / ');
+        assert.equal(await page.locator('#detail-kind').textContent(), '기술 · ');
         assert.equal(await page.locator('#detail-content .request-contract').count(), 1);
       }
     }

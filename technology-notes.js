@@ -4,7 +4,7 @@
 const technologyNotes = [
   {
     key: "oca", node: "oca", title: "Open Connect Appliance", short: "OCA · 전달 거점",
-    category: "01 / DELIVERY NETWORK", image: "assets/tech/oca-icon.svg",
+    category: "영상 전달망", image: "assets/tech/oca-icon.svg",
     question: "왜 영상을 클라우드 API 서버에서 바로 보내지 않을까?",
     intro: "OCA는 인코딩이 끝난 영상 파일을 저장하고 HTTP로 전달하는 전용 서버입니다. 사용자와 가까운 ISP 내부나 피어링 거점에 콘텐츠를 두어, 긴 네트워크 구간을 반복해서 지나는 영상 트래픽을 줄입니다.",
     scope: "OCA의 위치와 역할은 공개 설계의 요약입니다. 아래 용량 계산과 운영 시나리오는 학습용 가정입니다.",
@@ -32,16 +32,16 @@ const technologyNotes = [
     ],
     takeaway: "OCA를 선택한다는 것은 HTTP 서버 하나를 설치하는 것보다 넓은 결정입니다. 저장·배치·경로·전송 용량을 하나의 전달망으로 운영할 수 있는지가 핵심입니다.",
     sources: [
-      ["Netflix Open Connect · 전달망 개요", "https://openconnect.netflix.com/en/", "공개 사례 · 이 환경에서는 직접 원문 재확인이 제한됨"],
+      ["Netflix Open Connect · 전달망 개요", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 재확인 필요"],
       ["Open Connect Appliances · 장비와 소프트웨어", "https://openconnect.netflix.com/en/appliances/", "공개 사례 · 현재 장비 사양을 가정하지 않음"]
     ]
   },
   {
     key: "aws", node: "playback", title: "AWS와 재생 제어", short: "AWS · 재생 제어",
-    category: "02 / CONTROL PLANE", image: "assets/tech/aws.svg",
+    category: "재생 제어", image: "assets/tech/aws.svg",
     question: "제어 경로와 영상 전송 경로는 무엇을 기준으로 나눌까?",
     intro: "클라우드의 재생 관련 서비스는 플레이어가 무엇을, 어디서 받을지 연결합니다. 실제 영상 파일의 바이트는 전송 거점이 보냅니다. AWS는 이 제어 서비스를 실행하는 플랫폼의 이름이며 단일 서버 제품의 이름은 아닙니다.",
-    scope: "아래 API 응답과 서비스 분해는 역할을 설명하는 가상 설계입니다. Netflix의 내부 API나 EC2·EKS·Lambda 사용을 재현하지 않습니다.",
+    scope: "아래 API 응답과 서비스 분해는 역할을 설명하는 가상 설계입니다. 넷플릭스의 내부 API나 EC2·EKS·Lambda 사용을 재현하지 않습니다.",
     problem: "재생 허용 여부와 전송 후보를 빠르게 결정하는 일은 짧은 응답의 지연·가용성이 중요합니다. 수십 분 동안 바이트를 전송하는 일은 대역폭·저장장치·전달 비용이 중요합니다. 두 부하를 같은 방식으로 확장하면 한쪽의 병목이 다른 쪽에 영향을 줍니다.",
     steps: [
       ["player", "재생 요청", "플레이어가 선택한 콘텐츠와 기기에 필요한 정보를 요청합니다."],
@@ -56,9 +56,9 @@ const technologyNotes = [
     ],
     example: {
       title: "제어 응답에는 영상 본문 대신 다음 행동이 담깁니다", language: "JSON · 가상 API",
-      text: "다음은 제어와 전송의 경계를 설명하기 위한 가상 응답입니다. 만료 시각, 토큰 검증과 DRM 라이선스 처리의 구체적인 방식은 별도의 설계가 필요합니다.",
+      text: "다음은 재생 제어와 영상 전송의 구분를 설명하기 위한 가상 응답입니다. 만료 시각, 토큰 검증과 DRM 라이선스 처리의 구체적인 방식은 별도의 설계가 필요합니다.",
       code: '{\n  "contentId": "film-demo",\n  "manifestUrl": "https://media.example/film-demo/manifest",\n  "deliveryCandidates": [\n    "https://edge-a.example",\n    "https://edge-b.example"\n  ]\n}',
-      caveat: "example 도메인과 필드명은 설명용입니다. 후보가 둘이라는 사실도 Netflix의 실제 구현을 뜻하지 않습니다."
+      caveat: "example 도메인과 필드명은 설명용입니다. 후보가 둘이라는 사실도 넷플릭스의 실제 구현을 뜻하지 않습니다."
     },
     metrics: [
       ["재생 API p95·p99 지연", "평균보다 느린 요청의 꼬리가 시작 경험에 미치는 영향을 확인합니다."],
@@ -67,13 +67,13 @@ const technologyNotes = [
     ],
     takeaway: "클라우드 사업자와 CDN 사업자는 별도의 선택 축입니다. 먼저 제어와 전송의 부하·장애 범위를 나누고, 그 뒤에 각 역할에 맞는 제품을 고릅니다.",
     sources: [
-      ["Netflix Open Connect · 제어와 전달 구조", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 접근 제한"],
-      ["AWS · Netflix 고객 사례", "https://aws.amazon.com/solutions/case-studies/netflix/", "추가 읽기 · 이 환경에서 직접 열람하지 못한 자료"]
+      ["Netflix Open Connect · 제어와 전달 구조", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 재확인 필요"],
+      ["AWS · Netflix 고객 사례", "https://aws.amazon.com/solutions/case-studies/netflix/", "추가 읽기 · 원문 재확인 필요"]
     ]
   },
   {
     key: "freebsd", node: "oca", title: "FreeBSD와 파일 전송 경로", short: "FreeBSD · 운영체제",
-    category: "03 / OPERATING SYSTEM", image: "assets/tech/freebsd.svg",
+    category: "운영체제", image: "assets/tech/freebsd.svg",
     question: "HTTP 서버 아래에서 운영체제는 어떤 일을 할까?",
     intro: "FreeBSD는 커널, 네트워크 스택, 파일시스템과 기본 도구를 함께 제공하는 운영체제입니다. 전송 서버에서는 파일을 읽고 메모리를 관리하고, 소켓을 통해 NIC로 보내는 경로의 기반이 됩니다.",
     scope: "kqueue·sendfile은 공식 매뉴얼로 확인한 일반 기능입니다. 특정 OCA 버전의 튜닝 값·TLS 경로·성능 수치를 뜻하지 않습니다.",
@@ -104,13 +104,13 @@ const technologyNotes = [
     sources: [
       ["FreeBSD sendfile(2) · 공식 소스의 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/sendfile.2", "확인한 원문 · 파일→소켓, 부분 전송과 EAGAIN"],
       ["FreeBSD kqueue(2) · 공식 소스의 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/lib/libsys/kqueue.2", "확인한 원문 · 이벤트 통지"],
-      ["FreeBSD ktls(4) · 공식 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/share/man/man4/ktls.4", "확인한 원문 · 사용자 공간 handshake, 커널 SW 및 NIC 모드"],
+      ["FreeBSD ktls(4) · 공식 매뉴얼", "https://github.com/freebsd/freebsd-src/blob/main/share/man/man4/ktls.4", "확인한 원문 · 사용자 공간의 연결 협상, 커널 SW 및 NIC 모드"],
       ["NGINX connection processing methods", "https://github.com/nginx/nginx.org/blob/master/xml/en/docs/events.xml", "확인한 원문 · kqueue와 epoll"]
     ]
   },
   {
     key: "nginx", node: "oca", title: "NGINX와 정적 파일 응답", short: "NGINX · HTTP 서버",
-    category: "04 / HTTP SERVER", image: "assets/tech/nginx-mark.svg",
+    category: "HTTP 서버", image: "assets/tech/nginx-mark.svg",
     question: "연결이 많을 때 파일 응답을 어떻게 처리할까?",
     intro: "NGINX는 HTTP 요청을 받아 파일 응답이나 프록시 처리를 수행하는 서버입니다. 이 사례에서 살펴볼 역할은 이미 만들어진 영상 파일의 전달입니다. 인코딩, 화질 선택과 전송 거점 선택은 각각 다른 역할입니다.",
     scope: "이벤트 처리와 설정 지시어는 NGINX 공식 문서의 일반 기능입니다. 예제는 Netflix 설정이 아닌 로컬 학습용입니다.",
@@ -122,7 +122,7 @@ const technologyNotes = [
       ["https", "상태와 본문", "200·206·404 같은 상태와 헤더, 파일 데이터를 응답합니다."]
     ],
     mechanics: [
-      ["master와 worker", "master는 설정을 읽고 worker를 관리하며, worker가 요청 처리를 담당합니다. 이벤트 방식은 운영체제에 맞춰 선택됩니다. worker 수·연결 수와 파일 디스크립터 한도는 함께 검토해야 합니다."],
+      ["master와 worker", "master는 설정을 읽고 작업자 프로세스를 관리하며, 작업자 프로세스가 요청 처리를 담당합니다. 이벤트 방식은 운영체제에 맞춰 선택됩니다. 작업자 프로세스 수·연결 수와 파일 디스크립터 한도는 함께 검토해야 합니다."],
       ["비동기 네트워크가 디스크 대기까지 없애지는 않음", "소켓 이벤트 처리가 효율적이어도 캐시에 없는 파일을 읽는 작업은 지연을 만들 수 있습니다. sendfile, AIO, thread pool의 적용 조건은 OS와 빌드에 따라 다릅니다. 설정 이름만 보고 모두 켜면 되는 문제가 아닙니다."],
       ["파일 응답과 프록시 캐시는 다른 기능", "아래 root 설정은 로컬 파일을 응답합니다. proxy_pass·proxy_cache로 원본 응답을 저장하는 구성이 아닙니다. NGINX 설치만으로 사전 배치, ISP 연동과 거점 선택이 생기지는 않습니다."]
     ],
@@ -133,20 +133,20 @@ const technologyNotes = [
       caveat: "루프백 HTTP 실습 예제입니다. TLS·인증·캐시·접근 제어는 생략했습니다. worker_connections=128은 작은 실습 값이며 이 예제를 운영 환경에 그대로 적용하지 않습니다."
     },
     metrics: [
-      ["활성 연결·파일 디스크립터", "연결 한도와 OS 한도를 같이 확인하고, 단순 동접 숫자만 늘리지 않습니다."],
+      ["활성 연결·파일 디스크립터", "연결 한도와 OS 한도를 같이 확인하고, 단순 동시 접속 숫자만 늘리지 않습니다."],
       ["첫 바이트·완료 시간·전송량", "파일 크기와 클라이언트 속도가 달라도 비교할 수 있게 나눠 측정합니다."],
-      ["4xx·5xx·worker CPU·디스크 지연", "없는 파일, 접근 오류, 자원 부족과 저장장치 지연을 구분합니다."]
+      ["4xx·5xx·작업자 프로세스의 CPU·디스크 지연", "없는 파일, 접근 오류, 자원 부족과 저장장치 지연을 구분합니다."]
     ],
     takeaway: "NGINX를 선택하는 이유를 ‘빠르다’에서 끝내지 않습니다. 어떤 연결·파일·TLS 부하를 처리하고, 어떤 운영 기능을 필요로 하는지 먼저 정해야 대안을 비교할 수 있습니다.",
     sources: [
       ["NGINX Beginner’s Guide · 공식 문서 소스", "https://github.com/nginx/nginx.org/blob/master/xml/en/docs/beginners_guide.xml", "확인한 원문 · master/worker, 정적 콘텐츠"],
       ["NGINX HTTP core · 공식 문서 소스", "https://github.com/nginx/nginx.org/blob/master/xml/en/docs/http/ngx_http_core_module.xml", "확인한 원문 · root, try_files, sendfile, aio"],
-      ["Caddy Automatic HTTPS", "https://caddyserver.com/docs/automatic-https", "대안 추가 읽기 · 이 환경에서 직접 열람하지 못함"]
+      ["Caddy Automatic HTTPS", "https://caddyserver.com/docs/automatic-https", "대안 추가 읽기 · 원문 재확인 필요"]
     ]
   },
   {
     key: "https", node: "oca", title: "HTTP(S), Range와 연결", short: "HTTP(S) · 전송",
-    category: "05 / DELIVERY PROTOCOL", image: "assets/tech/https.svg",
+    category: "전송 프로토콜", image: "assets/tech/https.svg",
     question: "영상은 하나의 긴 파일일까, 여러 요청일까?",
     intro: "HTTP는 리소스를 요청하고 상태·헤더·본문으로 응답하는 규칙입니다. 플레이어는 독립된 미디어 구간 파일을 요청하거나 큰 파일의 일부 바이트를 요청할 수 있습니다. HTTPS는 그 통신을 TLS로 보호합니다.",
     scope: "HTTP 동작을 설명하는 일반 예제입니다. Netflix가 쓰는 특정 HTTP 버전·파일 패키징·URL 형식을 확정하지 않습니다.",
@@ -178,12 +178,12 @@ const technologyNotes = [
       ["MDN HTTP Range requests · 공식 문서 소스", "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/range_requests/index.md", "확인한 원문 · Range, 206, Content-Range"],
       ["MDN Evolution of HTTP · 공식 문서 소스", "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/evolution_of_http/index.md", "확인한 원문 · HTTP/2와 HTTP/3"],
       ["RFC 9110 · HTTP Semantics", "https://www.rfc-editor.org/rfc/rfc9110.html", "확인한 HTTP Working Group 원문 · Range, If-Range와 상태 코드"],
-      ["RFC 8446 · TLS 1.3", "https://www.rfc-editor.org/rfc/rfc8446", "표준 추가 읽기 · 이 환경에서 직접 열람하지 못함"]
+      ["RFC 8446 · TLS 1.3", "https://www.rfc-editor.org/rfc/rfc8446", "표준 추가 읽기 · 원문 재확인 필요"]
     ]
   },
   {
     key: "fill", node: "fill", title: "콘텐츠 배치와 캐시 정책", short: "Fill · 콘텐츠 배치",
-    category: "06 / CONTENT PLACEMENT", image: "assets/tech/fill.svg",
+    category: "콘텐츠 배치", image: "assets/tech/fill.svg",
     question: "한 번도 요청되지 않은 영상을 언제 거점에 넣을까?",
     intro: "사전 배치는 요청이 오기 전에 파일을 거점에 준비하는 방식입니다. 반대로 요청 시 가져오는 캐시는 파일이 없을 때 상위 서버에서 받아 저장합니다. 저장 공간, 준비 트래픽과 첫 시청 지연 사이의 선택입니다.",
     scope: "Open Connect의 사전 준비 역할을 설명합니다. 아래 캐시 키·TTL·혼합 전략은 일반 CDN 설계이며 OCA의 내부 정책을 뜻하지 않습니다.",
@@ -212,7 +212,7 @@ const technologyNotes = [
     ],
     takeaway: "캐시는 저장 공간만의 문제가 아닙니다. 수요를 언제 알 수 있는지, 첫 요청이 기다려도 되는지, 원본과 배치 링크에 여유가 있는지를 함께 판단합니다.",
     sources: [
-      ["Netflix Open Connect · 콘텐츠 준비", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 접근 제한"],
+      ["Netflix Open Connect · 콘텐츠 준비", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 재확인 필요"],
       ["CloudFront Expiration · AWS 공식 문서 저장소", "https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/Expiration.md", "확인한 보존 문서 · Cache-Control과 TTL; 현재 제품 설정은 최신 문서 재확인 필요"],
       ["RFC 9111 · HTTP Caching", "https://www.rfc-editor.org/rfc/rfc9111.html", "확인한 HTTP Working Group 원문 · 공유 캐시, 검증과 Cache-Control"],
       ["CloudFront cache key · AWS 보존 문서", "https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/understanding-the-cache-key.md", "확인한 보존 문서 · 객체 동일성과 키 분산; 현재 기본값을 가정하지 않음"]
@@ -220,10 +220,10 @@ const technologyNotes = [
   },
   {
     key: "abr", node: "player", title: "플레이어와 적응형 비트레이트", short: "ABR · 화질 적응",
-    category: "07 / PLAYBACK DESIGN", image: "assets/tech/player.svg",
+    category: "화질 조절", image: "assets/tech/player.svg",
     question: "와이파이가 느려지면 누가 화질을 바꿀까?",
     intro: "적응형 비트레이트(ABR)는 네트워크와 재생 버퍼에 맞춰 다음 미디어 구간의 표현을 선택하는 방식입니다. 여러 비트레이트의 파일을 미리 준비하고 플레이어가 다음 요청을 바꿉니다. 전송 서버가 요청마다 영상을 새로 인코딩하는 방식과 다릅니다.",
-    scope: "HLS·DASH와 ABR의 일반 동작을 설명합니다. 아래 규칙은 단일 구간의 학습 모델이며 Netflix의 플레이어 알고리즘·패키징 형식이 아닙니다.",
+    scope: "HLS·DASH와 ABR의 일반 동작을 설명합니다. 아래 규칙은 단일 구간의 학습 모델이며 넷플릭스의 플레이어 알고리즘·패키징 형식이 아닙니다.",
     problem: "처음에 고른 높은 화질을 끝까지 고정하면 네트워크가 느려질 때 버퍼가 바닥나 재생이 멈춥니다. 무조건 낮은 화질로 고정하면 사용할 수 있는 대역폭과 화면 품질을 낭비합니다. 끊김·화질·시작 시간 사이에서 조절해야 합니다.",
     steps: [
       ["storage", "여러 표현", "동일한 콘텐츠를 여러 비트레이트로 인코딩해 준비합니다."],
@@ -239,7 +239,7 @@ const technologyNotes = [
     example: {
       title: "네트워크가 달라지면 구간 수신 시간은 어떻게 바뀔까?", kind: "abr",
       text: "현재 5 Mb/s, 4초 구간을 받고 있다고 가정합니다. 네트워크 처리량을 바꿔 수신 시간과 다음 화질 후보를 비교해 보세요. 후보는 1·3·5·8 Mb/s이며 안전 예산은 처리량의 75%입니다.",
-      caveat: "단일 구간의 상수 처리량 모델입니다. 실제 처리량 측정, 시작·탐색·버퍼 제어와 실시간 재생 시뮬레이션은 포함하지 않습니다. Netflix의 ABR 정책이 아닙니다."
+      caveat: "단일 구간의 상수 처리량 모델입니다. 실제 처리량 측정, 시작·탐색·버퍼 제어와 실시간 재생 시뮬레이션은 포함하지 않습니다. 넷플릭스의 ABR 정책이 아닙니다."
     },
     metrics: [
       ["시작 지연·재버퍼링 비율", "재생을 얼마나 빨리 시작하고 얼마나 자주 멈추는지 측정합니다."],
@@ -249,15 +249,15 @@ const technologyNotes = [
     takeaway: "CDN 전송이 빨라지는 것과 재생 경험이 좋아지는 것은 연결되어 있지만 같은 지표는 아닙니다. 전달망 지표와 플레이어의 버퍼·화질 지표를 함께 봐야 합니다.",
     sources: [
       ["MDN adaptive streaming · 공식 문서 소스", "https://github.com/mdn/content/blob/main/files/en-us/web/media/guides/audio_and_video_delivery/live_streaming_web_audio_and_video/index.md", "확인한 원문 · 구간·다중 화질·HLS·DASH; ABR 개념만 사용"],
-      ["HLS RFC 8216", "https://www.rfc-editor.org/rfc/rfc8216", "표준 추가 읽기 · 이 환경에서 직접 열람하지 못함"]
+      ["HLS RFC 8216", "https://www.rfc-editor.org/rfc/rfc8216", "표준 추가 읽기 · 원문 재확인 필요"]
     ]
   },
   {
     key: "steering", node: "steering", title: "전송 후보 선택과 장애 대응", short: "Steering · 서버 선택",
-    category: "08 / DELIVERY CONTROL", image: "assets/tech/routing.svg",
+    category: "서버 선택", image: "assets/tech/routing.svg",
     question: "가장 가까운 서버가 언제나 가장 좋은 서버일까?",
     intro: "전송 후보 선택은 요청한 파일을 가진 서버 중에서 사용할 수 있는 경로와 용량을 고르는 제어 역할입니다. 파일 존재, 접근 가능한 네트워크와 건강 상태를 함께 봐야 합니다. 서버가 정상이라는 사실과 시청 품질이 좋다는 사실도 구분합니다.",
-    scope: "파일·경로·상태라는 판단 축은 사례를 읽기 위한 요약입니다. 후보 목록과 재시도 예제는 일반 설계이며 Netflix의 점수식·API·복구 순서를 재현하지 않습니다.",
+    scope: "파일·경로·상태라는 판단 축은 사례를 읽기 위한 요약입니다. 후보 목록과 재시도 예제는 일반 설계이며 넷플릭스의 점수식·API·복구 순서를 재현하지 않습니다.",
     problem: "지리적으로 가장 가까운 서버에 파일이 없을 수 있고, 파일이 있어도 링크가 포화일 수 있습니다. 상태 보고가 늦으면 이미 장애인 서버를 계속 안내할 수도 있습니다. 선택과 장애 대응에는 최신 정보와 남은 재생 버퍼가 함께 중요합니다.",
     steps: [
       ["storage", "파일 필터", "요청한 버전·구간을 보유한 후보를 확인합니다."],
@@ -283,8 +283,8 @@ const technologyNotes = [
     ],
     takeaway: "장애 대응은 화살표를 다른 서버로 옮기는 것보다 넓습니다. 후보의 파일·경로·여유 용량과 플레이어의 남은 시간까지 설계해야 합니다.",
     sources: [
-      ["Netflix Open Connect · 서버와 경로", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 접근 제한"],
-      ["Open Connect Overview", "https://openconnect.netflix.com/Open-Connect-Overview.pdf", "추가 읽기 · 원문 접근 제한; 예제의 알고리즘 근거로 사용하지 않음"]
+      ["Netflix Open Connect · 서버와 경로", "https://openconnect.netflix.com/en/", "공개 사례 · 원문 재확인 필요"],
+      ["Open Connect Overview", "https://openconnect.netflix.com/Open-Connect-Overview.pdf", "추가 읽기 · 원문 재확인 필요; 예제의 알고리즘 근거로 사용하지 않음"]
     ]
   }
 ];

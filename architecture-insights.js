@@ -53,7 +53,7 @@ const requestFacts = {
   nginx: {
     purpose: "요청을 해석하고, 준비된 파일의 바이트를 HTTP로 응답합니다.",
     contract: ["GET 경로 · 필요한 경우 Range 헤더", "경로와 파일 확인 → 응답 상태·범위 처리", "200 또는 206 응답 · 파일 데이터"],
-    why: "worker가 여러 연결의 이벤트를 처리합니다. 파일 응답에서는 sendfile 등 OS의 I/O 경로도 중요합니다.",
+    why: "작업자 프로세스가 여러 연결의 이벤트를 처리합니다. 파일 응답에서는 sendfile 등 OS의 I/O 경로도 중요합니다.",
     boundary: "NGINX는 인코더나 화질 선택기가 아닙니다. 전체 CDN의 거점 선택·파일 배치도 별도 역할입니다."
   },
   freebsd: {

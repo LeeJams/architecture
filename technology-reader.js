@@ -16,7 +16,7 @@ function renderNoteExample(example) {
     <label class="abr-buffer-control">다운로드 시작 시 재생 버퍼 (초) <input id="abr-buffer" type="number" min="0" max="120" step="0.5" value="8" inputmode="decimal"></label>
     <div class="abr-output" aria-live="polite" aria-atomic="true"><p id="abr-result"></p><p id="abr-next"></p><p id="abr-buffer-result"></p></div>`
     : `<div class="note-code"><span>${escapeHTML(example.language)}</span><pre tabindex="0" aria-label="${escapeHTML(example.title)}"><code>${escapeHTML(example.code)}</code></pre></div>`;
-  return `<section class="note-section note-example"><p class="note-section-label">03 / WORKED EXAMPLE</p><h4>${example.title}</h4><p>${example.text}</p>${content}<p class="example-caveat">${example.caveat}</p></section>`;
+  return `<section class="note-section note-example"><p class="note-section-label">설정과 예제</p><h4>${example.title}</h4><p>${example.text}</p>${content}<p class="example-caveat">${example.caveat}</p></section>`;
 }
 
 function selectTechnologyNote(key, { reveal = false, focus = false } = {}) {
@@ -84,16 +84,16 @@ function initializeTechnologyReader() {
     <article id="tech-${tech.key}" class="technology-note" role="tabpanel" aria-labelledby="note-tab-${tech.key}" tabindex="0" ${index ? "hidden" : ""}>
       <div class="note-heading"><div><p class="micro-label">${tech.category}</p><h3 tabindex="-1">${tech.title}</h3></div><img src="${tech.image}" alt="${tech.title}의 로고 또는 개념 아이콘"></div>
       <p class="note-intro">${tech.intro}</p><p class="note-scope">${tech.scope}</p>
-      <section class="note-section"><p class="note-section-label">01 / THE PROBLEM</p><h4>${tech.question}</h4><p>${tech.problem}</p></section>
-      <section class="note-section"><p class="note-section-label">02 / HOW IT WORKS</p><h4>데이터를 따라가며 동작을 읽기</h4>
+      <section class="note-section"><p class="note-section-label">해결할 문제</p><h4>${tech.question}</h4><p>${tech.problem}</p></section>
+      <section class="note-section"><p class="note-section-label">처리 과정</p><h4>요청과 데이터 처리 순서</h4>
         <ol class="mechanism-flow">${tech.steps.map(([icon, title, description], step) => `<li><div class="mechanism-icon"><img src="${assets[icon]}" alt=""><span>${String(step + 1).padStart(2, "0")}</span></div><div><strong>${title}</strong><p>${description}</p></div></li>`).join("")}</ol>
       </section>
       ${renderTechnicalDepth(tech.key)}
       ${renderNoteExample(tech.example)}
       ${renderDeliveryLabLink(tech.key)}
-      <section class="note-section"><p class="note-section-label">04 / REPLACEMENT OPTIONS</p><h4>현재 기술을 무엇으로 대체할 수 있을까.</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
-      <section class="note-section"><p class="note-section-label">05 / WHAT TO MEASURE</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
-      <div class="note-takeaway"><strong>설계에 가져갈 판단</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 이 역할 보기 ↑</button></div>
+      <section class="note-section"><p class="note-section-label">대체 기술</p><h4>같은 역할을 맡길 기술</h4><p>본문 아래에서 현재 기술과 대체 기술, 대체하는 계층과 연결할 기존 역할을 함께 확인합니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">${replacementLinkLabel(tech.key)} ↓</button></section>
+      <section class="note-section"><p class="note-section-label">관측 지표</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
+      <div class="note-takeaway"><strong>선택 기준</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 위치 보기</button></div>
       <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><span>${scope}</span></li>`).join("")}</ul></footer>
     </article>`).join("");
 

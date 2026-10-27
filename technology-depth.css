@@ -1,54 +1,54 @@
 .technical-depth { margin: 28px 0; min-width: 0; }
 .technical-jumps { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
-.technical-jumps button { font-size: 11px; line-height: 1.8; color: #60774c; border: 1px solid #d9e2cf; border-radius: 5px; background: white; padding: 8px 12px; }
+.technical-jumps button { font-size: 11px; line-height: 1.8; color: var(--body); border: 1px solid var(--line); border-radius: 5px; background: white; padding: 8px 12px; }
 .technical-depth h4[tabindex] { scroll-margin-top: 20px; }
-.abr-buffer-control { display: block; color: #526747; font-size: 12px; line-height: 1.8; margin: 16px 0; }
-.abr-buffer-control input { display: block; width: 100%; max-width: 220px; border: 1px solid #cdd9c1; border-radius: 5px; padding: 10px; margin-top: 7px; font: 15px var(--mono); }
+.abr-buffer-control { display: block; color: var(--body); font-size: 12px; line-height: 1.8; margin: 16px 0; }
+.abr-buffer-control input { display: block; width: 100%; max-width: 220px; border: 1px solid var(--line); border-radius: 5px; padding: 10px; margin-top: 7px; font: 15px var(--mono); }
 .technical-depth section + section { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--line); }
-.technical-depth .technical-eyebrow { font: 10px/1.8 var(--mono); letter-spacing: .04em; color: #74855f; margin: 0 0 8px; }
-.technical-depth h4 { font-size: 20px; line-height: 1.65; letter-spacing: -.035em; color: #3f5b2e; margin: 0 0 12px; overflow-wrap: anywhere; }
-.technical-depth h5 { font-size: 15px; line-height: 1.75; letter-spacing: -.02em; color: #3f5b2e; margin: 0 0 9px; }
+.technical-depth .technical-eyebrow { font: 10px/1.8 var(--mono); letter-spacing: .04em; color: var(--body); margin: 0 0 8px; }
+.technical-depth h4 { font-size: 20px; line-height: 1.65; letter-spacing: -.035em; color: var(--ink); margin: 0 0 12px; overflow-wrap: anywhere; }
+.technical-depth h5 { font-size: 15px; line-height: 1.75; letter-spacing: -.02em; color: var(--ink); margin: 0 0 9px; }
 .technical-depth p { font-size: 13px; line-height: 2; color: var(--body); margin: 0 0 12px; overflow-wrap: anywhere; }
-.technical-depth .technical-scope { padding: 12px 14px; background: #f3f7ef; border-left: 3px solid #97ae79; font-size: 11px; line-height: 1.9; }
+.technical-depth .technical-scope { padding: 12px 14px; background: var(--surface); border-left: 3px solid var(--muted); font-size: 11px; line-height: 1.9; }
 .technical-keypoints { list-style: none; padding: 0; margin: 22px 0 0; }
-.technical-keypoints > li { display: grid; grid-template-columns: 27px minmax(0, 1fr); gap: 12px; padding: 17px 0; border-bottom: 1px solid #e6ecdf; }
+.technical-keypoints > li { display: grid; grid-template-columns: 27px minmax(0, 1fr); gap: 12px; padding: 17px 0; border-bottom: 1px solid var(--line); }
 .technical-keypoints > li:last-child { border-bottom: 0; }
-.technical-number { font: 11px/2.3 var(--mono); color: #8b9f78; }
+.technical-number { font: 11px/2.3 var(--mono); color: var(--body); }
 .technical-citations { display: flex; flex-wrap: wrap; gap: 7px 12px; }
-.technical-citations a { font-size: 10px; line-height: 1.8; color: #607c46; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.technical-depth .technical-model { color: #819171; font-size: 10px; margin-bottom: 0; }
+.technical-citations a { font-size: 10px; line-height: 1.8; color: var(--body); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.technical-depth .technical-model { color: var(--body); font-size: 10px; margin-bottom: 0; }
 .technical-scenario-buttons { display: flex; flex-wrap: wrap; gap: 7px; margin: 17px 0; }
-.technical-scenario-buttons button { border: 1px solid #d5e0c9; border-radius: 5px; background: #fff; color: #60784d; padding: 9px 12px; font-size: 11px; line-height: 1.6; }
-.technical-scenario-buttons button[aria-pressed="true"] { background: #526e3d; border-color: #526e3d; color: white; }
-.technical-scenario-result { min-width: 0; padding: 20px; border: 1px solid #dce5d2; border-radius: 8px; background: #f9fbf5; }
+.technical-scenario-buttons button { border: 1px solid var(--line); border-radius: 5px; background: #fff; color: var(--body); padding: 9px 12px; font-size: 11px; line-height: 1.6; }
+.technical-scenario-buttons button[aria-pressed="true"] { background: var(--body); border-color: var(--body); color: white; }
+.technical-scenario-result { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .technical-path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; padding: 0; margin: 20px 0; list-style: none; }
-.technical-path li { position: relative; padding: 13px 10px; min-width: 0; text-align: center; background: white; border: 1px solid #dfe7d7; border-radius: 6px; }
-.technical-path li + li::before { content: "→"; position: absolute; left: -18px; top: 43%; color: #8fa37c; font: 13px var(--mono); }
+.technical-path li { position: relative; padding: 13px 10px; min-width: 0; text-align: center; background: white; border: 1px solid var(--line); border-radius: 6px; }
+.technical-path li + li::before { content: "→"; position: absolute; left: -18px; top: 43%; color: var(--muted); font: 13px var(--mono); }
 .technical-path img { width: 30px; height: 30px; object-fit: contain; display: block; margin: 0 auto 10px; }
-.technical-path strong { display: block; font-size: 11px; line-height: 1.7; color: #4a6536; overflow-wrap: anywhere; }
-.technical-path span { display: block; font-size: 10px; line-height: 1.8; color: #7d8e6e; overflow-wrap: anywhere; margin-top: 4px; }
+.technical-path strong { display: block; font-size: 11px; line-height: 1.7; color: var(--ink); overflow-wrap: anywhere; }
+.technical-path span { display: block; font-size: 10px; line-height: 1.8; color: var(--body); overflow-wrap: anywhere; margin-top: 4px; }
 .technical-diagnostics dl { margin: 18px 0 0; }
-.technical-diagnostics dl > div { padding: 16px; border: 1px solid #e0e8d6; border-radius: 6px; margin-top: 10px; }
-.technical-diagnostics dt { font-size: 13px; line-height: 1.8; font-weight: 700; color: #506a3c; margin-bottom: 8px; }
+.technical-diagnostics dl > div { padding: 16px; border: 1px solid var(--line); border-radius: 6px; margin-top: 10px; }
+.technical-diagnostics dt { font-size: 13px; line-height: 1.8; font-weight: 700; color: var(--body); margin-bottom: 8px; }
 .technical-diagnostics dd { font-size: 12px; line-height: 2; color: var(--body); margin: 5px 0 0; overflow-wrap: anywhere; }
-.technical-diagnostics dd strong { color: #597243; margin-right: 5px; }
-.technical-lab { padding: 20px; border: 1px solid #dce5d2; border-radius: 8px; margin: 24px 0; background: #f6f9f1; }
-.technical-lab h4, .technical-lab h3 { font-size: 16px; line-height: 1.7; color: #486137; margin: 0 0 10px; }
+.technical-diagnostics dd strong { color: var(--body); margin-right: 5px; }
+.technical-lab { padding: 20px; border: 1px solid var(--line); border-radius: 8px; margin: 24px 0; background: var(--surface); }
+.technical-lab h4, .technical-lab h3 { font-size: 16px; line-height: 1.7; color: var(--ink); margin: 0 0 10px; }
 .technical-lab p { font-size: 12px; line-height: 2; color: var(--body); }
-.technical-lab a { font-size: 12px; line-height: 1.8; color: #506f37; overflow-wrap: anywhere; }
-.replacement-contract { margin-top: 24px; padding: 20px; background: #f5f8f0; border: 1px solid #dce6d1; border-radius: 7px; }
-.replacement-contract h4 { font-size: 14px; line-height: 1.8; color: #456032; margin: 0 0 10px; }
+.technical-lab a { font-size: 12px; line-height: 1.8; color: var(--body); overflow-wrap: anywhere; }
+.replacement-contract { margin-top: 24px; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 7px; }
+.replacement-contract h4 { font-size: 14px; line-height: 1.8; color: var(--ink); margin: 0 0 10px; }
 .replacement-contract ol { padding-left: 20px; margin: 15px 0; }
 .replacement-contract li { font-size: 12px; line-height: 2; color: var(--body); margin: 9px 0; overflow-wrap: anywhere; }
 .replacement-contract .note-code { margin: 16px 0; }
 .technology-sheet-reading .technical-depth { margin: 0 0 28px; }
-.technology-sheet-layout { background: linear-gradient(to right, #f7faf3 260px, #fff 260px); }
+.technology-sheet-layout { background: #fff; }
 .technology-sheet-identity { position: sticky; top: 0; align-self: start; }
 .technology-sheet-reading .technical-jumps { position: sticky; top: 0; z-index: 2; padding: 10px 0; margin-top: -10px; background: white; }
 .technology-sheet-reading .technical-depth h4[tabindex] { scroll-margin-top: 85px; }
-.inspector-keypoint { padding: 12px; background: #f4f7ef; border: 1px solid #e0e7d6; border-radius: 6px; margin-top: 14px; }
-.inspector-keypoint strong { display: block; font-size: 11px; line-height: 1.8; color: #526d3e; }
-.inspector-keypoint p { margin: 6px 0 0; font-size: 10px; line-height: 1.9; color: #7b8d6b; }
+.inspector-keypoint { padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; margin-top: 14px; }
+.inspector-keypoint strong { display: block; font-size: 11px; line-height: 1.8; color: var(--body); }
+.inspector-keypoint p { margin: 6px 0 0; font-size: 10px; line-height: 1.9; color: var(--body); }
 @media (max-width: 760px) {
   .technology-sheet-layout { background: white; }
   .technology-sheet-identity { position: static; }

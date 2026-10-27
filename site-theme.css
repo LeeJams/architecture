@@ -1,0 +1,151 @@
+/* Neutral reading surfaces and a Korean-first type hierarchy.
+   References and scope: docs/design-references.md. */
+body { background: var(--paper); letter-spacing: -.015em; }
+.topbar { min-height: 66px; background: #fff; }
+.wordmark { font-size: 20px; letter-spacing: -.04em; }
+.eyebrow, .micro-label, .section-label, .detail-english, .category,
+.technical-depth .technical-eyebrow, .technology-note .note-section-label {
+  font-family: var(--sans); letter-spacing: 0;
+}
+.eyebrow { font-size: 12px; color: var(--body); }
+.eyebrow::before { display: none; }
+button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline-color: var(--blue); }
+.micro-label { font-size: 11px; }
+.section-label { font-size: 12px; font-weight: 700; color: var(--ink); }
+.section-label b { color: var(--muted); margin-right: 10px; }
+h1 { font-size: clamp(26px, 2.4vw, 34px); font-weight: 700; letter-spacing: -.04em; }
+.library { max-width: 1160px; margin: 0 auto; padding-top: 32px; }
+.library-hero { display: block; padding: 12px 0 44px; }
+.library-hero h1 { margin: 0 0 14px; font-size: clamp(28px, 3vw, 38px); font-weight: 700; line-height: 1.45; letter-spacing: -.04em; }
+.library-description { font-size: 15px; line-height: 1.9; max-width: 700px; }
+.library-heading { align-items: center; padding-top: 23px; margin-bottom: 20px; }
+.library-heading h2 { font-size: 17px; margin: 0; font-weight: 700; }
+.library-heading > span { font-size: 12px; color: var(--muted); }
+.case-card { border-color: var(--line); border-radius: 8px; box-shadow: none; }
+.case-card:hover { border-color: #8c959f; box-shadow: none; }
+.case-cover { background: var(--surface); }
+.case-card-copy { padding: 30px 32px; }
+.case-card-meta { font-family: var(--sans); margin-bottom: 17px; }
+.company-name { font-size: 14px; font-weight: 700; color: var(--ink); letter-spacing: 0; }
+.case-category { border: 0; background: transparent; color: var(--muted); padding: 0; font-size: 11px; }
+.case-card-title { font-size: 28px; font-weight: 700; margin: 0 0 15px; letter-spacing: -.04em; }
+.case-card-description { font-size: 14px; line-height: 1.95; }
+.case-technologies span { font-size: 11px; color: var(--body); }
+.case-card-bottom { padding-top: 19px; margin-top: 25px; }
+.case-card-bottom > span:first-child { font-size: 11px; color: var(--muted); }
+.case-open { color: var(--ink); font-weight: 700; }
+.library-footer { margin-top: 48px; padding-top: 20px; }
+.library-footer > span { font-family: var(--sans); letter-spacing: 0; font-size: 12px; }
+.library-footer p { font-size: 11px; }
+.back-to-library { color: var(--body); }
+.detail-cover { border-radius: 6px; }
+.intro { padding-bottom: 28px; }
+.intro p { font-size: 14px; line-height: 1.9; }
+.section-nav { gap: 26px; }
+.section-nav a { font-size: 13px; }
+.workspace, .anatomy, .technology-lab, .reference-details { border-radius: 6px; box-shadow: none; }
+.canvas { background: #fff; }
+.canvas-top h2 { font-size: 13px; color: var(--ink); font-weight: 700; }
+.canvas-top > span { font: 11px var(--sans); }
+.zone { fill: var(--surface); stroke: var(--line); }
+.zone.edge { fill: #fff; stroke: var(--line); }
+.zone-label, .zone-sub { fill: var(--muted); font-family: var(--sans); letter-spacing: 0; }
+.node .node-box { filter: none; stroke: var(--line); }
+.node-title { fill: var(--ink); font-weight: 700; }
+.node-sub, .node-tech { fill: var(--body); font-family: var(--sans); }
+.node-badge { fill: var(--surface); }
+.node.flow-related:not(.selected) .node-box { stroke: var(--blue); }
+.node.selected .selection-halo { stroke: #cf222e15; }
+.flow-label { fill: var(--blue); }
+.flow-label.video { fill: var(--red); }
+.flow-label.fill { fill: var(--fill); }
+.flow.telemetry { stroke: #8c959f; }
+.flow-help { fill: var(--muted); }
+.label-background { fill: #fff; }
+.quiet-button, .play-button, .tech-links button, .stack-entry,
+.badge, .product-card, .technical-scenario-result { border-radius: 5px; }
+.quiet-button:hover, .play-button:hover { background: var(--surface); }
+.quiet-button[aria-pressed="true"] { color: var(--blue); border-color: var(--blue); background: #f0f6ff; }
+.step[aria-pressed="true"] { border-color: var(--line); background: var(--surface); }
+.step[aria-pressed="true"] strong { color: var(--ink); font-weight: 700; }
+.tech-links button[aria-pressed="true"], #note-tabs button[aria-selected="true"] {
+  border-color: var(--line); background: var(--surface); color: var(--ink); box-shadow: none;
+}
+.detail-tabs button[aria-selected="true"] { border-color: var(--ink); color: var(--ink); font-weight: 700; }
+.detail-english { font-size: 11px; }
+.inspector h2 { font-size: 21px; letter-spacing: -.04em; }
+.detail-sheet-open { background: #fff; border-color: var(--line); color: var(--blue); font-size: 12px; }
+.underbar { background: #fff; }
+.takeaway { border-bottom: 1px solid var(--line); }
+.takeaway > p { color: var(--body); }
+.takeaway strong, .layer-copy strong, .appliance-detail-heading h3,
+.technical-depth h4, .technical-depth h5, .replacement-contract h4 { color: var(--ink); }
+.takeaway button { border-radius: 5px; background: #fff; border-color: var(--line); color: var(--ink); }
+.section-heading h2 { font-size: 27px; letter-spacing: -.035em; font-weight: 700; }
+.section-heading p { font-size: 14px; }
+.anatomy-visual, .appliance-detail, .technology-sheet-identity { background: var(--surface); }
+.anatomy-layers .layer[aria-pressed="true"] .layer-image { border-color: var(--blue); background: #fff; }
+.appliance-pipeline, .request-contract { border-radius: 5px; }
+.technical-depth .technical-scope { border-left-color: #8c959f; }
+.technical-depth .technical-eyebrow { color: var(--muted); font-size: 11px; }
+.technical-keypoints > li { padding: 20px 0; }
+.technical-depth h5 { font-size: 15px; font-weight: 700; }
+.technical-depth p { font-size: 14px; line-height: 1.95; }
+.technical-depth .technical-model { font-size: 11px; }
+.technical-scenario-buttons button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.technical-path li { background: #fff; }
+.technical-diagnostics dt, .technical-diagnostics dd strong { color: var(--ink); }
+.technical-lab, .replacement-contract, .sheet-fit { background: var(--surface); }
+.note-code, .flow-sample { background: #161b22; border-color: #30363d; color: #e6edf3; border-radius: 5px; }
+.note-code > span, .flow-sample > span { color: #b1bac4; border-color: #30363d; font-family: var(--sans); font-size: 11px; }
+.note-code code, .flow-sample code { color: #e6edf3; }
+.note-code pre { font-size: 12px; line-height: 1.9; }
+.note-sources a, .sheet-sources a, .technical-citations a, .technical-lab a,
+.detail-read-link, .appliance-detail-heading a, .tech-card-read { color: var(--blue); }
+.technology-note .note-intro { color: var(--body); }
+.technology-note .note-scope { color: var(--muted); border-left-color: var(--line); }
+.capacity-output, .abr-output, .note-takeaway { background: var(--surface); border-color: var(--line); }
+.capacity-output strong, .abr-output strong { color: var(--ink); }
+.abr-slider { accent-color: var(--ink); }
+.technology-sheet-layout { background: #fff; }
+.technology-dialog { border-radius: 8px; box-shadow: 0 24px 80px #1f232840; }
+.technology-dialog::backdrop { background: #1f2328a6; backdrop-filter: none; }
+.technology-sheet-identity { background: #fff; }
+.technology-sheet-reading h3 { color: var(--ink); }
+#technology-sheet-publisher { color: var(--body); }
+.product-card { box-shadow: none; }
+.product-card:hover { border-color: #8c959f; }
+.product-features { gap: 7px 12px; }
+.product-features span { background: none; border: 0; padding: 0; border-radius: 0; }
+.product-features span::before { content: "· "; color: var(--muted); }
+.replacement-context { background: var(--surface); border-color: var(--line); }
+#alternative-categories button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.replacement-pair > div { background: #fff; }
+.replacement-title { color: var(--ink); }
+.source-box, .ref-card, .reference-details, .technology-overview { border-radius: 6px; }
+.page-footer { font-family: var(--sans); }
+@media (max-width: 1100px) {
+  .library-hero { padding-bottom: 36px; }
+  .case-card-copy { padding: 25px; }
+  .case-card-title { font-size: 25px; }
+}
+@media (max-width: 760px) {
+  .topbar { min-height: 60px; }
+  .wordmark { font-size: 18px; }
+  .library { padding-top: 15px; }
+  .library-hero { padding: 8px 0 30px; }
+  .library-hero h1 { font-size: 28px; }
+  .library-description { font-size: 14px; }
+  .case-card-copy { padding: 23px; }
+  .case-card-title { font-size: 25px; }
+  .case-card-description { font-size: 14px; }
+  .case-card-bottom { margin-top: 21px; }
+  .library-footer { margin-top: 32px; }
+  .section-nav { gap: 10px 18px; }
+  .section-nav a { font-size: 12px; }
+  .intro p { font-size: 13px; }
+  .section-heading h2 { font-size: 24px; }
+  .section-heading p { font-size: 13px; }
+  .technical-depth p { font-size: 13px; }
+  .technical-depth .technical-scope { font-size: 11px; }
+}

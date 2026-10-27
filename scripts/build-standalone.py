@@ -7,7 +7,7 @@ from html import escape
 
 root = Path(__file__).resolve().parent.parent
 document = (root / "index.html").read_text()
-for stylesheet in ("styles.css", "technology-reader.css", "architecture-insights.css", "technology-explorer.css", "technology-depth.css"):
+for stylesheet in ("styles.css", "technology-reader.css", "architecture-insights.css", "technology-explorer.css", "technology-depth.css", "site-theme.css"):
     document = document.replace(
         f'<link rel="stylesheet" href="{stylesheet}">',
         "<style>\n" + (root / stylesheet).read_text() + "\n</style>",

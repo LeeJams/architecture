@@ -115,13 +115,13 @@ function renderReplacementScope(product) {
 
 function renderReplacementCard(product) {
   const source = replacementSources[product.category];
-  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">${source.kind === "implementation" ? "구현 예시" : "대체 관계"}와 기술 자세히 보기 ↗</button></article>`;
+  return `<article class="product-card" data-replacement-kind="${source.kind}" data-replacement-source="${product.category}"><p class="replacement-card-label">${source.kind === "implementation" ? "현재 제품 미지정 · 구현 예시" : source.location + " 대체"}</p><h3 class="replacement-title">${replacementTitle(product)}</h3>${renderReplacementPair(product)}<p class="replacement-sentence">${replacementSentence(product)}</p>${renderReplacementScope(product)}<p class="product-description">${product.description}</p><div class="product-features">${product.features.map(feature => `<span>${feature}</span>`).join("")}</div><div class="product-fit"><strong>${source.kind === "implementation" ? "이 구현을 살펴볼 상황" : "이 대체 기술을 살펴볼 상황"}</strong><p>${product.fit}</p></div><button class="product-open" data-open-alternative="${product.id}" aria-haspopup="dialog">${source.kind === "implementation" ? "제품 설명 보기" : "구성 방법과 예제 보기"}</button></article>`;
 }
 
 function renderReplacementContext() {
   const source = replacementSources[selectedAlternativeCategory];
   if (!source) {
-    $("#replacement-context").innerHTML = `<div class="replacement-overview"><p class="micro-label">현재 기술 → 대체 기술</p><h3>4개 현재 기술의 9개 대체 관계</h3><p>각 카드에서 무엇을 바꾸는지, 어떤 기술로 바꾸는지, 어느 계층을 대체하는지 확인하세요.</p></div>`;
+    $("#replacement-context").innerHTML = `<div class="replacement-overview"><p class="micro-label">현재 기술 → 대체 기술</p><h3>현재 기술별 대체 목록</h3><p>각 카드에서 무엇을 바꾸는지, 어떤 기술로 바꾸는지, 어느 계층을 대체하는지 확인하세요.</p></div>`;
     return;
   }
   $("#replacement-context").innerHTML = `<div class="replacement-source"><img src="${assets[source.image]}" alt=""><div><p class="micro-label">현재 설계에서 대체할 기술</p><h3>${source.name}</h3><p>${source.company} · ${source.location}</p></div><button class="quiet-button" data-locate-replacement="${selectedAlternativeCategory}">현재 구성도에서 위치 보기 ↑</button></div><div class="replacement-context-description"><strong>무엇을 대체하나요?</strong><p>${source.name}의 ${source.role}을 다른 기술로 구현하는 선택입니다.</p></div>`;
