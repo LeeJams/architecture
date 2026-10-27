@@ -113,6 +113,20 @@ async function inspectLayout(page) {
       report.states.push({ width, view: 'technology-overview', issueCount: overviewIssues.length });
       report.issues.push(...overviewIssues.map(issue => ({ width, view: 'technology-overview', ...issue })));
       await page.locator('.technology-overview').evaluate(element => { element.open = false; });
+      await page.evaluate(() => {
+        document.querySelector('[data-tech="oca"]').click();
+        document.querySelector('[data-panel="tradeoff"]').click();
+        document.querySelector('[data-compare-option="fastly"]').click();
+      });
+      const alternativeIssues = await inspectLayout(page);
+      report.states.push({ width, view: 'inspector-alternative', alternative: 'fastly', issueCount: alternativeIssues.length });
+      report.issues.push(...alternativeIssues.map(issue => ({ width, view: 'inspector-alternative', ...issue })));
+      for (const layer of ['storage', 'nginx', 'freebsd']) {
+        await page.evaluate(layer => document.querySelector(`[data-anatomy-tech="${layer}"]`).click(), layer);
+        const layerIssues = await inspectLayout(page);
+        report.states.push({ width, view: 'appliance-layer', layer, issueCount: layerIssues.length });
+        report.issues.push(...layerIssues.map(issue => ({ width, view: 'appliance-layer', layer, ...issue })));
+      }
       await page.evaluate(() => document.querySelector('#failover-button').click());
       let issues = await inspectLayout(page);
       report.states.push({ width, view: 'design', panel: 'failover', issueCount: issues.length });

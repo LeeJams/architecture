@@ -27,7 +27,7 @@ const technologyImages = Object.values(assets).map(src => {
   return image;
 });
 
-const stackEntry = (image, title, text, key = "") => `<div class="stack-entry" data-stack-tech="${key}"><img src="${image}" alt="${title}"><div><h3>${title}</h3><p>${text}</p></div></div>`;
+const stackEntry = (image, title, text, key = "") => `<div class="stack-entry" data-stack-tech="${key}"><img src="${image}" alt="${title}"><div><h3>${title}</h3><p>${text}</p></div>${key ? `<button class="stack-open" data-inspect-tech="${key}" aria-label="${title} 기술 상세 보기">↗</button>` : ""}</div>`;
 const note = text => `<div class="detail-note">${text}</div>`;
 
 const components = {
@@ -155,9 +155,9 @@ function renderDetail() {
   image.src = component.image;
   image.alt = component.alt;
   image.classList.toggle("brand-only", Boolean(component.brand));
-  $("#detail-badges").innerHTML = component.badges.map(badge => `<span class="badge">${badge}</span>`).join("");
+  $("#detail-badges").innerHTML = renderTechnologyBadges(component.badges);
   const noteKey = selectedTechnology || ({ player: "abr", playback: "aws", steering: "steering", origin: "fill", fallback: "steering" }[selectedNode] || selectedNode);
-  $("#detail-content").innerHTML = component[selectedPanel] + `<a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">동작 원리·예제·선택 기준 자세히 읽기 ↗</a>`;
+  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + `<a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">동작 원리·예제·선택 기준 자세히 읽기 ↗</a>`;
   $("#detail-content").scrollTop = 0;
   $("#detail-content").setAttribute("aria-labelledby", `${selectedPanel}-tab`);
   $$('[data-panel]').forEach(button => {
@@ -166,6 +166,7 @@ function renderDetail() {
     button.tabIndex = active ? 0 : -1;
   });
   $("#detail-source").innerHTML = `공개 설명 ↗ &nbsp;<a href="${component.source[1]}" target="_blank" rel="noopener">${component.source[0]}</a>`;
+  syncTechnologySelection();
 }
 
 function centerNodeInDiagram(id) {
@@ -194,6 +195,8 @@ function setStep(index) {
   selectedStep = index;
   $$('[data-step]').forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.step) === index)));
   $$('[data-flow]').forEach(group => group.classList.toggle("dimmed", index >= 0 && Number(group.dataset.flow) !== index));
+  const related = [["origin", "fill", "oca"], ["player", "playback"], ["player", "playback", "steering"], ["player", failover ? "fallback" : "oca"]][index] || [];
+  $$(".node").forEach(node => node.classList.toggle("flow-related", related.includes(node.dataset.node)));
   const titles = ["00 · 시청 전에, 콘텐츠를 전달 거점으로.", "01 · 재생 요청은 클라우드로.", "02 · 보유 파일과 전송 조건으로 OCA 선택.", failover ? "03 · 다른 전송 후보로 요청을 재시도." : "03 · 영상 데이터는 OCA에서 플레이어로."];
   $("#canvas-title").textContent = index < 0 ? "제어 경로와 영상 경로를 나눠 읽어보세요." : titles[index];
 }
@@ -415,7 +418,8 @@ $("#compare-button").addEventListener("click", () => {
   stopPlayback();
   setFailover(false);
   setStep(-1);
-  selectNode("oca", { panel: "tradeoff" });
+  selectedPanel = "tradeoff";
+  renderDetail();
   if (window.innerWidth < 1440) $(".inspector").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 $("#go-to-alternatives").addEventListener("click", () => $("#alternatives").scrollIntoView({ behavior: "smooth", block: "start" }));
@@ -448,6 +452,7 @@ new ResizeObserver(updateScrollHint).observe($(".diagram-viewport"));
 renderDetail();
 setStep(-1);
 initializeTechnologyReader();
+initializeArchitectureInsights();
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 applyRoute(routeFromURL());

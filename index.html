@@ -9,6 +9,7 @@
   <script>document.documentElement.dataset.route = new URLSearchParams(location.search).get("case") === "netflix" ? "netflix" : "library";</script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="technology-reader.css">
+  <link rel="stylesheet" href="architecture-insights.css">
 </head>
 <body>
 <a class="skip-link" href="#main-content">본문으로 바로가기</a>
@@ -63,6 +64,8 @@
             <g class="node" data-node="origin" role="button" tabindex="0" aria-label="인코딩된 콘텐츠 저장소의 역할 보기" aria-pressed="false"><rect class="node-box" x="335" y="557" width="198" height="115" rx="9"/><image href="assets/tech/storage.svg" x="351" y="570" width="36" height="36"/><text class="node-title" x="351" y="630" style="font-size:15px">인코딩된 영상 원본</text><text class="node-sub" x="351" y="651">여러 화질 · 영상과 오디오</text></g>
             <g class="node" data-node="fill" role="button" tabindex="0" aria-label="콘텐츠 사전 배치의 역할 보기" aria-pressed="false"><rect class="node-box" x="579" y="557" width="166" height="115" rx="9"/><image href="assets/tech/fill.svg" x="592" y="570" width="39" height="39"/><text class="node-title" x="598" y="630" style="font-size:15px">콘텐츠 배치</text><text class="node-sub" x="598" y="651">Fill / 기능 단위 요약</text></g>
             <g class="node" data-node="fallback" role="button" tabindex="0" aria-label="다른 OCA 후보와 장애 대응 설명 보기" aria-pressed="false"><rect class="node-box" x="783" y="558" width="225" height="114" rx="9" style="fill:#fdfaf7;stroke-dasharray:4 3"/><image href="assets/tech/oca-appliance.svg" x="797" y="568" width="68" height="35"/><text class="node-title" x="801" y="627" style="font-size:15px">다른 전송 거점의 OCA</text><text class="node-sub" x="801" y="651">사용 가능한 다른 후보 서버</text></g>
+            <g class="diagram-tech-hit" data-diagram-tech="freebsd" role="button" tabindex="0" aria-label="OCA 안의 FreeBSD 운영체제 자세히 보기" aria-pressed="false"><title>FreeBSD의 역할·내부 동작·Linux와의 비교</title><rect x="796" y="475" width="98" height="25" rx="4"/></g>
+            <g class="diagram-tech-hit" data-diagram-tech="nginx" role="button" tabindex="0" aria-label="OCA 안의 NGINX HTTP 서버 자세히 보기" aria-pressed="false"><title>NGINX의 역할·파일 응답·Caddy와의 비교</title><rect x="900" y="475" width="94" height="25" rx="4"/></g>
             <text class="flow-help" x="60" y="743">내부 서비스를 기능별로 묶은 설명용 구성도입니다. 배치 체계와 서버 수는 단순화했습니다.</text>
           </svg>
         </div></div>
@@ -77,7 +80,22 @@
     <div class="underbar"><span class="micro-label">EXPLORE THE TECH</span><div class="tech-links"><button data-tech="aws"><img src="assets/tech/aws.svg" alt="">AWS</button><button data-tech="oca"><img src="assets/tech/oca-icon.svg" alt="">OCA</button><button data-tech="freebsd"><img class="brand-freebsd" src="assets/tech/freebsd.svg" alt="">FreeBSD</button><button data-tech="nginx"><img class="brand-nginx" src="assets/tech/nginx-mark.svg" alt="">NGINX</button><button data-tech="https"><img src="assets/tech/https.svg" alt="">HTTP(S)</button><button data-tech="fill"><img src="assets/tech/storage.svg" alt="">콘텐츠 배치</button></div><span class="hint">기술을 누르면 위치와 역할을 연결합니다 ↗</span></div>
   </section>
   <div class="takeaway"><p class="micro-label">THE DESIGN DECISION</p><p><strong>어디서 재생할지 결정하는 일과, 영상 바이트를 보내는 일을 분리합니다.</strong><br>전달 경로와 기술의 역할을 함께 보면, CDN이 필요한 이유가 구조 안에서 드러납니다.</p><button id="go-to-alternatives">우리 서비스라면 무엇을 고를까?<span>↗</span></button></div>
-  <section class="article-section" id="anatomy"><div class="section-heading"><div><div class="section-label"><b>02</b> INSIDE THE APPLIANCE</div><h2>영상 서버 하나를 열어보면.</h2><p>OCA는 하나의 라이브러리가 아닙니다. 저장장치, HTTP 서버, 운영체제가 함께 영상을 전달하는 전용 서버입니다.</p></div><p class="aside-note">물리 장비는 설명용 일러스트<br>소프트웨어 계층은 공개 설명 기준</p></div><div class="anatomy"><div class="anatomy-visual"><img src="assets/tech/oca-appliance.svg" alt="여러 드라이브와 네트워크 전송 기능을 갖춘 OCA를 설명하는 서버 그림"><div class="anatomy-tags"><span><img class="brand-freebsd" src="assets/tech/freebsd.svg" alt="">FreeBSD</span><span><img class="brand-nginx" src="assets/tech/nginx-mark.svg" alt="">NGINX</span><span><img src="assets/tech/https.svg" alt="">HTTP(S)</span></div><p class="anatomy-meta">정확한 제품 외형·드라이브 수를 재현한 그림은 아닙니다.</p></div><div class="anatomy-layers"><div class="layer"><div class="layer-image"><img src="assets/tech/storage.svg" alt="저장장치 개념 아이콘"></div><div><h3>저장장치 · 미리 준비한 영상</h3><p>여러 화질의 영상 파일을 보관해 시청 요청에 대비합니다.</p></div><span class="layer-number">01</span></div><div class="layer"><div class="layer-image"><img class="brand-nginx" src="assets/tech/nginx-mark.svg" alt="NGINX 로고"></div><div><h3>NGINX · HTTP 요청과 파일 응답</h3><p>플레이어의 요청을 받아 저장된 영상 데이터를 전달합니다.</p></div><span class="layer-number">02</span></div><div class="layer"><div class="layer-image"><img class="brand-freebsd" src="assets/tech/freebsd.svg" alt="FreeBSD 로고"></div><div><h3>FreeBSD · 스토리지와 네트워크 I/O</h3><p>웹 서버 아래에서 파일 읽기와 네트워크 전송의 기반을 제공합니다.</p></div><span class="layer-number">03</span></div></div></div></section>
+  <section class="article-section" id="anatomy" aria-labelledby="anatomy-title">
+    <div class="section-heading"><div><div class="section-label"><b>02</b> INSIDE THE APPLIANCE</div><h2 id="anatomy-title">영상 서버 하나를 열어보면.</h2><p>저장장치, HTTP 서버, 운영체제가 함께 영상을 전달합니다. 계층을 눌러 각각이 맡는 일을 읽어보세요.</p></div><p class="aside-note">물리 장비는 설명용 일러스트<br>소프트웨어 계층은 공개 설명 기준</p></div>
+    <div class="anatomy">
+      <div class="anatomy-visual"><img src="assets/tech/oca-appliance.svg" alt="여러 드라이브와 네트워크 전송 기능을 갖춘 OCA를 설명하는 서버 그림"><div class="anatomy-tags"><span><img class="brand-freebsd" src="assets/tech/freebsd.svg" alt="">FreeBSD</span><span><img class="brand-nginx" src="assets/tech/nginx-mark.svg" alt="">NGINX</span><span><img src="assets/tech/https.svg" alt="">HTTP(S)</span></div><p class="anatomy-meta">정확한 제품 외형·드라이브 수를 재현한 그림은 아닙니다.</p></div>
+      <div class="anatomy-layers" role="group" aria-label="서버 내부 계층 선택">
+        <button class="layer" data-anatomy-tech="storage" aria-pressed="false"><span class="layer-image"><img src="assets/tech/storage.svg" alt=""></span><span class="layer-copy"><strong>저장장치 · 미리 준비한 영상</strong><span>여러 화질의 파일을 보관하고 요청한 구간을 읽습니다.</span></span><span class="layer-number">01 ↗</span></button>
+        <button class="layer" data-anatomy-tech="nginx" aria-pressed="true"><span class="layer-image"><img src="assets/tech/nginx-mark.svg" alt=""></span><span class="layer-copy"><strong>NGINX · HTTP 요청과 파일 응답</strong><span>파일 경로·범위를 해석하고 상태·헤더·바이트를 응답합니다.</span></span><span class="layer-number">02 ↗</span></button>
+        <button class="layer" data-anatomy-tech="freebsd" aria-pressed="false"><span class="layer-image"><img src="assets/tech/freebsd.svg" alt=""></span><span class="layer-copy"><strong>FreeBSD · 스토리지와 네트워크 I/O</strong><span>파일 페이지·이벤트·소켓과 NIC의 동작을 받칩니다.</span></span><span class="layer-number">03 ↗</span></button>
+      </div>
+      <div class="appliance-detail">
+        <div class="appliance-detail-heading"><div><span class="micro-label">FOLLOW THE BYTES / 계층별 내부 동작</span><h3 id="appliance-layer-title"></h3></div><a id="appliance-layer-read" href="#tech-nginx" data-read-tech="nginx">원리와 대안 깊게 읽기 ↗</a></div>
+        <ol class="appliance-pipeline" id="appliance-layer-flow" aria-label="선택한 계층의 처리 순서"></ol>
+        <p id="appliance-layer-description"></p><p class="appliance-scope" id="appliance-layer-note"></p>
+      </div>
+    </div>
+  </section>
   <section class="article-section" id="technologies" aria-labelledby="technologies-title">
     <div class="section-heading"><div><div class="section-label"><b>03</b> TECHNOLOGY FIELD NOTES</div><h2 id="technologies-title">이름에서, 동작 원리와 선택 기준으로.</h2><p>파일이 전달되는 내부 경로부터 설정 예제, 병목 지표와 대안까지. 기술 6개와 재생·서버 선택의 설계 2개를 깊게 읽습니다.</p></div><p class="aside-note">문제 → 원리 → 예제 → 선택<br>각 설명에 근거와 적용 범위를 표시</p></div>
     <div class="technology-lab" id="technology-lab">
@@ -104,6 +122,7 @@
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="technology-notes.js"></script>
 <script src="technology-reader.js"></script>
+<script src="architecture-insights.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
