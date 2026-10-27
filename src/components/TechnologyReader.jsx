@@ -8,6 +8,7 @@ import {
   replacementLinkLabel,
   useApp,
 } from "../state/AppState.jsx";
+import { CaseTechnologies } from "./TechnologyCatalogue.jsx";
 import { TechnicalDepth, DeliveryLab } from "./TechnicalDepth.jsx";
 import { GlossarySwitch, Text } from "./Glossary.jsx";
 import { ActionIcon, Code, ReadLink, useRovingTabs } from "./ui.jsx";
@@ -49,6 +50,7 @@ export function TechnologyReader() {
           <br />각 설명에 근거와 적용 범위를 표시
         </p>
       </div>
+      <CaseTechnologies />
       <div className="technology-lab" id="technology-lab">
         <div className="note-navigation">
           <p className="micro-label" id="note-navigation-label">

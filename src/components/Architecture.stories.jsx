@@ -1,3 +1,4 @@
+import { TechnologyCard, TechnologyInfo } from "./TechnologyCatalogue.jsx";
 import { useLayoutEffect } from "react";
 import { Inspector } from "./Explorer.jsx";
 import { TechnicalDepth } from "./TechnicalDepth.jsx";
@@ -75,3 +76,34 @@ Replacement.argTypes = {
     control: { type: "select" },
   },
 };
+
+export const TechnologyProductCard = ({ technology = "s3" }) => (
+  <Frame width={420}>
+    <TechnologyCard technologyId={technology} />
+  </Frame>
+);
+TechnologyProductCard.args = { technology: "s3" };
+TechnologyProductCard.argTypes = {
+  technology: {
+    options: [
+      "s3",
+      "cloudfront",
+      "nginx",
+      "freebsd",
+      "caddy",
+      "apache",
+      "gcs",
+      "ubuntu",
+      "debian",
+      "fastly",
+      "cloudflare",
+    ],
+    control: { type: "select" },
+  },
+};
+export const TechnologyProductProfile = () => (
+  <Frame width={960}>
+    <GlossarySwitch />
+    <TechnologyInfo technologyId="s3" />
+  </Frame>
+);

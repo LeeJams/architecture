@@ -113,6 +113,20 @@ npm run dev
 
 브라우저에서 `http://127.0.0.1:5173`을 엽니다. 빌드 결과를 확인할 때는 `npm run build` 다음 `npm run preview`를 실행하고 `http://127.0.0.1:4173`에 접속합니다. 정적 호스팅에는 `dist/`를 배포합니다.
 
+## 기술 목록과 공용 상세
+
+상단 **기술 목록** 메뉴 또는 `?view=technologies`에서 11개 기술을 찾을 수 있습니다. 저장소·CDN·HTTP 서버·운영체제 카테고리와 제품/제공사 검색을 제공합니다. AWS라는 플랫폼 이름 대신 **Amazon S3·Amazon CloudFront**처럼 실제 제품 이름과 해당 심벌을 표시합니다.
+
+카드를 누르면 **기술 자체의 개념 → 사용 상황 → 처리 순서 → 주요 개념 → 설정 예제 → 설계 핵심 → 관측·진단**을 공용 모달에서 읽습니다. 목차 버튼으로 필요한 부분에 바로 이동하고, 공식 문서와 이미지 출처도 확인할 수 있습니다.
+
+사례 상세의 **이 설계의 사용 기술**도 같은 `TechnologyCard`를 사용합니다. 기술 정보 모달에서 **이 사례에서의 사용 / 기술 자체 정보**를 전환할 수 있습니다. 기존 구성 기술·대체 기술 상세에서도 같은 정보로 연결합니다. Netflix 사례의 원본 저장소가 S3라고 단정하지 않으며, 현재 확인한 사용 기술에는 NGINX·FreeBSD만 공용 카드로 표시합니다.
+
+![카테고리와 제품별 기술 목록](docs/images/technology-catalogue.png)
+
+[Amazon S3 상세](docs/images/s3-technology-info.png) · [모바일 상세](docs/images/s3-technology-mobile.png)
+
+`TechnologyCard`는 `technologyId`와 선택적인 `usage`·`caseKey`를 받습니다. `TechnologyInfo`는 같은 ID로 기술 정의·예제를 표시하며, 기술 원고는 `src/data/technology-catalogue.js`에서 관리합니다. Ladle의 Technology product card / profile 시나리오에서도 같은 컴포넌트를 확인할 수 있습니다.
+
 ## 디자인 작업대와 애니메이션
 
 ```sh
@@ -141,6 +155,7 @@ npm run design
 | `src/components/TechnologyDialog.jsx` | 기본 dialog와 기술·대체 제품 상세 |
 | `src/components/Alternatives.jsx` · `Anatomy.jsx` | 교체 범위·양쪽 로고·서버 계층 |
 | `src/components/Glossary.jsx` | React 용어 표시·43개 설명·토글·기본 Popover |
+| `src/components/TechnologyCatalogue.jsx` · `src/data/technology-catalogue.js` | 기술 목록·공용 카드·제품 자체 정보·카테고리·상세 원고 |
 | `src/data/` | 기술 원고·예제·출처·대체 관계·회사 정보 |
 | `src/styles/` · `src/interaction.css` | 기존 색상·글자·반응형·명확한 버튼·추가 상호작용 |
 | `src/components/Architecture.stories.jsx` · `.ladle/` | 디자인 검토 시나리오·작업대 설정 |
@@ -173,6 +188,7 @@ npm test
 - `verify-technology.cjs`: 기술 글의 직접 링크·새로고침·키보드·구성도 연결, 용량 계산의 잘못된 입력, 저속 네트워크에서의 화질 후보, 좁은 화면의 표·코드 스크롤과 단일 HTML의 오프라인 실행을 검사합니다.
 - `verify-explorer.cjs`: 두 탭·9단계 흐름, 기술 상세 dialog의 포커스·닫기·맥락 유지, 9개 대체 관계의 양쪽 기술·범위·제공 조직, 구성도 위치 연결과 구현 예시의 분리를 검사합니다.
 - `verify-depth.cjs`: 본문·상세 창의 원고 일치, 조건별 HTTP 응답, 버퍼·재버퍼링 계산, 키보드 탐색, 3개 폭의 54개 상세 흐름 상태와 교체 계약을 검사합니다. 화면의 NGINX 설정과 실제 실습 설정이 일치하는지도 확인합니다.
+- `verify-catalogue.cjs`: 11개 제품 이름·이미지·4개 분류·검색·키보드, 사례 사용/기술 자체 정보의 구분, 55개 모달 배치 상태와 오프라인 실행을 검사합니다.
 - `verify-interactions.cjs`: 속도를 바꿀 때 시간 막대가 같은 기준으로 비교되는지, 모션 감소 설정·계산기 값 보존·기본 모달 즉시 재열기가 동작하는지 검사합니다.
 - `verify-delivery-lab.py`: `npm test`와 별도로 실행합니다. 실제 NGINX에서 일반 GET·정상/suffix/초과 범위·If-Range 일치/불일치·404를 확인합니다.
 - `verify-glossary.cjs`: 토글의 키보드·설정 저장, 본문과 상세 창의 동적 용어 표시, 원문·코드 보존, 도움말 위치·포커스·닫기, 저장소 제한과 오프라인 실행을 검사합니다.

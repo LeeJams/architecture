@@ -22,9 +22,11 @@ import {
 
 const AppContext = createContext(null);
 const routeFromURL = () =>
-  new URLSearchParams(location.search).get("case") === "netflix"
-    ? "netflix"
-    : "library";
+  new URLSearchParams(location.search).get("view") === "technologies"
+    ? "catalogue"
+    : new URLSearchParams(location.search).get("case") === "netflix"
+      ? "netflix"
+      : "library";
 const noteFromURL = (fallback = "oca") =>
   technologyNotes.find((item) => location.hash === `#tech-${item.key}`)?.key ||
   fallback;
@@ -55,6 +57,8 @@ export const noteKeyFor = (node, technology) =>
   node;
 const initialState = () => ({
   route: routeFromURL(),
+  catalogueCategory: "all",
+  catalogueQuery: "",
   node: "oca",
   technology: null,
   panel: "role",
@@ -74,7 +78,12 @@ export function AppProvider({ children }) {
   const [state, patch] = useReducer(reducer, undefined, initialState);
   const current = useRef(state);
   current.current = state;
-  const navigation = useRef({ sequence: 0, transition: null, libraryY: 0 });
+  const navigation = useRef({
+    sequence: 0,
+    transition: null,
+    libraryY: 0,
+    catalogueY: 0,
+  });
   const centerNode = useCallback((id) => {
     const viewport = document.querySelector(".diagram-viewport");
     const node = document.querySelector(`[data-node="${id}"]`);
@@ -207,9 +216,12 @@ export function AppProvider({ children }) {
     [selectNode, selectTech, updateHash],
   );
   const scrollToRoute = useCallback((route) => {
-    if (route === "library")
+    if (route === "library" || route === "catalogue")
       return window.scrollTo({
-        top: navigation.current.libraryY,
+        top:
+          route === "library"
+            ? navigation.current.libraryY
+            : navigation.current.catalogueY,
         behavior: "instant",
       });
     let id = "";
@@ -274,7 +286,13 @@ export function AppProvider({ children }) {
           nav.transition = null;
           delete document.documentElement.dataset.transitioning;
           document
-            .getElementById(route === "netflix" ? "case-title" : "netflix-card")
+            .getElementById(
+              route === "netflix"
+                ? "case-title"
+                : route === "catalogue"
+                  ? "technology-library-title"
+                  : "netflix-card",
+            )
             ?.focus({ preventScroll: true });
         }
       }
@@ -299,8 +317,12 @@ export function AppProvider({ children }) {
         return window.scrollTo({ top: 0, behavior: scrollBehavior() });
       if (current.current.route === "library")
         navigation.current.libraryY = scrollY;
+      if (current.current.route === "catalogue")
+        navigation.current.catalogueY = scrollY;
       const url = new URL(location.href);
       url.hash = "";
+      url.searchParams.delete("view");
+      if (route === "catalogue") url.searchParams.set("view", "technologies");
       if (route === "netflix") url.searchParams.set("case", "netflix");
       else url.searchParams.delete("case");
       history.pushState({ atlasRoute: route }, "", url);
@@ -313,9 +335,11 @@ export function AppProvider({ children }) {
   useLayoutEffect(() => {
     document.documentElement.dataset.route = state.route;
     document.title =
-      state.route === "library"
-        ? "아키텍처 노트 · 서비스의 구조와 기술"
-        : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
+      state.route === "catalogue"
+        ? "기술 목록 · 아키텍처 노트"
+        : state.route === "library"
+          ? "아키텍처 노트 · 서비스의 구조와 기술"
+          : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
   }, [state.route]);
   useEffect(() => {
     history.scrollRestoration = "manual";
@@ -326,7 +350,11 @@ export function AppProvider({ children }) {
         !document.documentElement.dataset.transitioning
       ) {
         flushSync(() =>
-          patch({ note: noteFromURL(current.current.note), sheet: null, zoom: null }),
+          patch({
+            note: noteFromURL(current.current.note),
+            sheet: null,
+            zoom: null,
+          }),
         );
         scrollToRoute(route);
       } else presentRoute(route).catch(console.error);

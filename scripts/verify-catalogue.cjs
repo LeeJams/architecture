@@ -1,0 +1,106 @@
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
+(async () => {
+ const browser = await chromium.launch(require('./browser-options.cjs'));
+ const report = { checks: [], modalStates: 0, errors: [] };
+ try {
+  const page = await browser.newPage({ viewport: { width:1440, height:1000 }, reducedMotion:'reduce' });
+  page.on('pageerror', e => report.errors.push(e.message));
+  await page.goto(base + '/');
+  await page.locator('.topbar [data-catalogue-link]').click();
+  await page.waitForFunction(() => document.documentElement.dataset.route === 'catalogue' && !document.documentElement.dataset.transitioning);
+  assert.equal(new URL(page.url()).searchParams.get('view'), 'technologies');
+  assert.equal(await page.locator('#technology-library-title').evaluate(e=>document.activeElement===e), true);
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),11);
+  for (const [category, count] of [['storage',2],['delivery',3],['http',3],['os',3]]) {
+   await page.locator(`[data-technology-category="${category}"]`).click();
+   assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(), count);
+  }
+  await page.locator('[data-technology-category="all"]').click();
+  await page.locator('#technology-search').fill('엔진엑스');
+  assert.equal(await page.locator('#technology-catalogue-grid h3').textContent(),'NGINX');
+  await page.locator('#technology-search').fill('s3');
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),1);
+  assert.equal(await page.locator('#technology-catalogue-grid h3').textContent(),'Amazon S3');
+  assert((await page.locator('#technology-catalogue-grid').textContent()).includes('Amazon Web Services'));
+  const s3Image = await page.locator('#technology-catalogue-grid img').getAttribute('src');
+  await page.locator('#technology-catalogue-grid h3').scrollIntoViewIfNeeded();
+  const titleBox = await page.locator('#technology-catalogue-grid h3').boundingBox();
+  await page.mouse.click(titleBox.x + titleBox.width / 2, titleBox.y + titleBox.height / 2);
+  assert.equal(await page.locator('#technology-sheet-title').textContent(),'Amazon S3');
+  assert.equal(await page.locator('#technology-sheet-image').getAttribute('src'),s3Image);
+  assert((await page.locator('[data-technology-info="s3"]').textContent()).includes('ETag'));
+  assert((await page.locator('[data-technology-info="s3"]').textContent()).includes('강한 일관성'));
+  assert((await page.locator('[data-technology-info="s3"]').textContent()).includes('CompleteMultipartUpload'));
+  assert((await page.locator('[data-technology-info="s3"]').textContent()).includes('서명 URL'));
+  assert.equal(await page.locator('[data-info-view]').count(),0);
+  await page.locator('[data-info-jump="example"]').focus();await page.keyboard.press('Enter');
+  assert.equal(await page.evaluate(()=>document.activeElement.closest('[data-info-section]').dataset.infoSection),'example');
+  await page.locator('.technology-related button').first().click();
+  assert.equal(await page.locator('#technology-sheet-title').textContent(),'Amazon CloudFront');
+  assert.equal(await page.locator('#technology-sheet-title').evaluate(e=>document.activeElement===e),true);
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(()=>document.activeElement.dataset.openTechnologyInfo),'s3');
+  await page.locator('#technology-search').fill('없는 제품');
+  assert(await page.locator('.technology-empty').isVisible());
+  await page.getByRole('button',{name:'검색·카테고리 초기화'}).click();
+  report.checks.push('Separate route, four categories, search, empty state and keyboard focus work; S3 has its own exact product name, provider and icon.');
+  const keys=['s3','cloudfront','nginx','freebsd','caddy','apache','gcs','ubuntu','debian','fastly','cloudflare'];
+  for(const width of [320,390,768,1440,1920]){
+   await page.setViewportSize({width,height:1000});
+   for(const key of keys){
+    await page.locator(`#technology-catalogue-grid [data-open-technology-info="${key}"]`).click();
+    const info=page.locator(`[data-technology-info="${key}"]`);
+    assert.equal(await info.locator('.technology-info-flow li').count(),3);
+    assert((await info.locator('.technology-concepts > div').count())>=3);
+    assert((await info.locator('.technology-design-points li').count())>=3);
+    assert.equal(await info.locator('.technology-diagnostics > div').count(),2);
+    assert((await info.locator('.sheet-sources a').count())>=3);
+    const issues=await info.evaluate(e=>[...e.querySelectorAll('p,h3,h4,dt,dd,button,li')].filter(e=>!e.closest('pre')&&e.clientWidth>0&&e.scrollWidth>e.clientWidth+2).map(e=>e.textContent.slice(0,50)));
+    assert.deepEqual(issues,[],`${key} at ${width}`);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width);
+    await page.keyboard.press('Escape');report.modalStates++;
+   }
+  }
+  report.checks.push('All eleven profiles contain use cases, concepts, flow, example, design points, diagnostics and sources; 55 modal states fit 320–1920px.');
+  await page.setViewportSize({width:1440,height:1000});
+  await page.locator('.topbar-navigation a').first().click();
+  await page.locator('#netflix-card').click();
+  await page.waitForFunction(()=>!document.documentElement.dataset.transitioning);
+  assert.equal(await page.locator('.case-technology-grid [data-technology-card]').count(),2);
+  assert.equal(await page.locator('.case-technology-grid [data-technology-card="s3"]').count(),0);
+  await page.locator('[data-step="6"]').click();
+  await page.locator('.case-technology-grid [data-open-technology-info="nginx"]').click();
+  const common=await page.locator('[data-technology-info="nginx"]').textContent();
+  await page.locator('[data-info-view="case"]').click();
+  assert(await page.locator('#technology-sheet-content [data-technical-depth="nginx"]').isVisible());
+  await page.locator('[data-info-view="definition"]').click();
+  assert.equal(await page.locator('[data-technology-info="nginx"]').textContent(),common);
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('[data-step="6"]').getAttribute('aria-pressed'),'true');
+  await page.locator('#detail-badges [data-inspect-tech="nginx"]').click();
+  assert.equal(await page.locator('[data-info-view="case"]').getAttribute('aria-pressed'),'true');
+  await page.locator('[data-info-view="definition"]').click();
+  assert.equal(await page.locator('[data-technology-info="nginx"]').textContent(),common);
+  await page.keyboard.press('Escape');
+  await page.locator('#storage-implementations > summary').click();
+  await page.locator('[data-open-alternative="s3"]').click();
+  assert((await page.locator('[data-info-view="case"]').textContent()).includes('구현 예시'));
+  await page.locator('[data-info-view="definition"]').click();
+  assert(await page.locator('[data-technology-info="s3"]').isVisible());
+  await page.keyboard.press('Escape');
+  report.checks.push('Shared cards and modal content work in the case: generic product knowledge and case usage stay distinct, S3 is not invented as a Netflix dependency, and journey context survives.');
+  const offline=await browser.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'}), requests=[];
+  offline.on('pageerror',e=>report.errors.push(e.message));
+  await offline.route('**/*',route=>route.request().isNavigationRequest()?route.fulfill({contentType:'text/html',body:fs.readFileSync(path.resolve(__dirname,'../openconnect-visual-study.html'))}):(requests.push(route.request().url()),route.abort()));
+  await offline.context().setOffline(true);await offline.goto(base+'/offline.html?view=technologies');
+  await offline.locator('#technology-search').fill('S3');await offline.locator('[data-open-technology-info="s3"]').first().click();
+  assert(await offline.locator('[data-technology-info="s3"]').isVisible());assert.deepEqual(requests,[]);
+  report.checks.push('The catalogue, exact logos and shared product modal work in the standalone HTML with no runtime network requests.');
+  assert.deepEqual(report.errors,[]);
+  fs.mkdirSync(path.resolve(__dirname,'../reports'),{recursive:true});fs.writeFileSync(path.resolve(__dirname,'../reports/catalogue-validation.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+ }finally{await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1});

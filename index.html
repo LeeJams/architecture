@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#ffffff" />
   <link rel="icon" type="image/svg+xml" href="/assets/atlas-mark.svg" />
   <title>아키텍처 노트 · 서비스의 구조와 기술</title>
-  <script>document.documentElement.dataset.route = new URLSearchParams(location.search).get('case') === 'netflix' ? 'netflix' : 'library';</script>
+  <script>document.documentElement.dataset.route = new URLSearchParams(location.search).get('view') === 'technologies' ? 'catalogue' : new URLSearchParams(location.search).get('case') === 'netflix' ? 'netflix' : 'library';</script>
 </head>
 <body>
   <div id="root"></div>

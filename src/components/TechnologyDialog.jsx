@@ -1,4 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
+import { findTechnology } from "../data/technology-catalogue.js";
+import { TechnologyInfo, InformationSwitch } from "./TechnologyCatalogue.jsx";
 import { assets } from "../data/assets.js";
 import { technologyNotes } from "../data/technology-notes.js";
 import { technologyPublishers } from "../data/publishers.js";
@@ -93,7 +95,13 @@ export function TechnologyDialog() {
   );
   const scroll = useRef(null);
   useLayoutEffect(() => {
-    if (sheet) scroll.current.scrollTop = 0;
+    if (sheet) {
+      scroll.current.scrollTop = 0;
+      if (!ref.current.contains(document.activeElement))
+        ref.current
+          .querySelector("#technology-sheet-title")
+          ?.focus({ preventScroll: true });
+    }
   }, [sheet]);
   const tech =
     sheet?.kind === "technology"
@@ -103,8 +111,15 @@ export function TechnologyDialog() {
     sheet?.kind === "alternative"
       ? alternativeProducts.find((item) => item.id === sheet.key)
       : null;
+  const info = sheet?.kind === "catalogue" ? findTechnology(sheet.key) : null;
+  const contextProduct =
+    product ||
+    (sheet?.context?.kind === "alternative"
+      ? alternativeProducts.find((item) => item.id === sheet.context.key)
+      : null);
   const source = product ? replacementSources[product.category] : null;
-  const title = tech?.title || (product ? replacementTitle(product) : "");
+  const title =
+    info?.name || tech?.title || (product ? replacementTitle(product) : "");
   return (
     <dialog
       ref={ref}
@@ -128,6 +143,17 @@ export function TechnologyDialog() {
           </button>
         </div>
       </header>
+      <InformationSwitch
+        sheet={sheet || {}}
+        techKey={info?.id || tech?.key || product?.id}
+        label={
+          contextProduct?.category === "storage"
+            ? "이 설계의 구현 예시"
+            : contextProduct
+              ? "이 설계의 대체 역할"
+              : "이 사례에서의 사용"
+        }
+      />
       <div
         ref={scroll}
         className="technology-sheet-scroll"
@@ -142,27 +168,42 @@ export function TechnologyDialog() {
             <aside className="technology-sheet-identity">
               <img
                 id="technology-sheet-image"
-                src={tech?.image || assets[product.image]}
-                alt={`${title} 로고 또는 역할 아이콘`}
+                className={info ? "catalogue-product-image" : undefined}
+                src={
+                  info
+                    ? assets[info.image]
+                    : tech?.image || assets[product.image]
+                }
+                alt={info?.logoAlt || `${title} 로고 또는 역할 아이콘`}
               />
               <p id="technology-sheet-publisher">
-                {tech ? technologyPublishers[tech.key][0] : product.company}
+                {info
+                  ? info.provider
+                  : tech
+                    ? technologyPublishers[tech.key][0]
+                    : product.company}
               </p>
-              <h2 id="technology-sheet-title">{title}</h2>
+              <h2 id="technology-sheet-title" tabIndex="-1">
+                {title}
+              </h2>
               <p id="technology-sheet-type">
-                {tech
-                  ? technologyPublishers[tech.key][1]
-                  : `${product.organization} · ${product.type}`}
+                {info
+                  ? info.type
+                  : tech
+                    ? technologyPublishers[tech.key][1]
+                    : `${product.organization} · ${product.type}`}
               </p>
               <Text id="technology-sheet-role">
-                {tech?.intro || replacementSentence(product)}
+                {info?.summary || tech?.intro || replacementSentence(product)}
               </Text>
             </aside>
             <div
               className="technology-sheet-reading"
               id="technology-sheet-content"
             >
-              {tech ? (
+              {info ? (
+                <TechnologyInfo key={info.id} technologyId={info.id} />
+              ) : tech ? (
                 <TechnologyContent key={tech.key} tech={tech} />
               ) : (
                 <AlternativeContent product={product} />
@@ -172,7 +213,21 @@ export function TechnologyDialog() {
         )}
       </div>
       <footer className="technology-sheet-footer" id="technology-sheet-footer">
-        {tech ? (
+        {info ? (
+          <>
+            <button className="quiet-button" onClick={close}>
+              닫고 돌아가기
+            </button>
+            <a
+              className="quiet-button"
+              href={info.sources[0][1]}
+              target="_blank"
+              rel="noopener"
+            >
+              공식 문서 보기
+            </a>
+          </>
+        ) : tech ? (
           <>
             <button
               className="quiet-button action-jump"

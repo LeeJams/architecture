@@ -6,6 +6,7 @@ import {
   GlossaryGuide,
 } from "./components/Glossary.jsx";
 import { Library } from "./components/Library.jsx";
+import { TechnologyCatalogue } from "./components/TechnologyCatalogue.jsx";
 import { DesignPage } from "./components/DesignPage.jsx";
 import { TechnologyDialog } from "./components/TechnologyDialog.jsx";
 import { ZoomDialog } from "./components/References.jsx";
@@ -26,7 +27,13 @@ function Site() {
     <>
       <a
         className="skip-link"
-        href={state.route === "library" ? "#library-title" : "#case-title"}
+        href={
+          state.route === "catalogue"
+            ? "#technology-library-title"
+            : state.route === "library"
+              ? "#library-title"
+              : "#case-title"
+        }
       >
         본문으로 바로가기
       </a>
@@ -39,11 +46,29 @@ function Site() {
         >
           아키텍처 노트
         </a>
+        <nav className="topbar-navigation" aria-label="주요 메뉴">
+          <a
+            href="?"
+            onClick={(event) => followRoute(event, "library")}
+            aria-current={state.route !== "catalogue" ? "page" : undefined}
+          >
+            아키텍처
+          </a>
+          <a
+            href="?view=technologies"
+            data-catalogue-link
+            onClick={(event) => followRoute(event, "catalogue")}
+            aria-current={state.route === "catalogue" ? "page" : undefined}
+          >
+            기술 목록
+          </a>
+        </nav>
         <GlossarySwitch />
       </header>
       <main id="main-content">
         <GlossaryGuide />
         <Library />
+        <TechnologyCatalogue />
         <DesignPage />
       </main>
       <ZoomDialog />

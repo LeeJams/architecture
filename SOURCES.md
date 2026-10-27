@@ -144,3 +144,14 @@ HTTP(S)와 WebRTC는 통신 모델과 용도가 다르므로 단순한 대체재
 | [W3C switch pattern](https://github.com/w3c/aria-practices/blob/main/content/patterns/switch/switch-pattern.html) | 켜짐·꺼짐, 안정된 이름, 키보드와 `aria-checked` |
 
 비트레이트 예시의 `5 Mb/s × 4초 = 20 Mb = 2.5 MB`는 평균 비트레이트를 일정하게 놓고 오디오·통신 오버헤드를 제외한 계산입니다. 이 사이트의 M·G는 십진 단위이며, 1바이트는 8비트입니다. 운영체제·HTTP·TLS 등의 용어는 앞서 연결한 공식 문서의 일반 동작을 쉽게 풀었습니다.
+
+## 제품별 공용 기술 정보
+
+2026-10-28에 기술 목록을 추가했습니다. 제품 자체의 동작·사용 상황을 아키텍처 사례의 실제 사용 증거와 구분합니다. S3·Cloud Storage는 파일 보관 기술의 일반 설명이며 Netflix 원본 저장소의 사용 제품이라고 제시하지 않습니다.
+
+- S3는 [AWS CLI 공식 PutObject 예제](https://github.com/aws/aws-cli/blob/develop/awscli/examples/s3api/put-object.rst), [공식 Python SDK 객체 예제](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/s3/s3_basics/object_wrapper.py), [공식 서명 URL 예제](https://github.com/awsdocs/aws-doc-sdk-examples/blob/main/python/example_code/s3/s3_basics/presigned_url.py), [보존된 객체 구성 문서](https://github.com/awsdocs/amazon-s3-developer-guide/blob/master/doc_source/UsingObjects.md)를 확인했습니다. 현재 공식 사이트의 직접 접근이 제작 환경에서 제한되어, 현재 한도·기본값·요금은 확정하지 않습니다. 보존 문서의 과거 객체 크기 상한은 화면에 옮기지 않았습니다.
+- CloudFront는 [공식 보존 소개 문서](https://github.com/awsdocs/amazon-cloudfront-developer-guide/blob/main/doc_source/Introduction.md)를 확인했습니다. 현재 정책·제한·Range 조건은 각 상세의 현재 제품 문서에서 확인하도록 연결합니다.
+- NGINX·FreeBSD·Caddy·Apache·캐싱은 앞서 기록한 공식 원문과 조건 설명을 재사용합니다. 운영체제 배포판·Cloud Storage·Fastly의 제품 문서는 추가 읽기 자료로 연결합니다. 이 자료의 열거를 모든 최신 제품 동작의 재검증으로 주장하지 않습니다.
+- S3·CloudFront의 PNG는 AWS Icons for PlantUML의 기존 원본 파일을 그대로 사용합니다. 다른 제품은 기존 Simple Icons 브랜드 심벌을 사용합니다. 개별 기술의 상세에 이미지 출처를 표시하며 도식용 저장소 그림을 제품 로고로 쓰지 않습니다.
+
+S3의 [Introduction 보존 원문](https://github.com/awsdocs/amazon-s3-developer-guide/blob/master/doc_source/Introduction.md)과 [멀티파트 업로드 원문](https://github.com/awsdocs/amazon-s3-developer-guide/blob/master/doc_source/mpuoverview.md)도 확인해, 강한 읽기 일관성과 단일 키 원자성·여러 키의 일괄 변경 경계, 업로드 완료·조각 정리를 설명합니다. 영상 파일과 목록의 게시 순서는 이 조건을 적용한 설계 예시입니다.
