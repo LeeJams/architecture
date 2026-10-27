@@ -17,7 +17,15 @@ const assets = {
   cloudfront: "assets/tech/cloudfront.png",
   fastly: "assets/tech/fastly.svg",
   linux: "assets/tech/linux.svg",
-  caddy: "assets/tech/caddy.svg"
+  caddy: "assets/tech/caddy.svg",
+  cloudflare: "assets/tech/cloudflare.svg",
+  apache: "assets/tech/apache.svg",
+  ubuntu: "assets/tech/ubuntu.svg",
+  debian: "assets/tech/debian.svg",
+  gcp: "assets/tech/gcp.svg",
+  azure: "assets/tech/azure.svg",
+  s3: "assets/tech/s3.png",
+  gcs: "assets/tech/gcs.svg"
 };
 
 // Keep technology imagery local and warm the cache before an inspector switch.
@@ -27,7 +35,11 @@ const technologyImages = Object.values(assets).map(src => {
   return image;
 });
 
-const stackEntry = (image, title, text, key = "") => `<div class="stack-entry" data-stack-tech="${key}"><img src="${image}" alt="${title}"><div><h3>${title}</h3><p>${text}</p></div>${key ? `<button class="stack-open" data-inspect-tech="${key}" aria-label="${title} 기술 상세 보기">↗</button>` : ""}</div>`;
+const stackEntry = (image, title, text, key = "") => {
+  const technology = key || ({ [assets.aws]: "aws", [assets.nginx]: "nginx", [assets.freebsd]: "freebsd", [assets.https]: "https", [assets.player]: "abr", [assets.ocaIcon]: "oca", [assets.fill]: "fill" })[image];
+  if (technology) return `<button class="stack-entry" data-stack-tech="${technology}" data-inspect-tech="${technology}" aria-haspopup="dialog"><img src="${image}" alt=""><span class="stack-entry-copy"><strong>${title}</strong><span>${text}</span></span><span class="stack-entry-action">자세히 ↗</span></button>`;
+  return `<div class="stack-entry"><img src="${image}" alt=""><div><h3>${title}</h3><p>${text}</p></div></div>`;
+};
 const note = text => `<div class="detail-note">${text}</div>`;
 
 const components = {
@@ -36,7 +48,6 @@ const components = {
     alt: "영상 재생 화면을 보여주는 플레이어 도식", badges: ["TV · Mobile · Web", "Playback", "HTTP(S)"],
     role: `<h3>어디에 있나요?</h3><p>TV, 모바일 앱, 웹 등 사용자의 시청 기기 안에 있습니다.</p><h3>어떤 순서로 동작하나요?</h3><ul><li>클라우드에 재생에 필요한 정보를 요청합니다.</li><li>재생 정보와 전송에 사용할 OCA 후보를 받습니다.</li><li>전송 서버에서 영상·오디오 조각을 받아 재생합니다.</li></ul>${note("재생 정보와 실제 영상은 서로 다른 서버 경로로 도착합니다. 플레이어가 두 흐름을 연결합니다.")}`,
     stack: stackEntry(assets.player, "Player", "기기에서 영상 데이터를 받아 디코딩하고 재생합니다.") + stackEntry(assets.https, "HTTP(S)", "재생 정보와 영상 조각을 요청하고 응답받는 통신 기반입니다.") + note("화질 선택, DRM과 기기별 플레이어 구현은 이번 전달망 구성도의 범위 밖입니다."),
-    tradeoff: `<h3>직접 구현과 플레이어 SDK</h3><p>플레이어를 직접 구성하면 기기별 동작과 품질 제어를 세밀하게 조정할 수 있습니다. 그만큼 기기 호환성, 재생 오류와 보안 기능을 유지해야 합니다.</p><p>상용 SDK는 지원 기기와 기능을 활용할 수 있지만, 비용과 커스터마이징 범위를 확인해야 합니다.</p>${note("우리 사용자의 기기, DRM 요구사항, 재생 품질 목표가 선택의 출발점입니다.")}`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   playback: {
@@ -44,7 +55,6 @@ const components = {
     alt: "AWS 로고", brand: true, badges: ["AWS", "Playback APIs", "Control plane"],
     role: `<h3>어디에 있나요?</h3><p>클라우드의 재생 관련 서비스 영역입니다. 실제의 여러 기능을 하나의 노드로 묶었습니다.</p><h3>어떤 데이터를 다루나요?</h3><p>플레이어가 영상을 시작하는 데 필요한 정보와 전송 서버 후보를 연결하는 제어 경로를 담당합니다.</p><h3>왜 나누나요?</h3><p>재생 제어와 대용량 파일 전송은 요구하는 자원과 확장 방식이 다릅니다.</p>${note("이 그림의 API 노드는 영상 파일 전체를 중계하는 서버가 아닙니다.")}`,
     stack: stackEntry(assets.aws, "AWS / 클라우드", "재생 관련 제어 서비스를 실행하는 영역을 나타냅니다.", "aws") + stackEntry(assets.https, "API 요청·응답", "플레이어와 재생 정보를 주고받습니다.") + note("특정 AWS 서비스, 프로그래밍 언어나 데이터베이스를 이 노드만으로 확정하지 않습니다."),
-    tradeoff: `<h3>컴퓨팅 환경의 선택</h3><p>다른 클라우드나 자체 인프라에서도 같은 제어 역할을 구현할 수 있습니다. 서비스 범위, 지역 가용성, 운영 역량과 비용을 비교해야 합니다.</p><h3>무엇을 독립적으로 결정하나요?</h3><p>제어 서비스를 실행할 클라우드와 영상을 전달할 CDN은 서로 다른 선택입니다. 반드시 한 사업자로 묶을 필요는 없습니다.</p>`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   steering: {
@@ -52,7 +62,6 @@ const components = {
     alt: "조건에 맞는 전달 경로를 고르는 개념 도식", badges: ["Content availability", "Network conditions", "Server status"],
     role: `<h3>어떤 조건을 보나요?</h3><ul><li>요청한 영상 파일을 보유하고 있는가?</li><li>사용자의 네트워크에서 적합한 경로인가?</li><li>전송 서버가 사용할 수 있는 상태인가?</li></ul><h3>왜 단순한 거리 비교가 아닌가요?</h3><p>지리적으로 가까워도 파일이 없거나 네트워크 조건이 맞지 않으면 적합한 전송 서버가 아닐 수 있습니다.</p>${note("서버 선택은 영상을 보내는 동작과 구분합니다. 여기서는 기능을 요약한 것이며 실제 내부 서비스 배치를 뜻하지 않습니다.")}`,
     stack: stackEntry(assets.ocaIcon, "OCA 상태와 콘텐츠 보유 정보", "사용 가능한 파일과 서버 상태가 선택에 영향을 줍니다.") + stackEntry(assets.storage, "전송 후보 선택", "콘텐츠와 네트워크 조건을 고려해 전송 후보를 결정합니다.") + note("세부 라우팅 알고리즘이나 내부 API는 이 시안에서 구현 사실로 단정하지 않습니다."),
-    tradeoff: `<h3>직접 선택 정책을 운영할까?</h3><p>자체 전달망은 서버와 콘텐츠 배치를 함께 조정할 수 있습니다. 이를 위한 상태 수집, 경로 이해와 운영 체계가 필요합니다.</p><h3>관리형 CDN의 선택 기능</h3><p>CDN 사업자의 거점 선택과 라우팅을 활용할 수도 있습니다. 직접 통제할 수 있는 범위와 관측 가능한 정보는 제품과 계약에 따라 달라집니다.</p>`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   oca: {
@@ -60,7 +69,6 @@ const components = {
     alt: "디스크와 네트워크 전송 기능을 갖춘 OCA 서버 설명 그림", badges: ["OCA", "FreeBSD", "NGINX", "HTTP(S)"],
     role: `<h3>어디에 있나요?</h3><p>ISP 네트워크 내부 또는 피어링 거점에 배치되는 영상 전송 서버입니다.</p><h3>무엇을, 어떻게 보내나요?</h3><p>미리 준비한 영상 파일을 저장하고, 플레이어의 요청에 영상·오디오 데이터를 직접 응답합니다.</p><h3>왜 이 위치에 두나요?</h3><p>사용자와 콘텐츠 사이의 네트워크 경로를 줄이고 전달 부하를 여러 거점으로 나눌 수 있습니다.</p>${note("OCA는 장비와 소프트웨어가 결합한 전송 서버입니다. FreeBSD나 NGINX 하나만 도입하는 것과는 운영 범위가 다릅니다.")}`,
     stack: stackEntry(assets.storage, "디스크 / 캐시된 파일", "미리 배치한 영상 파일을 읽을 준비를 합니다.") + stackEntry(assets.nginx, "NGINX / HTTP 서버", "HTTP 요청을 처리하고 영상 파일 데이터를 응답합니다.", "nginx") + stackEntry(assets.freebsd, "FreeBSD / 운영체제", "파일 읽기와 네트워크 I/O의 기반을 제공합니다.", "freebsd") + stackEntry(assets.https, "HTTP(S) / 전송", "플레이어가 영상 조각을 요청하고 전달받습니다.", "https"),
-    tradeoff: `<h3>대안: 관리형 CDN의 전송 거점</h3>${stackEntry(assets.cloudfront, "Amazon CloudFront", "사업자의 글로벌 전달망과 캐시 정책을 활용합니다.")}${stackEntry(assets.fastly, "Fastly", "사업자의 CDN과 엣지 기능을 활용하는 선택지입니다.")}<h3 style="margin-top:17px">무엇이 달라지나요?</h3><p>장비, 거점과 전달망 운영을 누가 맡는지 달라집니다. 직접 제어할 범위, 비용 구조와 운영 책임을 함께 비교해야 합니다.</p>${note("OCA를 다른 CDN에 그대로 꽂아 바꾸는 관계는 아닙니다. 같은 전달 역할을 누가, 어떤 방식으로 수행할지 비교합니다.")}<p style="margin-top:14px"><a href="#alternatives">전체 비교표에서 판단 기준 보기 ↗</a></p>`,
     source: ["Open Connect Appliances", "https://openconnect.netflix.com/en/appliances/"]
   },
   origin: {
@@ -68,7 +76,6 @@ const components = {
     alt: "인코딩된 영상 파일을 보관하는 저장소 개념 그림", badges: ["Encoded files", "Video · Audio", "Multiple renditions"],
     role: `<h3>무엇을 저장하나요?</h3><p>기기와 네트워크 조건에 맞춰 전달할 수 있도록 준비한 영상·오디오 파일입니다.</p><h3>왜 준비가 필요한가요?</h3><p>한 개의 원본 영상을 그대로 모든 기기에 보내는 대신, 재생에 사용할 수 있는 여러 표현을 준비합니다.</p><h3>전달망과 어떻게 연결되나요?</h3><p>이 파일들이 콘텐츠 배치 체계를 통해 OCA로 전달됩니다.</p>${note("이 노드는 저장 역할을 나타냅니다. 특정 저장소 제품이나 전체 인코딩 파이프라인을 단정하지 않습니다.")}`,
     stack: stackEntry(assets.storage, "영상·오디오 파일", "전송과 재생에 사용할 인코딩된 파일을 준비합니다.") + stackEntry(assets.storage, "원본 저장 역할", "전송 거점에 배치할 콘텐츠를 보관합니다.") + note("코덱, 인코딩, DRM과 패키징의 세부 선택은 별도의 설계 주제로 확장할 수 있습니다."),
-    tradeoff: `<h3>저장소 제품의 선택</h3><p>오브젝트 스토리지나 파일 스토리지를 검토할 수 있습니다. 처리량, 내구성, 복제, 원본 접근 비용과 전달망 연동을 비교합니다.</p><h3>확인할 질문</h3><p>원본에서 거점으로 파일을 얼마나 자주 옮기는가? 동시 접근과 지역 간 복제 비용을 감당할 수 있는가?</p>`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   fill: {
@@ -76,7 +83,6 @@ const components = {
     alt: "저장된 콘텐츠를 전달망으로 배치하는 개념 그림", badges: ["Content placement", "Pre-positioning", "Fill"],
     role: `<h3>언제 하는 일인가요?</h3><p>사용자가 영상을 재생하는 경로와 구분되는 콘텐츠 준비 과정입니다.</p><h3>어떤 문제를 푸나요?</h3><p>시청 시점에 필요한 영상 파일이 전달 거점에 준비되어 있도록 합니다. 파일 보유와 저장 용량을 함께 관리해야 합니다.</p><h3>그림에서 생략한 부분</h3><p>실제 배치 체계에는 여러 서버와 전송 경로가 있을 수 있습니다. 한 노드와 점선으로 역할을 요약했습니다.</p>`,
     stack: stackEntry(assets.storage, "콘텐츠 배치 정책", "어떤 파일을 어느 거점에 둘지 결정하는 역할입니다.", "fill") + stackEntry(assets.ocaIcon, "OCA 저장 용량", "전송 거점의 파일 보유와 저장 공간을 관리합니다.") + note("‘콘텐츠 배치’는 기능 이름입니다. 실제 내부의 단일 제품이나 서비스 이름으로 제시한 것은 아닙니다."),
-    tradeoff: `<h3>사전 배치</h3><p>시청 전에 파일을 준비할 수 있습니다. 수요 예측, 배치 트래픽과 사용되지 않는 파일의 저장 비용을 고려해야 합니다.</p><h3>요청 시 원본에서 가져오기</h3><p>처음 요청된 콘텐츠를 원본에서 가져오는 캐시 방식은 사전 배치 부담을 줄입니다. 첫 요청 지연과 원본 부하, 캐시 미스가 증가할 때의 대응을 검토해야 합니다.</p>${note("두 방식은 제품과 콘텐츠 특성에 따라 결합할 수 있습니다. 단순한 우열 관계가 아닙니다.")}`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   fallback: {
@@ -84,7 +90,6 @@ const components = {
     alt: "다른 전송 거점의 OCA 서버를 설명하는 그림", badges: ["Alternate candidate", "Availability", "Retry"],
     role: `<h3>어떤 상황을 생각하나요?</h3><p>선택한 서버에서 전송을 계속할 수 없을 때, 사용할 수 있는 다른 전송 후보가 필요합니다.</p><h3>시안에서 보여주는 흐름</h3><p>‘OCA 장애 흐름’을 켜면 다른 후보 OCA로 요청을 재시도하는 경로를 강조합니다.</p>${note("장애 감지 시간, 재시도 순서와 무중단 전환을 재현한 시뮬레이션은 아닙니다. 여러 후보를 고려하는 설계 개념을 보여줍니다.")}`,
     stack: stackEntry(assets.ocaIcon, "다른 전송 후보", "요청할 수 있는 대체 서버가 필요합니다.") + stackEntry(assets.player, "플레이어의 오류 처리", "전송 오류를 처리하고 재생을 이어가기 위한 기능이 필요합니다.") + note("정확한 후보 선택과 재시도 방식은 원문과 기기 구현의 확인이 필요한 범위입니다."),
-    tradeoff: `<h3>가용성과 추가 용량</h3><p>복수 거점과 후보는 장애에 대비하는 데 도움이 됩니다. 동시에 여유 용량, 파일 복제와 상태 관측의 비용이 생깁니다.</p><h3>멀티 CDN도 같은 선택인가요?</h3><p>여러 CDN 사업자를 사용하는 설계는 더 큰 별도 주제입니다. 공급자 선택, 관측, 비용과 재생 동작을 추가로 설계해야 합니다.</p>`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   }
 };
@@ -95,7 +100,6 @@ const technologyDetails = {
     badges: ["Cloud platform", "Playback services", "Control plane"],
     role: `<h3>구성도의 어느 부분인가요?</h3><p>상단의 클라우드 재생 서비스 영역입니다. 재생에 필요한 정보를 연결하는 제어 역할을 나타냅니다.</p><h3>영상 전달과 어떻게 다른가요?</h3><p>OCA가 영상 바이트를 직접 전달하는 동안, 클라우드의 재생 관련 서비스는 플레이어가 사용할 정보를 제공합니다.</p>${note("AWS 로고가 있다고 특정 서비스나 데이터베이스까지 알 수 있는 것은 아닙니다. 이 사례에서는 검증되지 않은 제품 목록을 추가하지 않습니다.")}`,
     stack: stackEntry(assets.aws, "클라우드 실행 환경", "재생 관련 서비스를 실행하는 기반입니다.") + stackEntry(assets.player, "재생 정보 요청·응답", "플레이어와 필요한 제어 정보를 연결합니다.") + note("컴퓨팅, 데이터 저장, 관측의 구체적인 제품 선택은 각 서비스의 원문이 필요한 범위입니다."),
-    tradeoff: `<h3>대안: 다른 클라우드·자체 인프라</h3><p>GCP, Azure 또는 자체 인프라에서도 제어 서비스를 구현할 수 있습니다.</p><h3>트레이드오프</h3><ul><li>관리형 서비스의 범위와 팀이 운영할 책임</li><li>리전과 네트워크·규제 요구사항</li><li>장기 계약, 데이터 이동과 운영 비용</li><li>팀의 도구·배포·장애 대응 경험</li></ul>${note("어떤 클라우드를 선택할지와 어떤 CDN을 사용할지는 별도로 평가할 수 있습니다.")}`,
     source: ["Netflix Open Connect", "https://openconnect.netflix.com/en/"]
   },
   freebsd: {
@@ -103,7 +107,6 @@ const technologyDetails = {
     badges: ["Operating system", "Storage I/O", "Network I/O"],
     role: `<h3>어디에 쓰이나요?</h3><p>공개된 OCA 소프트웨어 설명에 등장하는 운영체제입니다. HTTP 서버 아래에서 파일과 네트워크 자원을 다룹니다.</p><h3>무슨 일을 하나요?</h3><p>디스크에서 데이터를 읽고 네트워크로 보내는 데 필요한 기반을 제공합니다. 드라이버, 메모리, 연결과 I/O 동작이 이 계층에 속합니다.</p>${note("HTTP 요청에 어떤 파일을 응답할지는 웹 서버의 역할입니다. FreeBSD와 NGINX는 서로 다른 계층에서 함께 동작합니다.")}`,
     stack: stackEntry(assets.storage, "스토리지 경로", "파일 읽기와 저장장치 접근의 기반을 제공합니다.") + stackEntry(assets.https, "네트워크 경로", "데이터를 네트워크로 전달하는 운영체제 기능을 제공합니다.") + stackEntry(assets.nginx, "상위 계층: NGINX", "운영체제 위에서 HTTP 요청과 파일 응답을 담당합니다."),
-    tradeoff: `${stackEntry(assets.linux, "대안: Linux", "같은 파일 전송 역할을 Linux 위에서도 구현할 수 있습니다.")}<h3 style="margin-top:17px">무엇을 비교하나요?</h3><ul><li>사용할 NIC·저장장치의 드라이버와 지원 수준</li><li>같은 하드웨어와 요청 패턴에서의 CPU·I/O 성능</li><li>튜닝·업그레이드·장애 분석 도구와 팀 경험</li><li>보안 업데이트와 장기 유지보수 방식</li></ul>${note("운영체제 이름만으로 성능의 우열을 정할 수 없습니다. 실제 하드웨어와 전송 부하에서 비교해야 합니다.")}`,
     source: ["FreeBSD Handbook", "https://docs.freebsd.org/en/books/handbook/"]
   },
   nginx: {
@@ -111,7 +114,6 @@ const technologyDetails = {
     badges: ["HTTP server", "File delivery", "Inside OCA"],
     role: `<h3>어디에 쓰이나요?</h3><p>공개된 OCA 소프트웨어 구성의 HTTP 서버입니다. 플레이어의 요청을 받아 영상 파일 데이터를 응답하는 역할을 합니다.</p><h3>전체 CDN과 무엇이 다른가요?</h3><p>NGINX는 개별 서버의 HTTP 처리 계층입니다. 전달망에는 서버 배치, 콘텐츠 배치, 거점 선택과 운영 체계가 함께 필요합니다.</p>${note("‘NGINX를 설치했다’는 것만으로 Open Connect와 같은 전달망이 만들어지는 것은 아닙니다.")}`,
     stack: stackEntry(assets.player, "입력: 플레이어의 요청", "전달받을 영상·오디오 데이터에 대한 HTTP 요청입니다.") + stackEntry(assets.storage, "처리: 준비된 파일 읽기", "응답할 파일의 데이터를 읽습니다.") + stackEntry(assets.https, "출력: 네트워크 응답", "운영체제의 I/O 기반을 사용해 데이터를 보냅니다."),
-    tradeoff: `${stackEntry(assets.caddy, "대안: Caddy", "다른 HTTP 서버로 파일 응답 역할을 구현하는 선택지입니다.")}<h3 style="margin-top:17px">다른 후보와 판단 기준</h3><p>Apache HTTP Server나 전용 파일 서버도 검토할 수 있습니다.</p><ul><li>동시 연결과 파일 응답 패턴에서의 성능</li><li>TLS·인증서·프로토콜·캐시 기능</li><li>관측·설정·업그레이드·운영 경험</li><li>모듈과 필요한 기능의 지원 범위</li></ul>${note("자동 인증서 관리 같은 운영 편의와 대규모 영상 전송 성능은 별도의 검증 항목입니다. 제품을 바꾸려면 기능과 부하 조건을 함께 확인해야 합니다.")}`,
     source: ["NGINX Documentation", "https://nginx.org/en/docs/"]
   },
   https: {
@@ -119,7 +121,6 @@ const technologyDetails = {
     badges: ["HTTP", "HTTPS / TLS", "Request · Response"],
     role: `<h3>어디에 쓰이나요?</h3><p>플레이어가 재생 정보와 영상 조각을 요청하고 응답받는 통신 기반입니다.</p><h3>HTTPS의 역할은 무엇인가요?</h3><p>HTTP 통신에 TLS 보호를 적용해 전송 내용을 보호합니다. 연결선의 프로토콜 표시는 ‘어떤 방식으로 데이터가 오가는지’를 뜻합니다.</p>${note("HTTP(S)는 프로토콜이고, NGINX는 그 통신을 처리하는 서버 소프트웨어입니다. 같은 수준의 대체 제품이 아닙니다.")}`,
     stack: stackEntry(assets.player, "요청", "플레이어가 필요한 영상 데이터나 재생 정보를 요청합니다.") + stackEntry(assets.https, "TLS 보호", "HTTPS 연결에서 전송 내용을 보호합니다.") + stackEntry(assets.ocaIcon, "응답", "전송 서버가 요청한 영상 데이터를 돌려보냅니다."),
-    tradeoff: `<h3>프로토콜은 요구사항부터 비교합니다.</h3><p>HTTP 버전과 전송 방식은 연결·기기 지원·네트워크 조건을 바탕으로 검토합니다. 이 그림은 Netflix의 특정 HTTP 버전을 확정하지 않습니다.</p><h3>WebRTC도 영상 전송 아닌가요?</h3><p>WebRTC는 실시간 상호작용과 낮은 지연이 중요한 상황에서 검토합니다. 캐시 가능한 주문형 영상 전달과는 모델과 운영 요구가 달라 단순한 대체재로 보기 어렵습니다.</p>${note("‘영상을 보낸다’는 공통점에 더해, 실시간성·시청 규모·캐시·기기 지원을 비교해야 합니다.")}`,
     source: ["HTTP 개요 · MDN", "https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview"]
   }
 };
@@ -157,7 +158,7 @@ function renderDetail() {
   image.classList.toggle("brand-only", Boolean(component.brand));
   $("#detail-badges").innerHTML = renderTechnologyBadges(component.badges);
   const noteKey = selectedTechnology || ({ player: "abr", playback: "aws", steering: "steering", origin: "fill", fallback: "steering" }[selectedNode] || selectedNode);
-  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + `<a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">동작 원리·예제·선택 기준 자세히 읽기 ↗</a>`;
+  $("#detail-content").innerHTML = (renderFocusedDescription() || component[selectedPanel]) + `<button class="detail-sheet-open" data-open-tech-sheet="${noteKey}" aria-haspopup="dialog">원리·동작·예제를 크게 보기 ↗</button><a class="detail-read-link" href="#tech-${noteKey}" data-read-tech="${noteKey}">본문에서 더 읽기 ↗</a>`;
   $("#detail-content").scrollTop = 0;
   $("#detail-content").setAttribute("aria-labelledby", `${selectedPanel}-tab`);
   $$('[data-panel]').forEach(button => {
@@ -177,8 +178,9 @@ function centerNodeInDiagram(id) {
   viewport.scrollTo({ left: viewport.scrollLeft + rect.left - parent.left - (viewport.clientWidth - rect.width) / 2, behavior: "auto" });
 }
 
-function selectNode(id, { panel = selectedPanel, reveal = true, technology = null } = {}) {
+function selectNode(id, { panel = selectedPanel, reveal = true, technology = null, preserveStep = false } = {}) {
   if (!components[id]) return;
+  if (!preserveStep && selectedStep >= 0) setStep(-1);
   selectedNode = id;
   selectedPanel = panel;
   selectedTechnology = technology;
@@ -194,11 +196,11 @@ function selectNode(id, { panel = selectedPanel, reveal = true, technology = nul
 function setStep(index) {
   selectedStep = index;
   $$('[data-step]').forEach(button => button.setAttribute("aria-pressed", String(Number(button.dataset.step) === index)));
-  $$('[data-flow]').forEach(group => group.classList.toggle("dimmed", index >= 0 && Number(group.dataset.flow) !== index));
-  const related = [["origin", "fill", "oca"], ["player", "playback"], ["player", "playback", "steering"], ["player", failover ? "fallback" : "oca"]][index] || [];
+  $$('[data-flow]').forEach(group => group.classList.toggle("dimmed", index >= 0 && !group.dataset.flow.split(" ").map(Number).includes(index)));
+  if (failover && index === 8) $("#segment-request").classList.add("dimmed");
+  const related = failover && index === 8 ? ["player", "fallback"] : (playbackJourney[index]?.nodes || []);
   $$(".node").forEach(node => node.classList.toggle("flow-related", related.includes(node.dataset.node)));
-  const titles = ["00 · 시청 전에, 콘텐츠를 전달 거점으로.", "01 · 재생 요청은 클라우드로.", "02 · 보유 파일과 전송 조건으로 OCA 선택.", failover ? "03 · 다른 전송 후보로 요청을 재시도." : "03 · 영상 데이터는 OCA에서 플레이어로."];
-  $("#canvas-title").textContent = index < 0 ? "제어 경로와 영상 경로를 나눠 읽어보세요." : titles[index];
+  $("#canvas-title").textContent = index < 0 ? "제어 경로와 영상 경로를 나눠 읽어보세요." : `${String(index + 1).padStart(2, "0")} · ${failover && index === 8 ? "다른 후보로 요청 재시도" : playbackJourney[index].title}`;
 }
 
 function stopPlayback() {
@@ -217,7 +219,7 @@ function setFailover(value) {
   $("#oca-status").setAttribute("fill", value ? "#d16d59" : "#74a17c");
   $("#oca-health-label").textContent = value ? "응답 실패" : "OCA";
   $("#scenario-description").textContent = value ? "장애 개념도 · 다른 후보로 재시도하는 경로이며 실제 복구 시간을 재현하지 않습니다." : "공개된 설계를 바탕으로 한 개념도 · 실제 물리 배치와 다를 수 있습니다.";
-  if (selectedStep === 3) setStep(3);
+  if (selectedStep >= 0) setStep(selectedStep);
 }
 
 function showToast(message) {
@@ -288,6 +290,7 @@ async function presentRoute(route, { animate = true, focus = true } = {}) {
   stopPlayback();
   $("#toast").hidden = true;
   if (dialog.open) dialog.close();
+  closeTechnologySheet();
   document.documentElement.dataset.transitioning = "true";
   const update = async () => {
     if (sequence !== navigationSequence) return;
@@ -351,7 +354,7 @@ function wireKeyboardTabs(selector) {
   }));
 }
 
-$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd><dt>비교할 대안과 판단 기준</dt><dd>${tech.alternative}</dd></dl><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
+$("#tech-grid").innerHTML = technologies.map(tech => `<article class="tech-card"><div class="tech-card-header"><div class="tech-card-image${tech.wide ? " wide" : ""}"><img src="${tech.image}" alt="${tech.alt}"></div><div><h3>${tech.title}</h3><span class="category">${tech.category}</span></div></div><p>${tech.description}</p><dl><dt>이 구조에서 얻는 것</dt><dd>${tech.why}</dd></dl><button class="product-open" data-show-alternatives="${alternativeCategoryFor(tech.key)}">회사·제품별 대안 보기 ↓</button><a class="tech-card-read" href="#tech-${tech.key}" data-read-tech="${tech.key}">동작 원리와 예제 읽기 ↗</a><button data-card-tech="${tech.key}">구성도에서 위치와 역할 보기 ↗</button></article>`).join("");
 
 $$(".node").forEach(node => {
   node.addEventListener("click", () => { stopPlayback(); selectNode(node.dataset.node); });
@@ -366,10 +369,7 @@ $$('[data-panel]').forEach(button => button.addEventListener("click", () => {
   renderDetail();
 }));
 $$('[data-step]').forEach(button => button.addEventListener("click", () => {
-  stopPlayback();
-  const index = Number(button.dataset.step);
-  setStep(index);
-  selectNode(["fill", "playback", "steering", failover ? "fallback" : "oca"][index], { panel: "role" });
+  selectJourneyStep(Number(button.dataset.step));
 }));
 $$('[data-tech]').forEach(button => button.addEventListener("click", () => selectTech(button.dataset.tech)));
 $$('[data-card-tech]').forEach(button => button.addEventListener("click", () => selectTech(button.dataset.cardTech, true)));
@@ -384,6 +384,7 @@ $$('[data-home]').forEach(link => link.addEventListener("click", event => {
   navigate("library");
 }));
 window.addEventListener("popstate", () => {
+  closeTechnologySheet();
   const route = routeFromURL();
   if (route === currentRoute && !document.documentElement.dataset.transitioning) scrollToRoute(route);
   else presentRoute(route).catch(error => console.error("History navigation failed", error));
@@ -395,8 +396,8 @@ $("#play-button").addEventListener("click", () => {
   let index = 0;
   const advance = () => {
     setStep(index);
-    selectNode(["fill", "playback", "steering", "oca"][index], { panel: "role" });
-    index = (index + 1) % 4;
+    selectNode(playbackJourney[index].node, { panel: "role", preserveStep: true });
+    index = (index + 1) % playbackJourney.length;
   };
   advance();
   $("#diagram").classList.add("running");
@@ -411,18 +412,14 @@ $("#reset-button").addEventListener("click", () => {
 $("#failover-button").addEventListener("click", () => {
   stopPlayback();
   setFailover(!failover);
-  setStep(failover ? 3 : -1);
-  selectNode(failover ? "fallback" : "oca", { panel: "role" });
+  setStep(failover ? 8 : -1);
+  selectNode(failover ? "fallback" : "oca", { panel: "role", preserveStep: true });
 });
-$("#compare-button").addEventListener("click", () => {
+$("#alternatives-button").addEventListener("click", () => {
   stopPlayback();
-  setFailover(false);
-  setStep(-1);
-  selectedPanel = "tradeoff";
-  renderDetail();
-  if (window.innerWidth < 1440) $(".inspector").scrollIntoView({ behavior: "smooth", block: "start" });
+  showAlternatives(alternativeCategoryFor(selectedTechnology || selectedNode));
 });
-$("#go-to-alternatives").addEventListener("click", () => $("#alternatives").scrollIntoView({ behavior: "smooth", block: "start" }));
+$("#go-to-alternatives").addEventListener("click", () => showAlternatives("delivery"));
 
 const dialog = $("#zoom-dialog");
 $$(".zoomable").forEach(image => {
@@ -453,6 +450,8 @@ renderDetail();
 setStep(-1);
 initializeTechnologyReader();
 initializeArchitectureInsights();
+initializeAlternativeCatalogue();
+initializeTechnologySheet();
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 applyRoute(routeFromURL());

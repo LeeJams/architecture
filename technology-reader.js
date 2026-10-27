@@ -80,9 +80,7 @@ function initializeTechnologyReader() {
         <dl class="mechanism-explanations">${tech.mechanics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl>
       </section>
       ${renderNoteExample(tech.example)}
-      <section class="note-section"><p class="note-section-label">04 / CHOOSING AN ALTERNATIVE</p><h4>대안에서 얻는 것과 감당할 것</h4><p class="note-table-hint">좁은 화면에서는 표를 좌우로 밀어 읽을 수 있습니다.</p>
-        <div class="table-scroll note-table-scroll" role="region" tabindex="0" aria-label="${tech.title} 대안 비교표"><table class="note-comparison"><caption>${tech.title}의 대안별 선택 조건</caption><thead><tr><th scope="col">선택지</th><th scope="col">얻는 것</th><th scope="col">비용과 제약</th><th scope="col">선택할 조건</th></tr></thead><tbody>${tech.alternatives.map(([title, gain, cost, condition]) => `<tr><th scope="row">${title}</th><td>${gain}</td><td>${cost}</td><td>${condition}</td></tr>`).join("")}</tbody></table></div>
-      </section>
+      <section class="note-section"><p class="note-section-label">04 / ALTERNATIVE TECHNOLOGIES</p><h4>회사·제품별 기술을 이어서 살펴보기</h4><p>본문 아래의 대안 기술에서 제공 조직, 맡는 역할, 동작 방식과 활용 상황을 확인할 수 있습니다.</p><button class="quiet-button" data-show-alternatives="${alternativeCategoryFor(tech.key)}">관련 대안 기술 보기 ↓</button></section>
       <section class="note-section"><p class="note-section-label">05 / WHAT TO MEASURE</p><h4>병목을 찾고 선택을 검증하는 지표</h4><dl class="note-metrics">${tech.metrics.map(([title, text]) => `<div><dt>${title}</dt><dd>${text}</dd></div>`).join("")}</dl></section>
       <div class="note-takeaway"><strong>설계에 가져갈 판단</strong><p>${tech.takeaway}</p><button class="quiet-button" data-note-location="${tech.key}">구성도에서 이 역할 보기 ↑</button></div>
       <footer class="note-sources"><h4>근거와 더 읽을 자료</h4><ul>${tech.sources.map(([title, url, scope]) => `<li><a href="${url}" target="_blank" rel="noopener">${title} ↗</a><span>${scope}</span></li>`).join("")}</ul></footer>

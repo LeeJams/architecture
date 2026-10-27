@@ -17,7 +17,7 @@ async function inspectLayout(page) {
     if (document.documentElement.scrollWidth > window.innerWidth + 1) {
       issues.push({ kind: 'page-horizontal-overflow', actual: document.documentElement.scrollWidth, expected: window.innerWidth });
     }
-    const intentionalScroll = '.diagram-viewport, .table-scroll, .zoom-dialog, .note-code pre';
+    const intentionalScroll = '.diagram-viewport, .table-scroll, .zoom-dialog, .note-code pre, .flow-sample pre';
     for (const element of document.querySelectorAll('button, p, h1, h2, h3, h4, dt, dd, nav, label, input, pre, .badge, .tech-card, .vendor-card, .layer, .technology-note, .mechanism-flow')) {
       if (!visible(element) || element.closest(intentionalScroll)) continue;
       const rect = element.getBoundingClientRect();
@@ -81,7 +81,7 @@ async function inspectLayout(page) {
       await page.setViewportSize({ width, height: 1000 });
       await page.evaluate(() => { document.querySelector('#reference-details').open = false; document.querySelector('#reset-button').click(); });
       for (const node of ['player', 'playback', 'steering', 'oca', 'origin', 'fill', 'fallback']) {
-        for (const panel of ['role', 'stack', 'tradeoff']) {
+        for (const panel of ['role', 'stack']) {
           await page.evaluate(({ node, panel }) => {
             document.querySelector(`[data-node="${node}"]`).dispatchEvent(new MouseEvent('click', { bubbles: true }));
             document.querySelector(`[data-panel="${panel}"]`).click();
@@ -92,7 +92,7 @@ async function inspectLayout(page) {
         }
       }
       for (const tech of ['aws', 'freebsd', 'nginx', 'https']) {
-        for (const panel of ['role', 'stack', 'tradeoff']) {
+        for (const panel of ['role', 'stack']) {
           await page.evaluate(({ tech, panel }) => {
             document.querySelector(`[data-tech="${tech}"]`).click();
             document.querySelector(`[data-panel="${panel}"]`).click();
@@ -113,14 +113,25 @@ async function inspectLayout(page) {
       report.states.push({ width, view: 'technology-overview', issueCount: overviewIssues.length });
       report.issues.push(...overviewIssues.map(issue => ({ width, view: 'technology-overview', ...issue })));
       await page.locator('.technology-overview').evaluate(element => { element.open = false; });
-      await page.evaluate(() => {
-        document.querySelector('[data-tech="oca"]').click();
-        document.querySelector('[data-panel="tradeoff"]').click();
-        document.querySelector('[data-compare-option="fastly"]').click();
-      });
-      const alternativeIssues = await inspectLayout(page);
-      report.states.push({ width, view: 'inspector-alternative', alternative: 'fastly', issueCount: alternativeIssues.length });
-      report.issues.push(...alternativeIssues.map(issue => ({ width, view: 'inspector-alternative', ...issue })));
+      for (const category of ['delivery', 'http', 'os', 'cloud', 'storage', 'all']) {
+        await page.evaluate(category => document.querySelector(`[data-alternative-category="${category}"]`).click(), category);
+        const issues = await inspectLayout(page);
+        report.states.push({ width, view: 'alternative-products', category, issueCount: issues.length });
+        report.issues.push(...issues.map(issue => ({ width, category, ...issue })));
+      }
+      for (let step = 0; step < 9; step++) {
+        await page.evaluate(step => document.querySelector(`[data-step="${step}"]`).click(), step);
+        const issues = await inspectLayout(page);
+        report.states.push({ width, view: 'journey', step, issueCount: issues.length });
+        report.issues.push(...issues.map(issue => ({ width, step, ...issue })));
+      }
+      for (const kind of ['technology', 'product']) {
+        await page.evaluate(kind => kind === 'technology' ? openTechnologySheet('nginx') : openAlternativeSheet('cloudfront'), kind);
+        const issues = await inspectLayout(page);
+        report.states.push({ width, view: 'technology-dialog', kind, issueCount: issues.length });
+        report.issues.push(...issues.map(issue => ({ width, kind, ...issue })));
+        await page.evaluate(() => closeTechnologySheet());
+      }
       for (const layer of ['storage', 'nginx', 'freebsd']) {
         await page.evaluate(layer => document.querySelector(`[data-anatomy-tech="${layer}"]`).click(), layer);
         const layerIssues = await inspectLayout(page);
@@ -155,19 +166,20 @@ async function inspectLayout(page) {
     await page.locator('#reset-button').click();
     for (const id of ['player', 'playback', 'steering', 'oca', 'origin', 'fill', 'fallback']) {
       await page.locator(`[data-node="${id}"]`).click();
-      for (const panel of ['role', 'stack', 'tradeoff']) {
+      for (const panel of ['role', 'stack']) {
         await page.locator(`[data-panel="${panel}"]`).click();
         assert((await page.locator('#detail-content').textContent()).trim().length > 50);
         report.issues.push(...(await inspectLayout(page)).map(issue => ({ width: 1600, node: id, panel, ...issue })));
       }
     }
-    report.functional.push('All seven nodes and three detail tabs display meaningful content.');
-    for (const index of [0, 1, 2, 3]) {
+    report.functional.push('All seven nodes and two detail tabs display meaningful content.');
+    for (let index = 0; index < 9; index++) {
       await page.locator(`[data-step="${index}"]`).click();
       assert.equal(await page.locator('.step[aria-pressed="true"]').getAttribute('data-step'), String(index));
-      assert.equal(await page.locator(`[data-flow="${index}"].dimmed`).count(), 0);
+      assert.equal(await page.locator('.journey-focus').count(), 1);
+      assert((await page.locator('.node.flow-related').count()) > 0);
     }
-    report.functional.push('All four steps highlight the corresponding path.');
+    report.functional.push('All nine steps show the detailed request, data and participating components.');
     await page.locator('#failover-button').click();
     assert(await page.locator('#fallback-video').isVisible());
     assert(!(await page.locator('#normal-video').isVisible()));
@@ -185,12 +197,10 @@ async function inspectLayout(page) {
       await page.locator(`[data-tech="${key}"]`).click();
       if (['aws', 'freebsd', 'nginx', 'https'].includes(key)) {
         assert.equal(await page.locator('#detail-kind').textContent(), 'TECHNOLOGY / ');
-        await page.locator('[data-panel="tradeoff"]').click();
-        const text = await page.locator('#detail-content').textContent();
-        assert(text.includes({ aws: 'GCP', freebsd: 'Linux', nginx: 'Caddy', https: 'WebRTC' }[key]));
+        assert.equal(await page.locator('#detail-content .request-contract').count(), 1);
       }
     }
-    report.functional.push('Six technology badges select their node; AWS, FreeBSD, NGINX and HTTP(S) show specific alternatives.');
+    report.functional.push('Six technology badges select their node and explain the technology role.');
     await page.locator('[data-node="origin"]').focus();
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('[data-node="origin"]').getAttribute('aria-pressed'), 'true');

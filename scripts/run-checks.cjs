@@ -58,7 +58,7 @@ function check(script, baseURL) {
     await check('verify-ui.cjs', baseURL);
     await check('verify-navigation.cjs', baseURL);
     await check('verify-technology.cjs', baseURL);
-    await check('verify-insights.cjs', baseURL);
+    await check('verify-explorer.cjs', baseURL);
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

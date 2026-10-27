@@ -27,11 +27,11 @@ fs.mkdirSync(reports, { recursive: true });
       const article = page.locator(`#tech-${key}`);
       assert.equal(await page.locator('.technology-note:visible').count(), 1);
       assert.equal(await article.locator('.mechanism-flow li').count(), 4);
-      assert.equal(await article.locator('.note-comparison tbody tr').count(), 3);
+      assert.equal(await article.locator('[data-show-alternatives]').count(), 1);
       assert((await article.locator('.note-sources a').count()) >= 2);
       assert.equal(await page.locator('[data-note-tab][tabindex="0"]').count(), 1);
     }
-    checks.push('All eight articles have diagrams, worked examples, alternatives, metrics and source links.');
+    checks.push('All eight articles have diagrams, worked examples, catalogue links, metrics and source links.');
     await page.locator('#note-tab-nginx').focus();
     await page.keyboard.press('ArrowDown');
     assert.equal(await page.locator('#note-tab-https').getAttribute('aria-selected'), 'true');
@@ -82,9 +82,10 @@ fs.mkdirSync(reports, { recursive: true });
     await page.setViewportSize({ width: 320, height: 844 });
     assert.equal(await page.locator('#note-tabs').getAttribute('aria-orientation'), 'horizontal');
     assert(await page.locator('#tech-nginx pre').evaluate(element => element.scrollWidth > element.clientWidth));
-    assert(await page.locator('#tech-nginx .table-scroll').evaluate(element => element.scrollWidth > element.clientWidth));
+    await page.locator('#tech-nginx [data-show-alternatives]').click();
+    assert.equal(await page.locator('.product-card').count(), 2);
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth), 320);
-    checks.push('Cards reach the full article; code and comparison tables scroll locally on narrow screens.');
+    checks.push('Cards reach the full article; code scrolls locally and the related product catalogue fits narrow screens.');
 
     const offline = await browser.newPage({ reducedMotion: 'reduce' });
     offline.on('pageerror', error => errors.push(error.message));
@@ -105,6 +106,11 @@ fs.mkdirSync(reports, { recursive: true });
     assert(await offline.locator('#tech-nginx').isVisible());
     await offline.locator('#note-tab-oca').click();
     assert((await offline.locator('#capacity-result').textContent()).includes('71.43 Gb/s'));
+    await offline.locator('[data-alternative-category="all"]').click();
+    assert.equal(await offline.locator('.product-card').count(), 11);
+    await offline.locator('[data-open-alternative="s3"]').click();
+    assert.equal(await offline.locator('#technology-sheet-title').textContent(), 'Amazon S3');
+    await offline.keyboard.press('Escape');
     assert.deepEqual(externalRequests, []);
     const broken = await offline.locator('img[src]').evaluateAll(async images => {
       await Promise.all(images.map(image => image.decode().catch(() => {})));

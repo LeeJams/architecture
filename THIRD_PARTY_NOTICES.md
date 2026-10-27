@@ -4,9 +4,9 @@
 
 | 자료 | 사용 파일 | 원출처와 고지 |
 | --- | --- | --- |
-| Devicon | `assets/tech/aws.svg`, `linux.svg` | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
-| Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
-| AWS Icons for PlantUML | `assets/tech/cloudfront.png` | [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml), CC BY-ND 2.0 · [원문](licenses/aws-icons.txt). 원본 PNG를 수정하지 않았습니다. |
+| Devicon | AWS, Linux, Google Cloud, Azure SVG | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
+| Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy, Cloudflare, Apache, Ubuntu, Debian, Google Cloud Storage SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
+| AWS Icons for PlantUML | `assets/tech/cloudfront.png`, `s3.png` | [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml), CC BY-ND 2.0 · [원문](licenses/aws-icons.txt). 원본 PNG를 수정하지 않았습니다. |
 | ByteByteGo System Design 101 | `assets/netflix.png`, `streaming.jpg` | [ByteByteGo](https://github.com/ByteByteGoHq/system-design-101), CC BY-NC-ND 4.0 · [원문](licenses/bytebytego.txt). 참고 이미지 원본을 수정하지 않았습니다. |
 | System Design Primer | CDN 개념도 인용과 설명 참고 | [Donne Martin](https://github.com/donnemartin/system-design-primer), CC BY 4.0 · [프로젝트 고지](licenses/system-design-primer.txt) |
 | Creative Artworks | `assets/cdn.jpg` | [Primer가 명시한 원출처](https://www.creative-artworks.eu/why-use-a-content-delivery-network-cdn/). 제3자 이미지 자체의 권리까지 Primer 라이선스로 확정하지 않습니다. |

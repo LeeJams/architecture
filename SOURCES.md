@@ -68,7 +68,29 @@ AWS 고객 사례, Caddy Automatic HTTPS, CloudFront cache key, TLS 1.3·HLS RFC
 - 서비스 구분, 서버 수, 콘텐츠 배치의 계층과 경로는 기능을 설명하기 위해 단순화했습니다.
 - 장애 보기는 다른 후보로 요청을 재시도하는 개념도입니다. 실제 감지 시간, 재시도 알고리즘이나 무중단 전환을 검증한 시뮬레이션이 아닙니다.
 
-## 대안 비교
+## 대안 기술
+
+### 회사·제품별 대안 기술 목록
+
+대안은 전달망·HTTP 서버·서버 OS·클라우드·파일 저장의 역할별 후보로 제공합니다. 제품·제공 조직·종류·일반 동작·활용 상황을 설명하며, 성능 순위나 장단점 점수는 제시하지 않습니다. 각 카드의 상세 창에서 공식 제품 문서에 접근할 수 있습니다.
+
+| 기술 | 제공 조직·문서 |
+| --- | --- |
+| Amazon CloudFront · Amazon S3 | Amazon Web Services · [CloudFront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html) · [S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) |
+| Fastly CDN | Fastly · [공식 문서](https://www.fastly.com/documentation/) · [확인한 CLI 프로젝트 README](https://github.com/fastly/cli) |
+| Cloudflare CDN | Cloudflare · [캐시 문서](https://developers.cloudflare.com/cache/). 별도 제품인 Stream과 역할을 구분합니다. |
+| Caddy | ZeroSSL, HID Global 계열 · [공식 README](https://github.com/caddyserver/caddy). 2026-10-27에 확인한 README의 프로젝트 소속·자동 HTTPS·설정 설명을 사용합니다. 상표 소유와 프로젝트 소속은 구분합니다. |
+| Apache HTTP Server | Apache Software Foundation · [공식 프로젝트 README](https://github.com/apache/httpd) · [제품 문서](https://httpd.apache.org/docs/2.4/) |
+| Ubuntu Server | Canonical · [확인한 공식 문서 저장소](https://github.com/canonical/ubuntu-server-documentation) |
+| Debian | Debian Project · [프로젝트 소개](https://www.debian.org/intro/about). 특정 회사 소유 제품으로 표시하지 않습니다. |
+| Google Cloud · Cloud Storage | Google · [플랫폼 문서](https://cloud.google.com/docs) · [확인한 Cloud Storage 클라이언트 README](https://github.com/googleapis/python-storage) |
+| Microsoft Azure | Microsoft · [제품 문서](https://learn.microsoft.com/azure/) |
+
+제품 문서 링크 중 직접 접근이 제한된 자료는 추가 읽기로 연결합니다. 요금·플랜·기본값·최신 지원 범위를 재확인했다고 주장하지 않습니다. Cloudflare의 영상 사용 범위, Caddy의 인증서 자동화 조건 등 제품별 적용 범위는 실제 도입 시 해당 공식 문서로 확인할 수 있도록 안내합니다.
+
+### 세분화한 흐름의 범위
+
+9단계는 파일 준비·거점 배치·재생 정보 요청·후보 조회·정보 응답·구간 요청·파일 응답·버퍼 판단·다음 요청으로 기능을 나눈 것입니다. Netflix의 실제 내부 API 순서·서비스 수·HTTP 버전·플레이어 알고리즘을 재현하지 않습니다. GET·Range·206과 구간 크기는 일반 기술을 읽는 설명용 예제입니다.
 
 CloudFront·Fastly, Linux, Caddy·Apache HTTP Server는 역할별로 검토할 수 있는 대안입니다. 동일한 설정으로 교체할 수 있다거나 동등한 성능을 검증했다는 뜻이 아닙니다. 비용, 운영 책임, 기능, 하드웨어와 실제 트래픽에서의 측정이 판단 기준입니다.
 
