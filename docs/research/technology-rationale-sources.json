@@ -1,0 +1,21 @@
+{
+  "checkedOn": "2026-10-28",
+  "scope": "Official source text reviewed for Kafka log/offset/transaction boundaries, the additional DB outbox pattern, and RabbitMQ acknowledgement boundaries. Order flow and backlog arithmetic are original educational models, not a deployed system or product benchmark.",
+  "documents": {
+    "kafka-design": {
+      "url": "https://raw.githubusercontent.com/apache/kafka/trunk/docs/design/design.md",
+      "bytes": 77540,
+      "sha256": "a9ad6e4533d9c29c8b6c4ae3222e85aebb660979fcb2706e082416d5f3819387"
+    },
+    "debezium-outbox": {
+      "url": "https://raw.githubusercontent.com/debezium/debezium/main/documentation/modules/ROOT/pages/transformations/outbox-event-router.adoc",
+      "bytes": 28826,
+      "sha256": "115115d19b5d4b137bcdf78872fbc6dea00b1b31c7b58d5eeb72fd54ab5f6f6d"
+    },
+    "rabbitmq-confirms": {
+      "url": "https://raw.githubusercontent.com/rabbitmq/rabbitmq-website/main/docs/confirms.md",
+      "bytes": 31197,
+      "sha256": "861abccf819fddcdaddd661255914d867d6ed511a9ff19311bfef73d0907b127"
+    }
+  }
+}

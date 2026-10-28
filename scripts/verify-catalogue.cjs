@@ -93,6 +93,8 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
     assert((await info.locator('.technology-design-points li').count())>=3);
     assert.equal(await info.locator('.technology-diagnostics > div').count(),2);
     assert((await info.locator('.sheet-sources a').count())>=3);
+    assert.equal(await info.locator('[data-info-section]').first().getAttribute('data-info-section'),'why');
+    assert.equal(await info.locator('.technology-decision-pair').count(),technologyCatalogue.find(t=>t.id===key).rationale.decisions.length);
     const issues=await info.evaluate(e=>[...e.querySelectorAll('p,h3,h4,dt,dd,button,li')].filter(e=>!e.closest('pre')&&e.clientWidth>0&&e.scrollWidth>e.clientWidth+2).map(e=>e.textContent.slice(0,50)));
     assert.deepEqual(issues,[],`${key} at ${width}`);
     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width);

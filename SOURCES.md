@@ -184,3 +184,17 @@ S3의 [Introduction 보존 원문](https://github.com/awsdocs/amazon-s3-develope
 각 상세에 확인한 원문과 추가 읽기 자료를 구분해 표시합니다. 소스의 브랜치·API 주석은 특정 서비스의 현재 배포·성능을 확정하는 증거가 아닙니다. 제품별 최신 한도·요금·계약·지원 기간은 고정 수치로 옮기지 않았습니다.
 
 JavaScript·TypeScript·Python 예제의 구문/타입, Kubernetes YAML 구문을 별도로 확인했습니다. 예제에 나온 클라우드·DB·브로커·클러스터는 실행하지 않았으며, 각 코드의 환경과 학습 범위를 함께 표시합니다.
+
+## 기술이 필요한 이유와 비동기 메시징
+
+2026-10-28에 33개 기술의 설명 앞에 **겪는 문제 → 동작의 변화 → 얻는 것과 감수할 점 → 도입 조건·더 단순한 시작점**을 추가했습니다. 제품의 동작 원리는 앞선 공식 자료를 바탕으로 설명하고, 도입 질문과 대안 출발점은 학습자를 위한 자체 설계 해설로 구분합니다. 해당 기술만이 문제를 해결한다거나 특정 회사가 그 이유로 선택했다고 주장하지 않습니다.
+
+| 재확인한 공식 원문 | 반영한 내용 |
+| --- | --- |
+| [Kafka Design](https://github.com/apache/kafka/blob/trunk/docs/design/design.md) | 읽기와 로그 보관의 분리, offset 커밋 전후 실패·중복, 생산자 멱등성, Kafka 간 트랜잭션과 외부 저장·부수 효과의 보장 경계 |
+| [Debezium Outbox Event Router](https://github.com/debezium/debezium/blob/main/documentation/modules/ROOT/pages/transformations/outbox-event-router.adoc) | DB outbox 패턴, 고유 이벤트 ID·업무 키와 중복·파티션 순서의 관계 |
+| [RabbitMQ Consumer Acknowledgements and Publisher Confirms](https://github.com/rabbitmq/rabbitmq-website/blob/main/docs/confirms.md) | 생산자 전송 확인과 소비자의 처리 확인의 분리, 연결 실패와 재전달 조건 |
+
+[조회한 URL·바이트 수·SHA-256](docs/research/technology-rationale-sources.json)을 보관합니다. Kafka 예시의 주문·메일·분석 구조와 outbox 릴레이는 공식 문서의 처리 경계를 설명하는 **자체 학습 구성**입니다. Kafka에 DB와의 원자적 이중 쓰기 기능이 있다거나 외부 메일이 자동으로 한 번만 발송된다는 의미가 아닙니다. 접수 응답은 주문·outbox의 DB 커밋까지만 뜻하며, Kafka 기록과 후속 완료를 별도 상태로 표시합니다.
+
+적체 계산은 일정 유입·일정 처리·기존 적체 없음·복구 시 이벤트 보관을 가정합니다. 적체는 `유입 속도 × 중단 시간`, 복구 후 따라잡기 시간은 `적체 ÷ (처리 속도 − 유입 속도)`입니다. 처리 속도가 유입 이하이면 따라잡을 수 없다고 표시합니다. 보관 용량·기한·재시도·이벤트 크기를 반영한 용량 계획이나 제품 성능 측정값은 아닙니다. 브로커·DB·외부 API는 실행하지 않았고, UI 상태·계산·반응형·오프라인 동작을 Chromium으로 검증합니다.

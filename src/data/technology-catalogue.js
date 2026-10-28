@@ -1,3 +1,4 @@
+import { technologyRationales } from "./technology-rationales.js";
 import { additionalTechnologies } from "./technology-profiles.js";
 
 export const technologyCategories = [
@@ -1125,7 +1126,7 @@ const originalTechnologies = [
 export const technologyCatalogue = [
   ...originalTechnologies,
   ...additionalTechnologies,
-];
+].map((tech) => ({ ...tech, rationale: technologyRationales[tech.id] }));
 
 export const findTechnology = (id) =>
   technologyCatalogue.find((technology) => technology.id === id);

@@ -63,6 +63,7 @@ function check(script, baseURL) {
     await check('verify-glossary.cjs', baseURL);
     await check('verify-interactions.cjs', baseURL);
     await check('verify-catalogue.cjs', baseURL);
+    await check('verify-rationale.cjs', baseURL);
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

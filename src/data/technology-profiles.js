@@ -1192,12 +1192,17 @@ export const additionalTechnologies = [
       [
         "Kafka 공식 설계 문서",
         "https://github.com/apache/kafka/blob/trunk/docs/design/design.md",
-        "확인한 파티션·로그·소비자·복제와 전달 의미.",
+        "확인한 파티션·로그 보관·offset 커밋 전후의 실패와 중복, Kafka 내부 트랜잭션과 외부 출력의 보장 경계.",
       ],
       [
         "Kafka producer 설정",
         "https://kafka.apache.org/documentation/#producerconfigs",
         "acks·멱등성·재시도를 확인하는 추가 공식 설정 문서.",
+      ],
+      [
+        "Debezium Outbox Event Router",
+        "https://github.com/debezium/debezium/blob/main/documentation/modules/ROOT/pages/transformations/outbox-event-router.adoc",
+        "확인한 DB outbox 패턴·이벤트 식별자·업무 키. 주문 예시는 이 패턴을 설명하기 위한 자체 구성입니다.",
       ],
     ],
     related: ["rabbitmq", "postgresql", "redis"],

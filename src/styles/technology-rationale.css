@@ -1,0 +1,347 @@
+.technology-card-why {
+  margin: 0 0 22px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.85;
+}
+.technology-card-why > strong {
+  color: var(--ink);
+  font-size: 13px;
+}
+.technology-card-why > p {
+  margin: 6px 0 0;
+}
+.technology-mechanism {
+  margin-top: 22px;
+  padding-left: 18px;
+  border-left: 3px solid #8a98a8;
+}
+.technology-mechanism > p:last-child {
+  margin-bottom: 0;
+}
+.technology-decision-pairs {
+  border-top: 1px solid var(--line);
+}
+.technology-decision-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+.technology-decision-pair > article {
+  min-width: 0;
+  padding: 22px 22px 22px 0;
+}
+.technology-decision-pair > article + article {
+  padding-left: 22px;
+  padding-right: 0;
+  border-left: 1px solid var(--line);
+}
+.technology-info .technology-decision-label {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.technology-decision-pair article > p:last-child {
+  margin-bottom: 0;
+}
+.technology-decision-question {
+  margin-top: 26px;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f4f6f9;
+}
+.technology-decision-question h4:not(:first-child) {
+  margin-top: 24px;
+}
+.technology-decision-question > p:last-child {
+  margin-bottom: 0;
+}
+.messaging-demo {
+  margin-top: 30px;
+  padding: 24px;
+  border: 1px solid #a7b2bf;
+  border-radius: 8px;
+  background: #f7f9fb;
+}
+.messaging-demo-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.messaging-demo-heading > img {
+  flex: 0 0 36px;
+  object-fit: contain;
+}
+.technology-info .messaging-demo-heading h4 {
+  margin: 0;
+  font-size: 18px;
+}
+.messaging-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.messaging-controls > button {
+  max-width: 100%;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid #7d8996;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--body);
+  font: 14px var(--sans);
+  line-height: 1.6;
+  text-align: left;
+}
+.messaging-controls > button[aria-pressed="true"] {
+  background: #e6effc;
+  border-color: #4778b8;
+  color: #0756ad;
+  font-weight: 700;
+}
+.messaging-scenarios {
+  margin-top: 20px;
+}
+.messaging-scenarios > p {
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.messaging-model {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.technology-info .messaging-lane-label {
+  margin: 0 0 12px;
+  color: var(--body);
+  font-size: 13px;
+  font-weight: 700;
+}
+.messaging-flow-steps {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.messaging-flow-steps > li {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid #a7b2bf;
+  border-radius: 5px;
+  background: #fff;
+}
+.messaging-flow-steps > li + li::before {
+  content: "→";
+  position: absolute;
+  left: -17px;
+  top: 12px;
+  color: #526579;
+  font-size: 14px;
+}
+.messaging-step-number {
+  flex: 0 0 auto;
+  font: 12px/1.8 var(--mono);
+  color: #526579;
+}
+.messaging-flow-steps li > div {
+  min-width: 0;
+}
+.messaging-flow-steps strong,
+.messaging-flow-steps li > div > span {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.85;
+}
+.messaging-flow-steps li > div > span {
+  margin-top: 5px;
+  color: var(--body);
+}
+.messaging-background-lane {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed #a7b2bf;
+}
+.messaging-consumers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+  padding-left: 20px;
+  border-left: 2px solid #a7b2bf;
+}
+.technology-info .messaging-consumers > p {
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 13px;
+}
+.messaging-consumers strong,
+.messaging-consumers span {
+  display: block;
+}
+.messaging-consumer-state {
+  margin-top: 9px;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+  font-weight: 700;
+  color: var(--ink);
+}
+.technology-info .messaging-model-note {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--body);
+  margin: 18px 0 0;
+}
+.messaging-result {
+  margin-top: 18px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #a7b2bf;
+  border-radius: 6px;
+}
+.technology-info .messaging-result-title {
+  margin: 0 0 18px;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--ink);
+}
+.messaging-result dl {
+  margin: 0;
+}
+.messaging-result dl > div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.85;
+}
+.messaging-result dt {
+  color: var(--muted);
+}
+.messaging-result dd {
+  margin: 0;
+  color: var(--ink);
+}
+.messaging-result > p:last-child {
+  margin: 16px 0 0;
+}
+.messaging-calculator {
+  margin-top: 20px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.messaging-calculator > summary {
+  padding: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--blue);
+  line-height: 1.9;
+}
+.messaging-calculator > div {
+  padding: 0 18px 18px;
+}
+.messaging-calculator-fields {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.messaging-calculator-fields > label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--body);
+  min-width: 0;
+}
+.messaging-calculator-fields input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #7d8996;
+  border-radius: 5px;
+  color: var(--ink);
+  font: 16px var(--sans);
+}
+.messaging-calculator-result {
+  margin: 20px 0;
+  padding: 14px 16px;
+  background: #f0f4f8;
+  border-left: 3px solid #71849a;
+}
+.technology-info .messaging-calculator-result > p {
+  margin: 6px 0;
+}
+.messaging-calculator-result strong {
+  margin-left: 4px;
+  color: var(--ink);
+}
+.technology-info .messaging-calculator-formula {
+  font-size: 13px;
+  color: var(--body);
+}
+@media (max-width: 700px) {
+  .messaging-flow-steps {
+    grid-auto-flow: row;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+  .messaging-flow-steps > li + li::before {
+    content: "↓";
+    top: -22px;
+    left: 18px;
+  }
+  .messaging-consumers,
+  .messaging-calculator-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 540px) {
+  .technology-decision-pair {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 22px 0;
+  }
+  .technology-decision-pair > article,
+  .technology-decision-pair > article + article {
+    padding: 0;
+    border: 0;
+  }
+  .technology-decision-pair > article + article {
+    padding-left: 14px;
+    border-left: 2px solid var(--line);
+  }
+  .technology-decision-question,
+  .messaging-demo,
+  .messaging-model,
+  .messaging-result {
+    padding: 16px;
+  }
+  .technology-info .messaging-demo-heading h4 {
+    font-size: 16px;
+  }
+  .messaging-result dl > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}

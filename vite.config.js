@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => ({
               manualChunks: {
                 "react-vendor": ["react", "react-dom/client"],
                 motion: ["motion/react"],
+                "technology-content": ["./src/data/technology-catalogue.js"],
               },
             },
     },

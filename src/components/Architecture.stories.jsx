@@ -1,4 +1,5 @@
 import { technologyCatalogue } from "../data/technology-catalogue.js";
+import { KafkaMessagingDemo } from "./KafkaMessagingDemo.jsx";
 import {
   TechnologyCatalogue,
   TechnologyCard,
@@ -65,6 +66,13 @@ export const PlaybackTiming = () => (
     <h2>다운로드와 재생 시간 비교</h2>
     <GlossarySwitch />
     <ABRCalculator />
+  </Frame>
+);
+export const WhyAsynchronousMessaging = () => (
+  <Frame width={960}>
+    <div className="technology-info">
+      <KafkaMessagingDemo />
+    </div>
   </Frame>
 );
 export const Replacement = ({ product = "caddy" }) => (

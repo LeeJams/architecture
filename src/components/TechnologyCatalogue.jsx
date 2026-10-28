@@ -10,6 +10,7 @@ import {
 import { useApp } from "../state/AppState.jsx";
 import { ActionIcon, Code } from "./ui.jsx";
 import { Text } from "./Glossary.jsx";
+import { TechnologyRationale } from "./TechnologyRationale.jsx";
 
 export function TechnologyCard({ technologyId, usage, caseKey }) {
   const tech = findTechnology(technologyId),
@@ -44,6 +45,10 @@ export function TechnologyCard({ technologyId, usage, caseKey }) {
         </div>
       </div>
       <Text className="technology-card-summary">{tech.summary}</Text>
+      <div className="technology-card-why">
+        <strong>필요한 이유</strong>
+        <Text>{tech.rationale.short}</Text>
+      </div>
       {usage && (
         <div className="technology-case-use">
           <strong>이 설계에서 맡는 일</strong>
@@ -83,6 +88,7 @@ export function TechnologyCatalogue() {
         tech.provider,
         tech.type,
         tech.summary,
+        tech.rationale.short,
         technologyCategories.find(([id]) => id === tech.category)?.[1],
         ...(tech.aliases || []),
       ]
@@ -114,9 +120,7 @@ export function TechnologyCatalogue() {
         <h1 id="technology-library-title" tabIndex="-1">
           기술 목록
         </h1>
-        <p>
-          어떤 일을 맡는 기술인지, 어디에 어떻게 쓰는지 분류별로 살펴봅니다.
-        </p>
+        <p>왜 필요한 기술인지, 무엇을 얻고 감수하는지부터 살펴봅니다.</p>
       </div>
       <div className="technology-search-row">
         <label className="technology-search" htmlFor="technology-search">
@@ -289,6 +293,8 @@ export function TechnologyInfo({ technologyId }) {
     <div ref={root} className="technology-info" data-technology-info={tech.id}>
       <nav className="technology-info-jumps" aria-label="기술 정보 목차">
         {[
+          ["why", "필요한 이유"],
+          ["decision", "얻는 것·감수할 점"],
           ["definition", "기술 개요"],
           ["usage", "사용 상황"],
           ["concepts", "주요 개념"],
@@ -300,6 +306,7 @@ export function TechnologyInfo({ technologyId }) {
           </button>
         ))}
       </nav>
+      <TechnologyRationale key={tech.id} technology={tech} />
       <section data-info-section="definition">
         <p className="sheet-eyebrow">무엇을 하는 기술인가요?</p>
         <h3 tabIndex="-1">
