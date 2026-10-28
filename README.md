@@ -121,6 +121,10 @@ npm run dev
 
 사례 상세의 **이 설계의 사용 기술**도 같은 `TechnologyCard`를 사용합니다. 기술 정보 모달에서 **이 사례에서의 사용 / 기술 자체 정보**를 전환할 수 있습니다. 기존 구성 기술·대체 기술 상세에서도 같은 정보로 연결합니다. Netflix 사례의 원본 저장소가 S3라고 단정하지 않으며, 현재 확인한 사용 기술에는 NGINX·FreeBSD만 공용 카드로 표시합니다.
 
+상세 창의 **왼쪽 소개**에서는 한 줄 요약 대신 기술의 정의·필요한 이유·대표 사용처·도입 전 확인할 조건을 읽습니다. 사례 속 기술은 해당 역할의 배경과 주요 동작을, 대체 기술은 대체 위치와 구성 방법을 설명합니다. 데스크톱은 추가 설명을 기본으로 펼치고, 모바일은 정의를 먼저 보여준 뒤 **펼치기 +**로 이어 읽습니다. 긴 소개도 본문과 함께 스크롤해 마지막 문장까지 읽을 수 있습니다.
+
+[자세해진 왼쪽 소개](docs/images/technology-introduction.png) · [모바일 펼침](docs/images/technology-introduction-mobile.png)
+
 넓은 화면은 **4열·최대 1,600px**로 표시합니다. 화면이 좁아지면 3·2·1열로 바뀌며 카드와 상세 글의 글자 크기를 유지합니다. 모바일 분류는 브라우저 기본 선택 메뉴로 표시해 버튼이 화면을 길게 차지하지 않게 했습니다.
 
 | 분류 | 포함한 기술 |
@@ -186,6 +190,7 @@ npm run design
 | `src/components/TechnicalDepth.jsx` | 본문과 상세 창이 공유하는 원리·조건별 흐름·진단 |
 | `src/components/TechnologyReader.jsx` | 주제 탭·기술 글·계산기 |
 | `src/components/TechnologyDialog.jsx` | 기본 dialog와 기술·대체 제품 상세 |
+| `src/components/TechnologyIdentity.jsx` | 기술 정의·사용처·필요성, 사례·대체 맥락에 맞춘 왼쪽 소개와 기본 펼침/접기 |
 | `src/components/Alternatives.jsx` · `Anatomy.jsx` | 교체 범위·양쪽 로고·서버 계층 |
 | `src/components/Glossary.jsx` | React 용어 표시·43개 설명·토글·기본 Popover |
 | `src/components/TechnologyCatalogue.jsx` · `src/data/technology-catalogue.js` | 기술 목록·공용 카드·제품 자체 정보·카테고리·상세 원고 |
@@ -221,7 +226,7 @@ npm test
 - `verify-technology.cjs`: 기술 글의 직접 링크·새로고침·키보드·구성도 연결, 용량 계산의 잘못된 입력, 저속 네트워크에서의 화질 후보, 좁은 화면의 표·코드 스크롤과 단일 HTML의 오프라인 실행을 검사합니다.
 - `verify-explorer.cjs`: 두 탭·9단계 흐름, 기술 상세 dialog의 포커스·닫기·맥락 유지, 9개 대체 관계의 양쪽 기술·범위·제공 조직, 구성도 위치 연결과 구현 예시의 분리를 검사합니다.
 - `verify-depth.cjs`: 본문·상세 창의 원고 일치, 조건별 HTTP 응답, 버퍼·재버퍼링 계산, 키보드 탐색, 3개 폭의 54개 상세 흐름 상태와 교체 계약을 검사합니다. 화면의 NGINX 설정과 실제 실습 설정이 일치하는지도 확인합니다.
-- `verify-catalogue.cjs`: 33개 기술 이름·이미지·11개 분류·검색·키보드, 언어와 실행 환경의 구분, 4열·반응형 목록, 사례 사용/기술 자체 정보의 구분, 165개 모달 배치 상태와 오프라인 실행을 검사합니다.
+- `verify-catalogue.cjs`: 33개 기술 이름·이미지·11개 분류·검색·키보드, 언어와 실행 환경의 구분, 4열·반응형 목록, 사례 사용/기술 자체 정보의 구분, 165개 모달의 본문·왼쪽 소개 배치와 오프라인 실행을 검사합니다. 모바일 소개의 기본 접힘·키보드 펼침과 데스크톱 기본 펼침, 낮은 창에서 소개 끝부분에 접근하는지도 확인합니다.
 - `verify-rationale.cjs`: 33개 기술의 문제·동작 변경·효과/책임·도입 조건, Kafka 동기/비동기·4가지 상황의 32개 배치 상태, 키보드·목차 포커스, 적체·복구 계산의 경계값과 오프라인 실행을 검사합니다.
 - `verify-interactions.cjs`: 속도를 바꿀 때 시간 막대가 같은 기준으로 비교되는지, 모션 감소 설정·계산기 값 보존·기본 모달 즉시 재열기가 동작하는지 검사합니다.
 - `verify-delivery-lab.py`: `npm test`와 별도로 실행합니다. 실제 NGINX에서 일반 GET·정상/suffix/초과 범위·If-Range 일치/불일치·404를 확인합니다.

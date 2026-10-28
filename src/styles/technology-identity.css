@@ -1,0 +1,95 @@
+/* Detailed introductions share the main scroll area so their final lines remain reachable. */
+.technology-sheet-identity {
+  position: static;
+}
+.technology-identity-introduction {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.technology-sheet-identity h3 {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.85;
+  letter-spacing: -0.015em;
+}
+.technology-identity-introduction #technology-sheet-role {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 14px;
+  line-height: 1.95;
+}
+.technology-identity-details {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.technology-identity-details > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 12px 0;
+  color: #0756ad;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.85;
+  list-style: none;
+}
+.technology-identity-details > summary::-webkit-details-marker {
+  display: none;
+}
+.technology-identity-details > summary:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.identity-disclosure-action {
+  flex: 0 0 auto;
+  font-size: 13px;
+}
+.identity-disclosure-collapse,
+.technology-identity-details[open] .identity-disclosure-expand {
+  display: none;
+}
+.technology-identity-details[open] .identity-disclosure-collapse {
+  display: inline;
+}
+.technology-identity-details > div {
+  padding-top: 14px;
+}
+.technology-identity-details section + section {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.technology-identity-details p,
+.technology-identity-details dd {
+  margin: 0;
+  color: var(--body);
+  font-size: 14px;
+  line-height: 1.95;
+  overflow-wrap: anywhere;
+}
+.technology-identity-details p + p {
+  margin-top: 12px;
+}
+.technology-identity-details dl {
+  margin: 0;
+}
+.technology-identity-details dl > div + div {
+  margin-top: 18px;
+}
+.technology-identity-details dt {
+  margin: 0 0 6px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .technology-identity-details {
+    margin-top: 18px;
+  }
+}

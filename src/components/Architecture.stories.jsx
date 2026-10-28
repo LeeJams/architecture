@@ -1,5 +1,6 @@
 import { technologyCatalogue } from "../data/technology-catalogue.js";
 import { KafkaMessagingDemo } from "./KafkaMessagingDemo.jsx";
+import { TechnologyIdentity } from "./TechnologyIdentity.jsx";
 import {
   TechnologyCatalogue,
   TechnologyCard,
@@ -101,6 +102,16 @@ const technologyControl = {
   control: { type: "select" },
 };
 TechnologyProductCard.argTypes = { technology: technologyControl };
+export const TechnologyIntroduction = ({ technology = "kafka" }) => {
+  const info = technologyCatalogue.find((tech) => tech.id === technology);
+  return (
+    <Frame width={320}>
+      <TechnologyIdentity key={info.id} info={info} title={info.name} />
+    </Frame>
+  );
+};
+TechnologyIntroduction.args = { technology: "kafka" };
+TechnologyIntroduction.argTypes = { technology: technologyControl };
 export const TechnologyProductProfile = ({ technology = "postgresql" }) => (
   <Frame width={960}>
     <GlossarySwitch />

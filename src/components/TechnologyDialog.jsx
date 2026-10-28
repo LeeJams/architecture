@@ -1,9 +1,8 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { findTechnology } from "../data/technology-catalogue.js";
 import { TechnologyInfo, InformationSwitch } from "./TechnologyCatalogue.jsx";
-import { assets } from "../data/assets.js";
 import { technologyNotes } from "../data/technology-notes.js";
-import { technologyPublishers } from "../data/publishers.js";
+import { TechnologyIdentity } from "./TechnologyIdentity.jsx";
 import {
   alternativeProducts,
   replacementSources,
@@ -165,38 +164,12 @@ export function TechnologyDialog() {
             identity={`${sheet.kind}-${sheet.key}`}
             className="technology-sheet-layout"
           >
-            <aside className="technology-sheet-identity">
-              <img
-                id="technology-sheet-image"
-                className={info ? "catalogue-product-image" : undefined}
-                src={
-                  info
-                    ? assets[info.image]
-                    : tech?.image || assets[product.image]
-                }
-                alt={info?.logoAlt || `${title} 로고 또는 역할 아이콘`}
-              />
-              <p id="technology-sheet-publisher">
-                {info
-                  ? info.provider
-                  : tech
-                    ? technologyPublishers[tech.key][0]
-                    : product.company}
-              </p>
-              <h2 id="technology-sheet-title" tabIndex="-1">
-                {title}
-              </h2>
-              <p id="technology-sheet-type">
-                {info
-                  ? info.type
-                  : tech
-                    ? technologyPublishers[tech.key][1]
-                    : `${product.organization} · ${product.type}`}
-              </p>
-              <Text id="technology-sheet-role">
-                {info?.summary || tech?.intro || replacementSentence(product)}
-              </Text>
-            </aside>
+            <TechnologyIdentity
+              info={info}
+              tech={tech}
+              product={product}
+              title={title}
+            />
             <div
               className="technology-sheet-reading"
               id="technology-sheet-content"
