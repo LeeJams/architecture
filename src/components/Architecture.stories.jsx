@@ -1,4 +1,9 @@
-import { TechnologyCard, TechnologyInfo } from "./TechnologyCatalogue.jsx";
+import { technologyCatalogue } from "../data/technology-catalogue.js";
+import {
+  TechnologyCatalogue,
+  TechnologyCard,
+  TechnologyInfo,
+} from "./TechnologyCatalogue.jsx";
 import { useLayoutEffect } from "react";
 import { Inspector } from "./Explorer.jsx";
 import { TechnicalDepth } from "./TechnicalDepth.jsx";
@@ -83,27 +88,27 @@ export const TechnologyProductCard = ({ technology = "s3" }) => (
   </Frame>
 );
 TechnologyProductCard.args = { technology: "s3" };
-TechnologyProductCard.argTypes = {
-  technology: {
-    options: [
-      "s3",
-      "cloudfront",
-      "nginx",
-      "freebsd",
-      "caddy",
-      "apache",
-      "gcs",
-      "ubuntu",
-      "debian",
-      "fastly",
-      "cloudflare",
-    ],
-    control: { type: "select" },
-  },
+const technologyControl = {
+  options: technologyCatalogue.map((tech) => tech.id),
+  control: { type: "select" },
 };
-export const TechnologyProductProfile = () => (
+TechnologyProductCard.argTypes = { technology: technologyControl };
+export const TechnologyProductProfile = ({ technology = "postgresql" }) => (
   <Frame width={960}>
     <GlossarySwitch />
-    <TechnologyInfo technologyId="s3" />
+    <TechnologyInfo technologyId={technology} />
   </Frame>
 );
+TechnologyProductProfile.args = { technology: "postgresql" };
+TechnologyProductProfile.argTypes = { technology: technologyControl };
+export const TechnologyGrid = () => {
+  const { patch } = useApp();
+  useLayoutEffect(() => {
+    patch({ route: "catalogue", catalogueCategory: "all", catalogueQuery: "" });
+  }, [patch]);
+  return (
+    <Frame width={1600}>
+      <TechnologyCatalogue />
+    </Frame>
+  );
+};

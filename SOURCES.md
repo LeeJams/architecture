@@ -155,3 +155,32 @@ HTTP(S)와 WebRTC는 통신 모델과 용도가 다르므로 단순한 대체재
 - S3·CloudFront의 PNG는 AWS Icons for PlantUML의 기존 원본 파일을 그대로 사용합니다. 다른 제품은 기존 Simple Icons 브랜드 심벌을 사용합니다. 개별 기술의 상세에 이미지 출처를 표시하며 도식용 저장소 그림을 제품 로고로 쓰지 않습니다.
 
 S3의 [Introduction 보존 원문](https://github.com/awsdocs/amazon-s3-developer-guide/blob/master/doc_source/Introduction.md)과 [멀티파트 업로드 원문](https://github.com/awsdocs/amazon-s3-developer-guide/blob/master/doc_source/mpuoverview.md)도 확인해, 강한 읽기 일관성과 단일 키 원자성·여러 키의 일괄 변경 경계, 업로드 완료·조각 정리를 설명합니다. 영상 파일과 목록의 게시 순서는 이 조건을 적용한 설계 예시입니다.
+
+## 33개 기술·11개 분류 확장
+
+2026-10-28에 저장소·운영체제·언어·실행 환경·DB·캐시·메시징·컨테이너·컴퓨팅 기술을 추가했습니다. 공식 사이트의 접근이 제한된 경우 해당 프로젝트의 공식 문서·API 주석·소스를 읽었습니다. [원문 URL과 조회 내용의 SHA-256](docs/research/technology-expansion-sources.json)을 보관합니다.
+
+| 확인한 프로젝트 원문 | 설명에 반영한 핵심 |
+| --- | --- |
+| MDN 실행 모델·Number | 작업·마이크로태스크, 호스트 API, 숫자 정밀도 |
+| TypeScript Handbook | 타입 소거·unknown·타입 가드와 실행 중 검증의 경계 |
+| CPython asyncio·threading | 협력적 실행·to_thread, GIL과 free-threaded 빌드 구분 |
+| Go Context·HTTP Client | 취소 전파·요청 제한 시간·응답 본문 정리 |
+| OpenJDK Thread·Record | 플랫폼/가상 스레드·자원 한도, record의 참조 의미 |
+| Rust Book | 소유권·빌림·Result와 오류 전달 |
+| PostgreSQL MVCC·WAL | 격리·재시도·커밋과 복구 기록 |
+| MySQL 8.4 InnoDB | read view·잠금 구현. 추가로 현재 공식 매뉴얼을 연결 |
+| MongoDB 원자성·인덱스 | 단일 문서와 다중 문서 변경의 차이·질의 경로 |
+| Redis 영속화·퇴거 | RDB·AOF·fsync와 maxmemory·프로세스 메모리의 차이 |
+| Kafka 설계 | 파티션 순서·offset·재처리·exactly-once의 범위 |
+| RabbitMQ confirm·quorum queue | publisher confirm과 consumer ack의 차이·prefetch·과반수 |
+| Docker 컨테이너·저장소 | 공유 커널·이미지·프로세스·쓰기 계층·볼륨 |
+| Kubernetes Pod·probe | 원하는 상태·실행 단계와 readiness/liveness/startup의 구분 |
+| Ceph CRUSH·RGW | 배치·장애 영역·복구, S3 호환 API의 범위 |
+| Alpine 공식 이미지·aports | musl·패키지·기반 이미지. 과거 이미지 크기 수치는 사용하지 않음 |
+| EC2·EBS·EFS 공식 보존 문서 | 가상 서버·블록·NFS 접근과 권한·마운트·데이터 수명의 차이 |
+| AWS SDK Lambda 계약·공식 런타임 클라이언트 | 동기/비동기·중복·함수 오류와 호출 상태의 차이·환경 재사용 |
+
+각 상세에 확인한 원문과 추가 읽기 자료를 구분해 표시합니다. 소스의 브랜치·API 주석은 특정 서비스의 현재 배포·성능을 확정하는 증거가 아닙니다. 제품별 최신 한도·요금·계약·지원 기간은 고정 수치로 옮기지 않았습니다.
+
+JavaScript·TypeScript·Python 예제의 구문/타입, Kubernetes YAML 구문을 별도로 확인했습니다. 예제에 나온 클라우드·DB·브로커·클러스터는 실행하지 않았으며, 각 코드의 환경과 학습 범위를 함께 표시합니다.

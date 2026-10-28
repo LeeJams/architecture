@@ -4,6 +4,12 @@ const fs = require('node:fs');
 const path = require('node:path');
 const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
 (async () => {
+ const { technologyCatalogue, technologyCategories } = await import('../src/data/technology-catalogue.js');
+ assert.equal(new Set(technologyCatalogue.map(t=>t.id)).size,33);
+ for(const tech of technologyCatalogue){
+  assert(technologyCategories.some(([id])=>id===tech.category),tech.id);
+  assert(tech.related.every(id=>technologyCatalogue.some(t=>t.id===id)),tech.id+' related');
+ }
  const browser = await chromium.launch(require('./browser-options.cjs'));
  const report = { checks: [], modalStates: 0, errors: [] };
  try {
@@ -14,12 +20,21 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.waitForFunction(() => document.documentElement.dataset.route === 'catalogue' && !document.documentElement.dataset.transitioning);
   assert.equal(new URL(page.url()).searchParams.get('view'), 'technologies');
   assert.equal(await page.locator('#technology-library-title').evaluate(e=>document.activeElement===e), true);
-  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),11);
-  for (const [category, count] of [['storage',2],['delivery',3],['http',3],['os',3]]) {
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),33);
+  for (const [category, count] of [['storage',5],['delivery',3],['http',3],['os',4],['language',6],['runtime',2],['database',3],['cache',1],['messaging',2],['operations',2],['compute',2]]) {
    await page.locator(`[data-technology-category="${category}"]`).click();
    assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(), count);
   }
+  await page.locator('[data-technology-category="language"]').click();
+  assert.deepEqual((await page.locator('#technology-catalogue-grid [data-technology-card]').evaluateAll(nodes=>nodes.map(n=>n.dataset.technologyCard))).sort(),['go','java','javascript','python','rust','typescript']);
+  assert((await page.locator('#technology-category-description').textContent()).includes('실행 환경'));
+  await page.locator('[data-technology-category="runtime"]').click();
+  assert.deepEqual((await page.locator('#technology-catalogue-grid [data-technology-card]').evaluateAll(nodes=>nodes.map(n=>n.dataset.technologyCard))).sort(),['nodejs','tomcat']);
   await page.locator('[data-technology-category="all"]').click();
+  for(const [query,id] of [['Go','go'],['Java','java'],['JavaScript','javascript'],['Node.js','nodejs']]){
+   await page.locator('#technology-search').fill(query);
+   assert.deepEqual(await page.locator('#technology-catalogue-grid [data-technology-card]').evaluateAll(nodes=>nodes.map(n=>n.dataset.technologyCard)),[id]);
+  }
   await page.locator('#technology-search').fill('엔진엑스');
   assert.equal(await page.locator('#technology-catalogue-grid h3').textContent(),'NGINX');
   await page.locator('#technology-search').fill('s3');
@@ -47,13 +62,32 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.locator('#technology-search').fill('없는 제품');
   assert(await page.locator('.technology-empty').isVisible());
   await page.getByRole('button',{name:'검색·카테고리 초기화'}).click();
-  report.checks.push('Separate route, four categories, search, empty state and keyboard focus work; S3 has its own exact product name, provider and icon.');
-  const keys=['s3','cloudfront','nginx','freebsd','caddy','apache','gcs','ubuntu','debian','fastly','cloudflare'];
+  report.checks.push('Separate route, eleven categories, search, empty state and keyboard focus work; S3 has its own exact product name, provider and icon.');
+  for(const [width,columns] of [[320,1],[390,1],[768,2],[1024,3],[1280,4],[1440,4],[1920,4],[2560,4]]){
+   await page.setViewportSize({width,height:1000});
+   assert.equal(await page.locator('#technology-catalogue-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length),columns);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width);
+   const issues=await page.locator('#technology-library').evaluate(root=>[...root.querySelectorAll('p,h1,h3,button,input')].filter(e=>e.clientWidth>0&&e.scrollWidth>e.clientWidth+2).map(e=>e.textContent.slice(0,80)));
+   assert.deepEqual(issues,[],`catalogue at ${width}`);
+   if(width===1920)assert((await page.locator('#technology-catalogue-grid').boundingBox()).width>=1550);
+  }
+  report.checks.push('Cards use four columns from 1280px, a 1600px reading area, and three/two/one columns on smaller screens; card text fits all tested widths.');
+  await page.setViewportSize({width:390,height:844});
+  assert(await page.locator('#technology-category-select').isVisible());
+  await page.locator('#technology-category-select').selectOption('language');
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),6);
+  await page.locator('#technology-category-select').selectOption('all');
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),33);
+  report.checks.push('Mobile uses a native category selector instead of a long stack of buttons; categories and counts match desktop.');
+  const keys=technologyCatalogue.map(t=>t.id);
   for(const width of [320,390,768,1440,1920]){
    await page.setViewportSize({width,height:1000});
    for(const key of keys){
     await page.locator(`#technology-catalogue-grid [data-open-technology-info="${key}"]`).click();
     const info=page.locator(`[data-technology-info="${key}"]`);
+    const picture=page.locator('#technology-sheet-image');
+    assert(await picture.evaluate(async img=>{await img.decode();return img.naturalWidth>0}));
+    assert((await info.textContent()).length>700,key+' technical content');
     assert.equal(await info.locator('.technology-info-flow li').count(),3);
     assert((await info.locator('.technology-concepts > div').count())>=3);
     assert((await info.locator('.technology-design-points li').count())>=3);
@@ -65,7 +99,10 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
     await page.keyboard.press('Escape');report.modalStates++;
    }
   }
-  report.checks.push('All eleven profiles contain use cases, concepts, flow, example, design points, diagnostics and sources; 55 modal states fit 320–1920px.');
+  await page.locator('#technology-search').fill('파이썬');
+  assert.equal(await page.locator('#technology-catalogue-grid h3').textContent(),'Python');
+  await page.locator('#technology-search').fill('');
+  report.checks.push('All thirty-three profiles contain use cases, concepts, flow, example, design points, diagnostics and sources; 165 modal states fit 320–1920px.');
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('.topbar-navigation a').first().click();
   await page.locator('#netflix-card').click();

@@ -1,0 +1,404 @@
+{
+  "checkedOn": "2026-10-28",
+  "scope": "추가 기술 22개의 공식 문서·API 원문과 수정하지 않은 심벌 파일. 브랜치 문서는 조회 시점의 내용이며 현재 모든 배포 버전의 동작을 뜻하지 않습니다.",
+  "documents": {
+    "js": {
+      "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/javascript/reference/execution_model/index.md",
+      "bytes": 22732,
+      "sha256": "c9b3700b3676dbf6e64423b8dc72883b866bdfeff86492692a233dd899d51690",
+      "ok": true
+    },
+    "js-numbers": {
+      "url": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/javascript/reference/global_objects/number/index.md",
+      "bytes": 13959,
+      "sha256": "33c6f2eea0a6e2e23f9a41ff9b062e50cf77ffe8dc57fe12f09e80f117d330bf",
+      "ok": true
+    },
+    "ts": {
+      "url": "https://raw.githubusercontent.com/microsoft/TypeScript-Website/v2/packages/documentation/copy/en/handbook-v2/Basics.md",
+      "bytes": 19604,
+      "sha256": "c89617a7d260a61a8841f169e1e3c15af3cda5726f3b47218563e9b8870114f1",
+      "ok": true
+    },
+    "ts-narrowing": {
+      "url": "https://raw.githubusercontent.com/microsoft/TypeScript-Website/v2/packages/documentation/copy/en/handbook-v2/Narrowing.md",
+      "bytes": 25783,
+      "sha256": "038b0a915c4b2e56a436e1a7115fd175096b63e165ae6e3c91c22429aca58c84",
+      "ok": true
+    },
+    "python": {
+      "url": "https://raw.githubusercontent.com/python/cpython/main/Doc/library/asyncio-task.rst",
+      "bytes": 53500,
+      "sha256": "440d01619d52fc239bac248b3a92aabe199945c3faa8aeb235cfcb45371efe7f",
+      "ok": true
+    },
+    "python-threading": {
+      "url": "https://raw.githubusercontent.com/python/cpython/main/Doc/library/threading.rst",
+      "bytes": 58086,
+      "sha256": "c5be4c080c249c3a81be3a23c9481c645e29c7faca8d586ab1393a04f1de3758",
+      "ok": true
+    },
+    "go": {
+      "url": "https://raw.githubusercontent.com/golang/go/master/src/context/context.go",
+      "bytes": 25275,
+      "sha256": "684eddd51025cbe7537cf125cbce33fe40f07af4059536b09a0d4e199f6b1762",
+      "ok": true
+    },
+    "go-http": {
+      "url": "https://raw.githubusercontent.com/golang/go/master/src/net/http/client.go",
+      "bytes": 35914,
+      "sha256": "bc9f79f226e0492f3ec7f4517d5c2dc23950a5da4c0106f49dd9b7818683a32c",
+      "ok": true
+    },
+    "java": {
+      "url": "https://raw.githubusercontent.com/openjdk/jdk/master/src/java.base/share/classes/java/lang/Thread.java",
+      "bytes": 103906,
+      "sha256": "b8919fd5a5d773bfd72ba7a791a867f9b647c3b7d553286429f3c59eae5c0084",
+      "ok": true
+    },
+    "java-record": {
+      "url": "https://raw.githubusercontent.com/openjdk/jdk/master/src/java.base/share/classes/java/lang/Record.java",
+      "bytes": 10352,
+      "sha256": "5febbb615a6668d6efbc0e4c6fb9a4cd357c68c5b7988530f1829de33e4af602",
+      "ok": true
+    },
+    "rust": {
+      "url": "https://raw.githubusercontent.com/rust-lang/book/main/src/ch04-01-what-is-ownership.md",
+      "bytes": 25352,
+      "sha256": "873724c6862ad0cc447becf0e818eb39a324c5d4bfa26ef721286aae1941c0ba",
+      "ok": true
+    },
+    "rust-errors": {
+      "url": "https://raw.githubusercontent.com/rust-lang/book/main/src/ch09-02-recoverable-errors-with-result.md",
+      "bytes": 26432,
+      "sha256": "dab3e88d324cdde74cf96356c58a423747a5735ac6848d8d4592dc7c13637c62",
+      "ok": true
+    },
+    "postgres": {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/master/doc/src/sgml/mvcc.sgml",
+      "bytes": 84819,
+      "sha256": "02542fc297db5b5932858b609cd4bc8f815453cd33ca6e7232a5cc9046e585a5",
+      "ok": true
+    },
+    "postgres-wal": {
+      "url": "https://raw.githubusercontent.com/postgres/postgres/master/doc/src/sgml/wal.sgml",
+      "bytes": 56234,
+      "sha256": "3c07dd7b98f0ea1540440a0239926a1d3c60e4d799127eea847d3ffd06acf666",
+      "ok": true
+    },
+    "mysql": {
+      "url": "https://raw.githubusercontent.com/mysql/mysql-server/8.4/storage/innobase/include/read0read.h",
+      "bytes": 4219,
+      "sha256": "e18640864487de7a77462d6390f5a9765926ec283efc5a4f051d810a849b5ad3",
+      "ok": true
+    },
+    "mysql-locking": {
+      "url": "https://raw.githubusercontent.com/mysql/mysql-server/8.4/storage/innobase/include/lock0lock.h",
+      "bytes": 59531,
+      "sha256": "f51beb53bb5235dd4a513c4ab25c8ee7e04fbe48382bcbb3a65ef591ceac241f",
+      "ok": true
+    },
+    "mongodb": {
+      "url": "https://raw.githubusercontent.com/mongodb/docs/master/source/core/write-operations-atomicity.txt",
+      "bytes": 3885,
+      "sha256": "25b93321f54e5764b01403c769c3cdf4e7693d6050c462c843fd34a425e7cba5",
+      "ok": true
+    },
+    "mongodb-indexes": {
+      "url": "https://raw.githubusercontent.com/mongodb/docs/master/source/indexes.txt",
+      "bytes": 6648,
+      "sha256": "8ee0aa0d7dabc035cb637fc25edc3851c03990da5d69c1f1b9d726a6b1e8efe6",
+      "ok": true
+    },
+    "redis": {
+      "url": "https://raw.githubusercontent.com/redis/docs/main/content/operate/oss_and_stack/management/persistence.md",
+      "bytes": 27210,
+      "sha256": "1be4fedb62d29ccb848c6c2a6cc0a2fbc7fa4ee5b04d9f483fb6d7a9e2005874",
+      "ok": true
+    },
+    "redis-eviction": {
+      "url": "https://raw.githubusercontent.com/redis/docs/main/content/develop/reference/eviction/index.md",
+      "bytes": 17427,
+      "sha256": "4aeb875ac8edeb46400048a8d4b10fd1cf98980933cd2026d7ae747910493927",
+      "ok": true
+    },
+    "kafka": {
+      "url": "https://raw.githubusercontent.com/apache/kafka/trunk/docs/design/design.md",
+      "bytes": 77540,
+      "sha256": "a9ad6e4533d9c29c8b6c4ae3222e85aebb660979fcb2706e082416d5f3819387",
+      "ok": true
+    },
+    "rabbitmq": {
+      "url": "https://raw.githubusercontent.com/rabbitmq/rabbitmq-website/main/docs/confirms.md",
+      "bytes": 31197,
+      "sha256": "861abccf819fddcdaddd661255914d867d6ed511a9ff19311bfef73d0907b127",
+      "ok": true
+    },
+    "rabbitmq-queues": {
+      "url": "https://raw.githubusercontent.com/rabbitmq/rabbitmq-website/main/docs/quorum-queues/index.md",
+      "bytes": 76134,
+      "sha256": "12abeceedb940e7ff2c7c2ab5ccf75d7471fd70c3daedbb9d39c4cdacfd2e5da",
+      "ok": true
+    },
+    "docker": {
+      "url": "https://raw.githubusercontent.com/docker/docs/main/content/get-started/docker-concepts/the-basics/what-is-a-container.md",
+      "bytes": 9089,
+      "sha256": "d10f1cc6c8e4c7710662a12ce3b5d8e014c4eea7ef68871c4a7530c84c9dfed9",
+      "ok": true
+    },
+    "docker-storage": {
+      "url": "https://raw.githubusercontent.com/docker/docs/main/content/manuals/engine/storage/_index.md",
+      "bytes": 4727,
+      "sha256": "a306a56683616b6caebfcdbc558dd8e054cf31a15a4a5565d431ea518de988d3",
+      "ok": true
+    },
+    "kubernetes": {
+      "url": "https://raw.githubusercontent.com/kubernetes/website/main/content/en/docs/concepts/workloads/pods/_index.md",
+      "bytes": 26031,
+      "sha256": "dbc592a96241fb0be96b797e704a5f8ceabc7531db7ef831539f10d132457792",
+      "ok": true
+    },
+    "kubernetes-probes": {
+      "url": "https://raw.githubusercontent.com/kubernetes/website/main/content/en/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes.md",
+      "bytes": 14823,
+      "sha256": "bf80ca8ec4ffa9c71c06a11c515dcb34f18132b4cbe52896b5acd9b5989c6c0c",
+      "ok": true
+    },
+    "nodejs": {
+      "url": "https://raw.githubusercontent.com/nodejs/node/main/doc/api/worker_threads.md",
+      "bytes": 69245,
+      "sha256": "788dc2f1edd14ce53405495db77077a6b8e7e9fceb6ee58cb434aef241af1de5",
+      "ok": true
+    },
+    "nodejs-http": {
+      "url": "https://raw.githubusercontent.com/nodejs/node/main/doc/api/http.md",
+      "bytes": 151286,
+      "sha256": "9376e539b11d1fe1acf376d417d5a825dc91ba891e667ce81d2dfa08016be529",
+      "ok": true
+    },
+    "tomcat": {
+      "url": "https://raw.githubusercontent.com/apache/tomcat/main/webapps/docs/introduction.xml",
+      "bytes": 11113,
+      "sha256": "17efead5d76394f370d56a13174ef6bffdff80551e692c521f72557503d43466",
+      "ok": true
+    },
+    "tomcat-http": {
+      "url": "https://raw.githubusercontent.com/apache/tomcat/main/webapps/docs/config/http.xml",
+      "bytes": 96915,
+      "sha256": "2cc4785671b7aa8d9c338790398de5a57c1848d8c6cab27f5e1823d0b7312cce",
+      "ok": true
+    },
+    "ceph": {
+      "url": "https://raw.githubusercontent.com/ceph/ceph/main/README.md",
+      "bytes": 11588,
+      "sha256": "a9c98fa1976670b57f6060032efde54eedc73a113949d8d6e92fdc482a2248b0",
+      "ok": true
+    },
+    "ceph-s3": {
+      "url": "https://raw.githubusercontent.com/ceph/ceph/main/doc/radosgw/s3.rst",
+      "bytes": 7740,
+      "sha256": "3f03df4d05c230c084696dd5ea44510ff35ab7c4c1586c73795474b96eda0dde",
+      "ok": true
+    },
+    "alpine": {
+      "url": "https://raw.githubusercontent.com/alpinelinux/docker-alpine/master/README.adoc",
+      "bytes": 2845,
+      "sha256": "c9cd42ce0bf6c5292fcc3239a346e636e635cce946eb9b397ac09c1400f852df",
+      "ok": true
+    },
+    "alpine-packages": {
+      "url": "https://raw.githubusercontent.com/alpinelinux/aports/master/README.md",
+      "bytes": 3514,
+      "sha256": "ae4b731c5ec54ab44908c161fe2a54b7cd51b0273a447e7d961dbb7157818d5a",
+      "ok": true
+    },
+    "ec2": {
+      "url": "https://raw.githubusercontent.com/awsdocs/amazon-ec2-user-guide/master/doc_source/concepts.md",
+      "bytes": 11305,
+      "sha256": "7215e819a5152c1c8e736e8884153e27da0d6f067351362432cd081b3d711ed7",
+      "ok": true
+    },
+    "ebs": {
+      "url": "https://raw.githubusercontent.com/awsdocs/amazon-ec2-user-guide/master/doc_source/ebs-volumes.md",
+      "bytes": 11578,
+      "sha256": "9d41dcac7ffa6de0ee4b028bc5533e0a15e409a58c20460f6020423d1a229f30",
+      "ok": true
+    },
+    "ebs-snapshots": {
+      "url": "https://raw.githubusercontent.com/awsdocs/amazon-ec2-user-guide/master/doc_source/ebs-creating-snapshot.md",
+      "bytes": 13402,
+      "sha256": "3f8d7c75f8a7461fcf588cedbe1b12244f633cba2bb4725ca9158edb364bc951",
+      "ok": true
+    },
+    "efs": {
+      "url": "https://raw.githubusercontent.com/awsdocs/amazon-efs-user-guide/main/doc_source/whatisefs.md",
+      "bytes": 5511,
+      "sha256": "002f41e77b377d7168d358f38ea6814703d32600acb615e804db86cf3cdf195f",
+      "ok": true
+    },
+    "efs-access": {
+      "url": "https://raw.githubusercontent.com/awsdocs/amazon-efs-user-guide/main/doc_source/efs-access-points.md",
+      "bytes": 9957,
+      "sha256": "d2b7b471e291e69226bf58a647d4162dcdaf0e7abd4d86098305f5e6afa99d76",
+      "ok": true
+    },
+    "lambda": {
+      "url": "https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/lambda/2015-03-31/service-2.json",
+      "bytes": 492950,
+      "sha256": "7edc869a62c7db51defdfe380122736c3a2912d37113f299c6f9e67eb855c971",
+      "ok": true
+    },
+    "lambda-runtime": {
+      "url": "https://raw.githubusercontent.com/aws/aws-lambda-python-runtime-interface-client/main/awslambdaric/bootstrap.py",
+      "bytes": 17031,
+      "sha256": "5ec7caea2a36cd19e8a3c3464c92ab2a9026361dba5a5e3c1e7934e51414f851",
+      "ok": true
+    },
+    "ceph-crush": {
+      "url": "https://raw.githubusercontent.com/ceph/ceph/main/doc/rados/operations/crush-map.rst",
+      "bytes": 46346,
+      "sha256": "47e32602bab7f5eef7319c51bc2341484deb31dcddf16b0725a83fdc39aa1eb2",
+      "ok": true
+    },
+    "kafka-producer": {
+      "url": "https://raw.githubusercontent.com/apache/kafka/trunk/docs/configuration/producer-configs.md",
+      "ok": true,
+      "bytes": 1044,
+      "sha256": "7b14676d8e8c272c19b613b25d3c338c8a334529782bdcc3e8f215fea285abbe"
+    }
+  },
+  "logos": {
+    "javascript": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg",
+      "bytes": 1144,
+      "sha256": "0656ff65fc8eeacda5c78d7f9ffe91ec1eb919db64f56e0b7dcd460af4bbd36c",
+      "license": "Devicon MIT"
+    },
+    "typescript": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg",
+      "bytes": 943,
+      "sha256": "c9191199f4049920c2fc19035b8a6664f37f4689fcd9e8434e786097e78863f0",
+      "license": "Devicon MIT"
+    },
+    "python": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg",
+      "bytes": 2300,
+      "sha256": "71493b4a732f0532b3a03a7a95da3ee11a65766367c8303b901ffbe7bf91a3a2",
+      "license": "Devicon MIT"
+    },
+    "go": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/go/go-original-wordmark.svg",
+      "bytes": 1866,
+      "sha256": "d0400ee3d76ee43fa45e84a3b38b5710a9674969eb71af9d5bb59ed7916a3225",
+      "license": "Devicon MIT"
+    },
+    "java": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg",
+      "bytes": 1540,
+      "sha256": "7582e518a9c02425f97155e5a3bd39d1a3a7d421b78caf9c8df7443dad3edc5d",
+      "license": "Devicon MIT"
+    },
+    "rust": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/rust/rust-original.svg",
+      "bytes": 5897,
+      "sha256": "16c6c6a98e990944fc5e1cc64cc8fc7b8be3a662ec4ee7951b7995d2e52f5e12",
+      "license": "Devicon MIT"
+    },
+    "postgresql": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg",
+      "bytes": 9178,
+      "sha256": "f220a436258ed014c512ba4f9c0de6b9e5c2c4b55331a0a29f8c7a1a12c36443",
+      "license": "Devicon MIT"
+    },
+    "mysql": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original.svg",
+      "bytes": 2765,
+      "sha256": "f73fa5d6b9da33fbf540ff96f5360c24b6d29d883ecfe6fcaecf89a8d3456067",
+      "license": "Devicon MIT"
+    },
+    "mongodb": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original.svg",
+      "bytes": 5611,
+      "sha256": "d9f2bf7041264f4747e9969fb82ede0199c0ac97dfa8632aa0687d702ec05f7b",
+      "license": "Devicon MIT"
+    },
+    "redis": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/redis/redis-original.svg",
+      "bytes": 1728,
+      "sha256": "4707378b190878f36f7e6e1c01fa3ee7e7884c76101809d191dddd943a2e6bdb",
+      "license": "Devicon MIT"
+    },
+    "kafka": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/apachekafka/apachekafka-original.svg",
+      "bytes": 1711,
+      "sha256": "2505c5b688c18c8fd5dd8e888561eb7b23a56a75d291ff17e8ee18770193f3e8",
+      "license": "Devicon MIT"
+    },
+    "rabbitmq": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/rabbitmq/rabbitmq-original.svg",
+      "bytes": 634,
+      "sha256": "3aad30605375d85bd2fc293880be7e1b07def3f7191c8f063feb775cca5b7006",
+      "license": "Devicon MIT"
+    },
+    "docker": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original.svg",
+      "bytes": 4452,
+      "sha256": "3fd830ea69431ed7a0b8d068cd5b34ad3f00a1a78195d50f13ff56713f2462e1",
+      "license": "Devicon MIT"
+    },
+    "kubernetes": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kubernetes/kubernetes-original.svg",
+      "bytes": 8951,
+      "sha256": "fb31e4163238978201cfde0601728ee5168b74e476c32c37739bed626fa281ae",
+      "license": "Devicon MIT"
+    },
+    "nodejs": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg",
+      "bytes": 1806,
+      "sha256": "3218687c5ea24a4d4c0a33dc5c287da38c33a72dcfe9382469d7ce4e0bf661fb",
+      "license": "Devicon MIT"
+    },
+    "tomcat": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/tomcat/tomcat-original.svg",
+      "bytes": 4382,
+      "sha256": "ccd95fcd7834c78b5310a2df9368ed22ed17d30707258ca406fd1b197498fe2a",
+      "license": "Devicon MIT"
+    },
+    "ceph": {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/ceph/ceph-original.svg",
+      "bytes": 1847,
+      "sha256": "2319771470c126d2463febf34013c8de82368a7e4c2778322bdbfb0f3559744b",
+      "license": "Devicon MIT"
+    },
+    "ec2": {
+      "url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Compute/EC2.png",
+      "bytes": 693,
+      "sha256": "7cd2bef0daa55d3fc97c03707ae3ebf1c5953043969a94e65e0b66c4d533b0ed",
+      "license": "AWS Icons for PlantUML CC BY-ND 2.0"
+    },
+    "lambda": {
+      "url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Compute/Lambda.png",
+      "bytes": 1907,
+      "sha256": "c10101a20a279b47c66caaf8adb54aedaad4735a27ad54075e1d200a15af55e1",
+      "license": "AWS Icons for PlantUML CC BY-ND 2.0"
+    },
+    "ebs": {
+      "url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Storage/ElasticBlockStore.png",
+      "bytes": 1363,
+      "sha256": "c19b9e2f8eec3616d4812fcf8e38cfbce2eb8909bbe0b7dca73a059eccd9c2d3",
+      "license": "AWS Icons for PlantUML CC BY-ND 2.0"
+    },
+    "efs": {
+      "url": "https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/main/dist/Storage/EFS.png",
+      "bytes": 2078,
+      "sha256": "a13dbd244ae233a94d8e85b924d558eb5b6c12bb4f61da9472a1979bc516546b",
+      "license": "AWS Icons for PlantUML CC BY-ND 2.0"
+    },
+    "alpine": {
+      "url": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/alpinelinux.svg",
+      "bytes": 1053,
+      "sha256": "d37d0a7873c65174308d63929f09ab93c3aaa7f5c5df79cdec4be532e015fc98",
+      "license": "Simple Icons CC0"
+    }
+  }
+}

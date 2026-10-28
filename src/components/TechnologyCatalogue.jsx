@@ -4,10 +4,11 @@ import { assets } from "../data/assets.js";
 import {
   technologyCatalogue,
   technologyCategories,
+  technologyCategoryDescriptions,
   findTechnology,
 } from "../data/technology-catalogue.js";
 import { useApp } from "../state/AppState.jsx";
-import { ActionIcon, Code, Reveal } from "./ui.jsx";
+import { ActionIcon, Code } from "./ui.jsx";
 import { Text } from "./Glossary.jsx";
 
 export function TechnologyCard({ technologyId, usage, caseKey }) {
@@ -23,6 +24,9 @@ export function TechnologyCard({ technologyId, usage, caseKey }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.16 }}
     >
+      <p className="technology-card-category">
+        {technologyCategories.find(([id]) => id === tech.category)?.[1]}
+      </p>
       <div className="technology-card-heading">
         <img
           src={assets[tech.image]}
@@ -33,7 +37,10 @@ export function TechnologyCard({ technologyId, usage, caseKey }) {
         <div>
           <p className="technology-provider">{tech.provider}</p>
           <h3 tabIndex="-1">{tech.name}</h3>
-          <p className="technology-type">{tech.type}</p>
+          {tech.type !==
+            technologyCategories.find(([id]) => id === tech.category)?.[1] && (
+            <p className="technology-type">{tech.type}</p>
+          )}
         </div>
       </div>
       <Text className="technology-card-summary">{tech.summary}</Text>
@@ -67,7 +74,7 @@ export function TechnologyCard({ technologyId, usage, caseKey }) {
 export function TechnologyCatalogue() {
   const { state, patch } = useApp(),
     query = state.catalogueQuery.trim().toLocaleLowerCase("ko-KR");
-  const filtered = technologyCatalogue.filter(
+  const matches = technologyCatalogue.filter(
     (tech) =>
       (state.catalogueCategory === "all" ||
         tech.category === state.catalogueCategory) &&
@@ -76,11 +83,24 @@ export function TechnologyCatalogue() {
         tech.provider,
         tech.type,
         tech.summary,
+        technologyCategories.find(([id]) => id === tech.category)?.[1],
         ...(tech.aliases || []),
       ]
         .join(" ")
         .toLocaleLowerCase("ko-KR")
         .includes(query),
+  );
+  const exact = matches.filter((tech) =>
+    [tech.name, ...(tech.aliases || [])].some(
+      (name) => name.toLocaleLowerCase("ko-KR") === query,
+    ),
+  );
+  const filtered = query && exact.length ? exact : matches;
+  filtered.sort(
+    (a, b) =>
+      technologyCategories.findIndex(([id]) => id === a.category) -
+        technologyCategories.findIndex(([id]) => id === b.category) ||
+      a.name.localeCompare(b.name, "en"),
   );
   const clear = () => patch({ catalogueCategory: "all", catalogueQuery: "" });
   return (
@@ -94,7 +114,9 @@ export function TechnologyCatalogue() {
         <h1 id="technology-library-title" tabIndex="-1">
           기술 목록
         </h1>
-        <p>무엇을 하는 기술인지, 어떤 상황에 쓰는지 제품별로 살펴봅니다.</p>
+        <p>
+          어떤 일을 맡는 기술인지, 어디에 어떻게 쓰는지 분류별로 살펴봅니다.
+        </p>
       </div>
       <div className="technology-search-row">
         <label className="technology-search" htmlFor="technology-search">
@@ -103,17 +125,41 @@ export function TechnologyCatalogue() {
             id="technology-search"
             type="search"
             autoComplete="off"
-            placeholder="예: S3, NGINX, Google Cloud"
+            placeholder="예: Python, PostgreSQL, S3"
             value={state.catalogueQuery}
             onChange={(event) => patch({ catalogueQuery: event.target.value })}
           />
         </label>
         <p>카드를 누르면 기술 정보 창이 열립니다.</p>
       </div>
+      <label
+        className="technology-mobile-category"
+        htmlFor="technology-category-select"
+      >
+        <span>분류 선택</span>
+        <select
+          id="technology-category-select"
+          value={state.catalogueCategory}
+          onChange={(event) => patch({ catalogueCategory: event.target.value })}
+        >
+          {technologyCategories.map(([id, label]) => (
+            <option key={id} value={id}>
+              {label} (
+              {
+                technologyCatalogue.filter(
+                  (tech) => id === "all" || tech.category === id,
+                ).length
+              }
+              )
+            </option>
+          ))}
+        </select>
+      </label>
       <div
         className="technology-category-list"
         role="group"
         aria-label="기술 카테고리"
+        aria-describedby="technology-category-description"
       >
         {technologyCategories.map(([id, label]) => (
           <button
@@ -133,6 +179,19 @@ export function TechnologyCatalogue() {
           </button>
         ))}
       </div>
+      <p
+        className="technology-category-description"
+        id="technology-category-description"
+      >
+        <strong>
+          {
+            technologyCategories.find(
+              ([id]) => id === state.catalogueCategory,
+            )?.[1]
+          }
+        </strong>
+        {technologyCategoryDescriptions[state.catalogueCategory]}
+      </p>
       <p className="technology-result-count" role="status" aria-live="polite">
         {filtered.length}개 기술
         {state.catalogueQuery && ` · “${state.catalogueQuery}” 검색 결과`}
@@ -157,12 +216,12 @@ export function TechnologyCatalogue() {
       )}
       <footer className="technology-library-footer">
         <p>
-          제품의 일반적인 기능을 설명합니다. 아키텍처 사례에서 실제로 쓰인
-          위치와 확인 범위는 각 사례에 표시합니다.
+          기술의 일반적인 동작과 사용 조건을 설명합니다. 아키텍처 사례에서
+          실제로 쓰인 위치와 확인 범위는 각 사례에 표시합니다.
         </p>
         <p>
-          제품 아이콘과 브랜드 심벌은 원본을 사용합니다. 각 상세 창에서 이미지
-          출처와 공식 문서를 확인할 수 있습니다.
+          제품·언어 아이콘과 브랜드 심벌은 원본을 사용합니다. 각 상세 창에서
+          이미지 출처와 공식 문서를 확인할 수 있습니다.
         </p>
       </footer>
     </section>
@@ -274,7 +333,7 @@ export function TechnologyInfo({ technologyId }) {
       </section>
       <section>
         <p className="sheet-eyebrow">동작 원리</p>
-        <h3 tabIndex="-1">요청과 데이터가 지나가는 순서</h3>
+        <h3 tabIndex="-1">동작과 처리 순서</h3>
         <ol className="technology-info-flow">
           {tech.flow.map(([title, text], index) => (
             <li key={title}>

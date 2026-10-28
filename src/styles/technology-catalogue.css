@@ -20,7 +20,7 @@
   font-weight: 700;
 }
 .technology-library {
-  max-width: 1160px;
+  max-width: 1600px;
   margin: 38px auto 0;
 }
 .technology-library-heading {
@@ -102,7 +102,7 @@
 }
 .technology-catalogue-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 .technology-card {
@@ -374,14 +374,13 @@
   font-size: 12px;
   color: var(--blue);
 }
-@media (max-width: 1100px) {
+@media (max-width: 1023px) {
   .technology-catalogue-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (max-width: 760px) {
-  .technology-catalogue-grid,
-  .case-technology-grid {
+@media (max-width: 639px) {
+  .technology-catalogue-grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .technology-library {
@@ -482,4 +481,63 @@
 }
 .technology-card .technology-info-open:active:not(:disabled) {
   filter: none;
+}
+
+.technology-card-category {
+  margin: 0 0 15px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.technology-category-description {
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--body);
+  line-height: 1.9;
+  font-size: 14px;
+}
+.technology-category-description strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink);
+  font-size: 14px;
+}
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .technology-catalogue-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 640px) and (max-width: 760px) {
+  .case-technology-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.technology-mobile-category {
+  display: none;
+}
+@media (max-width: 639px) {
+  .technology-category-list {
+    display: none;
+  }
+  .technology-mobile-category {
+    display: grid;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--body);
+  }
+  .technology-mobile-category select {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 10px 12px;
+    font: 16px var(--sans);
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid #7d8996;
+    border-radius: 6px;
+  }
 }
