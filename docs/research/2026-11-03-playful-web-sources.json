@@ -1,0 +1,241 @@
+{
+  "checkedOn": "2026-11-03",
+  "timezone": "Asia/Seoul",
+  "method": "Static review of public READMEs, dependency files and client source. Each captured file was re-fetched at its recorded commit and its SHA-256 was matched. No third-party server, database or multiplayer room was tested.",
+  "limitations": [
+    {
+      "url": "https://sansatemple.com/?room=maru-29&instance=0&region=apac",
+      "result": "HTTP proxy CONNECT returned 403. Standard Chromium also returned ERR_TUNNEL_CONNECTION_FAILED. Current page and deployment were not observed."
+    },
+    {
+      "url": "https://namu.wiki/w/%EC%82%B0%EC%82%AC(%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8)",
+      "result": "HTTP proxy CONNECT returned 403. Article body was not read."
+    }
+  ],
+  "provenance": {
+    "davidkimyang/metatemple": "Third-party derivative. Its README claims a retained Sansa client runtime. The archived runtime and adaptation script were read, but their equivalence to the current sansatemple.com deployment and the reuse-permission claim were not independently verified. This is indirect evidence for Sansa, not an official source repository.",
+    "otherProjects": "Related public implementations inspected on the recorded date. Their use of a technology is evidence for that project only. No consumer popularity ranking or usage figure was established."
+  },
+  "discovery": [
+    "https://github.com/search?q=sansatemple.com+in%3Areadme&type=repositories",
+    "https://github.com/search?q=%22%EC%82%B0%EC%82%AC%22+%22three%22+in%3Areadme&type=repositories"
+  ],
+  "sources": [
+    {
+      "repo": "hun0823/busan-walk",
+      "revision": "173996750ece183c2de248263ec0e5136755c571",
+      "path": "README.md",
+      "url": "https://github.com/hun0823/busan-walk/blob/173996750ece183c2de248263ec0e5136755c571/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/hun0823/busan-walk/173996750ece183c2de248263ec0e5136755c571/README.md",
+      "bytes": 886,
+      "sha256": "7668fc6cb043271e963751f1cb1dcf900b6c02e1c7bb5d972f25c864d7ab699f"
+    },
+    {
+      "repo": "jeiel85/wayu-sansu",
+      "revision": "0427f562b540ca7acaca4715645dc8c4a1b4f265",
+      "path": "README.md",
+      "url": "https://github.com/jeiel85/wayu-sansu/blob/0427f562b540ca7acaca4715645dc8c4a1b4f265/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/jeiel85/wayu-sansu/0427f562b540ca7acaca4715645dc8c4a1b4f265/README.md",
+      "bytes": 8411,
+      "sha256": "8d5991bfbf6a939a580f4681f0f8d20bcec82865ab24f0871111211f681ce0b4"
+    },
+    {
+      "repo": "jeiel85/wayu-sansu",
+      "revision": "0427f562b540ca7acaca4715645dc8c4a1b4f265",
+      "path": "package.json",
+      "url": "https://github.com/jeiel85/wayu-sansu/blob/0427f562b540ca7acaca4715645dc8c4a1b4f265/package.json",
+      "rawUrl": "https://raw.githubusercontent.com/jeiel85/wayu-sansu/0427f562b540ca7acaca4715645dc8c4a1b4f265/package.json",
+      "bytes": 288,
+      "sha256": "da54baff3ced6aeb6f0e995786b53b4eef49846535734342dd24cad4cbdb04cc"
+    },
+    {
+      "repo": "supporthubone-maker/tungtung",
+      "revision": "5f55f97eb410f4433877fbe26d4513e1744f2400",
+      "path": "README.md",
+      "url": "https://github.com/supporthubone-maker/tungtung/blob/5f55f97eb410f4433877fbe26d4513e1744f2400/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/supporthubone-maker/tungtung/5f55f97eb410f4433877fbe26d4513e1744f2400/README.md",
+      "bytes": 2794,
+      "sha256": "07e85b688078ea25c253491ffd9ef5d7c79adcab18982b6fb41928188ebd21d9"
+    },
+    {
+      "repo": "supporthubone-maker/tungtung",
+      "revision": "5f55f97eb410f4433877fbe26d4513e1744f2400",
+      "path": "package.json",
+      "url": "https://github.com/supporthubone-maker/tungtung/blob/5f55f97eb410f4433877fbe26d4513e1744f2400/package.json",
+      "rawUrl": "https://raw.githubusercontent.com/supporthubone-maker/tungtung/5f55f97eb410f4433877fbe26d4513e1744f2400/package.json",
+      "bytes": 293,
+      "sha256": "a351f94f34b4f5c2c8cc7351663ebc87111a3db7b8cbc74ec9c5a378bfe38598"
+    },
+    {
+      "repo": "ideajune/view-mung",
+      "revision": "eee755436c137255b46e7fc5ba7d41c3c857b165",
+      "path": "README.md",
+      "url": "https://github.com/ideajune/view-mung/blob/eee755436c137255b46e7fc5ba7d41c3c857b165/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/ideajune/view-mung/eee755436c137255b46e7fc5ba7d41c3c857b165/README.md",
+      "bytes": 5120,
+      "sha256": "ca95520e046ebb7ca3f089453bc03fba01696824a8c71d2112936c9d40b78fad"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "README.md",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/README.md",
+      "bytes": 5775,
+      "sha256": "f78e15ce68066343c978aa0e9030f5bfbce4bdcb7a7f97c85259f94dbcf57da2"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "package.json",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/package.json",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/package.json",
+      "bytes": 2157,
+      "sha256": "03eeb8cc6c421883ac85c020ac6f837150a90e23757009c4dc5aa4a8f7124a12"
+    },
+    {
+      "repo": "threekidsangel-lab/healing-restaurant",
+      "revision": "1129764c376f8f646658c8904a5d26e9506c7935",
+      "path": "README.md",
+      "url": "https://github.com/threekidsangel-lab/healing-restaurant/blob/1129764c376f8f646658c8904a5d26e9506c7935/README.md",
+      "rawUrl": "https://raw.githubusercontent.com/threekidsangel-lab/healing-restaurant/1129764c376f8f646658c8904a5d26e9506c7935/README.md",
+      "bytes": 6484,
+      "sha256": "5af570ba9c4b57d2a35fefcbd9081eb627532e133bb41b2a4bd5fd971c61c2cc"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "scripts/reference/prepare-reference.mjs",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/scripts/reference/prepare-reference.mjs",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/scripts/reference/prepare-reference.mjs",
+      "bytes": 10491,
+      "sha256": "e8cad47f66d21796c1410e4448128fec44a6d8f138735333dd998474da54d935"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "public/temple/asset-manifest.json",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/public/temple/asset-manifest.json",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/public/temple/asset-manifest.json",
+      "bytes": 7029,
+      "sha256": "a307a6249b80902b1aa58b61691706210cd6cba4c0f6162bdc5207dd57adb840"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "components/native-temple.tsx",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/components/native-temple.tsx",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/components/native-temple.tsx",
+      "bytes": 9014,
+      "sha256": "b6f306651fd14dc73df4ad1f770ee34674321ce5469ab9de7042776bc5e3b687"
+    },
+    {
+      "repo": "hun0823/busan-walk",
+      "revision": "173996750ece183c2de248263ec0e5136755c571",
+      "path": "index.html",
+      "url": "https://github.com/hun0823/busan-walk/blob/173996750ece183c2de248263ec0e5136755c571/index.html",
+      "rawUrl": "https://raw.githubusercontent.com/hun0823/busan-walk/173996750ece183c2de248263ec0e5136755c571/index.html",
+      "bytes": 4939,
+      "sha256": "2529d6953f70267269dd4a29f10daa9c94553fac6f3a84ccaa3395f77e262dd9"
+    },
+    {
+      "repo": "hun0823/busan-walk",
+      "revision": "173996750ece183c2de248263ec0e5136755c571",
+      "path": "ASSETS.md",
+      "url": "https://github.com/hun0823/busan-walk/blob/173996750ece183c2de248263ec0e5136755c571/ASSETS.md",
+      "rawUrl": "https://raw.githubusercontent.com/hun0823/busan-walk/173996750ece183c2de248263ec0e5136755c571/ASSETS.md",
+      "bytes": 10399,
+      "sha256": "b8f4823c70c8594d48bc9ef0b6c007edf52c3f245046e09f398fd85988e93569"
+    },
+    {
+      "repo": "jeiel85/wayu-sansu",
+      "revision": "0427f562b540ca7acaca4715645dc8c4a1b4f265",
+      "path": "src/main.js",
+      "url": "https://github.com/jeiel85/wayu-sansu/blob/0427f562b540ca7acaca4715645dc8c4a1b4f265/src/main.js",
+      "rawUrl": "https://raw.githubusercontent.com/jeiel85/wayu-sansu/0427f562b540ca7acaca4715645dc8c4a1b4f265/src/main.js",
+      "bytes": 43036,
+      "sha256": "bf174d8afd28b67f8b0a6e8dfbda015bf81bbca683f9b56d31f1edf1284f5ed8"
+    },
+    {
+      "repo": "ideajune/view-mung",
+      "revision": "eee755436c137255b46e7fc5ba7d41c3c857b165",
+      "path": "index.html",
+      "url": "https://github.com/ideajune/view-mung/blob/eee755436c137255b46e7fc5ba7d41c3c857b165/index.html",
+      "rawUrl": "https://raw.githubusercontent.com/ideajune/view-mung/eee755436c137255b46e7fc5ba7d41c3c857b165/index.html",
+      "bytes": 11821,
+      "sha256": "f666b9a201a97b67c26e3eb026624649514228550fbc6d49b33ddacae6c8de32"
+    },
+    {
+      "repo": "ideajune/view-mung",
+      "revision": "eee755436c137255b46e7fc5ba7d41c3c857b165",
+      "path": "app.js",
+      "url": "https://github.com/ideajune/view-mung/blob/eee755436c137255b46e7fc5ba7d41c3c857b165/app.js",
+      "rawUrl": "https://raw.githubusercontent.com/ideajune/view-mung/eee755436c137255b46e7fc5ba7d41c3c857b165/app.js",
+      "bytes": 89221,
+      "sha256": "bf334c58b7292094290a7e835062db7fe02c798fbe41375f03bb1fb24063b6f7"
+    },
+    {
+      "repo": "supporthubone-maker/tungtung",
+      "revision": "5f55f97eb410f4433877fbe26d4513e1744f2400",
+      "path": "src/main.js",
+      "url": "https://github.com/supporthubone-maker/tungtung/blob/5f55f97eb410f4433877fbe26d4513e1744f2400/src/main.js",
+      "rawUrl": "https://raw.githubusercontent.com/supporthubone-maker/tungtung/5f55f97eb410f4433877fbe26d4513e1744f2400/src/main.js",
+      "bytes": 46267,
+      "sha256": "3c8e437e2b1a409fd558d7fcd78584f8292df3539310aa9aa13b51471c20dde4"
+    },
+    {
+      "repo": "threekidsangel-lab/healing-restaurant",
+      "revision": "1129764c376f8f646658c8904a5d26e9506c7935",
+      "path": "index.html",
+      "url": "https://github.com/threekidsangel-lab/healing-restaurant/blob/1129764c376f8f646658c8904a5d26e9506c7935/index.html",
+      "rawUrl": "https://raw.githubusercontent.com/threekidsangel-lab/healing-restaurant/1129764c376f8f646658c8904a5d26e9506c7935/index.html",
+      "bytes": 155375,
+      "sha256": "48110f89d898eea4bd37df662a5b16e13b58035284c159ff0b67b0eaa72dcaa4"
+    },
+    {
+      "repo": "davidkimyang/metatemple",
+      "revision": "351c9d843926cc1dace323c4e65da58413e0d924",
+      "path": "reference/vendor/sansa-game.js",
+      "url": "https://github.com/davidkimyang/metatemple/blob/351c9d843926cc1dace323c4e65da58413e0d924/reference/vendor/sansa-game.js",
+      "rawUrl": "https://raw.githubusercontent.com/davidkimyang/metatemple/351c9d843926cc1dace323c4e65da58413e0d924/reference/vendor/sansa-game.js",
+      "bytes": 1018942,
+      "sha256": "b360372d18c3ec146678b5a56ed580ea2c44d329310ad426dd38a146d2021dd3"
+    },
+    {
+      "repo": "jeiel85/wayu-sansu",
+      "revision": "0427f562b540ca7acaca4715645dc8c4a1b4f265",
+      "path": "src/audio/GuGakAudio.js",
+      "url": "https://github.com/jeiel85/wayu-sansu/blob/0427f562b540ca7acaca4715645dc8c4a1b4f265/src/audio/GuGakAudio.js",
+      "rawUrl": "https://raw.githubusercontent.com/jeiel85/wayu-sansu/0427f562b540ca7acaca4715645dc8c4a1b4f265/src/audio/GuGakAudio.js",
+      "bytes": 4791,
+      "sha256": "e814f6df09914ee7ac9ef48690ace463513be09e93f7095963691536aa9f686c"
+    },
+    {
+      "repo": "hun0823/busan-walk",
+      "revision": "173996750ece183c2de248263ec0e5136755c571",
+      "path": "js/main.js",
+      "url": "https://github.com/hun0823/busan-walk/blob/173996750ece183c2de248263ec0e5136755c571/js/main.js",
+      "rawUrl": "https://raw.githubusercontent.com/hun0823/busan-walk/173996750ece183c2de248263ec0e5136755c571/js/main.js",
+      "bytes": 41360,
+      "sha256": "782d4f820cca11934b590dac47e486a0858740abc0097726b9ef17fc01512930"
+    },
+    {
+      "repo": "hun0823/busan-walk",
+      "revision": "173996750ece183c2de248263ec0e5136755c571",
+      "path": "js/sound.js",
+      "url": "https://github.com/hun0823/busan-walk/blob/173996750ece183c2de248263ec0e5136755c571/js/sound.js",
+      "rawUrl": "https://raw.githubusercontent.com/hun0823/busan-walk/173996750ece183c2de248263ec0e5136755c571/js/sound.js",
+      "bytes": 5083,
+      "sha256": "1f185f7f6e075cc8bedcd68fe02da9e2f1385c75f3cb1d45ee4dd248a3f084db"
+    },
+    {
+      "repo": "supporthubone-maker/tungtung",
+      "revision": "5f55f97eb410f4433877fbe26d4513e1744f2400",
+      "path": "src/room.js",
+      "url": "https://github.com/supporthubone-maker/tungtung/blob/5f55f97eb410f4433877fbe26d4513e1744f2400/src/room.js",
+      "rawUrl": "https://raw.githubusercontent.com/supporthubone-maker/tungtung/5f55f97eb410f4433877fbe26d4513e1744f2400/src/room.js",
+      "bytes": 6594,
+      "sha256": "0b387a86367eb929c3136a7cccafc30cff948d085249d0fac57a4c21ba87579c"
+    }
+  ]
+}
