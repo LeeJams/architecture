@@ -38,15 +38,51 @@ export function ServiceStackLink({ service, children }) {
 }
 
 function PartLink({ service, part, children, ...props }) {
+  const layer = layerForPart(service, part);
   return (
     <StackLink
       {...props}
+      data-stack-tone={layer.id}
       service={service.id}
-      layer={layerForPart(service, part).id}
+      layer={layer.id}
       hash={stackPartId(service.id, part.id)}
     >
       {children}
     </StackLink>
+  );
+}
+
+function LayerMark({ layer }) {
+  return (
+    <span className="stack-layer-symbol" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        focusable="false"
+      >
+        {layer === "frontend" ? (
+          <>
+            <rect x="3" y="4" width="18" height="16" rx="2" />
+            <path d="M3 9h18M9 12l-3 3 3 3M15 12l3 3-3 3M6 6.5h.01M9 6.5h.01" />
+          </>
+        ) : layer === "server" ? (
+          <>
+            <rect x="3" y="3" width="18" height="7" rx="2" />
+            <rect x="3" y="14" width="18" height="7" rx="2" />
+            <path d="M7 6.5h.01M11 6.5h6M7 17.5h.01M11 17.5h6" />
+          </>
+        ) : (
+          <>
+            <ellipse cx="12" cy="5" rx="8" ry="3" />
+            <path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" />
+          </>
+        )}
+      </svg>
+    </span>
   );
 }
 
@@ -252,41 +288,52 @@ function ServiceOverview({ service }) {
                   service={service.id}
                   layer={layer.id}
                   data-stack-layer-link={layer.id}
+                  data-stack-tone={layer.id}
                   id={`stack-layer-card-${layer.id}`}
                 >
-                  <span className="stack-layer-card-heading">
-                    <strong>{layer.name}</strong>
-                    <span>{parts.length}개 파트</span>
-                  </span>
-                  <span className="stack-layer-location">{layer.location}</span>
-                  <span className="stack-layer-card-action">
-                    {layer.name} 상세 페이지로 이동 <ActionIcon kind="arrow" />
-                  </span>
-                  <p>{layer.summary}</p>
-                  <ul className="stack-layer-preview">
-                    {parts.map((part) => (
-                      <li key={part.id}>
-                        <strong>{part.title}</strong>
-                        <span className="stack-preview-technologies">
-                          {part.technologies.length ? (
-                            part.technologies.map((entry) => (
-                              <span key={entry.id || entry.name}>
-                                <EntryMark entry={entry} />
-                                {entry.id
-                                  ? findTechnology(entry.id).name
-                                  : entry.name}
+                  <div className="stack-layer-card-head">
+                    <span className="stack-layer-card-heading">
+                      <span className="stack-layer-card-title">
+                        <LayerMark layer={layer.id} />
+                        <strong>{layer.name}</strong>
+                      </span>
+                      <span>{parts.length}개 파트</span>
+                    </span>
+                    <span className="stack-layer-location">
+                      {layer.location}
+                    </span>
+                    <span className="stack-layer-card-action">
+                      {layer.name} 상세 페이지로 이동{" "}
+                      <ActionIcon kind="arrow" />
+                    </span>
+                  </div>
+                  <div className="stack-layer-card-body">
+                    <p>{layer.summary}</p>
+                    <ul className="stack-layer-preview">
+                      {parts.map((part) => (
+                        <li key={part.id}>
+                          <strong>{part.title}</strong>
+                          <span className="stack-preview-technologies">
+                            {part.technologies.length ? (
+                              part.technologies.map((entry) => (
+                                <span key={entry.id || entry.name}>
+                                  <EntryMark entry={entry} />
+                                  {entry.id
+                                    ? findTechnology(entry.id).name
+                                    : entry.name}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="stack-unknown-label">
+                                제품 미확인
                               </span>
-                            ))
-                          ) : (
-                            <span className="stack-unknown-label">
-                              제품 미확인
-                            </span>
-                          )}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                  <span className="stack-layer-card-note">{layer.note}</span>
+                            )}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="stack-layer-card-note">{layer.note}</span>
+                  </div>
                 </StackLink>
               );
             })}
@@ -399,7 +446,10 @@ function LayerDetail({ service, layer }) {
       </nav>
       <header className="stack-page-heading stack-detail-heading">
         <div>
-          <span className="stack-scope">{layer.location}</span>
+          <span className="stack-detail-label">
+            <LayerMark layer={layer.id} />
+            {layer.location}
+          </span>
           <h1 id="service-stacks-title" tabIndex="-1">
             {service.name} · {layer.name}
           </h1>
@@ -420,8 +470,10 @@ function LayerDetail({ service, layer }) {
                 service={service.id}
                 layer={item.id}
                 data-stack-detail-link={item.id}
+                data-stack-tone={item.id}
                 aria-current={layer.id === item.id ? "page" : undefined}
               >
+                <LayerMark layer={item.id} />
                 <span>{item.name}</span>
                 <small>{partsInLayer(service, item).length}개 파트</small>
                 <ActionIcon kind="arrow" />
@@ -474,6 +526,8 @@ export function ServiceStacks({ serviceId, layerId }) {
       className="service-stacks"
       id="service-stacks"
       data-stack-layer={layer?.id || "overview"}
+      data-stack-tone={layer?.id || undefined}
+      data-stack-company={service.id}
       aria-labelledby="service-stacks-title"
     >
       {layer ? (

@@ -1,0 +1,79 @@
+/* Role colours are UI cues. Product marks keep their original colours. */
+:root {
+  --tone-frontend-ink: #82551d;
+  --tone-frontend-accent: #a97025;
+  --tone-frontend-soft: #fbf3e4;
+  --tone-frontend-line: #dec8a7;
+  --tone-server-ink: #315c91;
+  --tone-server-accent: #4b73a5;
+  --tone-server-soft: #edf3fc;
+  --tone-server-line: #c4d2e5;
+  --tone-storage-ink: #276451;
+  --tone-storage-accent: #397d65;
+  --tone-storage-soft: #edf6f0;
+  --tone-storage-line: #bfd8c9;
+  --stack-ink: var(--tone-server-ink);
+  --stack-accent: var(--tone-server-accent);
+  --stack-soft: var(--tone-server-soft);
+  --stack-line: var(--tone-server-line);
+}
+[data-stack-tone="frontend"] {
+  --stack-ink: var(--tone-frontend-ink);
+  --stack-accent: var(--tone-frontend-accent);
+  --stack-soft: var(--tone-frontend-soft);
+  --stack-line: var(--tone-frontend-line);
+}
+[data-stack-tone="server"] {
+  --stack-ink: var(--tone-server-ink);
+  --stack-accent: var(--tone-server-accent);
+  --stack-soft: var(--tone-server-soft);
+  --stack-line: var(--tone-server-line);
+}
+[data-stack-tone="storage"] {
+  --stack-ink: var(--tone-storage-ink);
+  --stack-accent: var(--tone-storage-accent);
+  --stack-soft: var(--tone-storage-soft);
+  --stack-line: var(--tone-storage-line);
+}
+[data-stack-company="sansa"],
+[data-stack-service="sansa"],
+#sansa-card {
+  --service-ink: #315e52;
+  --service-accent: #3f7363;
+  --service-soft: #eef5f0;
+  --service-line: #c2d6c9;
+}
+[data-stack-company="netflix"],
+[data-stack-service="netflix"],
+#netflix-card {
+  --service-ink: #a1323c;
+  --service-accent: #b43b47;
+  --service-soft: #fbf0ef;
+  --service-line: #e8c6c8;
+}
+
+:is(#sansa-card, #netflix-card) {
+  position: relative;
+}
+:is(#sansa-card, #netflix-card)::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--service-accent);
+  pointer-events: none;
+  z-index: 1;
+}
+:is(#sansa-card, #netflix-card) .company-name {
+  background: var(--service-soft);
+  color: var(--service-ink);
+  outline: 1px solid var(--service-line);
+  border-radius: 4px;
+  padding: 0 8px;
+}
+:is(#sansa-card, #netflix-card) .case-open {
+  background: var(--service-accent);
+}
+:is(#sansa-card, #netflix-card):hover .case-open {
+  background: var(--service-ink);
+}
