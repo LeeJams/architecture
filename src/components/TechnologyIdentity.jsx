@@ -4,6 +4,7 @@ import { technologyPublishers } from "../data/publishers.js";
 import { replacementSources } from "../data/alternatives.js";
 import { replacementSentence } from "./Alternatives.jsx";
 import { Text } from "./Glossary.jsx";
+import { TechnologyMark } from "./TechnologyMark.jsx";
 
 export function TechnologyIdentity({ info, tech, product, title }) {
   const disclosure = useRef(null);
@@ -62,12 +63,20 @@ export function TechnologyIdentity({ info, tech, product, title }) {
         ];
   return (
     <aside className="technology-sheet-identity" data-technology-identity>
-      <img
-        id="technology-sheet-image"
-        className={info ? "catalogue-product-image" : undefined}
-        src={info ? assets[info.image] : tech?.image || assets[product.image]}
-        alt={info?.logoAlt || `${title} 로고 또는 역할 아이콘`}
-      />
+      {info ? (
+        <TechnologyMark
+          technology={info}
+          id="technology-sheet-image"
+          identity
+        />
+      ) : (
+        <img
+          id="technology-sheet-image"
+          className={info ? "catalogue-product-image" : undefined}
+          src={info ? assets[info.image] : tech?.image || assets[product.image]}
+          alt={info?.logoAlt || `${title} 로고 또는 역할 아이콘`}
+        />
+      )}
       <p id="technology-sheet-publisher">
         {info
           ? info.provider

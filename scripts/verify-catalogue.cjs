@@ -5,7 +5,7 @@ const path = require('node:path');
 const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
 (async () => {
  const { technologyCatalogue, technologyCategories } = await import('../src/data/technology-catalogue.js');
- assert.equal(new Set(technologyCatalogue.map(t=>t.id)).size,33);
+ assert.equal(new Set(technologyCatalogue.map(t=>t.id)).size,44);
  for(const tech of technologyCatalogue){
   assert(technologyCategories.some(([id])=>id===tech.category),tech.id);
   assert(tech.related.every(id=>technologyCatalogue.some(t=>t.id===id)),tech.id+' related');
@@ -20,8 +20,8 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.waitForFunction(() => document.documentElement.dataset.route === 'catalogue' && !document.documentElement.dataset.transitioning);
   assert.equal(new URL(page.url()).searchParams.get('view'), 'technologies');
   assert.equal(await page.locator('#technology-library-title').evaluate(e=>document.activeElement===e), true);
-  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),33);
-  for (const [category, count] of [['storage',5],['delivery',3],['http',3],['os',4],['language',6],['runtime',2],['database',3],['cache',1],['messaging',2],['operations',2],['compute',2]]) {
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),44);
+  for (const [category, count] of [['storage',5],['delivery',3],['http',3],['os',4],['language',6],['runtime',2],['graphics',4],['browser',2],['realtime',2],['tooling',1],['database',4],['cache',1],['messaging',2],['operations',2],['compute',3]]) {
    await page.locator(`[data-technology-category="${category}"]`).click();
    assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(), count);
   }
@@ -62,7 +62,7 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.locator('#technology-search').fill('없는 제품');
   assert(await page.locator('.technology-empty').isVisible());
   await page.getByRole('button',{name:'검색·카테고리 초기화'}).click();
-  report.checks.push('Separate route, eleven categories, search, empty state and keyboard focus work; S3 has its own exact product name, provider and icon.');
+  report.checks.push('Separate route, fifteen categories, search, empty state and keyboard focus work; S3 has its own exact product name, provider and icon.');
   for(const [width,columns] of [[320,1],[390,1],[768,2],[1024,3],[1280,4],[1440,4],[1920,4],[2560,4]]){
    await page.setViewportSize({width,height:1000});
    assert.equal(await page.locator('#technology-catalogue-grid').evaluate(e=>getComputedStyle(e).gridTemplateColumns.split(' ').length),columns);
@@ -77,7 +77,7 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.locator('#technology-category-select').selectOption('language');
   assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),6);
   await page.locator('#technology-category-select').selectOption('all');
-  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),33);
+  assert.equal(await page.locator('#technology-catalogue-grid [data-technology-card]').count(),44);
   report.checks.push('Mobile uses a native category selector instead of a long stack of buttons; categories and counts match desktop.');
   const keys=technologyCatalogue.map(t=>t.id);
   for(const width of [320,390,768,1440,1920]){
@@ -86,7 +86,8 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
     await page.locator(`#technology-catalogue-grid [data-open-technology-info="${key}"]`).click();
     const info=page.locator(`[data-technology-info="${key}"]`);
     const picture=page.locator('#technology-sheet-image');
-    assert(await picture.evaluate(async img=>{await img.decode();return img.naturalWidth>0}));
+    if(technologyCatalogue.find(t=>t.id===key).image) assert(await picture.evaluate(async img=>{await img.decode();return img.naturalWidth>0}));
+    else {assert.equal(await picture.getAttribute('role'),'img');assert((await picture.getAttribute('aria-label')).includes('웹 표준'));assert.equal(await picture.locator('img').count(),0);}
     assert((await info.textContent()).length>700,key+' technical content');
     assert.equal(await info.locator('.technology-info-flow li').count(),3);
     assert((await info.locator('.technology-concepts > div').count())>=3);
@@ -107,7 +108,7 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   await page.locator('#technology-search').fill('파이썬');
   assert.equal(await page.locator('#technology-catalogue-grid h3').textContent(),'Python');
   await page.locator('#technology-search').fill('');
-  report.checks.push('All thirty-three profiles contain use cases, concepts, flow, example, design points, diagnostics and sources; 165 modal states fit 320–1920px.');
+  report.checks.push('All forty-four profiles contain use cases, concepts, flow, example, design points, diagnostics and sources; 220 modal states fit 320–1920px.');
   await page.setViewportSize({width:390,height:844});
   await page.locator('#technology-search').fill('Kafka');
   await page.locator('#technology-catalogue-grid [data-open-technology-info="kafka"]').click();
@@ -131,7 +132,7 @@ const base = process.env.ATLAS_BASE_URL || 'http://127.0.0.1:4173';
   assert(await page.locator('#close-technology').isVisible());
   await page.keyboard.press('Escape');
   await page.locator('#technology-search').fill('');
-  report.checks.push('Detailed left introductions fit all 165 product/width states. Mobile native disclosures open/close with the keyboard; desktop opens details by default, and the final explanation remains reachable even in a 600px-high window.');
+  report.checks.push('Detailed left introductions fit all 220 product/width states. Mobile native disclosures open/close with the keyboard; desktop opens details by default, and the final explanation remains reachable even in a 600px-high window.');
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('.topbar-navigation a').first().click();
   await page.locator('#netflix-card').click();

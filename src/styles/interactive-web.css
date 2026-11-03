@@ -1,0 +1,652 @@
+.technology-api-mark {
+  width: var(--mark-size, 48px);
+  height: var(--mark-size, 48px);
+  flex: 0 0 var(--mark-size, 48px);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #a7b2bf;
+  border-radius: 5px;
+  background: #f2f5f8;
+  color: #34465a;
+  line-height: 1.2;
+}
+.technology-api-mark strong {
+  font: 700 16px var(--sans);
+  white-space: nowrap;
+}
+.technology-api-mark small {
+  font: 12px var(--sans);
+  margin-top: 3px;
+}
+.technology-api-mark.is-compact strong {
+  font-size: 12px;
+}
+.technology-brand-mark {
+  display: inline-flex;
+  flex: 0 0 64px;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 64px;
+}
+.technology-brand-mark small {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.technology-sheet-identity .technology-brand-mark,
+.technology-sheet-identity > .technology-api-mark {
+  margin-bottom: 22px;
+}
+.technology-sheet-identity .technology-brand-mark img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+.technology-related .technology-api-mark {
+  margin: 0;
+}
+#sansa-card,
+.sansa-page .detail-transition-surface {
+  view-transition-name: sansa-case;
+}
+#sansa-card .case-cover,
+.sansa-page .detail-cover {
+  view-transition-name: sansa-cover;
+}
+#sansa-card-title,
+#sansa-title {
+  view-transition-name: sansa-title;
+}
+::view-transition-group(sansa-case),
+::view-transition-group(sansa-cover),
+::view-transition-group(sansa-title) {
+  animation-duration: 540ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-group(sansa-case) {
+  z-index: 0;
+}
+::view-transition-group(sansa-cover) {
+  z-index: 2;
+}
+::view-transition-group(sansa-title) {
+  z-index: 3;
+}
+::view-transition-image-pair(sansa-cover) {
+  overflow: clip;
+  border-radius: 12px;
+}
+::view-transition-old(sansa-cover),
+::view-transition-new(sansa-cover) {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.sansa-page {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+#sansa-title {
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.5;
+  letter-spacing: -0.045em;
+  margin: 10px 0 18px;
+  max-width: 100%;
+}
+.sansa-page p {
+  font-size: 14px;
+  line-height: 1.95;
+  color: var(--body);
+  overflow-wrap: anywhere;
+}
+.sansa-page h2 {
+  font-size: 25px;
+  line-height: 1.6;
+  letter-spacing: -0.035em;
+}
+.sansa-page h3 {
+  font-size: 19px;
+  line-height: 1.7;
+  letter-spacing: -0.025em;
+}
+.sansa-page h4 {
+  font-size: 15px;
+  line-height: 1.85;
+}
+.sansa-page button {
+  font-family: var(--sans);
+}
+.sansa-evidence-note {
+  border: 1px solid #c2ccd7;
+  border-left: 3px solid #71849a;
+  background: #fff;
+  border-radius: 6px;
+  padding: 18px 22px;
+  margin: 24px 0;
+}
+.sansa-evidence-note strong {
+  font-size: 14px;
+  color: var(--ink);
+}
+.sansa-evidence-note p {
+  margin: 8px 0;
+}
+.sansa-evidence-note a {
+  font-size: 14px;
+  color: var(--blue);
+}
+.sansa-section {
+  margin: 38px 0;
+  padding-top: 18px;
+  scroll-margin-top: 22px;
+}
+.sansa-section-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+.sansa-section-heading h2 {
+  margin: 4px 0 10px;
+}
+.sansa-section-heading p {
+  margin: 0;
+}
+.sansa-section-heading > a {
+  flex: 0 0 auto;
+  padding: 10px 0;
+  color: var(--blue);
+  font-size: 14px;
+}
+.sansa-explorer {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr) minmax(320px, 360px);
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  overflow: clip;
+}
+.sansa-actions {
+  padding: 16px 12px;
+  display: grid;
+  gap: 9px;
+}
+.sansa-actions button {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 12px 10px;
+  border: 1px solid #b5bfcb;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--body);
+  text-align: left;
+  line-height: 1.8;
+  font-size: 14px;
+}
+.sansa-actions button > span:first-child {
+  font: 12px var(--mono);
+  color: var(--muted);
+}
+.sansa-actions button > span:last-child {
+  margin-left: auto;
+}
+.sansa-actions button[aria-pressed="true"] {
+  background: #e6effc;
+  border-color: #4778b8;
+  color: #0756ad;
+}
+.sansa-flow-reading {
+  min-width: 0;
+  padding: 24px;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+.sansa-page .sansa-flow-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.sansa-flow-reading h3 {
+  margin: 10px 0;
+}
+.sansa-flow-steps {
+  list-style: none;
+  display: grid;
+  gap: 26px;
+  padding: 0;
+  margin: 24px 0 0;
+}
+.sansa-flow-steps li {
+  min-width: 0;
+  position: relative;
+  border: 1px solid #b8c3cf;
+  border-radius: 6px;
+  background: #f7f9fb;
+}
+.sansa-flow-steps li + li::before {
+  content: "↓";
+  position: absolute;
+  left: 28px;
+  top: -25px;
+  color: #526579;
+  font-size: 17px;
+}
+.sansa-flow-steps button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 70px;
+  padding: 14px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 5px 5px 0 0;
+  background: #fff;
+  color: var(--ink);
+  text-align: left;
+}
+.sansa-flow-steps button[aria-pressed="true"] {
+  background: #e6effc;
+  box-shadow: inset 3px 0 #0969da;
+}
+.sansa-step-number {
+  font: 14px var(--mono);
+  color: var(--blue);
+  flex: 0 0 25px;
+}
+.sansa-flow-steps button > span:nth-child(2) {
+  min-width: 0;
+}
+.sansa-flow-steps button small {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.sansa-flow-steps button strong {
+  display: block;
+  font-size: 15px;
+  line-height: 1.85;
+}
+.sansa-flow-steps button > span:last-child {
+  margin-left: auto;
+}
+.sansa-flow-steps p {
+  margin: 12px 16px 16px;
+}
+.sansa-inspector {
+  min-width: 0;
+  padding: 18px;
+}
+.sansa-inspector-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.sansa-inspector-tabs button {
+  min-height: 44px;
+  padding: 10px 8px;
+  border: 1px solid #a7b2bf;
+  border-radius: 5px;
+  background: #fff;
+  font-size: 14px;
+}
+.sansa-inspector-tabs button[aria-selected="true"] {
+  background: #e6effc;
+  border-color: #4778b8;
+  color: #0756ad;
+  font-weight: 700;
+}
+.sansa-inspector h3 {
+  font-size: 19px;
+  margin: 6px 0 12px;
+}
+.sansa-inspector h4 {
+  margin: 24px 0 8px;
+}
+.sansa-stage-facts {
+  margin: 20px 0;
+}
+.sansa-stage-facts > div {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.sansa-stage-facts dt {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.sansa-stage-facts dd {
+  font-size: 14px;
+  line-height: 1.85;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.sansa-keypoint {
+  padding: 16px;
+  background: #f1f4f8;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  margin: 20px 0;
+}
+.sansa-keypoint > strong {
+  font-size: 15px;
+  line-height: 1.8;
+}
+.sansa-keypoint p {
+  margin: 8px 0 0;
+}
+.sansa-technology-buttons {
+  display: grid;
+  gap: 12px;
+}
+.sansa-technology-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid #8ba5c5;
+  border-radius: 5px;
+  background: #fff;
+  text-align: left;
+  color: var(--ink);
+  font-size: 14px;
+}
+.sansa-technology-button:hover {
+  background: #edf4ff;
+}
+.sansa-technology-button > span:not(.technology-api-mark) {
+  min-width: 0;
+}
+.sansa-technology-button strong,
+.sansa-technology-button > span > span {
+  display: block;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.sansa-technology-button > span > span {
+  font-size: 14px;
+  color: var(--body);
+  font-weight: 400;
+  margin-top: 5px;
+}
+.sansa-technology-button .action-icon {
+  flex: 0 0 20px;
+  margin-left: auto;
+  color: var(--blue);
+}
+.sansa-technology-button img {
+  object-fit: contain;
+  flex: 0 0 26px;
+}
+.sansa-alternative-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.sansa-alternative-grid article,
+.sansa-project-grid article {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fff;
+  padding: 24px;
+}
+.sansa-alternative-grid h3,
+.sansa-project-grid h3 {
+  margin: 0 0 12px;
+}
+.sansa-page .sansa-replacement-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sansa-alternative-grid .sansa-technology-button + .sansa-technology-button {
+  margin-top: 10px;
+}
+.sansa-project-heading {
+  margin: 34px 0 8px;
+}
+.sansa-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+.sansa-project-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+.sansa-project-techs .sansa-technology-button {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+.sansa-project-grid a {
+  font-size: 14px;
+  color: var(--blue);
+  line-height: 1.9;
+}
+.presence-lab {
+  margin: 42px 0;
+  padding: 28px;
+  border: 1px solid #b6c1cd;
+  border-radius: 8px;
+  background: #fff;
+}
+.presence-lab-controls {
+  display: flex;
+  align-items: end;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.presence-lab-controls > label {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--body);
+}
+.presence-lab-controls select {
+  min-height: 44px;
+  padding: 10px 36px 10px 12px;
+  border: 1px solid #7d8996;
+  border-radius: 5px;
+  background: #fff;
+  color: var(--ink);
+  font: 16px var(--sans);
+}
+.presence-lab-controls .presence-smooth {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  line-height: 1.85;
+}
+.presence-smooth input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+.presence-rooms {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.presence-room {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #f4f6f9;
+  padding: 18px;
+}
+.presence-room h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.presence-floor {
+  position: relative;
+  height: 140px;
+  border: 1px solid #b6c1cd;
+  border-radius: 5px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 33%,
+      #dce3eb 33%,
+      #dce3eb 33.3%,
+      transparent 33.3%,
+      transparent 66%,
+      #dce3eb 66%,
+      #dce3eb 66.3%,
+      transparent 66.3%
+    ),
+    #fff;
+}
+.presence-actor {
+  position: absolute;
+  top: 42px;
+  width: 38px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+  border-radius: 16px 16px 7px 7px;
+  background: #526579;
+  padding: 8px 4px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.presence-actor.is-remote {
+  background: #0969da;
+}
+.presence-room > p {
+  margin: 10px 0 0;
+}
+.presence-move-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.presence-move-buttons button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #4778b8;
+  border-radius: 5px;
+  background: #edf4ff;
+  color: #0756ad;
+  font-size: 14px;
+}
+.presence-transport-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.presence-transport-row > span {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--body);
+}
+.sansa-page .presence-status {
+  padding: 14px 16px;
+  border-left: 3px solid #71849a;
+  background: #f2f5f8;
+  margin: 20px 0;
+}
+.presence-last-message code {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  font: 13px/1.8 var(--mono);
+  padding: 6px 8px;
+  background: #f4f6f9;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.sansa-page .sheet-caption {
+  font-size: 13px;
+}
+@media (max-width: 1199px) {
+  .sansa-explorer {
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+  .sansa-inspector {
+    grid-column: 1/-1;
+    border-top: 1px solid var(--line);
+    padding: 24px;
+  }
+  .sansa-flow-reading {
+    border-right: 0;
+  }
+  .sansa-alternative-grid {
+    grid-template-columns: 1fr;
+  }
+  .sansa-inspector [role="tabpanel"] {
+    max-width: 900px;
+  }
+}
+@media (max-width: 760px) {
+  .sansa-explorer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sansa-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-bottom: 1px solid var(--line);
+  }
+  .sansa-actions button {
+    min-height: 58px;
+    gap: 7px;
+  }
+  .sansa-actions button > span:last-child {
+    display: none;
+  }
+  .sansa-flow-reading {
+    border-left: 0;
+    padding: 20px;
+  }
+  .sansa-inspector {
+    padding: 20px;
+  }
+  .sansa-section-heading {
+    flex-direction: column;
+  }
+  .sansa-project-grid,
+  .presence-rooms {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .presence-lab {
+    padding: 20px;
+  }
+  .sansa-project-grid article,
+  .sansa-alternative-grid article {
+    padding: 20px;
+  }
+  .sansa-page h2 {
+    font-size: 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(sansa-case),
+  ::view-transition-group(sansa-cover),
+  ::view-transition-group(sansa-title) {
+    animation-duration: 1ms !important;
+  }
+}

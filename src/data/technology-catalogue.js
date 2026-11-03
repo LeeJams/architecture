@@ -1,5 +1,6 @@
 import { technologyRationales } from "./technology-rationales.js";
 import { additionalTechnologies } from "./technology-profiles.js";
+import { interactiveWebTechnologies } from "./interactive-web-technologies.js";
 
 export const technologyCategories = [
   ["all", "전체"],
@@ -9,6 +10,10 @@ export const technologyCategories = [
   ["os", "운영체제"],
   ["language", "프로그래밍 언어"],
   ["runtime", "실행 환경"],
+  ["graphics", "3D · 그래픽"],
+  ["browser", "브라우저 API"],
+  ["realtime", "실시간 통신"],
+  ["tooling", "개발 도구"],
   ["database", "데이터베이스"],
   ["cache", "캐시"],
   ["messaging", "메시지 · 이벤트"],
@@ -17,6 +22,14 @@ export const technologyCategories = [
 ];
 
 export const technologyCategoryDescriptions = {
+  graphics:
+    "장면·카메라·도형·픽셀을 그리는 기술입니다. Three.js·Babylon.js 같은 라이브러리·엔진과 WebGL·Canvas 2D 같은 브라우저 API의 역할을 구분합니다.",
+  browser:
+    "소리와 장치 내 설정처럼 브라우저가 제공하는 기능입니다. 실행·재생 조건과 자료가 보관되는 범위를 확인합니다.",
+  realtime:
+    "연결을 유지하며 메시지·참여자 상태를 전달합니다. 연결 성공·방 입장·초기 상태·재접속 복구와 기록 보관은 서로 다른 처리 단계입니다.",
+  tooling:
+    "소스와 모듈·에셋을 개발하고 배포 결과를 만드는 도구입니다. 개발 서버·빌드와 서비스의 실제 실행·데이터 처리를 구분합니다.",
   all: "파일 보관·데이터 질의·프로그램 실행처럼 맡는 역할에 따라 분류했습니다. 카드의 분류와 기술 종류를 확인하고, 상세에서 사용 상황과 동작 조건을 읽어보세요.",
   storage:
     "파일·객체·블록을 보관하는 기반입니다. S3의 오브젝트 API, EBS의 블록 장치, EFS의 공유 파일 접근은 서로 다른 사용 방식을 가집니다.",
@@ -1126,7 +1139,11 @@ const originalTechnologies = [
 export const technologyCatalogue = [
   ...originalTechnologies,
   ...additionalTechnologies,
-].map((tech) => ({ ...tech, rationale: technologyRationales[tech.id] }));
+  ...interactiveWebTechnologies,
+].map((tech) => ({
+  ...tech,
+  rationale: tech.rationale || technologyRationales[tech.id],
+}));
 
 export const findTechnology = (id) =>
   technologyCatalogue.find((technology) => technology.id === id);

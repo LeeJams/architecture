@@ -1,6 +1,8 @@
 import { technologyCatalogue } from "../data/technology-catalogue.js";
 import { KafkaMessagingDemo } from "./KafkaMessagingDemo.jsx";
 import { TechnologyIdentity } from "./TechnologyIdentity.jsx";
+import { PresenceLab } from "./PresenceLab.jsx";
+import { SansaPage } from "./SansaPage.jsx";
 import {
   TechnologyCatalogue,
   TechnologyCard,
@@ -16,6 +18,18 @@ import { alternativeProducts } from "../data/alternatives.js";
 import { useApp } from "../state/AppState.jsx";
 
 export default { title: "Architecture" };
+export const PresenceSynchronization = () => (
+  <Frame width={1100}>
+    <div className="sansa-page">
+      <PresenceLab />
+    </div>
+  </Frame>
+);
+export const SansaStudy = () => (
+  <Frame width={1600}>
+    <SansaPage />
+  </Frame>
+);
 const Frame = ({ children, width = 760 }) => (
   <div
     style={{

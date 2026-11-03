@@ -10,6 +10,7 @@ import { TechnologyCatalogue } from "./components/TechnologyCatalogue.jsx";
 import { DesignPage } from "./components/DesignPage.jsx";
 import { TechnologyDialog } from "./components/TechnologyDialog.jsx";
 import { ZoomDialog } from "./components/References.jsx";
+import { SansaPage } from "./components/SansaPage.jsx";
 export function Providers({ children }) {
   return (
     <LazyMotion features={domAnimation} strict>
@@ -32,7 +33,9 @@ function Site() {
             ? "#technology-library-title"
             : state.route === "library"
               ? "#library-title"
-              : "#case-title"
+              : state.route === "sansa"
+                ? "#sansa-title"
+                : "#case-title"
         }
       >
         본문으로 바로가기
@@ -70,6 +73,7 @@ function Site() {
         <Library />
         <TechnologyCatalogue />
         <DesignPage />
+        {state.route === "sansa" && <SansaPage />}
       </main>
       <ZoomDialog />
       <TechnologyDialog />

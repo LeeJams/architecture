@@ -11,7 +11,7 @@ export function TechnologyRationale({ technology }) {
         <h4>어떤 문제를 겪나요?</h4>
         <Text>{why.problem}</Text>
         <div className="technology-mechanism">
-          <h4>{technology.name}은 무엇을 바꾸나요?</h4>
+          <h4>이 기술이 바꾸는 처리 방식</h4>
           <Text>{why.change}</Text>
         </div>
         {technology.id === "kafka" && <KafkaMessagingDemo />}

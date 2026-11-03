@@ -74,7 +74,7 @@ async function assertNoOverflow(page, width, context) {
         }
       }
     }
-    report.checks.push('33 technology rationales explain the problem, mechanism, paired gains/responsibilities and simpler starting point. Necessity comes before definition, and jump buttons move keyboard focus.');
+    report.checks.push('44 technology rationales explain the problem, mechanism, paired gains/responsibilities and simpler starting point. Necessity comes before definition, and jump buttons move keyboard focus.');
     report.checks.push('32 Kafka example states fit 320–1440px with keyboard controls: synchronous/async, normal/slow/stopped/uncertain. Order acceptance, DB commit, event publication and downstream completion stay distinct.');
 
     const summary = page.locator('[data-backlog-calculator] > summary');

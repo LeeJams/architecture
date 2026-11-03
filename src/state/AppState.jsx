@@ -24,8 +24,10 @@ const AppContext = createContext(null);
 const routeFromURL = () =>
   new URLSearchParams(location.search).get("view") === "technologies"
     ? "catalogue"
-    : new URLSearchParams(location.search).get("case") === "netflix"
-      ? "netflix"
+    : ["netflix", "sansa"].includes(
+          new URLSearchParams(location.search).get("case"),
+        )
+      ? new URLSearchParams(location.search).get("case")
       : "library";
 const noteFromURL = (fallback = "oca") =>
   technologyNotes.find((item) => location.hash === `#tech-${item.key}`)?.key ||
@@ -83,6 +85,7 @@ export function AppProvider({ children }) {
     transition: null,
     libraryY: 0,
     catalogueY: 0,
+    libraryCard: "netflix-card",
   });
   const centerNode = useCallback((id) => {
     const viewport = document.querySelector(".diagram-viewport");
@@ -231,7 +234,11 @@ export function AppProvider({ children }) {
       /* Ignore malformed fragments. */
     }
     const target = document.getElementById(id);
-    if (target && document.getElementById("design")?.contains(target))
+    if (
+      target &&
+      (document.getElementById("design")?.contains(target) ||
+        document.getElementById("sansa-design")?.contains(target))
+    )
       target.scrollIntoView({ block: "start", behavior: "instant" });
     else window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
@@ -239,6 +246,8 @@ export function AppProvider({ children }) {
     async (route) => {
       const nav = navigation.current,
         sequence = ++nav.sequence;
+      if (["netflix", "sansa"].includes(current.current.route))
+        nav.libraryCard = `${current.current.route}-card`;
       nav.transition?.skipTransition();
       document.querySelector("#technology-dialog")?.close();
       document.querySelector("#zoom-dialog")?.close();
@@ -289,11 +298,15 @@ export function AppProvider({ children }) {
             .getElementById(
               route === "netflix"
                 ? "case-title"
-                : route === "catalogue"
-                  ? "technology-library-title"
-                  : "netflix-card",
+                : route === "sansa"
+                  ? "sansa-title"
+                  : route === "catalogue"
+                    ? "technology-library-title"
+                    : nav.libraryCard,
             )
             ?.focus({ preventScroll: true });
+          // Native transitions may adjust scroll after the update snapshot.
+          scrollToRoute(route);
         }
       }
     },
@@ -323,7 +336,8 @@ export function AppProvider({ children }) {
       url.hash = "";
       url.searchParams.delete("view");
       if (route === "catalogue") url.searchParams.set("view", "technologies");
-      if (route === "netflix") url.searchParams.set("case", "netflix");
+      if (["netflix", "sansa"].includes(route))
+        url.searchParams.set("case", route);
       else url.searchParams.delete("case");
       history.pushState({ atlasRoute: route }, "", url);
       presentRoute(route).catch((error) =>
@@ -339,7 +353,9 @@ export function AppProvider({ children }) {
         ? "기술 목록 · 아키텍처 노트"
         : state.route === "library"
           ? "아키텍처 노트 · 서비스의 구조와 기술"
-          : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
+          : state.route === "sansa"
+            ? "산사, 같은 방에서 움직임이 공유되는 방식 · 아키텍처 노트"
+            : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
   }, [state.route]);
   useEffect(() => {
     history.scrollRestoration = "manual";

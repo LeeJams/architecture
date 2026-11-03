@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { m, useReducedMotion } from "motion/react";
-import { assets } from "../data/assets.js";
 import {
   technologyCatalogue,
   technologyCategories,
@@ -11,6 +10,7 @@ import { useApp } from "../state/AppState.jsx";
 import { ActionIcon, Code } from "./ui.jsx";
 import { Text } from "./Glossary.jsx";
 import { TechnologyRationale } from "./TechnologyRationale.jsx";
+import { TechnologyMark } from "./TechnologyMark.jsx";
 
 export function TechnologyCard({ technologyId, usage, caseKey }) {
   const tech = findTechnology(technologyId),
@@ -29,12 +29,7 @@ export function TechnologyCard({ technologyId, usage, caseKey }) {
         {technologyCategories.find(([id]) => id === tech.category)?.[1]}
       </p>
       <div className="technology-card-heading">
-        <img
-          src={assets[tech.image]}
-          alt={tech.logoAlt}
-          width="48"
-          height="48"
-        />
+        <TechnologyMark technology={tech} />
         <div>
           <p className="technology-provider">{tech.provider}</p>
           <h3 tabIndex="-1">{tech.name}</h3>
@@ -225,7 +220,8 @@ export function TechnologyCatalogue() {
         </p>
         <p>
           제품·언어 아이콘과 브랜드 심벌은 원본을 사용합니다. 각 상세 창에서
-          이미지 출처와 공식 문서를 확인할 수 있습니다.
+          이미지 출처와 공식 문서를 확인할 수 있습니다. 별도 제품 로고가 없는 웹
+          표준 API는 이름을 문자로 표시합니다.
         </p>
       </footer>
     </section>
@@ -409,7 +405,7 @@ export function TechnologyInfo({ technologyId }) {
                     patch({ sheet: { kind: "catalogue", key: id } })
                   }
                 >
-                  <img src={assets[related.image]} alt="" />
+                  <TechnologyMark technology={related} compact />
                   {related.name}
                   <span>이 창에서 보기</span>
                 </button>
@@ -419,7 +415,9 @@ export function TechnologyInfo({ technologyId }) {
         </section>
       )}
       <section>
-        <h3 tabIndex="-1">공식 문서와 이미지 출처</h3>
+        <h3 tabIndex="-1">
+          {tech.image ? "공식 문서와 이미지 출처" : "공식 문서와 표기 기준"}
+        </h3>
         <ul className="sheet-sources">
           {tech.sources.map(([title, url, scope]) => (
             <li key={url}>
@@ -429,12 +427,18 @@ export function TechnologyInfo({ technologyId }) {
               <p>{scope}</p>
             </li>
           ))}
-          <li>
-            <a href={tech.logoSource} target="_blank" rel="noopener">
-              {tech.name} 이미지 출처
-            </a>
-            <p>{tech.logoNote}</p>
-          </li>
+          {tech.logoSource ? (
+            <li>
+              <a href={tech.logoSource} target="_blank" rel="noopener">
+                {tech.name} 이미지 출처
+              </a>
+              <p>{tech.logoNote}</p>
+            </li>
+          ) : (
+            <li>
+              <p>{tech.logoNote}</p>
+            </li>
+          )}
         </ul>
       </section>
     </div>

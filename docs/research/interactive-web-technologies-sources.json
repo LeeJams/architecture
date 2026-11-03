@@ -1,0 +1,126 @@
+{
+  "checkedOn": "2026-11-03",
+  "scope": "Official technology documentation reviewed for eleven new catalogue records. The Sansa archived client is indirect evidence and its current production backend is not verified. Generic browser APIs use explicit text marks, not invented product logos. Firebase and Supabase marks are labeled as brand symbols.",
+  "documents": {
+    "webgl-guide": {
+      "url": "https://raw.githubusercontent.com/mdn/content/HEAD/files/en-us/web/api/webgl_api/tutorial/getting_started_with_webgl/index.md",
+      "bytes": 4457,
+      "sha256": "89080c22d4efee0f1947a174d6abdaf55d8f0a617b5c1ef3e8586d1f029cc266"
+    },
+    "canvas-guide": {
+      "url": "https://raw.githubusercontent.com/mdn/content/HEAD/files/en-us/web/api/canvas_api/tutorial/basic_usage/index.md",
+      "bytes": 8193,
+      "sha256": "c77952ec5f3c1bd06cb8fd7c257e14f6fc141a8a4c8900e58aa86d0669ece723"
+    },
+    "web-audio": {
+      "url": "https://raw.githubusercontent.com/mdn/content/HEAD/files/en-us/web/api/web_audio_api/best_practices/index.md",
+      "bytes": 8419,
+      "sha256": "85987e50724b90d07a7c437a9690b71995dc5f0fc3ceccdbb1516d43a55fd56b"
+    },
+    "websocket": {
+      "url": "https://raw.githubusercontent.com/mdn/content/HEAD/files/en-us/web/api/websocket/index.md",
+      "bytes": 3196,
+      "sha256": "e072353201750c04822057982f5f4864751119bb6e6c137661048d5c767126cd"
+    },
+    "storage": {
+      "url": "https://raw.githubusercontent.com/mdn/content/HEAD/files/en-us/web/api/window/localstorage/index.md",
+      "bytes": 3779,
+      "sha256": "bffe86c31ee62ca8645a3a29b2ee71b9df756433f5020ba4e6d42db99d30c285"
+    },
+    "workers": {
+      "url": "https://raw.githubusercontent.com/cloudflare/cloudflare-docs/HEAD/src/content/docs/workers/runtime-apis/websockets.mdx",
+      "bytes": 12359,
+      "sha256": "1e0b4e4b957031994bf2aa9bba3368a7b4027dbd584a8b9a5ee3811505483bb9"
+    },
+    "supabase": {
+      "url": "https://raw.githubusercontent.com/supabase/realtime/HEAD/README.md",
+      "bytes": 7522,
+      "sha256": "099d71d17114eeda016c1858cdce6443e8f4fb963c202a5ee83f29ec43737949"
+    },
+    "firebase": {
+      "url": "https://raw.githubusercontent.com/firebase/quickstart-js/HEAD/database/README.md",
+      "bytes": 2166,
+      "sha256": "b093a3f03ca3f03075fabccbc6111d05f1a7f8205a86de232776ea9ef3526fed"
+    },
+    "vite": {
+      "url": "https://raw.githubusercontent.com/vitejs/vite/HEAD/docs/guide/index.md",
+      "bytes": 11552,
+      "sha256": "6a66574988783e1057b1d73ee4ed23a02e5f0e67b041ac4105fb930b5431194a"
+    },
+    "babylon": {
+      "url": "https://raw.githubusercontent.com/BabylonJS/Babylon.js/HEAD/readme.md",
+      "bytes": 6514,
+      "sha256": "26d07948acd808d5e28e409d5925355d9cb7e18f9c608c360c2ca9b6407c5ce6"
+    },
+    "three-readme": {
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/HEAD/README.md",
+      "bytes": 2969,
+      "sha256": "d553d824625a07d7690de93af6f8daf13d6aaed42700929d7ce4e725fa5ef10d"
+    },
+    "three-raycaster": {
+      "url": "https://raw.githubusercontent.com/mrdoob/three.js/HEAD/src/core/Raycaster.js",
+      "bytes": 8514,
+      "sha256": "9a05ad2d9862b1eb0f8f925497a136998b640003feec85b3f4651322cb219446"
+    },
+    "firebase-sdk-disconnect": {
+      "url": "https://raw.githubusercontent.com/firebase/firebase-js-sdk/HEAD/packages/database/src/api/OnDisconnect.ts",
+      "bytes": 7035,
+      "sha256": "6be19fe49f9a2012ccc3d821310e8b9e54211deda598b5ab27a4f95948b4136e"
+    },
+    "supabase-broadcast": {
+      "url": "https://raw.githubusercontent.com/supabase/supabase/HEAD/apps/docs/content/guides/realtime/broadcast.mdx",
+      "bytes": 39747,
+      "sha256": "e19741046ec6f989f4f6435091fe98f76271b9291f32a38671a1377ba8dba5cd"
+    }
+  },
+  "logos": [
+    {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/HEAD/icons/threejs/threejs-original.svg",
+      "bytes": 3735,
+      "sha256": "e4ee5630ae19950b31603bd894d1a6e99fe8f5c2cf7aa4ce6e8ca6214f63c077",
+      "path": "assets/tech/threejs.svg",
+      "license": "Devicon · MIT",
+      "scope": "project/product"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/HEAD/icons/babylonjs/babylonjs-original.svg",
+      "bytes": 840,
+      "sha256": "fd228ee81926305bad613b70ddfd50a43c43ae22897523a0434677c6ffe902de",
+      "path": "assets/tech/babylonjs.svg",
+      "license": "Devicon · MIT",
+      "scope": "project/product"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/HEAD/icons/vitejs/vitejs-original.svg",
+      "bytes": 1276,
+      "sha256": "f84e50febcb3a2a81399c9a1ae76d96dc235428202f91610b6f36bfb5b62051a",
+      "path": "assets/tech/vitejs.svg",
+      "license": "Devicon · MIT",
+      "scope": "project/product"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/HEAD/icons/supabase/supabase-original.svg",
+      "bytes": 1067,
+      "sha256": "bb8d502577de5e864437542bc2655b5d4d4782589386fc4583d912f46ac73181",
+      "path": "assets/tech/supabase.svg",
+      "license": "Devicon · MIT",
+      "scope": "brand"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/devicons/devicon/HEAD/icons/firebase/firebase-original.svg",
+      "bytes": 1170,
+      "sha256": "6069e979418301117abe2223b62ffb9cedd8c5118fbd805da77170629eaef49c",
+      "path": "assets/tech/firebase.svg",
+      "license": "Devicon · MIT",
+      "scope": "brand"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/simple-icons/simple-icons/HEAD/icons/cloudflareworkers.svg",
+      "bytes": 335,
+      "sha256": "33c1f3a5e64f822df4172db37b1d556ebc5b7913c47de43efd4e4cd70e276c51",
+      "path": "assets/tech/cloudflare-workers.svg",
+      "license": "Simple Icons · CC0",
+      "scope": "project/product"
+    }
+  ]
+}

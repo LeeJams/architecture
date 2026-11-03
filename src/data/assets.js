@@ -22,6 +22,12 @@ export const resolveAssets = (value) =>
           )
         : value;
 export const assets = resolveAssets({
+  threejs: "assets/tech/threejs.svg",
+  babylonjs: "assets/tech/babylonjs.svg",
+  vitejs: "assets/tech/vitejs.svg",
+  supabase: "assets/tech/supabase.svg",
+  firebase: "assets/tech/firebase.svg",
+  "cloudflare-workers": "assets/tech/cloudflare-workers.svg",
   aws: "assets/tech/aws.svg",
   javascript: "assets/tech/javascript.svg",
   typescript: "assets/tech/typescript.svg",

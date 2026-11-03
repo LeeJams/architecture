@@ -198,3 +198,15 @@ JavaScript·TypeScript·Python 예제의 구문/타입, Kubernetes YAML 구문�
 [조회한 URL·바이트 수·SHA-256](docs/research/technology-rationale-sources.json)을 보관합니다. Kafka 예시의 주문·메일·분석 구조와 outbox 릴레이는 공식 문서의 처리 경계를 설명하는 **자체 학습 구성**입니다. Kafka에 DB와의 원자적 이중 쓰기 기능이 있다거나 외부 메일이 자동으로 한 번만 발송된다는 의미가 아닙니다. 접수 응답은 주문·outbox의 DB 커밋까지만 뜻하며, Kafka 기록과 후속 완료를 별도 상태로 표시합니다.
 
 적체 계산은 일정 유입·일정 처리·기존 적체 없음·복구 시 이벤트 보관을 가정합니다. 적체는 `유입 속도 × 중단 시간`, 복구 후 따라잡기 시간은 `적체 ÷ (처리 속도 − 유입 속도)`입니다. 처리 속도가 유입 이하이면 따라잡을 수 없다고 표시합니다. 보관 용량·기한·재시도·이벤트 크기를 반영한 용량 계획이나 제품 성능 측정값은 아닙니다. 브로커·DB·외부 API는 실행하지 않았고, UI 상태·계산·반응형·오프라인 동작을 Chromium으로 검증합니다.
+
+## 체험형 웹과 산사 분석
+
+2026-11-03에 Three.js·WebGL·Canvas 2D·Babylon.js·Web Audio API·WebSocket·Cloudflare Workers·Supabase Realtime·Firebase Realtime Database·localStorage·Vite를 추가했습니다. 현재 기술 목록은 15개 분류·44개 기술입니다. [확인한 공식 기술 원문과 원본 심벌](docs/research/interactive-web-technologies-sources.json)을 기록합니다.
+
+[산사 조사](docs/research/2026-11-03-playful-web-apps.md)와 [고정 커밋의 24개 원문 기록](docs/research/2026-11-03-playful-web-sources.json)이 분석 페이지의 근거입니다. 공식 사이트·나무위키는 환경에서 접속이 차단되어 본문과 현재 배포를 직접 확인하지 못했습니다. 공개 파생 프로젝트가 보관한 클라이언트 런타임은 **간접 자료**로 표시합니다. 파생 프로젝트의 React·Vinext·D1과 비교 프로젝트의 Firebase·Supabase를 산사 원본의 사용 제품으로 옮겨 적지 않습니다.
+
+행동별 흐름은 보관본의 클라이언트 처리를 설명합니다. 외부 WebSocket 주소·조건부 Supabase 초기화·이동 전송 간격·revision과 재동기화·좌석 요청·오디오 처리는 이 보관본의 범위입니다. 현재 운영 DB와 Workers 내부의 조정·저장 방식은 확인되지 않았습니다.
+
+동기화 실험은 브라우저 안의 학습 모형입니다. 내 위치 변경→최신 대기 상태→간격에 맞춘 전송→설정한 지연 후 방·다른 화면 반영을 구성합니다. 전달 순서를 유지하고 끊김 때 미전달 작업을 취소하며, 재연결 때 마지막 반영 상태로 맞춥니다. 실제 산사 서버·DB·네트워크에 연결하거나 성능을 측정하지 않습니다. 부드러운 표시는 수신 후의 화면 전환이며 서버 예측 알고리즘을 재현한 것은 아닙니다.
+
+비교 프로젝트는 각각 확인한 코드·제작자·역할을 연결합니다. 차경 3D의 샘플·localStorage, Firebase 구현의 값 구독·연결 해제 작업과 방 입장 경합, Supabase 구현의 Presence/Broadcast를 구분합니다. 저장소 업데이트가 대중적 인기나 동시 접속 용량을 입증한다는 주장은 하지 않습니다.

@@ -6,8 +6,8 @@
 | --- | --- | --- |
 | React · React DOM · Scheduler | React 화면·렌더링 | Meta contributors, MIT · [원문](licenses/react.txt) |
 | Motion · Framer Motion · Motion DOM/Utils | React 상호작용 애니메이션 | Motion contributors, MIT · [원문](licenses/motion.txt) |
-| Devicon | AWS·Google Cloud·Azure, 추가 언어·DB·실행 환경·컨테이너 도구·Ceph SVG | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
-| Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy, Cloudflare, Apache, Ubuntu, Debian, Google Cloud Storage·Alpine Linux SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
+| Devicon | AWS·Google Cloud·Azure, 추가 언어·DB·실행 환경·컨테이너 도구·Ceph, Three.js·Babylon.js·Vite와 Firebase·Supabase 브랜드 SVG | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
+| Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy, Cloudflare·Cloudflare Workers, Apache, Ubuntu, Debian, Google Cloud Storage·Alpine Linux SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
 | AWS Icons for PlantUML | `assets/tech/cloudfront.png`, `s3.png`, `ec2.png`, `lambda.png`, `ebs.png`, `efs.png` | [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml), CC BY-ND 2.0 · [원문](licenses/aws-icons.txt). 원본 PNG를 수정하지 않았습니다. |
 | ByteByteGo System Design 101 | `assets/netflix.png`, `streaming.jpg` | [ByteByteGo](https://github.com/ByteByteGoHq/system-design-101), CC BY-NC-ND 4.0 · [원문](licenses/bytebytego.txt). 참고 이미지 원본을 수정하지 않았습니다. |
 | System Design Primer | CDN 개념도 인용과 설명 참고 | [Donne Martin](https://github.com/donnemartin/system-design-primer), CC BY 4.0 · [프로젝트 고지](licenses/system-design-primer.txt) |
@@ -22,3 +22,7 @@ SVG 로고의 형상은 보존했습니다. AWS는 표시 여백을 조정했고
 Vite·Ladle·Playwright는 개발·검증 도구입니다. 서비스용 번들에는 Ladle 작업대와 Playwright 코드를 포함하지 않습니다.
 
 추가한 22개 기술의 심벌은 제공 저장소의 원본 파일을 수정하지 않고 사용합니다. 개별 원문 URL·파일 크기·SHA-256은 [조회 기록](docs/research/technology-expansion-sources.json)에 남겼습니다. Go는 Go 프로젝트의 워드마크를 표시합니다.
+
+체험형 웹 기술에 추가한 6개 SVG도 원본을 수정하지 않았습니다. [원문·해시·고지](docs/research/interactive-web-technologies-sources.json)를 기록합니다. Firebase·Supabase는 공통 브랜드 심벌이라고 화면에 표시하고 실제 제품명인 Realtime Database·Realtime과 구분합니다. WebGL·Canvas 2D·Web Audio API·WebSocket·localStorage는 별도 제품 로고 대신 문자 표기를 사용합니다.
+
+`assets/sansa-study.svg`는 프로젝트에서 만든 설명용 구성도입니다. 산사의 실제 화면·모델·텍스처·음원을 재사용하지 않았습니다.
