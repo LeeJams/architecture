@@ -21,14 +21,18 @@ import {
 } from "../data/alternatives.js";
 
 const AppContext = createContext(null);
-const routeFromURL = () =>
-  new URLSearchParams(location.search).get("view") === "technologies"
-    ? "catalogue"
-    : ["netflix", "sansa"].includes(
-          new URLSearchParams(location.search).get("case"),
-        )
-      ? new URLSearchParams(location.search).get("case")
-      : "library";
+const routeFromURL = () => {
+  const params = new URLSearchParams(location.search);
+  if (params.get("view") === "stacks") return "stacks";
+  if (params.get("view") === "technologies") return "catalogue";
+  return ["netflix", "sansa"].includes(params.get("case"))
+    ? params.get("case")
+    : "library";
+};
+const stackServiceFromURL = () =>
+  new URLSearchParams(location.search).get("service") === "netflix"
+    ? "netflix"
+    : "sansa";
 const noteFromURL = (fallback = "oca") =>
   technologyNotes.find((item) => location.hash === `#tech-${item.key}`)?.key ||
   fallback;
@@ -59,6 +63,7 @@ export const noteKeyFor = (node, technology) =>
   node;
 const initialState = () => ({
   route: routeFromURL(),
+  stackService: stackServiceFromURL(),
   catalogueCategory: "all",
   catalogueQuery: "",
   node: "oca",
@@ -237,7 +242,8 @@ export function AppProvider({ children }) {
     if (
       target &&
       (document.getElementById("design")?.contains(target) ||
-        document.getElementById("sansa-design")?.contains(target))
+        document.getElementById("sansa-design")?.contains(target) ||
+        document.getElementById("service-stacks")?.contains(target))
     )
       target.scrollIntoView({ block: "start", behavior: "instant" });
     else window.scrollTo({ top: 0, behavior: "instant" });
@@ -257,6 +263,10 @@ export function AppProvider({ children }) {
         flushSync(() =>
           patch({
             route,
+            stackService:
+              route === "stacks"
+                ? stackServiceFromURL()
+                : current.current.stackService,
             playing: false,
             sheet: null,
             zoom: null,
@@ -302,7 +312,9 @@ export function AppProvider({ children }) {
                   ? "sansa-title"
                   : route === "catalogue"
                     ? "technology-library-title"
-                    : nav.libraryCard,
+                    : route === "stacks"
+                      ? "service-stacks-title"
+                      : nav.libraryCard,
             )
             ?.focus({ preventScroll: true });
           // Native transitions may adjust scroll after the update snapshot.
@@ -313,7 +325,7 @@ export function AppProvider({ children }) {
     [scrollToRoute],
   );
   const followRoute = useCallback(
-    (event, route) => {
+    (event, route, { service = current.current.stackService } = {}) => {
       if (
         event.button !== 0 ||
         event.metaKey ||
@@ -325,6 +337,7 @@ export function AppProvider({ children }) {
       event.preventDefault();
       if (
         route === current.current.route &&
+        (route !== "stacks" || service === current.current.stackService) &&
         !document.documentElement.dataset.transitioning
       )
         return window.scrollTo({ top: 0, behavior: scrollBehavior() });
@@ -335,7 +348,12 @@ export function AppProvider({ children }) {
       const url = new URL(location.href);
       url.hash = "";
       url.searchParams.delete("view");
+      url.searchParams.delete("service");
       if (route === "catalogue") url.searchParams.set("view", "technologies");
+      if (route === "stacks") {
+        url.searchParams.set("view", "stacks");
+        url.searchParams.set("service", service);
+      }
       if (["netflix", "sansa"].includes(route))
         url.searchParams.set("case", route);
       else url.searchParams.delete("case");
@@ -351,12 +369,14 @@ export function AppProvider({ children }) {
     document.title =
       state.route === "catalogue"
         ? "기술 목록 · 아키텍처 노트"
-        : state.route === "library"
-          ? "아키텍처 노트 · 서비스의 구조와 기술"
-          : state.route === "sansa"
-            ? "산사, 같은 방에서 움직임이 공유되는 방식 · 아키텍처 노트"
-            : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
-  }, [state.route]);
+        : state.route === "stacks"
+          ? `${state.stackService === "netflix" ? "넷플릭스" : "산사"}의 서비스 스택 · 아키텍처 노트`
+          : state.route === "library"
+            ? "아키텍처 노트 · 서비스의 구조와 기술"
+            : state.route === "sansa"
+              ? "산사, 같은 방에서 움직임이 공유되는 방식 · 아키텍처 노트"
+              : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
+  }, [state.route, state.stackService]);
   useEffect(() => {
     history.scrollRestoration = "manual";
     const historyChange = () => {
@@ -365,13 +385,23 @@ export function AppProvider({ children }) {
         route === current.current.route &&
         !document.documentElement.dataset.transitioning
       ) {
+        const stackService =
+          route === "stacks"
+            ? stackServiceFromURL()
+            : current.current.stackService;
+        const serviceChanged = stackService !== current.current.stackService;
         flushSync(() =>
           patch({
+            stackService,
             note: noteFromURL(current.current.note),
             sheet: null,
             zoom: null,
           }),
         );
+        if (serviceChanged)
+          document
+            .getElementById("service-stacks-title")
+            ?.focus({ preventScroll: true });
         scrollToRoute(route);
       } else presentRoute(route).catch(console.error);
     };

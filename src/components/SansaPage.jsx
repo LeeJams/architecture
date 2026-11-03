@@ -12,6 +12,7 @@ import { TechnologyMark } from "./TechnologyMark.jsx";
 import { Text } from "./Glossary.jsx";
 import { ActionIcon, Reveal, useRovingTabs } from "./ui.jsx";
 import { PresenceLab } from "./PresenceLab.jsx";
+import { ServiceStackLink } from "./ServiceStacks.jsx";
 
 export function TechnologyInfoButton({ id, children }) {
   const { patch } = useApp(),
@@ -91,6 +92,9 @@ export function SansaPage() {
           처리이며, 실험·대안과 공개 비교 구현은 별도로 표시합니다.
         </p>
         <a href="#sansa-sources">확인한 자료와 범위 ↓</a>
+      </div>
+      <div className="detail-stack-entry">
+        <ServiceStackLink service="sansa" />
       </div>
       <nav className="section-nav" aria-label="산사 설명 목차">
         <a href="#sansa-flow">01 행동과 흐름</a>

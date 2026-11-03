@@ -1,5 +1,6 @@
 import { assetURL } from "../data/assets.js";
 import { useApp } from "../state/AppState.jsx";
+import { ServiceStackLink } from "./ServiceStacks.jsx";
 
 export function Library() {
   const { state, followRoute } = useApp();
@@ -18,6 +19,11 @@ export function Library() {
           화면 속 행동을 따라가며 기술이 필요한 이유와 처리 흐름, 대체할 수 있는
           기술을 살펴봅니다.
         </p>
+        <div className="library-stack-entry">
+          <ServiceStackLink service="sansa">
+            서비스별 기술 구성 보기
+          </ServiceStackLink>
+        </div>
       </div>
       <div className="library-heading">
         <h2>살펴볼 서비스</h2>

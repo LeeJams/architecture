@@ -3,6 +3,7 @@ import { KafkaMessagingDemo } from "./KafkaMessagingDemo.jsx";
 import { TechnologyIdentity } from "./TechnologyIdentity.jsx";
 import { PresenceLab } from "./PresenceLab.jsx";
 import { SansaPage } from "./SansaPage.jsx";
+import { ServiceStacks } from "./ServiceStacks.jsx";
 import {
   TechnologyCatalogue,
   TechnologyCard,
@@ -18,6 +19,15 @@ import { alternativeProducts } from "../data/alternatives.js";
 import { useApp } from "../state/AppState.jsx";
 
 export default { title: "Architecture" };
+export const ServiceStackOverview = ({ service = "sansa" }) => (
+  <Frame width={1440}>
+    <ServiceStacks serviceId={service} />
+  </Frame>
+);
+ServiceStackOverview.args = { service: "sansa" };
+ServiceStackOverview.argTypes = {
+  service: { options: ["sansa", "netflix"], control: { type: "select" } },
+};
 export const PresenceSynchronization = () => (
   <Frame width={1100}>
     <div className="sansa-page">

@@ -5,6 +5,7 @@ import { Anatomy } from "./Anatomy.jsx";
 import { TechnologyReader } from "./TechnologyReader.jsx";
 import { Alternatives } from "./Alternatives.jsx";
 import { References } from "./References.jsx";
+import { ServiceStackLink } from "./ServiceStacks.jsx";
 
 export function DesignPage() {
   const { state, followRoute, showAlternatives } = useApp();
@@ -36,8 +37,7 @@ export function DesignPage() {
           </h1>
           <p>
             Open Connect의 영상 전달 경로와 서버 구성을 살펴봅니다.
-            <br />
-            각 기술의 동작 원리와 대체 기술을 확인할 수 있습니다.
+            <br />각 기술의 동작 원리와 대체 기술을 확인할 수 있습니다.
           </p>
         </div>
         <div className="detail-cover">
@@ -48,6 +48,9 @@ export function DesignPage() {
             height="480"
           />
         </div>
+      </div>
+      <div className="detail-stack-entry">
+        <ServiceStackLink service="netflix" />
       </div>
       <nav className="section-nav" aria-label="목차">
         <a href="#architecture">01 전달 구조</a>
@@ -133,10 +136,15 @@ export function DesignPage() {
           <div className="source-box">
             <h3>설명 범위</h3>
             <p>
-              주문형 영상 전달을 설명하는 기능 단위 구성도입니다. 실제 내부 서비스 수, 물리 위치, 콘텐츠 배치의 계층과 모든 장애 대응 절차를 재현하지 않습니다. 장애 흐름은 다른 후보로 재시도하는 개념을 보여줍니다.
+              주문형 영상 전달을 설명하는 기능 단위 구성도입니다. 실제 내부
+              서비스 수, 물리 위치, 콘텐츠 배치의 계층과 모든 장애 대응 절차를
+              재현하지 않습니다. 장애 흐름은 다른 후보로 재시도하는 개념을
+              보여줍니다.
             </p>
             <p>
-              공개 자료에 설명된 역할을 정리했습니다. 실제 배포 버전과 장비 사양은 자료의 시점에 따라 다를 수 있습니다. 상세한 확인 범위는 저장소의 출처 문서에 기록했습니다.
+              공개 자료에 설명된 역할을 정리했습니다. 실제 배포 버전과 장비
+              사양은 자료의 시점에 따라 다를 수 있습니다. 상세한 확인 범위는
+              저장소의 출처 문서에 기록했습니다.
             </p>
           </div>
         </div>

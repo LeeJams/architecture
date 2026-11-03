@@ -65,6 +65,7 @@ function check(script, baseURL) {
     await check('verify-catalogue.cjs', baseURL);
     await check('verify-rationale.cjs', baseURL);
     await check('verify-interactive-web.cjs', baseURL);
+    await check('verify-service-stacks.cjs', baseURL);
   } finally {
     await new Promise(resolve => server.close(resolve));
   }

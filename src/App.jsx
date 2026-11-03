@@ -11,6 +11,7 @@ import { DesignPage } from "./components/DesignPage.jsx";
 import { TechnologyDialog } from "./components/TechnologyDialog.jsx";
 import { ZoomDialog } from "./components/References.jsx";
 import { SansaPage } from "./components/SansaPage.jsx";
+import { ServiceStacks } from "./components/ServiceStacks.jsx";
 export function Providers({ children }) {
   return (
     <LazyMotion features={domAnimation} strict>
@@ -31,11 +32,13 @@ function Site() {
         href={
           state.route === "catalogue"
             ? "#technology-library-title"
-            : state.route === "library"
-              ? "#library-title"
-              : state.route === "sansa"
-                ? "#sansa-title"
-                : "#case-title"
+            : state.route === "stacks"
+              ? "#service-stacks-title"
+              : state.route === "library"
+                ? "#library-title"
+                : state.route === "sansa"
+                  ? "#sansa-title"
+                  : "#case-title"
         }
       >
         본문으로 바로가기
@@ -53,9 +56,21 @@ function Site() {
           <a
             href="?"
             onClick={(event) => followRoute(event, "library")}
-            aria-current={state.route !== "catalogue" ? "page" : undefined}
+            aria-current={
+              ["library", "sansa", "netflix"].includes(state.route)
+                ? "page"
+                : undefined
+            }
           >
             아키텍처
+          </a>
+          <a
+            href={`?view=stacks&service=${state.stackService}`}
+            data-stacks-link
+            onClick={(event) => followRoute(event, "stacks")}
+            aria-current={state.route === "stacks" ? "page" : undefined}
+          >
+            서비스 스택
           </a>
           <a
             href="?view=technologies"
@@ -74,6 +89,7 @@ function Site() {
         <TechnologyCatalogue />
         <DesignPage />
         {state.route === "sansa" && <SansaPage />}
+        {state.route === "stacks" && <ServiceStacks />}
       </main>
       <ZoomDialog />
       <TechnologyDialog />
