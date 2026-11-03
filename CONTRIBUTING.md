@@ -21,7 +21,7 @@
 | 기술이 필요한 이유·도입 효과와 조건 | `src/data/technology-rationales.js` |
 | 체험형 웹 기술의 정의·필요성·예제 | `src/data/interactive-web-technologies.js` |
 | 산사의 행동별 흐름·근거·비교 프로젝트 | `src/data/interactive-services.js` |
-| 서비스별 파트·사용 기술·처리 방식·근거 | `src/data/service-stacks.js` |
+| 서비스별 영역·파트·사용 기술·처리 방식·근거 | `src/data/service-stacks.js` |
 | 아키텍처와 기술별 흐름·설명 | `src/data/architecture.js`, `src/data/technology-notes.js`, `src/data/technology-depth.js` |
 | 대체 관계·용어 풀이 | `src/data/alternatives.js`, `src/data/glossary.js` |
 | 화면·상호작용·스타일 | `src/components/`, `src/styles/` |

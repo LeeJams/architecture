@@ -19,6 +19,12 @@ import {
   alternativeCategories,
   replacementSources,
 } from "../data/alternatives.js";
+import {
+  findServiceStack,
+  findStackLayer,
+  layerForPart,
+  stackPartId,
+} from "../data/service-stacks.js";
 
 const AppContext = createContext(null);
 const routeFromURL = () => {
@@ -33,6 +39,16 @@ const stackServiceFromURL = () =>
   new URLSearchParams(location.search).get("service") === "netflix"
     ? "netflix"
     : "sansa";
+const stackLayerFromURL = () => {
+  const service = findServiceStack(stackServiceFromURL());
+  const part = service.parts.find(
+    (item) => `#${stackPartId(service.id, item.id)}` === location.hash,
+  );
+  return part
+    ? layerForPart(service, part).id
+    : findStackLayer(service, new URLSearchParams(location.search).get("layer"))
+        ?.id || null;
+};
 const noteFromURL = (fallback = "oca") =>
   technologyNotes.find((item) => location.hash === `#tech-${item.key}`)?.key ||
   fallback;
@@ -64,6 +80,7 @@ export const noteKeyFor = (node, technology) =>
 const initialState = () => ({
   route: routeFromURL(),
   stackService: stackServiceFromURL(),
+  stackLayer: stackLayerFromURL(),
   catalogueCategory: "all",
   catalogueQuery: "",
   node: "oca",
@@ -91,6 +108,8 @@ export function AppProvider({ children }) {
     libraryY: 0,
     catalogueY: 0,
     libraryCard: "netflix-card",
+    stackOverviewY: {},
+    stackReturn: null,
   });
   const centerNode = useCallback((id) => {
     const viewport = document.querySelector(".diagram-viewport");
@@ -239,6 +258,17 @@ export function AppProvider({ children }) {
       /* Ignore malformed fragments. */
     }
     const target = document.getElementById(id);
+    if (route === "stacks" && !id && !stackLayerFromURL()) {
+      window.scrollTo({
+        top: navigation.current.stackOverviewY[stackServiceFromURL()] || 0,
+        behavior: "instant",
+      });
+      if (navigation.current.stackReturn)
+        document
+          .getElementById(`stack-layer-card-${navigation.current.stackReturn}`)
+          ?.scrollIntoView({ block: "nearest", behavior: "instant" });
+      return;
+    }
     if (
       target &&
       (document.getElementById("design")?.contains(target) ||
@@ -252,6 +282,16 @@ export function AppProvider({ children }) {
     async (route) => {
       const nav = navigation.current,
         sequence = ++nav.sequence;
+      nav.stackReturn =
+        route === "stacks" &&
+        current.current.route === "stacks" &&
+        current.current.stackService === stackServiceFromURL() &&
+        current.current.stackLayer &&
+        !stackLayerFromURL()
+          ? current.current.stackLayer
+          : null;
+      if (current.current.route === "stacks" && !current.current.stackLayer)
+        nav.stackOverviewY[current.current.stackService] = scrollY;
       if (["netflix", "sansa"].includes(current.current.route))
         nav.libraryCard = `${current.current.route}-card`;
       nav.transition?.skipTransition();
@@ -267,6 +307,7 @@ export function AppProvider({ children }) {
               route === "stacks"
                 ? stackServiceFromURL()
                 : current.current.stackService,
+            stackLayer: route === "stacks" ? stackLayerFromURL() : null,
             playing: false,
             sheet: null,
             zoom: null,
@@ -304,8 +345,15 @@ export function AppProvider({ children }) {
         if (sequence === nav.sequence) {
           nav.transition = null;
           delete document.documentElement.dataset.transitioning;
-          document
-            .getElementById(
+          const stackTarget =
+            route === "stacks"
+              ? document
+                  .getElementById(location.hash.slice(1))
+                  ?.querySelector("h3")
+              : null;
+          (
+            stackTarget ||
+            document.getElementById(
               route === "netflix"
                 ? "case-title"
                 : route === "sansa"
@@ -313,10 +361,12 @@ export function AppProvider({ children }) {
                   : route === "catalogue"
                     ? "technology-library-title"
                     : route === "stacks"
-                      ? "service-stacks-title"
+                      ? nav.stackReturn
+                        ? `stack-layer-card-${nav.stackReturn}`
+                        : "service-stacks-title"
                       : nav.libraryCard,
             )
-            ?.focus({ preventScroll: true });
+          )?.focus({ preventScroll: true });
           // Native transitions may adjust scroll after the update snapshot.
           scrollToRoute(route);
         }
@@ -325,7 +375,11 @@ export function AppProvider({ children }) {
     [scrollToRoute],
   );
   const followRoute = useCallback(
-    (event, route, { service = current.current.stackService } = {}) => {
+    (
+      event,
+      route,
+      { service = current.current.stackService, layer = null, hash = "" } = {},
+    ) => {
       if (
         event.button !== 0 ||
         event.metaKey ||
@@ -337,22 +391,29 @@ export function AppProvider({ children }) {
       event.preventDefault();
       if (
         route === current.current.route &&
-        (route !== "stacks" || service === current.current.stackService) &&
+        (route !== "stacks" ||
+          (service === current.current.stackService &&
+            layer === current.current.stackLayer &&
+            location.hash === (hash ? `#${hash}` : ""))) &&
         !document.documentElement.dataset.transitioning
       )
-        return window.scrollTo({ top: 0, behavior: scrollBehavior() });
+        return hash
+          ? scrollToRoute(route)
+          : window.scrollTo({ top: 0, behavior: scrollBehavior() });
       if (current.current.route === "library")
         navigation.current.libraryY = scrollY;
       if (current.current.route === "catalogue")
         navigation.current.catalogueY = scrollY;
       const url = new URL(location.href);
-      url.hash = "";
+      url.hash = route === "stacks" ? hash : "";
       url.searchParams.delete("view");
       url.searchParams.delete("service");
+      url.searchParams.delete("layer");
       if (route === "catalogue") url.searchParams.set("view", "technologies");
       if (route === "stacks") {
         url.searchParams.set("view", "stacks");
         url.searchParams.set("service", service);
+        if (layer) url.searchParams.set("layer", layer);
       }
       if (["netflix", "sansa"].includes(route))
         url.searchParams.set("case", route);
@@ -362,45 +423,49 @@ export function AppProvider({ children }) {
         console.error("Navigation failed", error),
       );
     },
-    [presentRoute],
+    [presentRoute, scrollToRoute],
   );
   useLayoutEffect(() => {
     document.documentElement.dataset.route = state.route;
+    const stackLayer = findStackLayer(
+      findServiceStack(state.stackService),
+      state.stackLayer,
+    );
     document.title =
       state.route === "catalogue"
         ? "기술 목록 · 아키텍처 노트"
         : state.route === "stacks"
-          ? `${state.stackService === "netflix" ? "넷플릭스" : "산사"}의 서비스 스택 · 아키텍처 노트`
+          ? `${state.stackService === "netflix" ? "넷플릭스" : "산사"}${stackLayer ? ` · ${stackLayer.name}` : "의 서비스 스택"} · 아키텍처 노트`
           : state.route === "library"
             ? "아키텍처 노트 · 서비스의 구조와 기술"
             : state.route === "sansa"
               ? "산사, 같은 방에서 움직임이 공유되는 방식 · 아키텍처 노트"
               : "넷플릭스, 재생 버튼 뒤의 설계 · 아키텍처 노트";
-  }, [state.route, state.stackService]);
+  }, [state.route, state.stackService, state.stackLayer]);
   useEffect(() => {
     history.scrollRestoration = "manual";
     const historyChange = () => {
       const route = routeFromURL();
+      const stackChanged =
+        route === "stacks" &&
+        (stackServiceFromURL() !== current.current.stackService ||
+          stackLayerFromURL() !== current.current.stackLayer);
       if (
         route === current.current.route &&
+        !stackChanged &&
         !document.documentElement.dataset.transitioning
       ) {
-        const stackService =
-          route === "stacks"
-            ? stackServiceFromURL()
-            : current.current.stackService;
-        const serviceChanged = stackService !== current.current.stackService;
         flushSync(() =>
           patch({
-            stackService,
             note: noteFromURL(current.current.note),
             sheet: null,
             zoom: null,
           }),
         );
-        if (serviceChanged)
+        if (route === "stacks")
           document
-            .getElementById("service-stacks-title")
+            .getElementById(location.hash.slice(1))
+            ?.querySelector("h3")
             ?.focus({ preventScroll: true });
         scrollToRoute(route);
       } else presentRoute(route).catch(console.error);

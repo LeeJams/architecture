@@ -21,12 +21,28 @@ import { useApp } from "../state/AppState.jsx";
 export default { title: "Architecture" };
 export const ServiceStackOverview = ({ service = "sansa" }) => (
   <Frame width={1440}>
-    <ServiceStacks serviceId={service} />
+    <ServiceStacks serviceId={service} layerId={null} />
   </Frame>
 );
 ServiceStackOverview.args = { service: "sansa" };
 ServiceStackOverview.argTypes = {
   service: { options: ["sansa", "netflix"], control: { type: "select" } },
+};
+export const ServiceStackDetail = ({
+  service = "sansa",
+  layer = "frontend",
+}) => (
+  <Frame width={1440}>
+    <ServiceStacks serviceId={service} layerId={layer} />
+  </Frame>
+);
+ServiceStackDetail.args = { service: "sansa", layer: "frontend" };
+ServiceStackDetail.argTypes = {
+  service: { options: ["sansa", "netflix"], control: { type: "select" } },
+  layer: {
+    options: ["frontend", "server", "storage"],
+    control: { type: "select" },
+  },
 };
 export const PresenceSynchronization = () => (
   <Frame width={1100}>

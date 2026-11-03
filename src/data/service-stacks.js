@@ -32,6 +32,33 @@ export const serviceStacks = [
     exclusions:
       "보관본에 있는 조건부 Supabase 초기화는 현재 사용의 증거가 아닙니다. 파생 프로젝트의 React·Vinext·D1, 비교 구현의 Firebase도 산사 사용 기술에 포함하지 않았습니다.",
     sources: sansaSources,
+    layers: [
+      {
+        id: "frontend",
+        name: "프론트엔드",
+        location: "사용자의 브라우저",
+        groups: ["browser"],
+        summary:
+          "3D 공간을 그리고, 움직임을 주고받고, 소리와 내 설정을 처리합니다.",
+        note: "WebSocket은 브라우저의 통신 수단이며, localStorage는 내 브라우저의 저장 영역입니다.",
+      },
+      {
+        id: "server",
+        name: "서버",
+        location: "방 연결의 접점",
+        groups: ["server"],
+        summary: "브라우저들이 같은 방의 상태를 주고받을 연결 접점을 둡니다.",
+        note: "Workers 도메인의 연결 주소를 확인했습니다. 방 상태 조정과 좌석 배정의 서버 구현은 미확인입니다.",
+      },
+      {
+        id: "storage",
+        name: "데이터 저장",
+        location: "서버의 영속 저장",
+        groups: ["storage"],
+        summary: "접속 중인 방의 상태와 오래 보관할 데이터를 구분해서 봅니다.",
+        note: "현재 운영 DB와 저장 제품은 확인되지 않았습니다. 브라우저 설정 저장과 구분합니다.",
+      },
+    ],
     groups: [
       ["browser", "브라우저"],
       ["server", "서버"],
@@ -196,6 +223,34 @@ export const serviceStacks = [
     exclusions:
       "S3·CloudFront는 이 페이지에서 Netflix의 사용 제품으로 표시하지 않습니다. 기존 설명의 원본 저장 예시와 전달망 대안은 실제 사용 근거와 구분합니다.",
     sources: [openConnect, appliances, aws],
+    layers: [
+      {
+        id: "frontend",
+        name: "프론트엔드",
+        location: "사용자 기기의 플레이어",
+        groups: ["client"],
+        summary:
+          "재생 정보를 받아 영상 조각을 요청하고, 버퍼와 재생 품질을 관리합니다.",
+        note: "적응형 재생의 역할을 설명합니다. 앱의 구체적인 언어·프레임워크는 확인되지 않았습니다.",
+      },
+      {
+        id: "server",
+        name: "서버",
+        location: "제어 서비스와 영상 전달망",
+        groups: ["control", "delivery"],
+        summary:
+          "재생을 준비하는 제어 서비스와 영상 바이트를 전달하는 서버를 나눕니다.",
+        note: "AWS의 제어 영역과 Open Connect 전달망, OCA의 HTTP 서버·운영체제를 함께 살펴봅니다.",
+      },
+      {
+        id: "storage",
+        name: "데이터 저장",
+        location: "원본과 콘텐츠 공급",
+        groups: ["storage"],
+        summary: "전달할 콘텐츠를 보관하고 OCA에 채우는 역할을 살펴봅니다.",
+        note: "원본 저장 제품은 미확인입니다. 저장과 콘텐츠 배치를 재생 중 전송 경로와 구분합니다.",
+      },
+    ],
     groups: [
       ["client", "사용자 기기"],
       ["control", "재생 제어"],
@@ -371,3 +426,16 @@ export const serviceStacks = [
 
 export const findServiceStack = (id) =>
   serviceStacks.find((service) => service.id === id) || serviceStacks[0];
+
+export const findStackLayer = (service, id) =>
+  service.layers.find((layer) => layer.id === id);
+export const partsInLayer = (service, layer) =>
+  service.parts.filter((part) => layer.groups.includes(part.group));
+export const layerForPart = (service, part) =>
+  service.layers.find((layer) => layer.groups.includes(part.group));
+export const stackPartId = (service, part) => `stack-part-${service}-${part}`;
+export function stackHref(service, layer, hash) {
+  const params = new URLSearchParams({ view: "stacks", service });
+  if (layer) params.set("layer", layer);
+  return `?${params}${hash ? `#${hash}` : ""}`;
+}
