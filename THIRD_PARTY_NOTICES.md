@@ -8,6 +8,7 @@
 | Motion · Framer Motion · Motion DOM/Utils | React 상호작용 애니메이션 | Motion contributors, MIT · [원문](licenses/motion.txt) |
 | Devicon | AWS·Google Cloud·Azure, 추가 언어·DB·실행 환경·컨테이너 도구·Ceph, Three.js·Babylon.js·Vite와 Firebase·Supabase 브랜드 SVG | [Devicon](https://github.com/devicons/devicon), MIT · [원문](licenses/devicon.txt) |
 | Simple Icons | FreeBSD, NGINX, Netflix, Fastly, Caddy, Cloudflare·Cloudflare Workers, Apache, Ubuntu, Debian, Google Cloud Storage·Alpine Linux SVG | [Simple Icons](https://github.com/simple-icons/simple-icons), CC0 1.0 · [원문](licenses/simple-icons.txt) |
+| TanStack Query | `assets/tech/tanstack-query.svg` | [TanStack Query 원본 심벌](https://github.com/TanStack/query/blob/main/media/emblem-light.svg), MIT · [원문](licenses/tanstack-query.txt) |
 | AWS Icons for PlantUML | `assets/tech/cloudfront.png`, `s3.png`, `ec2.png`, `lambda.png`, `ebs.png`, `efs.png` | [AWS Icons for PlantUML](https://github.com/awslabs/aws-icons-for-plantuml), CC BY-ND 2.0 · [원문](licenses/aws-icons.txt). 원본 PNG를 수정하지 않았습니다. |
 | ByteByteGo System Design 101 | `assets/netflix.png`, `streaming.jpg` | [ByteByteGo](https://github.com/ByteByteGoHq/system-design-101), CC BY-NC-ND 4.0 · [원문](licenses/bytebytego.txt). 참고 이미지 원본을 수정하지 않았습니다. |
 | System Design Primer | CDN 개념도 인용과 설명 참고 | [Donne Martin](https://github.com/donnemartin/system-design-primer), CC BY 4.0 · [프로젝트 고지](licenses/system-design-primer.txt) |
@@ -26,3 +27,5 @@ Vite·Ladle·Playwright는 개발·검증 도구입니다. 서비스용 번들�
 체험형 웹 기술에 추가한 6개 SVG도 원본을 수정하지 않았습니다. [원문·해시·고지](docs/research/interactive-web-technologies-sources.json)를 기록합니다. Firebase·Supabase는 공통 브랜드 심벌이라고 화면에 표시하고 실제 제품명인 Realtime Database·Realtime과 구분합니다. WebGL·Canvas 2D·Web Audio API·WebSocket·localStorage는 별도 제품 로고 대신 문자 표기를 사용합니다.
 
 `assets/sansa-study.svg`는 프로젝트에서 만든 설명용 구성도입니다. 산사의 실제 화면·모델·텍스처·음원을 재사용하지 않았습니다.
+
+100개 기술로 확장하며 추가한 56개 심벌도 원본 바이트를 보존했습니다. Devicon 52개, Simple Icons의 Spring Boot·Cockroach Labs·OpenSearch 3개, TanStack Query 프로젝트의 심벌 1개입니다. [개별 파일의 URL·해시·라이선스와 문서 조회 기록](docs/research/technology-catalogue-100-sources.json)을 보관합니다. Redux Toolkit·React Native·ASP.NET Core·CockroachDB에 사용하는 공통 브랜드 심벌은 화면에서 범위를 표시합니다. 단일 HTML에는 Devicon·Simple Icons·TanStack Query의 고지도 포함합니다.

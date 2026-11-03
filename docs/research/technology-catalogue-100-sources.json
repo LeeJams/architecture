@@ -1,0 +1,2257 @@
+{
+  "checked_on": "2026-11-03",
+  "scope": "56 general technology profiles; these are not claims of Sansa or Netflix dependencies.",
+  "documentation_policy": "Fetched official project documents, implementation sources and explicitly identified mirrors; older version snapshots are labelled in the UI. Official website links are additional reading, not a claim of live deployment verification.",
+  "profiles": [
+    {
+      "id": "c",
+      "name": "C",
+      "category": "language"
+    },
+    {
+      "id": "cpp",
+      "name": "C++",
+      "category": "language"
+    },
+    {
+      "id": "csharp",
+      "name": "C#",
+      "category": "language"
+    },
+    {
+      "id": "kotlin",
+      "name": "Kotlin",
+      "category": "language"
+    },
+    {
+      "id": "swift",
+      "name": "Swift",
+      "category": "language"
+    },
+    {
+      "id": "dart",
+      "name": "Dart",
+      "category": "language"
+    },
+    {
+      "id": "ruby",
+      "name": "Ruby",
+      "category": "language"
+    },
+    {
+      "id": "php",
+      "name": "PHP",
+      "category": "language"
+    },
+    {
+      "id": "elixir",
+      "name": "Elixir",
+      "category": "language"
+    },
+    {
+      "id": "erlang",
+      "name": "Erlang",
+      "category": "language"
+    },
+    {
+      "id": "scala",
+      "name": "Scala",
+      "category": "language"
+    },
+    {
+      "id": "r",
+      "name": "R",
+      "category": "language"
+    },
+    {
+      "id": "lua",
+      "name": "Lua",
+      "category": "language"
+    },
+    {
+      "id": "bash",
+      "name": "Bash",
+      "category": "language"
+    },
+    {
+      "id": "react",
+      "name": "React",
+      "category": "web"
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js",
+      "category": "web"
+    },
+    {
+      "id": "vue",
+      "name": "Vue.js",
+      "category": "web"
+    },
+    {
+      "id": "nuxt",
+      "name": "Nuxt",
+      "category": "web"
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "category": "web"
+    },
+    {
+      "id": "svelte",
+      "name": "Svelte",
+      "category": "web"
+    },
+    {
+      "id": "astro",
+      "name": "Astro",
+      "category": "web"
+    },
+    {
+      "id": "tailwindcss",
+      "name": "Tailwind CSS",
+      "category": "web"
+    },
+    {
+      "id": "tanstack-query",
+      "name": "TanStack Query",
+      "category": "web"
+    },
+    {
+      "id": "redux-toolkit",
+      "name": "Redux Toolkit",
+      "category": "web"
+    },
+    {
+      "id": "spring-boot",
+      "name": "Spring Boot",
+      "category": "backend"
+    },
+    {
+      "id": "django",
+      "name": "Django",
+      "category": "backend"
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "category": "backend"
+    },
+    {
+      "id": "express",
+      "name": "Express",
+      "category": "backend"
+    },
+    {
+      "id": "nestjs",
+      "name": "NestJS",
+      "category": "backend"
+    },
+    {
+      "id": "laravel",
+      "name": "Laravel",
+      "category": "backend"
+    },
+    {
+      "id": "rails",
+      "name": "Ruby on Rails",
+      "category": "backend"
+    },
+    {
+      "id": "aspnetcore",
+      "name": "ASP.NET Core",
+      "category": "backend"
+    },
+    {
+      "id": "flutter",
+      "name": "Flutter",
+      "category": "mobile"
+    },
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "category": "mobile"
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "category": "database"
+    },
+    {
+      "id": "mariadb",
+      "name": "MariaDB",
+      "category": "database"
+    },
+    {
+      "id": "cassandra",
+      "name": "Apache Cassandra",
+      "category": "database"
+    },
+    {
+      "id": "cockroachdb",
+      "name": "CockroachDB",
+      "category": "database"
+    },
+    {
+      "id": "neo4j",
+      "name": "Neo4j",
+      "category": "database"
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "category": "search"
+    },
+    {
+      "id": "opensearch",
+      "name": "OpenSearch",
+      "category": "search"
+    },
+    {
+      "id": "nats",
+      "name": "NATS",
+      "category": "messaging"
+    },
+    {
+      "id": "memcached",
+      "name": "Memcached",
+      "category": "cache"
+    },
+    {
+      "id": "deno",
+      "name": "Deno",
+      "category": "runtime"
+    },
+    {
+      "id": "bun",
+      "name": "Bun",
+      "category": "runtime"
+    },
+    {
+      "id": "prometheus",
+      "name": "Prometheus",
+      "category": "observability"
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "category": "observability"
+    },
+    {
+      "id": "opentelemetry",
+      "name": "OpenTelemetry",
+      "category": "observability"
+    },
+    {
+      "id": "terraform",
+      "name": "Terraform",
+      "category": "operations"
+    },
+    {
+      "id": "ansible",
+      "name": "Ansible",
+      "category": "operations"
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "category": "tooling"
+    },
+    {
+      "id": "github-actions",
+      "name": "GitHub Actions",
+      "category": "tooling"
+    },
+    {
+      "id": "haproxy",
+      "name": "HAProxy",
+      "category": "http"
+    },
+    {
+      "id": "envoy",
+      "name": "Envoy Proxy",
+      "category": "http"
+    },
+    {
+      "id": "graphql",
+      "name": "GraphQL",
+      "category": "api"
+    },
+    {
+      "id": "grpc",
+      "name": "gRPC",
+      "category": "api"
+    }
+  ],
+  "files": [
+    {
+      "id": "c",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/release/19.x/clang/docs/UsersManual.rst",
+      "bytes": 217416,
+      "sha256": "07437c8f6e29f164a1045d3d34bb31794382ba12577500b7ab86f4243c6aecfa",
+      "role": "technical-source"
+    },
+    {
+      "id": "c",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/release/19.x/clang/docs/UndefinedBehaviorSanitizer.rst",
+      "bytes": 18735,
+      "sha256": "0aa24f02772d52eab5ba2de79010c0b5903f396b16fba791246ea2ef002b257f",
+      "role": "technical-source"
+    },
+    {
+      "id": "c",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg",
+      "bytes": 241,
+      "sha256": "8cce48da91084256f15653e02bfd7046ccb34489d030cb1aa34dee766daad6b7",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/c.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "cpp",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/CppCoreGuidelines.md",
+      "bytes": 841421,
+      "sha256": "c5740ff14a1e737e27d2e63dd0fc03cc1d38558468a9676209fd99b0d0ddcd17",
+      "role": "technical-source"
+    },
+    {
+      "id": "cpp",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg",
+      "bytes": 1143,
+      "sha256": "7ff8253551235e3a6b002a7c2bd6e3190d85113a64fcb40f2254473caeb025d4",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/cpp.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "csharp",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/dotnet/docs/main/docs/csharp/fundamentals/types/index.md",
+      "bytes": 7450,
+      "sha256": "5f3e7db539ab2b90a01ffe87cb3d08938158a35f75e0b35cbdbf3f1b7c0b8951",
+      "role": "technical-source"
+    },
+    {
+      "id": "csharp",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/dotnet/docs/main/docs/csharp/asynchronous-programming/index.md",
+      "bytes": 24420,
+      "sha256": "dd78ffbbc629d0b4fd76f12e0217927bcac4f342b861dad4ae2f121f0269ec00",
+      "role": "technical-source"
+    },
+    {
+      "id": "csharp",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg",
+      "bytes": 851,
+      "sha256": "7093478d0888e22a224b6fa832da6c9ffd14c433de8bd14aab0c1cb50925f3ee",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/csharp.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "kotlin",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/JetBrains/kotlin-web-site/master/docs/topics/null-safety.md",
+      "bytes": 17278,
+      "sha256": "fd7c26a31eebbfe03430aa7ae855b03f3bcd6d35b88d3ef93f6f980e1c39fa20",
+      "role": "technical-source"
+    },
+    {
+      "id": "kotlin",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/Kotlin/kotlinx.coroutines/master/docs/topics/coroutines-basics.md",
+      "bytes": 26390,
+      "sha256": "7e3a0bf4bde9a40640313ebf1c0190b35077be1d09e7c4fec9b6d9b1bb39ecdd",
+      "role": "technical-source"
+    },
+    {
+      "id": "kotlin",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/kotlin/kotlin-original.svg",
+      "bytes": 502,
+      "sha256": "5053c2e1288582d1ac2cfc1e807eabb7f6059b1aa2f7d04e5cf00063682a2cbe",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/kotlin.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "swift",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/swiftlang/swift-book/main/TSPL.docc/LanguageGuide/AutomaticReferenceCounting.md",
+      "bytes": 47321,
+      "sha256": "76f2feb11c6fd127c08355102a70201954307556aa4ff327bc6f50f4a5380a1e",
+      "role": "technical-source"
+    },
+    {
+      "id": "swift",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/swiftlang/swift-book/main/TSPL.docc/LanguageGuide/Concurrency.md",
+      "bytes": 56558,
+      "sha256": "a01fcb1120386332272c41321c3e2a05b8d34d781d4abb7083c398bc8ee8853a",
+      "role": "technical-source"
+    },
+    {
+      "id": "swift",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original.svg",
+      "bytes": 1294,
+      "sha256": "46b6e4abd3ab12c589b8e276295f9439e2869bc4788d918efbc6e76147e8a06e",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/swift.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "dart",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/dart-lang/site-www/main/src/content/null-safety/index.md",
+      "bytes": 2435,
+      "sha256": "ae6e4ad28f4c2067421534cd651c9ee5dea74773f51ab7cf20ba0040d94d7e4a",
+      "role": "technical-source"
+    },
+    {
+      "id": "dart",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/dart-lang/site-www/main/src/content/language/concurrency.md",
+      "bytes": 20129,
+      "sha256": "b15e098ee90beb5eb8a2d0964136d6cb305b3cb733c184b910e0f87d1e5e55f4",
+      "role": "technical-source"
+    },
+    {
+      "id": "dart",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dart/dart-original.svg",
+      "bytes": 710,
+      "sha256": "8dec3d6f6d92d5c8db294baf7ea89cbad5c3dd0f7fde5ca972ffc6cebf9b2d40",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/dart.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "ruby",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/ruby/ruby/master/doc/syntax/methods.rdoc",
+      "bytes": 17344,
+      "sha256": "4d7648286d5fbdbb5f54efd459fb6fa003fea32ebaf5e8d1f861f05cbcd0eaad",
+      "role": "technical-source"
+    },
+    {
+      "id": "ruby",
+      "kind": "doc",
+      "index": 53,
+      "url": "https://raw.githubusercontent.com/ruby/ruby/master/thread.c",
+      "bytes": 196724,
+      "sha256": "13fbe3dca1a11f9a85354248ee819782fe25cd4eafb840459215683f82ab723a",
+      "role": "technical-source"
+    },
+    {
+      "id": "ruby",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/ruby/ruby-original.svg",
+      "bytes": 8328,
+      "sha256": "74ead50b8f0f31e1b34618088bc0b0e16c04f1d4539039ef9358717d8505a63c",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/ruby.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "php",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/php/doc-en/master/language/types/type-system.xml",
+      "bytes": 7026,
+      "sha256": "b8ae8b21ee614f7b7ccc6523cf145a95cfec77e6e2f4cb15f831a43d32cb94fc",
+      "role": "technical-source"
+    },
+    {
+      "id": "php",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/php/doc-en/master/language/oop5/basic.xml",
+      "bytes": 21293,
+      "sha256": "786a5cccb9b12beb775582742c0868385d9f358760ad50938ea2a2764d7ec778",
+      "role": "technical-source"
+    },
+    {
+      "id": "php",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg",
+      "bytes": 4624,
+      "sha256": "f22619a19c99a123e4678d71826f65f223721a739631dff46de39827c9ee0633",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/php.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "elixir",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/pages/getting-started/processes.md",
+      "bytes": 10574,
+      "sha256": "b502994fa277139db09985b08c82450cde04e9e68e2ae2cdc97e76b6a21cc2bb",
+      "role": "technical-source"
+    },
+    {
+      "id": "elixir",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/elixir-lang/elixir/main/lib/elixir/pages/mix-and-otp/genservers.md",
+      "bytes": 19380,
+      "sha256": "44772c52cf10314b4309e4519cc8ca2fe0513fd8c1e028e2aa62bf3a8b406781",
+      "role": "technical-source"
+    },
+    {
+      "id": "elixir",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/elixir/elixir-original.svg",
+      "bytes": 2854,
+      "sha256": "8710ad49e53ec4a2a4efc82381cc8c8bff5c630e4ad82801d186759228d867ab",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/elixir.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "erlang",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/erlang/otp/master/system/doc/design_principles/sup_princ.md",
+      "bytes": 28631,
+      "sha256": "f87be77fb52f1156ee52b2f8b455bf1ceab6023628c62c0a1dd8627a9f1f84e4",
+      "role": "technical-source"
+    },
+    {
+      "id": "erlang",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/erlang/otp/master/system/doc/reference_manual/ref_man_processes.md",
+      "bytes": 36224,
+      "sha256": "8e6550f654b3be8aa8d9847be8c3e1e149751c227540f9751359acba2635c287",
+      "role": "technical-source"
+    },
+    {
+      "id": "erlang",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/erlang/erlang-original.svg",
+      "bytes": 401,
+      "sha256": "b605010afdc6ac75a2c53ebbf079bbcc47948133fcb1765f8b5eec8494a6d9c0",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/erlang.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "scala",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/scala/docs.scala-lang/main/_overviews/scala3-book/fp-immutable-values.md",
+      "bytes": 3061,
+      "sha256": "f8b5d94cdc39ee327d5136a5958c0dc3b023cdf2b90fecc59c5461797d203e34",
+      "role": "technical-source"
+    },
+    {
+      "id": "scala",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/scala/docs.scala-lang/main/_overviews/scala3-book/types-adts-gadts.md",
+      "bytes": 6397,
+      "sha256": "e821d2a36b52549f7f9ca758a64edfad27a00ab1fa1469105601651602725388",
+      "role": "technical-source"
+    },
+    {
+      "id": "scala",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/scala/scala-original.svg",
+      "bytes": 1473,
+      "sha256": "2565b6286bf30ab28c7d6a988ab7a76c5ce28182b80634e2a2ae21e29b4ad7b9",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/scala.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "r",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/wch/r-source/trunk/doc/manual/R-intro.texi",
+      "bytes": 258300,
+      "sha256": "06ab58e80ffef631da8177e4a25bf4789059828598a51dd98f60d0aae5484bea",
+      "role": "technical-source"
+    },
+    {
+      "id": "r",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/wch/r-source/trunk/doc/manual/R-lang.texi",
+      "bytes": 167662,
+      "sha256": "8af09489987c96729d8216094d6ab9dc81a4f0d50b57d6a27ef57f2a4918c220",
+      "role": "technical-source"
+    },
+    {
+      "id": "r",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/r/r-original.svg",
+      "bytes": 1359,
+      "sha256": "9d135e1a56f58f89203afc9253f1db91901e19522f92dfc10575e3312336e61b",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/r.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "lua",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/lua/lua/master/lapi.c",
+      "bytes": 36925,
+      "sha256": "d744084bfec5049f6eaa509f4f353886a8c4fa8c8ef875d9f5bd3783caa46e09",
+      "role": "technical-source"
+    },
+    {
+      "id": "lua",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/lua/lua/master/lgc.c",
+      "bytes": 57948,
+      "sha256": "137e646f2e240311a58312fa024d5426a7138132b4bb6af7e6ec2a037adc0f9f",
+      "role": "technical-source"
+    },
+    {
+      "id": "lua",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/lua/lua-original.svg",
+      "bytes": 4401,
+      "sha256": "7bd82efe74ca5dc3741b8cdcf6c373c96123c638e79c42d0806b15c47e2fccb8",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/lua.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "bash",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/gitGNU/gnu_bash/master/doc/bashref.texi",
+      "bytes": 328634,
+      "sha256": "90031c74f73a0c05a6cc70ddcc858dec640b1dbc410c1849f6004431238f0fd2",
+      "role": "technical-source"
+    },
+    {
+      "id": "bash",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/bash/bash-original.svg",
+      "bytes": 1800,
+      "sha256": "8e9b1f859331c8d11571e77b1371c5d7ac7e380abfcd2f31160ed81dc37de403",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/bash.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "react",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/reactjs/react.dev/main/src/content/learn/state-as-a-snapshot.md",
+      "bytes": 13711,
+      "sha256": "79840d502106ac4a8e3abd6d68138e345d7e67926312062ccb205ab907e1ed35",
+      "role": "technical-source"
+    },
+    {
+      "id": "react",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/reactjs/react.dev/main/src/content/learn/you-might-not-need-an-effect.md",
+      "bytes": 61408,
+      "sha256": "fdfe964a7819e6e22f52c110225726f2cb5b9a46c6ca245173283da0cbfd5a0c",
+      "role": "technical-source"
+    },
+    {
+      "id": "react",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+      "bytes": 2387,
+      "sha256": "5825b649c8c04dec13ecf01d0182401bd0ec71789d2fa06224866d882cd1515f",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/react.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "nextjs",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/vercel/next.js/canary/docs/01-app/03-api-reference/01-directives/use-client.mdx",
+      "bytes": 3898,
+      "sha256": "12eb4f6e112bff41a0518717bbe107e10587f27d12a7d56da56d10976018b793",
+      "role": "technical-source"
+    },
+    {
+      "id": "nextjs",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/vercel/next.js/canary/docs/01-app/01-getting-started/05-server-and-client-components.mdx",
+      "bytes": 19706,
+      "sha256": "c08524a1483abbdaf1821081cf0480cdbccbbee42b5036f0933755894e435a17",
+      "role": "technical-source"
+    },
+    {
+      "id": "nextjs",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg",
+      "bytes": 749,
+      "sha256": "d9435c4ede7133b376c0173a80226bb3856729366707cd96e9a66e39448d0288",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/nextjs.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "vue",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/vuejs/docs/main/src/guide/essentials/reactivity-fundamentals.md",
+      "bytes": 20374,
+      "sha256": "878da84b39a717acff14150afb3c3bf401c6f08740221902373a79cdf280c719",
+      "role": "technical-source"
+    },
+    {
+      "id": "vue",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/vuejs/docs/main/src/guide/essentials/watchers.md",
+      "bytes": 19607,
+      "sha256": "67af48b85a118b153b930500f3773d0481b0a16521adaa76866521fe8294c675",
+      "role": "technical-source"
+    },
+    {
+      "id": "vue",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original.svg",
+      "bytes": 561,
+      "sha256": "4cc1153600c0845c645ac6c718c11d516d6899079a0dc406e3d62f68b1d02c49",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/vue.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "nuxt",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/nuxt/nuxt/main/docs/4.api/2.composables/use-async-data.md",
+      "bytes": 20442,
+      "sha256": "15537290115251aad0024735907cca55321a92e302b5cf2fec016589c7afd0d5",
+      "role": "technical-source"
+    },
+    {
+      "id": "nuxt",
+      "kind": "doc",
+      "index": 24,
+      "url": "https://raw.githubusercontent.com/nuxt/nuxt/main/docs/3.guide/1.concepts/1.rendering.md",
+      "bytes": 20285,
+      "sha256": "5f2e45390b6cf766c7a1c33764c376893387a1ca32f588b5aa3875a90504534e",
+      "role": "technical-source"
+    },
+    {
+      "id": "nuxt",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nuxtjs/nuxtjs-original.svg",
+      "bytes": 1014,
+      "sha256": "607ae21caf3008c8fad200d017b4fca95aae42eca4c41d69cdc83cd8a9322800",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/nuxt.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "angular",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/angular/angular/main/adev/src/content/guide/components/lifecycle.md",
+      "bytes": 14468,
+      "sha256": "cb75632d9f3db3622e4a0629110f21ebe35c0d03d9682509b1aadeb5cf894848",
+      "role": "technical-source"
+    },
+    {
+      "id": "angular",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/angular/angular/main/adev/src/content/guide/signals/overview.md",
+      "bytes": 11692,
+      "sha256": "1557322e65632cbeab477c78ce1ace33521e5e37db7db6db2d08c3af80e42f11",
+      "role": "technical-source"
+    },
+    {
+      "id": "angular",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/angular/angular-original.svg",
+      "bytes": 1115,
+      "sha256": "9666f86466e1175ba5e0c685fb423123e93a544732fd7b241e92a192cbb613ab",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/angular.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "svelte",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/sveltejs/svelte/main/documentation/docs/02-runes/02-$state.md",
+      "bytes": 10036,
+      "sha256": "d65f2898c61bd257e9c76a0facb0c09e3d89cceb74282616e93986b9fb723d40",
+      "role": "technical-source"
+    },
+    {
+      "id": "svelte",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/sveltejs/svelte/main/documentation/docs/02-runes/03-$derived.md",
+      "bytes": 5509,
+      "sha256": "885e5b5df42be4cc554efca5e7b6e15830feeb31464630ed3441d7eb130397ce",
+      "role": "technical-source"
+    },
+    {
+      "id": "svelte",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/svelte/svelte-original.svg",
+      "bytes": 3833,
+      "sha256": "1941fe737cb55f6a88bf919d43131d3e346a1d2a0117bcf319f6638cf21f69f8",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/svelte.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "astro",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/withastro/docs/main/src/content/docs/en/concepts/islands.mdx",
+      "bytes": 9870,
+      "sha256": "1d15012aa6312b11a320280f9bf29491b77ef5d455230e5f44a587aa981f3a44",
+      "role": "technical-source"
+    },
+    {
+      "id": "astro",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/withastro/docs/main/src/content/docs/en/guides/client-side-scripts.mdx",
+      "bytes": 10284,
+      "sha256": "d2f60037d327249fa12f110abd7ce043e3c681b33fde16451de315eb88428875",
+      "role": "technical-source"
+    },
+    {
+      "id": "astro",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/astro/astro-original.svg",
+      "bytes": 1796,
+      "sha256": "f48e027603ad5d9823b86bd94fb77a499b0fae27e91649d5f9290fc9c92cecae",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/astro.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "tailwindcss",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss.com/main/src/docs/styling-with-utility-classes.mdx",
+      "bytes": 38673,
+      "sha256": "ce94e054e95a123e660b88fe85fa25076213c16f5744ef9715e8cd6c991637f2",
+      "role": "technical-source"
+    },
+    {
+      "id": "tailwindcss",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/tailwindlabs/tailwindcss.com/main/src/docs/responsive-design.mdx",
+      "bytes": 19434,
+      "sha256": "ca60f877acaab261b7f6b73c3a934547f8982f69fbb2fc64b12d66668244a308",
+      "role": "technical-source"
+    },
+    {
+      "id": "tailwindcss",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg",
+      "bytes": 689,
+      "sha256": "f8cec54589553807eb603bcaf4e056aa090196211698b056542e3cc62a2f3448",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/tailwindcss.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "tanstack-query",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/TanStack/query/main/docs/framework/react/guides/important-defaults.md",
+      "bytes": 4522,
+      "sha256": "a3f02f4fb7e8dc010962e8ea0aab9f31f9d6f6d724e66dc44eabc155265a1f50",
+      "role": "technical-source"
+    },
+    {
+      "id": "tanstack-query",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/TanStack/query/main/docs/framework/react/guides/query-keys.md",
+      "bytes": 3385,
+      "sha256": "dbd62ca3fc372cada909b9282e2f9ac94e4c695a078fee17b4660df2dd4ac413",
+      "role": "technical-source"
+    },
+    {
+      "id": "tanstack-query",
+      "kind": "logo",
+      "index": 29,
+      "url": "https://raw.githubusercontent.com/TanStack/query/main/media/emblem-light.svg",
+      "bytes": 9311,
+      "sha256": "933024a1cd5f312fc93736a6fcb752083429372deac22487def2c171e4b763d0",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/tanstack-query.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "redux-toolkit",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/reduxjs/redux-toolkit/master/docs/api/createSlice.mdx",
+      "bytes": 22287,
+      "sha256": "0edfef1d7530dc58f53e5bd32a4978975193ee3f9b27a7e177b3700fbc770291",
+      "role": "technical-source"
+    },
+    {
+      "id": "redux-toolkit",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/reduxjs/redux-toolkit/master/docs/usage/immer-reducers.md",
+      "bytes": 22821,
+      "sha256": "005d7e1ef61f65a97537233639b015b7bf8a0dff6888cf831beb06574983c418",
+      "role": "technical-source"
+    },
+    {
+      "id": "redux-toolkit",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg",
+      "bytes": 1213,
+      "sha256": "72a56f5d8acc368b77624e1e7b7d8a2acbbc070ac6bf5d1b9979c92072d89962",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/redux-toolkit.svg",
+      "license": "MIT",
+      "brand_scope": true
+    },
+    {
+      "id": "spring-boot",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/spring-projects/spring-boot/main/documentation/spring-boot-docs/src/docs/antora/modules/reference/pages/using/auto-configuration.adoc",
+      "bytes": 3790,
+      "sha256": "912fe96c89978362ddc7b43760290e954b86839f3a00dd7428729d81cd7f2bc3",
+      "role": "technical-source"
+    },
+    {
+      "id": "spring-boot",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/spring-projects/spring-boot/main/documentation/spring-boot-docs/src/docs/antora/modules/reference/pages/features/external-config.adoc",
+      "bytes": 74960,
+      "sha256": "b1b7cbd7805369e5b6769489c678c3a969519fce30213ec4f3bf1c867ac9bff4",
+      "role": "technical-source"
+    },
+    {
+      "id": "spring-boot",
+      "kind": "logo",
+      "index": 27,
+      "url": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/springboot.svg",
+      "bytes": 986,
+      "sha256": "1b4bb8d7522fa0742a9fc40685b3efe3e089c5d07e4d3eebf4b4dbb28f827ad3",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/spring-boot.svg",
+      "license": "CC0-1.0",
+      "brand_scope": false
+    },
+    {
+      "id": "django",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/django/django/main/docs/topics/db/transactions.txt",
+      "bytes": 28481,
+      "sha256": "fce19bd320802338c10f437354a5c553cdcecede54063721e49a03f79d80c62a",
+      "role": "technical-source"
+    },
+    {
+      "id": "django",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/django/django/main/docs/topics/db/optimization.txt",
+      "bytes": 19013,
+      "sha256": "27c33306df5db32a39ac10eb9ffa73528535f041362b04b55a5fd697cd378c20",
+      "role": "technical-source"
+    },
+    {
+      "id": "django",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-plain.svg",
+      "bytes": 644,
+      "sha256": "c3037ac285dd5f85ee148a151afb85e64b2a03b62c3affc178376d82ebff6a46",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/django.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "fastapi",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/fastapi/fastapi/master/docs/en/docs/async.md",
+      "bytes": 23978,
+      "sha256": "5c112ab0e608d07324b13d9e8e61f670a932437a159d34e6a73779f65bfc9960",
+      "role": "technical-source"
+    },
+    {
+      "id": "fastapi",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/fastapi/fastapi/master/docs/en/docs/tutorial/dependencies/index.md",
+      "bytes": 9771,
+      "sha256": "83319cc87297bb0959c5721a112133e6a3cd19900163c348a8ee6cf4818cd21f",
+      "role": "technical-source"
+    },
+    {
+      "id": "fastapi",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/fastapi/fastapi-original.svg",
+      "bytes": 3065,
+      "sha256": "7ef41f6a363b00ff595e6d0b933c025c92cbfae29dc1df24b2f6eb8b476ee486",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/fastapi.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 40,
+      "url": "https://raw.githubusercontent.com/expressjs/express/master/lib/application.js",
+      "bytes": 13953,
+      "sha256": "6d7e08355025786982d17042fc0355b6a5e9339545dc27e2782b3aaa28a7bc04",
+      "role": "technical-source"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 41,
+      "url": "https://raw.githubusercontent.com/expressjs/express/master/Readme.md",
+      "bytes": 10375,
+      "sha256": "3cf5f3e224dbb9b5e2bc0ac255871de453762ae7a277f868da5f4a69d6ff2509",
+      "role": "technical-source"
+    },
+    {
+      "id": "express",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg",
+      "bytes": 914,
+      "sha256": "27ec7e3d21d59102c046a96277877abf78aa9d7ad244277345d9c395486d42d4",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/express.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "nestjs",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/components.md",
+      "bytes": 10158,
+      "sha256": "2a31bb5437262a93ef84dc5ebc45317baf5f1c2058f9c54d1e6bebca4fe9452d",
+      "role": "technical-source"
+    },
+    {
+      "id": "nestjs",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/pipes.md",
+      "bytes": 24559,
+      "sha256": "ccd7eb0f11c36d3723acd5d851bf95ebbeb96eb05d8aa9bb995b6201f531b815",
+      "role": "technical-source"
+    },
+    {
+      "id": "nestjs",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nestjs/nestjs-original.svg",
+      "bytes": 5571,
+      "sha256": "97ae5e5666850f1f6119871a4197bef2da3472cd2d40a32e9420792a8bfcd360",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/nestjs.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "laravel",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/laravel/docs/12.x/queues.md",
+      "bytes": 122768,
+      "sha256": "df08f3ae14517763454159cc0f8fb431ced79d73e9798dc5df02d10a01f47f5c",
+      "role": "technical-source"
+    },
+    {
+      "id": "laravel",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/laravel/docs/12.x/database.md",
+      "bytes": 21591,
+      "sha256": "5941073699eddd971619dc1c4399eeb1aec52d61b488d6d46124655a6726a7be",
+      "role": "technical-source"
+    },
+    {
+      "id": "laravel",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg",
+      "bytes": 2339,
+      "sha256": "b293960cd642537d2b19a1442168a396f25bdd31eb10f4f92447623cfc5730df",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/laravel.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "rails",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/rails/rails/main/guides/source/active_record_querying.md",
+      "bytes": 108236,
+      "sha256": "6cb1751e5fd0453aaf9e51511b19bfd9e23a547e541d898c00472e82b942615c",
+      "role": "technical-source"
+    },
+    {
+      "id": "rails",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/rails/rails/main/guides/source/active_job_basics.md",
+      "bytes": 49954,
+      "sha256": "5ebdbc0655499a53b56aa8f796b67834cd32b0fdc5a83e62bd4d8b3095594140",
+      "role": "technical-source"
+    },
+    {
+      "id": "rails",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/rails/rails-original-wordmark.svg",
+      "bytes": 3795,
+      "sha256": "c69c4d272585e23c2b9dad1b45a53cbde40eae143ae6b0673a09d838f5510a96",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/rails.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "aspnetcore",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/fundamentals/middleware/index.md",
+      "bytes": 69528,
+      "sha256": "7baf1e745bbcff85995a48e2f42a835752476fcf98eb94d401ce1ea9e473d9c2",
+      "role": "technical-source"
+    },
+    {
+      "id": "aspnetcore",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/dotnet/AspNetCore.Docs/main/aspnetcore/fundamentals/dependency-injection.md",
+      "bytes": 43040,
+      "sha256": "9daeea23e3d2a0809a51fa774a2ada276ffe229112980af5fa5f3af7f1c9c200",
+      "role": "technical-source"
+    },
+    {
+      "id": "aspnetcore",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/dotnetcore/dotnetcore-original.svg",
+      "bytes": 3057,
+      "sha256": "b1b71d747aaf277a00efeab3f5f5844578fc4a42bb605f60c3b0510256009ca4",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/aspnetcore.svg",
+      "license": "MIT",
+      "brand_scope": true
+    },
+    {
+      "id": "flutter",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/flutter/website/main/sites/docs/src/content/data-and-backend/state-mgmt/simple.md",
+      "bytes": 15911,
+      "sha256": "89d7880c306a1f8578d29a74eaac85bdf580f5acd60f84bb34b6193767b5a4d7",
+      "role": "technical-source"
+    },
+    {
+      "id": "flutter",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/flutter/website/main/sites/docs/src/content/perf/best-practices.md",
+      "bytes": 17491,
+      "sha256": "272f97f65d5e04be57b86ee9d0a74d25064fde46c96d527216813506c9dd56a4",
+      "role": "technical-source"
+    },
+    {
+      "id": "flutter",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/flutter/flutter-original.svg",
+      "bytes": 646,
+      "sha256": "c188249043aecad16b31eaa230474643270a8d8200b897af54a97949cb88e4ae",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/flutter.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "react-native",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/facebook/react-native-website/main/docs/performance.md",
+      "bytes": 9060,
+      "sha256": "f1457447d4f5d324e01a8ff8f5910f288e57e34e9901c30ac483c311feebe577",
+      "role": "technical-source"
+    },
+    {
+      "id": "react-native",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg",
+      "bytes": 2387,
+      "sha256": "5825b649c8c04dec13ecf01d0182401bd0ec71789d2fa06224866d882cd1515f",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/react-native.svg",
+      "license": "MIT",
+      "brand_scope": true
+    },
+    {
+      "id": "sqlite",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/sqlite/sqlite/master/doc/wal-lock.md",
+      "bytes": 3654,
+      "sha256": "ff2e417755f4d9b07c968bd30f55adf2551f7b4ebd1276fe4c9c0a9d0b0dc3d2",
+      "role": "technical-source"
+    },
+    {
+      "id": "sqlite",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/sqlite/sqlite/master/src/wal.c",
+      "bytes": 184531,
+      "sha256": "0be881c2ab9f2ff8edc1d450b271a2680af9544f9ab7b57fda231359fa1d5683",
+      "role": "technical-source"
+    },
+    {
+      "id": "sqlite",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/sqlite/sqlite-original.svg",
+      "bytes": 2422,
+      "sha256": "2b91c30887d3602479ba845cc012ef6ae577fba71eb96705a05b12e35d2c5e7e",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/sqlite.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "mariadb",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/MariaDB/server/11.4/storage/innobase/read/read0read.cc",
+      "bytes": 10370,
+      "sha256": "463153d515eca95b19701791b8be1815a0324a835ff9a2b9eaeaf18a332f31fd",
+      "role": "technical-source"
+    },
+    {
+      "id": "mariadb",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/MariaDB/server/11.4/README.md",
+      "bytes": 2735,
+      "sha256": "bdd67fe0367e95fc3b138f99289771243e915ba75ff93ec5583845f1570b228f",
+      "role": "technical-source"
+    },
+    {
+      "id": "mariadb",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/mariadb/mariadb-original.svg",
+      "bytes": 1831,
+      "sha256": "90f14c26b478447171ad800791535f5f5ab0f9abf80387edefb410b6fc85cbdc",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/mariadb.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "cassandra",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/apache/cassandra/trunk/doc/modules/cassandra/pages/architecture/dynamo.adoc",
+      "bytes": 26561,
+      "sha256": "cf06d9156e211e81bf2530c33806d1ffc6a8ac1440c28669750f65d4e1760bb4",
+      "role": "technical-source"
+    },
+    {
+      "id": "cassandra",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/cassandra/cassandra-original.svg",
+      "bytes": 9632,
+      "sha256": "9b768d3057b8963787ebddf6ecd83ad876956884c8354455b6ac99343df382ae",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/cassandra.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "cockroachdb",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/cockroachdb/docs/main/src/current/v25.1/transactions.md",
+      "bytes": 21207,
+      "sha256": "f915046498d161f644c4cac05c7f03541bd8e0aa5327123848b3ec49286a7074",
+      "role": "technical-source"
+    },
+    {
+      "id": "cockroachdb",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/cockroachdb/docs/main/src/current/v25.1/transaction-retry-error-reference.md",
+      "bytes": 33720,
+      "sha256": "27f893c576a7f0cd599bc2bc46ba645d217782d33a70fdc47df110e5915bb529",
+      "role": "technical-source"
+    },
+    {
+      "id": "cockroachdb",
+      "kind": "logo",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cockroachlabs.svg",
+      "bytes": 896,
+      "sha256": "f7cb07444e7a4c0a93546a974b42fea77dda63c1e669061647c179673b7cd35e",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/cockroachdb.svg",
+      "license": "CC0-1.0",
+      "brand_scope": true
+    },
+    {
+      "id": "neo4j",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/neo4j/docs-cypher/dev/modules/ROOT/pages/clauses/match.adoc",
+      "bytes": 22315,
+      "sha256": "f609d9b6fdd41502d97ccc3f5b6e489714304bd4b8e78ee95419a79065d3fe78",
+      "role": "technical-source"
+    },
+    {
+      "id": "neo4j",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/neo4j/neo4j-original.svg",
+      "bytes": 1222,
+      "sha256": "5048bfdf1ddf41d9f1d9653ed84092972aa569a7ebac4010483f9a2b203caa7e",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/neo4j.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "elasticsearch",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/elastic/elasticsearch/8.17/docs/reference/query-dsl/bool-query.asciidoc",
+      "bytes": 8734,
+      "sha256": "2b9c981d3c82bc5a14faedf25f19be37e669f29c9fc69b37f7abc5c056e2d0a2",
+      "role": "technical-source"
+    },
+    {
+      "id": "elasticsearch",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/elasticsearch/elasticsearch-original.svg",
+      "bytes": 552,
+      "sha256": "7efc44ea67eac2a877248c0502e498bca8f61de490852c1a5c572db0b5d3f84d",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/elasticsearch.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "opensearch",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/opensearch-project/documentation-website/main/_api-reference/index-apis/refresh.md",
+      "bytes": 6365,
+      "sha256": "786b64308fe871dda507726834d40c3792421aaf676eb8f392b03a40e536f0be",
+      "role": "technical-source"
+    },
+    {
+      "id": "opensearch",
+      "kind": "doc",
+      "index": 52,
+      "url": "https://raw.githubusercontent.com/opensearch-project/OpenSearch/main/server/src/main/java/org/opensearch/index/mapper/KeywordFieldMapper.java",
+      "bytes": 44918,
+      "sha256": "6bc0fd31bd374fc9e90e2cb244e76ae623f47faff9612d921ce1d767fc0ee666",
+      "role": "technical-source"
+    },
+    {
+      "id": "opensearch",
+      "kind": "logo",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/opensearch.svg",
+      "bytes": 860,
+      "sha256": "592db3a9af1d67d31831a9973ad311ef6e958071084cf2134cc2703db1750ecb",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/opensearch.svg",
+      "license": "CC0-1.0",
+      "brand_scope": false
+    },
+    {
+      "id": "nats",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/nats-io/nats.docs/master/nats-concepts/jetstream/consumers.md",
+      "bytes": 20420,
+      "sha256": "6dc4f2dc9a6f4c3ffffb6e45b6fb88314195404e7d10dde43e4e9142763e9543",
+      "role": "technical-source"
+    },
+    {
+      "id": "nats",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/nats/nats-original.svg",
+      "bytes": 552,
+      "sha256": "bc610b84ac6516797bd2bce4a2ae14265197b1adab6110222f70ee6a0ee93fa6",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/nats.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "memcached",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/memcached/memcached/master/doc/protocol.txt",
+      "bytes": 83859,
+      "sha256": "fbd6f3ac15f418c0850c64dc0cadea1c542047681b01284d674a654e5b265063",
+      "role": "technical-source"
+    },
+    {
+      "id": "memcached",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/memcached/memcached-original.svg",
+      "bytes": 3748,
+      "sha256": "4b8dbfce52441072e0f13f9691971c351333638f71c5e878e7acf78440fb44ff",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/memcached.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "deno",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/denoland/docs/main/runtime/fundamentals/security.md",
+      "bytes": 13297,
+      "sha256": "a47d661dbcd4e3edfa97f57df874dcaecfc4d9bce0ad8ec907992818abd909ae",
+      "role": "technical-source"
+    },
+    {
+      "id": "deno",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/denoland/docs/main/runtime/fundamentals/node.md",
+      "bytes": 35029,
+      "sha256": "e6a863f35f343f686c6647337676d3c97d3a6eaaa6b0525e7cf401b0df89b930",
+      "role": "technical-source"
+    },
+    {
+      "id": "deno",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/denojs/denojs-original.svg",
+      "bytes": 3304,
+      "sha256": "db3153aac0433501766042d59daeb11560d4e4e93793ac397a9a4dc83b7439cb",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/deno.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "bun",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/oven-sh/bun/main/README.md",
+      "bytes": 26209,
+      "sha256": "d92061a62c132844b11565ef0f96d1c178863832ea4670e96b22ac2a7cb1225c",
+      "role": "technical-source"
+    },
+    {
+      "id": "bun",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/bun/bun-original.svg",
+      "bytes": 5552,
+      "sha256": "54664655dec93da013d1fe8f8e1bf3311054708a17b445fdde319e0d7011f93c",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/bun.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "prometheus",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/prometheus/docs/main/docs/practices/histograms.md",
+      "bytes": 32251,
+      "sha256": "ebe64305d7d6156ca6b7021604c84eb5eab1868f35510089670ffe6fe387dcd2",
+      "role": "technical-source"
+    },
+    {
+      "id": "prometheus",
+      "kind": "doc",
+      "index": 25,
+      "url": "https://raw.githubusercontent.com/prometheus/docs/main/docs/practices/naming.md",
+      "bytes": 7658,
+      "sha256": "685f22e7d9af8b5845c0cbcdfc675074a9221d2ef9c99193c4d629d415d7f1f1",
+      "role": "technical-source"
+    },
+    {
+      "id": "prometheus",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/prometheus/prometheus-original.svg",
+      "bytes": 1223,
+      "sha256": "cae70cfcf9a8b88de32ab1035819d0c7c9a2b278048112f8c9f99dae42b5b657",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/prometheus.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "grafana",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/datasources/_index.md",
+      "bytes": 17554,
+      "sha256": "83aafa6298f6ae49c501ab8ccdc237aa086a30d4317b260b0a367717267d2fc4",
+      "role": "technical-source"
+    },
+    {
+      "id": "grafana",
+      "kind": "doc",
+      "index": 30,
+      "url": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/visualizations/dashboards/build-dashboards/_index.md",
+      "bytes": 718,
+      "sha256": "a752ee54e9750d96d6454a15b414c28c8c01bcb2549197e26685a8cfa6c24638",
+      "role": "technical-source"
+    },
+    {
+      "id": "grafana",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/grafana/grafana-original.svg",
+      "bytes": 4958,
+      "sha256": "2dec200d4e56521bec8dd463173c623b33b8c97e6159cac9b3ed00b6bff0f6ad",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/grafana.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "opentelemetry",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/content/en/docs/concepts/signals/_index.md",
+      "bytes": 1127,
+      "sha256": "bbe4edb682c77384331c7753c1e10d79f63a5c9aae9fa1c23c59a267ed2c2c3a",
+      "role": "technical-source"
+    },
+    {
+      "id": "opentelemetry",
+      "kind": "doc",
+      "index": 26,
+      "url": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/content/en/docs/concepts/context-propagation/index.md",
+      "bytes": 8189,
+      "sha256": "10a7f9df9bfad616eca360a481732a61a12d3302d96aa79add3a8eb47838d23b",
+      "role": "technical-source"
+    },
+    {
+      "id": "opentelemetry",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/opentelemetry/opentelemetry-original.svg",
+      "bytes": 1223,
+      "sha256": "4a610f674b648395f6460d3648d995e114cf34ad58004c01b9380c1deb7a19cd",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/opentelemetry.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 22,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform/v1.5.7/website/docs/language/state/index.mdx",
+      "bytes": 4139,
+      "sha256": "4eb2a29b8d119edd89d280d3d2b77e1187f364d2915271b2b843506346c07e94",
+      "role": "technical-source"
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 23,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform/main/internal/states/state.go",
+      "bytes": 20726,
+      "sha256": "d5501094d96411966c1208ed917e7452e0055cab7faa4eaf738dcebb71ef8419",
+      "role": "technical-source"
+    },
+    {
+      "id": "terraform",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/terraform/terraform-original.svg",
+      "bytes": 376,
+      "sha256": "0be6427291ae47f057b75f9010dffd6f58a40f0c83c43606ff68851cef1621dc",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/terraform.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "ansible",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/ansible/ansible-documentation/devel/docs/docsite/rst/playbook_guide/playbooks_intro.rst",
+      "bytes": 8915,
+      "sha256": "92e7c408330bc8c591f7496f147b217eebe75568fb128aa1320aa7bbd041420a",
+      "role": "technical-source"
+    },
+    {
+      "id": "ansible",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/ansible/ansible-documentation/devel/docs/docsite/rst/playbook_guide/playbooks_checkmode.rst",
+      "bytes": 4792,
+      "sha256": "1a83460cac278eb17c44d6f6b0477dca8ebc92115aa3cac1a1335c2076c70935",
+      "role": "technical-source"
+    },
+    {
+      "id": "ansible",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/ansible/ansible-original.svg",
+      "bytes": 377,
+      "sha256": "6e318caf2d49685f921a72231816106859e0bf93e440a70d0445a3f7f030fc9f",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/ansible.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "git",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/git/git/master/Documentation/git-merge.adoc",
+      "bytes": 15143,
+      "sha256": "8ef01610c3356215cd36ed18acf1fa460a7afbd8ac02b23b75d373b9765cece9",
+      "role": "technical-source"
+    },
+    {
+      "id": "git",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/git/git/master/Documentation/git-rebase.adoc",
+      "bytes": 48178,
+      "sha256": "ad4ddb279a784b77d21a9b005189f9b9f5e8c24b5a3074b154c2847284ae661d",
+      "role": "technical-source"
+    },
+    {
+      "id": "git",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original.svg",
+      "bytes": 778,
+      "sha256": "717a57ea97bf7e86de721dab3e68afac66332a10676d5c9abce4ae6a5a9c9983",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/git.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "github-actions",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/github/docs/main/content/actions/reference/workflows-and-actions/workflow-syntax.md",
+      "bytes": 79465,
+      "sha256": "50c73cf50995a0c7641988b1f72ca9e3447ce2920f4a48cb468d7765eff0b6f1",
+      "role": "technical-source"
+    },
+    {
+      "id": "github-actions",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/githubactions/githubactions-original.svg",
+      "bytes": 2854,
+      "sha256": "3a2524052ccf301d1a239f20cfef98d655e060c51cc29c5e94c867913899a47e",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/github-actions.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "haproxy",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/haproxy/haproxy/master/doc/configuration.txt",
+      "bytes": 1737044,
+      "sha256": "b48609a2b35b9746e5200386510c8c7574fce2ac918415f37e99d9c595bf292e",
+      "role": "technical-source"
+    },
+    {
+      "id": "haproxy",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/haproxy/haproxy-original.svg",
+      "bytes": 10621,
+      "sha256": "31f45f5f8ea34ef00729479515bc7adde4004796954858341f9ea28a11bb5189",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/haproxy.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "envoy",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/envoyproxy/envoy/main/docs/root/intro/arch_overview/http/http_routing.rst",
+      "bytes": 14634,
+      "sha256": "4289777e5449a28135dc5b624a9bd6dd9208f3bb4a1a33e3dfd6c0043a70c415",
+      "role": "technical-source"
+    },
+    {
+      "id": "envoy",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/envoyproxy/envoy/main/docs/root/intro/arch_overview/upstream/health_checking.rst",
+      "bytes": 11533,
+      "sha256": "4612341d9486e01424df354ed993727e2f34e5fec298b66829e18b217419b613",
+      "role": "technical-source"
+    },
+    {
+      "id": "envoy",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/envoy/envoy-original.svg",
+      "bytes": 1340,
+      "sha256": "e499e22cdf5040db98e73def727c567745782190c3bf2583e5cd3120382f5d2b",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/envoy.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "graphql",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/graphql/graphql-spec/main/spec/Section%203%20--%20Type%20System.md",
+      "bytes": 83820,
+      "sha256": "794a8382fe7bebaee3b2b7727642bc0634c62ea8ef494176aebfe77c2f20b265",
+      "role": "technical-source"
+    },
+    {
+      "id": "graphql",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/graphql/graphql-spec/main/spec/Section%206%20--%20Execution.md",
+      "bytes": 41538,
+      "sha256": "43424b06bc141bc60765e35696a39048f321105aa4e9ddeb399fa70ee8144a62",
+      "role": "technical-source"
+    },
+    {
+      "id": "graphql",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/graphql/graphql-plain.svg",
+      "bytes": 1550,
+      "sha256": "1fafe03a1f77be5a1c25c20db6e52f292ed8ae5a9b2536f807ee2a3d2e78d3d3",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/graphql.svg",
+      "license": "MIT",
+      "brand_scope": false
+    },
+    {
+      "id": "grpc",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/grpc/grpc/master/doc/PROTOCOL-HTTP2.md",
+      "bytes": 16105,
+      "sha256": "b51ea1b8cee67ad3477e73152bb60ac3ebf6e164962b46ba79434e980739256f",
+      "role": "technical-source"
+    },
+    {
+      "id": "grpc",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/grpc/grpc.io/main/content/en/docs/guides/deadlines.md",
+      "bytes": 4703,
+      "sha256": "e310a0e5a4bdc8f353ef04a641336d9a51176ffaa0ba0ee8b8b1aad98263a900",
+      "role": "technical-source"
+    },
+    {
+      "id": "grpc",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/grpc/grpc-original.svg",
+      "bytes": 4733,
+      "sha256": "91b240df26e443aafd6fbc303ee00f8ae60fcef5bb9136b54bdf7a6589a8c975",
+      "role": "product-symbol",
+      "workspace_path": "assets/tech/grpc.svg",
+      "license": "MIT",
+      "brand_scope": false
+    }
+  ],
+  "license_files": [
+    {
+      "url": "https://raw.githubusercontent.com/TanStack/query/main/LICENSE",
+      "sha256": "a405ee70c632bb938acb7ac5f210e814409b3760ea9d2329d8ed8ffcfd11a0e7",
+      "workspace_path": "licenses/tanstack-query.txt"
+    }
+  ],
+  "unavailable_requests": [
+    {
+      "id": "c",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/main/clang/docs/UsersManual.rst",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "c",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/llvm/llvm-project/main/clang/docs/UndefinedBehaviorSanitizer.rst",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "kotlin",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/JetBrains/kotlin-web-site/master/docs/topics/coroutines-basics.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "ruby",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/ruby/ruby/master/doc/ractor.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "erlang",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/erlang/otp/master/system/doc/reference_manual/processes.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "bash",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/bminor/bash/master/doc/bashref.texi",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nuxt",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/nuxt/nuxt/main/docs/3.api/2.composables/use-async-data.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nuxt",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/nuxt/nuxt/main/docs/2.guide/1.concepts/3.rendering.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "angular",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/angular/angular/main/adev/src/content/guide/signals.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/gh-pages/en/guide/error-handling.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/gh-pages/en/guide/using-middleware.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nestjs",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/providers.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nestjs",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/nestjs/docs.nestjs.com/master/content/techniques/validation.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "flutter",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/flutter/website/main/src/content/data-and-backend/state-mgmt/simple.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "flutter",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/flutter/website/main/src/content/perf/best-practices.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "react-native",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/facebook/react-native-website/main/docs/architecture-overview.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "cassandra",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/apache/cassandra/trunk/doc/modules/cassandra/pages/data_modeling/intro.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "cockroachdb",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/cockroachdb/cockroachdb-original.svg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "neo4j",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/neo4j/docs-cypher/main/modules/ROOT/pages/clauses/match.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "neo4j",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/neo4j/docs-cypher/main/modules/ROOT/pages/constraints/managing-constraints.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "elasticsearch",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/elastic/elasticsearch/8.17/docs/reference/mapping/dynamic.asciidoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "opensearch",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/opensearch-project/documentation-website/main/_field-types/supported-field-types/keyword.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "opensearch",
+      "kind": "logo",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/devicons/devicon/master/icons/opensearch/opensearch-original.svg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nats",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/nats-io/nats.docs/master/nats-concepts/core-nats/reqreply.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "deno",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/denoland/docs/main/runtime/fundamentals/security.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "deno",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/denoland/docs/main/runtime/fundamentals/node.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "bun",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/oven-sh/bun/main/docs/api/http.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "prometheus",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/prometheus/docs/main/content/docs/practices/histograms.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "prometheus",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/prometheus/docs/main/content/docs/instrumenting/labels.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "grafana",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/dashboards/build-dashboards/_index.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "opentelemetry",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/content/en/docs/concepts/context-propagation/_index.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 0,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform/main/website/docs/language/state/index.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform/main/website/docs/language/state/sensitive-data.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "github-actions",
+      "kind": "doc",
+      "index": 1,
+      "url": "https://raw.githubusercontent.com/github/docs/main/content/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "ruby",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/ruby/ruby/master/doc/ractor.rdoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nuxt",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/nuxt/nuxt/main/docs/3.guide/1.concepts/3.rendering.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/guide/error-handling.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/guide/using-middleware.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "react-native",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/facebook/react-native-website/main/docs/architecture/overview.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "cassandra",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/apache/cassandra/trunk/doc/modules/cassandra/pages/data_modeling/intro.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "cassandra",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/apache/cassandra/trunk/doc/modules/cassandra/pages/cql/ddl.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "neo4j",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/neo4j/docs-cypher/dev/modules/ROOT/pages/constraints/managing-constraints.adoc",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "opensearch",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/opensearch-project/documentation-website/main/_field-types/supported-field-types/keyword.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "nats",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/nats-io/nats.docs/master/nats-concepts/core-nats/reqreply/README.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "prometheus",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/prometheus/docs/main/docs/instrumenting/labels.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "grafana",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/grafana/grafana/main/docs/sources/dashboards/_index.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "opentelemetry",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/open-telemetry/opentelemetry.io/main/content/en/docs/concepts/context-propagation.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/language/state/index.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "terraform",
+      "kind": "doc",
+      "index": 11,
+      "url": "https://raw.githubusercontent.com/hashicorp/terraform-docs-common/main/website/docs/language/state/sensitive-data.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "github-actions",
+      "kind": "doc",
+      "index": 10,
+      "url": "https://raw.githubusercontent.com/github/docs/main/content/actions/security-guides/security-hardening-for-github-actions.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 20,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/guide/error-handling.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 21,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/guide/using-middleware.mdx",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 50,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/5x/guide/error-handling.md",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "express",
+      "kind": "doc",
+      "index": 51,
+      "url": "https://raw.githubusercontent.com/expressjs/expressjs.com/main/src/content/docs/en/5x/guide/using-middleware.md",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

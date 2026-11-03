@@ -37,7 +37,13 @@ for (const file of (await fs.readdir(path.join(root, "assets/fonts"))).filter(
   licenses.push(
     await fs.readFile(path.join(root, "assets/fonts", file), "utf8"),
   );
-for (const file of ["react.txt", "motion.txt"]) {
+for (const file of [
+  "react.txt",
+  "motion.txt",
+  "devicon.txt",
+  "simple-icons.txt",
+  "tanstack-query.txt",
+]) {
   licenses.push(await fs.readFile(path.join(root, "licenses", file), "utf8"));
 }
 await fs.cp(path.join(root, "licenses"), path.join(dist, "licenses"), {

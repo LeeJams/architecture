@@ -22,6 +22,19 @@ export const resolveAssets = (value) =>
           )
         : value;
 export const assets = resolveAssets({
+  // New catalogue symbols use their filename as the asset key. Keep explicit
+  // aliases below for existing diagrams and historical product filenames.
+  ...Object.fromEntries(
+    Object.keys(files)
+      .filter((path) => path.startsWith("../../assets/tech/"))
+      .map((path) => [
+        path
+          .split("/")
+          .at(-1)
+          .replace(/\.[^.]+$/, ""),
+        path.slice(6),
+      ]),
+  ),
   threejs: "assets/tech/threejs.svg",
   babylonjs: "assets/tech/babylonjs.svg",
   vitejs: "assets/tech/vitejs.svg",

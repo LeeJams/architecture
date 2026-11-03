@@ -115,7 +115,10 @@ export function TechnologyCatalogue() {
         <h1 id="technology-library-title" tabIndex="-1">
           기술 목록
         </h1>
-        <p>왜 필요한 기술인지, 무엇을 얻고 감수하는지부터 살펴봅니다.</p>
+        <p>
+          언어·프레임워크·저장·운영 도구의 역할과 필요한 이유, 동작 원리를
+          살펴봅니다.
+        </p>
       </div>
       <div className="technology-search-row">
         <label className="technology-search" htmlFor="technology-search">
@@ -124,7 +127,7 @@ export function TechnologyCatalogue() {
             id="technology-search"
             type="search"
             autoComplete="off"
-            placeholder="예: Python, PostgreSQL, S3"
+            placeholder="예: C++, Kotlin, React, PostgreSQL"
             value={state.catalogueQuery}
             onChange={(event) => patch({ catalogueQuery: event.target.value })}
           />
@@ -214,6 +217,15 @@ export function TechnologyCatalogue() {
         </div>
       )}
       <footer className="technology-library-footer">
+        <p>
+          <a
+            href="https://github.com/LeeJams/architecture/blob/main/CONTRIBUTING.md#기술-추가하기"
+            target="_blank"
+            rel="noreferrer"
+          >
+            기술 추가·설명 보완에 참여하기
+          </a>
+        </p>
         <p>
           기술의 일반적인 동작과 사용 조건을 설명합니다. 아키텍처 사례에서
           실제로 쓰인 위치와 확인 범위는 각 사례에 표시합니다.

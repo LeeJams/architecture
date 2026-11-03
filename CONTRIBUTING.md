@@ -18,6 +18,7 @@
 | 수정할 내용 | 위치 |
 | --- | --- |
 | 기술 정의·사용처·예제·출처 | `src/data/technology-catalogue.js`, `src/data/technology-profiles.js` |
+| 새 언어·웹·서버·모바일·데이터·운영 기술 | `src/data/technologies/` |
 | 기술이 필요한 이유·도입 효과와 조건 | `src/data/technology-rationales.js` |
 | 체험형 웹 기술의 정의·필요성·예제 | `src/data/interactive-web-technologies.js` |
 | 산사의 행동별 흐름·근거·비교 프로젝트 | `src/data/interactive-services.js` |
@@ -28,6 +29,31 @@
 | 기술 로고·이미지·서체 | `assets/` |
 
 로고는 해당 제품의 정확한 원본을 사용하고 출처와 라이선스를 확인해주세요. 이미지·서체 고지는 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md), 확인한 자료는 [SOURCES.md](SOURCES.md)에 정리합니다.
+
+## 기술 추가하기
+
+처음이라면 설명 한 문장이나 출처 하나를 보태는 PR부터 보내셔도 좋습니다. 새 기술은 [작성 틀](docs/templates/technology-profile.js)을 복사해 아래 파일의 배열에 추가해주세요. 각 항목은 일반 JavaScript 객체이며 공용 카드와 상세 창이 같은 데이터를 사용합니다.
+
+| 분야 | 파일 |
+| --- | --- |
+| 언어 | `src/data/technologies/languages.js` |
+| 웹 UI·웹 앱 | `src/data/technologies/web.js` |
+| 서버·모바일 프레임워크 | `src/data/technologies/applications.js` |
+| DB·검색 | `src/data/technologies/data-platform.js` |
+| 실행 환경·메시징·관측·운영·개발 도구·API | `src/data/technologies/infrastructure.js` |
+
+1. 기존 기술과 ID가 겹치지 않는지 확인하고 `category`에는 `technologyCategories`에 등록된 ID를 씁니다. 새 분류라면 분류 이름과 설명도 함께 추가합니다.
+2. **필요한 이유·사용 상황·핵심 개념·처리 순서·실제 도입 조건·진단 방법**을 구체적으로 적습니다. 예제에는 필요한 환경과 생략한 부분을 밝힙니다. 작성 틀의 안내 문구는 실제 설명으로 바꿔주세요.
+3. 공식 문서·사양·구현 원문을 읽고 `sources`에 제목·URL·확인 범위를 남깁니다. 특정 회사의 사용 근거와 일반 기술 설명을 구분합니다.
+4. 심벌은 원본과 라이선스를 확인해 `assets/tech/<id>.svg`로 저장하고 `image`에 같은 ID를 적습니다. 이 이름은 자동 등록됩니다. 공통 브랜드 심벌이면 `logoScope: "brand"`와 실제 표시 범위를 명시합니다. 적절한 이미지가 없다면 다른 제품의 로고를 대신 쓰지 말고 그 사실을 이슈에 남겨주세요.
+5. 새 원문·이미지의 URL·바이트 수·SHA-256을 `docs/research/technology-catalogue-100-sources.json`에 추가하고 필요한 외부 자료 고지를 보완합니다. `related`에는 등록된 기술의 ID만 씁니다.
+
+```sh
+npm run catalogue:check  # 필수 내용·분류·관련 ID·이미지 경로·원본 해시 확인
+npm run dev             # 검색·카드·공용 상세 창 확인
+```
+
+기술을 늘릴 때 개수를 고정한 테스트를 수정할 필요는 없습니다. `npm test`는 전체 데이터에 맞춰 분류와 상세 창을 확인합니다. 서비스 사례의 실제 사용 목록은 이 기술 목록과 별도이므로, 사용을 확인한 자료가 있을 때 해당 사례도 보완해주세요.
 
 ## 변경 확인하기
 

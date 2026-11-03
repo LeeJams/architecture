@@ -1,27 +1,48 @@
 import { technologyRationales } from "./technology-rationales.js";
 import { additionalTechnologies } from "./technology-profiles.js";
 import { interactiveWebTechnologies } from "./interactive-web-technologies.js";
+import { languagesTechnologies } from "./technologies/languages.js";
+import { webTechnologies } from "./technologies/web.js";
+import { applicationsTechnologies } from "./technologies/applications.js";
+import { dataPlatformTechnologies } from "./technologies/data-platform.js";
+import { infrastructureTechnologies } from "./technologies/infrastructure.js";
 
 export const technologyCategories = [
   ["all", "전체"],
   ["storage", "저장소"],
   ["delivery", "CDN · 콘텐츠 전달"],
-  ["http", "HTTP 서버"],
+  ["http", "HTTP 서버 · 프록시"],
   ["os", "운영체제"],
   ["language", "프로그래밍 언어"],
   ["runtime", "실행 환경"],
+  ["web", "웹 앱 · UI"],
+  ["backend", "서버 프레임워크"],
+  ["mobile", "모바일 · 앱 UI"],
   ["graphics", "3D · 그래픽"],
   ["browser", "브라우저 API"],
   ["realtime", "실시간 통신"],
-  ["tooling", "개발 도구"],
+  ["tooling", "개발 · 배포 도구"],
   ["database", "데이터베이스"],
+  ["search", "검색 엔진"],
   ["cache", "캐시"],
   ["messaging", "메시지 · 이벤트"],
-  ["operations", "컨테이너 · 운영"],
+  ["api", "API · 통신 규약"],
+  ["observability", "관측 · 모니터링"],
+  ["operations", "인프라 · 운영"],
   ["compute", "컴퓨팅"],
 ];
 
 export const technologyCategoryDescriptions = {
+  web: "화면의 컴포넌트·상태·스타일과 웹 앱의 렌더링을 구성합니다. React와 Next.js처럼 UI 라이브러리와 서버·라우팅을 연결하는 프레임워크의 역할을 구분합니다.",
+  backend:
+    "HTTP 입력·업무 로직·의존성·데이터 접근을 서버의 규약으로 연결합니다. 입력 타입과 실제 검증·인증·권한, DB 트랜잭션의 경계를 구분합니다.",
+  mobile:
+    "공유 UI·업무 코드와 네이티브 플랫폼 기능을 연결합니다. 언어·웹 DOM·앱 프레임워크·플러그인과 대상별 빌드·성능·접근성을 함께 확인합니다.",
+  search:
+    "문서를 분석·색인하고 텍스트 관련도·정확한 필터·집계로 탐색합니다. 원본 DB의 변경과 검색 가시성·동기화·재색인은 별도 경로입니다.",
+  api: "서로 다른 프로그램의 입력·결과·실행 계약을 정의합니다. GraphQL의 필드 선택과 gRPC의 서비스·메시지·호출 규약, 실제 저장·권한·네트워크 실패를 구분합니다.",
+  observability:
+    "서비스의 변화를 계측·수집·질의·표시하는 기술입니다. OpenTelemetry의 계측·전달, Prometheus의 메트릭 수집·시계열, Grafana의 탐색·대시보드는 서로 다른 역할입니다.",
   graphics:
     "장면·카메라·도형·픽셀을 그리는 기술입니다. Three.js·Babylon.js 같은 라이브러리·엔진과 WebGL·Canvas 2D 같은 브라우저 API의 역할을 구분합니다.",
   browser:
@@ -29,7 +50,7 @@ export const technologyCategoryDescriptions = {
   realtime:
     "연결을 유지하며 메시지·참여자 상태를 전달합니다. 연결 성공·방 입장·초기 상태·재접속 복구와 기록 보관은 서로 다른 처리 단계입니다.",
   tooling:
-    "소스와 모듈·에셋을 개발하고 배포 결과를 만드는 도구입니다. 개발 서버·빌드와 서비스의 실제 실행·데이터 처리를 구분합니다.",
+    "소스의 변경 기록·개발 서버·빌드·검사·자동 실행을 구성합니다. Git의 로컬 커밋, GitHub Actions의 runner 작업, Vite의 개발·빌드와 실제 운영 배포를 구분합니다.",
   all: "파일 보관·데이터 질의·프로그램 실행처럼 맡는 역할에 따라 분류했습니다. 카드의 분류와 기술 종류를 확인하고, 상세에서 사용 상황과 동작 조건을 읽어보세요.",
   storage:
     "파일·객체·블록을 보관하는 기반입니다. S3의 오브젝트 API, EBS의 블록 장치, EFS의 공유 파일 접근은 서로 다른 사용 방식을 가집니다.",
@@ -40,7 +61,7 @@ export const technologyCategoryDescriptions = {
   language:
     "프로그램의 값·타입·제어 흐름과 코드를 표현하는 언어입니다. JavaScript와 Node.js처럼 언어와 실행 환경은 구분합니다.",
   runtime:
-    "작성한 코드를 실행하고 필요한 시스템·서버 API를 제공하는 계층입니다. Node.js와 Tomcat은 사용하는 언어와 요청 처리 모델이 다릅니다.",
+    "작성한 코드를 실행하고 필요한 시스템·서버 API를 제공하는 계층입니다. Node.js·Deno·Bun의 API·권한·호환성과 Java 웹 컨테이너인 Tomcat의 역할을 구분합니다.",
   database:
     "데이터 모델·질의·인덱스·트랜잭션을 관리합니다. 관계형 테이블과 문서 모델, 동시 변경의 보장 범위를 구분해서 선택합니다.",
   cache:
@@ -48,7 +69,7 @@ export const technologyCategoryDescriptions = {
   messaging:
     "생산자와 소비자 사이의 작업·이벤트 전달을 연결합니다. 큐의 확인·재전달과 로그의 보관·offset은 다른 처리 모델입니다.",
   operations:
-    "실행 파일을 컨테이너 이미지로 묶고, 배치·교체·상태를 운영하는 도구입니다. 이미지와 실행 프로세스, 여러 실행 단위를 조정하는 역할을 구분합니다.",
+    "이미지·프로세스·배치와 인프라의 원하는 구성·반복 작업을 관리합니다. Docker·Kubernetes의 실행 경계, Terraform의 plan·state, Ansible의 대상·모듈·작업은 서로 다른 역할입니다.",
   compute:
     "가상 서버나 함수가 실행될 자원을 제공합니다. EC2의 서버 운영과 Lambda의 호출·동시 실행 모델은 관리하는 범위가 다릅니다.",
 };
@@ -1140,6 +1161,11 @@ export const technologyCatalogue = [
   ...originalTechnologies,
   ...additionalTechnologies,
   ...interactiveWebTechnologies,
+  ...languagesTechnologies,
+  ...webTechnologies,
+  ...applicationsTechnologies,
+  ...dataPlatformTechnologies,
+  ...infrastructureTechnologies,
 ].map((tech) => ({
   ...tech,
   rationale: tech.rationale || technologyRationales[tech.id],

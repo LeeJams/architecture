@@ -19,6 +19,15 @@ export default defineConfig(({ mode }) => ({
                 "react-vendor": ["react", "react-dom/client"],
                 motion: ["motion/react"],
                 "technology-content": ["./src/data/technology-catalogue.js"],
+                "catalogue-languages": ["./src/data/technologies/languages.js"],
+                "catalogue-web": ["./src/data/technologies/web.js"],
+                "catalogue-applications": [
+                  "./src/data/technologies/applications.js",
+                ],
+                "catalogue-data": ["./src/data/technologies/data-platform.js"],
+                "catalogue-infrastructure": [
+                  "./src/data/technologies/infrastructure.js",
+                ],
               },
             },
     },

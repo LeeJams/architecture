@@ -201,7 +201,7 @@ JavaScript·TypeScript·Python 예제의 구문/타입, Kubernetes YAML 구문�
 
 ## 체험형 웹과 산사 분석
 
-2026-11-03에 Three.js·WebGL·Canvas 2D·Babylon.js·Web Audio API·WebSocket·Cloudflare Workers·Supabase Realtime·Firebase Realtime Database·localStorage·Vite를 추가했습니다. 현재 기술 목록은 15개 분류·44개 기술입니다. [확인한 공식 기술 원문과 원본 심벌](docs/research/interactive-web-technologies-sources.json)을 기록합니다.
+2026-11-03에 Three.js·WebGL·Canvas 2D·Babylon.js·Web Audio API·WebSocket·Cloudflare Workers·Supabase Realtime·Firebase Realtime Database·localStorage·Vite를 추가했습니다. 이때 기술 목록을 15개 분류·44개 기술로 확장했습니다. [확인한 공식 기술 원문과 원본 심벌](docs/research/interactive-web-technologies-sources.json)을 기록합니다.
 
 [산사 조사](docs/research/2026-11-03-playful-web-apps.md)와 [고정 커밋의 24개 원문 기록](docs/research/2026-11-03-playful-web-sources.json)이 분석 페이지의 근거입니다. 공식 사이트·나무위키는 환경에서 접속이 차단되어 본문과 현재 배포를 직접 확인하지 못했습니다. 공개 파생 프로젝트가 보관한 클라이언트 런타임은 **간접 자료**로 표시합니다. 파생 프로젝트의 React·Vinext·D1과 비교 프로젝트의 Firebase·Supabase를 산사 원본의 사용 제품으로 옮겨 적지 않습니다.
 
@@ -220,3 +220,26 @@ JavaScript·TypeScript·Python 예제의 구문/타입, Kubernetes YAML 구문�
 각 파트에 필요성·처리 방식·확인 범위·연관 파트와 원문 링크를 둡니다. 기술의 일반 정의는 공용 설명 창을 재사용하고, 대체 제품이나 파생 프로젝트의 스택은 해당 서비스의 실제 구성에 포함하지 않습니다.
 
 개요는 **프론트엔드·서버·데이터 저장**으로 나누고, 각 영역의 별도 상세 페이지에서 담당 파트와 처리 방식을 설명합니다. localStorage는 프론트엔드의 브라우저 저장으로, 넷플릭스의 제어 서비스·전달망·HTTP 서버·운영체제는 서버 영역으로 묶습니다. 이 분류는 역할을 읽기 위한 구분이며 실제 배포 단위나 서버 수를 뜻하지 않습니다. 기존 파트 직접 링크도 해당 영역의 상세로 이어집니다.
+
+## 언어·프레임워크·운영 기술 확장
+
+2026-11-03에 56개 기술을 추가해 **21개 분류·100개 기술**로 확장했습니다. 일반 기술 목록의 확장이며, 넷플릭스나 산사의 실제 사용 제품을 추가로 확인했다는 의미는 아닙니다.
+
+| 추가 분야 | 기술 |
+| --- | --- |
+| 프로그래밍 언어 | C, C++, C#, Kotlin, Swift, Dart, Ruby, PHP, Elixir, Erlang, Scala, R, Lua, Bash |
+| 웹 앱·UI | React, Next.js, Vue, Nuxt, Angular, Svelte, Astro, Tailwind CSS, TanStack Query, Redux Toolkit |
+| 서버·모바일 프레임워크 | Spring Boot, Django, FastAPI, Express, NestJS, Laravel, Ruby on Rails, ASP.NET Core, Flutter, React Native |
+| 데이터베이스·검색 | SQLite, MariaDB, Apache Cassandra, CockroachDB, Neo4j, Elasticsearch, OpenSearch |
+| 실행 환경·메시징·캐시 | Deno, Bun, NATS, Memcached |
+| 관측·운영·개발·통신 | Prometheus, Grafana, OpenTelemetry, Terraform, Ansible, Git, GitHub Actions, HAProxy, Envoy, GraphQL, gRPC |
+
+[조회한 원문·심벌과 SHA-256](docs/research/technology-catalogue-100-sources.json)에 사용한 기술 원문 101개와 이미지 56개의 조회 기록을 보관합니다. 공식 프로젝트의 문서·사양·구현 원문을 우선 사용했습니다. 접속이 차단된 제품 홈페이지는 읽은 원문으로 취급하지 않고 상세의 ‘추가 읽기’로 구분합니다. R과 Bash의 보관소는 각각 R Core 원문의 미러, GNU Bash 문서의 미러임을 표시합니다.
+
+버전별 보존 자료는 해당 범위로 읽습니다. Clang 19 문서는 C 표준 자체가 아니며, Laravel 12·MariaDB 11.4·CockroachDB 25.1·Elasticsearch 8.17·Terraform 1.5.7의 예제를 최신 지원 정책이나 서비스 한도로 일반화하지 않습니다. 최신 가격·지원 종료일·성능 수치는 기재하지 않았습니다.
+
+각 기술에 **필요한 이유, 처리 방식, 얻는 것과 감수할 점, 사용 상황, 주요 개념, 예제, 진단 항목, 도입 질문과 더 단순한 출발점**을 작성했습니다. 이 중 사용 조건과 선택 질문은 원리의 차이를 설명하는 자체 학습 해설입니다. 프레임워크·언어·런타임, DB와 검색 인덱스, Core NATS와 JetStream, 관측 계측과 저장·시각화처럼 서로 다른 책임을 구분합니다. 예제에는 필요한 버전·라이브러리와 생략한 경계를 함께 적습니다.
+
+이미지는 Devicon 원본 52개, Simple Icons 원본 3개, TanStack Query 공식 원본 1개를 변형 없이 사용합니다. React Native·Redux Toolkit·ASP.NET Core·CockroachDB처럼 제품군의 공통 심벌을 쓰는 항목은 실제 브랜드 범위를 상세에 표시합니다. 라이선스와 상표 범위는 [외부 자료 고지](THIRD_PARTY_NOTICES.md)를 따릅니다.
+
+C·C++·Bash 예제의 구문, Python 예제의 AST, 검색 API의 JSON 본문을 확인했고 SQLite의 WAL·트랜잭션 예제를 로컬 임시 DB에서 실행했습니다. 그 밖의 언어·프레임워크와 외부 DB·브로커·클라우드 예제 전체를 실행한 것은 아닙니다. 목록·검색·이미지·모달의 배치와 오프라인 동작은 전체 기술을 대상으로 Chromium에서 검사합니다. 함께 확장할 수 있도록 [기여 안내](CONTRIBUTING.md#기술-추가하기)와 [작성 틀](docs/templates/technology-profile.js), `npm run catalogue:check`도 제공합니다.
